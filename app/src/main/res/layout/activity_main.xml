@@ -2,7 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--<data>-->
 
+        <!--&lt;!&ndash;<variable&ndash;&gt;-->
+                <!--&lt;!&ndash;name="loginActivityCallback"&ndash;&gt;-->
+                <!--&lt;!&ndash;type="com.ryadav3.mvvmsample.view.callback.LoginActivityCallback" />&ndash;&gt;-->
+    <!--</data>-->
         <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -342,10 +347,10 @@
                             android:layout_marginBottom="@dimen/dp20"
                             android:orientation="vertical">
 
-                        <pl.droidsonroids.gif.GifImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@raw/loader" />
+                        <!--<pl.droidsonroids.gif.GifImageView-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:src="@raw/loader" />-->
 
                         <AutoCompleteTextView
                                 android:id="@+id/autoCompleteTextVie"

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">KotlinProject</string>
+    <string name="network_error">Network Error</string>
+    <string name="internal_server_error">Internal Server Error</string>
     <string name="remember_me">remember me</string>
     <string name="login">login</string>
     <string name="selected">selected</string>
@@ -11,4 +13,11 @@
     <string name="marquee_txt">marquee txt</string>
     <string name="first_name">first name</string>
     <string name="password">password</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
+    <string name="forcefully_enable_permission">You have forcefully denied some of the required permissions for this action.\nPlease go to permissions and allow them.</string>
+    <string name="no_network_msg"><![CDATA[Please check your internet connection &amp; try again]]></string>
+
 </resources>

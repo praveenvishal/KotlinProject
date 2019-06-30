@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import com.example.kotlinproject.R
 import com.example.kotlinproject.global.common.AppApplication.Companion.context
+import com.example.kotlinproject.global.common.AppApplication.Companion.mCurrencyActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.lang.reflect.Modifier
@@ -30,7 +31,7 @@ class GlobalUtility {
         fun datePicker(dateListener: DatePickerDialog.OnDateSetListener): DatePickerDialog {
             val calendar = Calendar.getInstance()
             return DatePickerDialog(
-                context,
+                mCurrencyActivity,
                 R.style.TimePicker,
                 dateListener,
                 calendar.get(Calendar.YEAR),
@@ -42,7 +43,7 @@ class GlobalUtility {
         fun timePicker(timeListener: TimePickerDialog.OnTimeSetListener): TimePickerDialog {
             val calendar = Calendar.getInstance()
             return TimePickerDialog(
-                context,
+                mCurrencyActivity,
                 R.style.TimePicker,
                 timeListener,
                 calendar.get(Calendar.HOUR_OF_DAY),

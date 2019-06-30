@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProviders
 import com.example.kotlinproject.R
+import com.example.kotlinproject.global.common.AppApplication
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.common.PermissionHelper
 import com.example.kotlinproject.model.eventBus.EventBusListener
@@ -15,14 +16,13 @@ import org.greenrobot.eventbus.Subscribe
 
 open class BaseActivity : AppCompatActivity(), PermissionHelper.Companion.PermissionListener {
     private var mHomeViewModel: HomeViewModel? = null
-
-
     //    var mHomeViewModel: HomeViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
         supportActionBar?.hide()
         GlobalUtility.hideKeyboard(this)
+        AppApplication.mCurrencyActivity = this
         var layoutResId = getLayout()
         var binding: ViewDataBinding? = null
         mHomeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
@@ -33,7 +33,6 @@ open class BaseActivity : AppCompatActivity(), PermissionHelper.Companion.Permis
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }
     }
 
@@ -42,7 +41,6 @@ open class BaseActivity : AppCompatActivity(), PermissionHelper.Companion.Permis
     }
 
     open fun initUI(binding: ViewDataBinding) {
-
     }
 
     override fun onBackPressed() {

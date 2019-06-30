@@ -38,6 +38,8 @@ class MainActivity : BaseActivity(), View.OnClickListener, DatePickerDialog.OnDa
     private fun clickListener() {
         mBinding?.btnLogin?.setOnClickListener(this)
         mBinding?.btnDataPicker?.setOnClickListener(this)
+        mBinding?.btnTimePicker?.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {

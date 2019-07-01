@@ -43,6 +43,7 @@ class MainActivity : BaseActivity(), View.OnClickListener, DatePickerDialog.OnDa
         mBinding?.btnLogin?.setOnClickListener(this)
         mBinding?.btnDataPicker?.setOnClickListener(this)
         mBinding?.btnTimePicker?.setOnClickListener(this)
+        mBinding?.btnStartProgress?.setOnClickListener(this)
 
     }
 
@@ -55,6 +56,9 @@ class MainActivity : BaseActivity(), View.OnClickListener, DatePickerDialog.OnDa
                 GlobalUtility.datePicker(this).show()
             }
             R.id.btn_time_picker -> GlobalUtility.timePicker(this).show()
+            R.id.btn_start_progress -> {
+                checkStoragePermission()
+            }
         }
     }
 

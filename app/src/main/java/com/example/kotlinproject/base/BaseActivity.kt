@@ -1,5 +1,6 @@
 package com.example.kotlinproject.base
 
+import android.Manifest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -56,6 +57,27 @@ open class BaseActivity : AppCompatActivity(), PermissionHelper.Companion.Permis
 
     @Subscribe
     fun EventBusListener(eventBusListener: EventBusListener) {
+    }
+
+    protected fun checkStoragePermission() {
+        val multiplePermission = ArrayList<String>()
+        multiplePermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        multiplePermission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        multiplePermission.add(Manifest.permission.CAMERA)
+        if (PermissionHelper.checkMultiplePermission(multiplePermission)) {
+//            FileUtils.createApplicationFolder()
+            mHomeViewModel?.mIsPermissionGranted?.postValue(true)
+        } else
+            PermissionHelper.requestMultiplePermission(multiplePermission, this)
+    }
+
+    protected fun checkLocationPermission() {
+        val multiplePermission = ArrayList<String>()
+        multiplePermission.add(Manifest.permission.ACCESS_FINE_LOCATION)
+        multiplePermission.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (PermissionHelper.checkMultiplePermission(multiplePermission)) {
+        } else
+            PermissionHelper.requestMultiplePermission(multiplePermission, this)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

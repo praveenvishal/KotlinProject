@@ -1,5 +1,7 @@
 package com.example.kotlinproject.networkCall
 
+import com.example.kotlinproject.global.sharedPref.PreferenceMgr
+import com.example.kotlinproject.global.sharedPref.PreferenceUtils
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -59,6 +61,8 @@ val appModule = module {
 //            )
 //        )
 //    }
+    single { PreferenceUtils() }
+    single { PreferenceMgr() }
 
 //    single {
 //        ValidationHelper()

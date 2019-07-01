@@ -2,26 +2,25 @@ package com.example.kotlinproject.view
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TimePicker
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProviders
 import com.example.kotlinproject.R
 import com.example.kotlinproject.base.BaseActivity
+import com.example.kotlinproject.global.sharedPref.PreferenceUtils
 import com.example.kotlinproject.databinding.ActivityMainBinding
-import com.example.kotlinproject.databinding.ActivitySplashBinding
 import com.example.kotlinproject.global.common.GlobalUtility
+import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.viewModel.main.MainViewModel
 
 class MainActivity : BaseActivity(), View.OnClickListener, DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
     private var mBinding: ActivityMainBinding? = null
     private var mainViewModel: MainViewModel? = null;
+    private var preferenceMgr: PreferenceMgr? = null;
+
 
     override fun getLayout(): Int {
         return R.layout.activity_main
@@ -32,7 +31,12 @@ class MainActivity : BaseActivity(), View.OnClickListener, DatePickerDialog.OnDa
         for (i in 1..5) {
             Log.d("TAG", i.toString())
         }
+        init()
         clickListener();
+    }
+
+    private fun init() {
+//        preferenceMgr?.setUserInfo()
     }
 
     private fun clickListener() {

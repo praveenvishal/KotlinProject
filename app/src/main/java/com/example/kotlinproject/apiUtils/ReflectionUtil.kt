@@ -4,10 +4,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.*
 
-
-/* Created by Sahil Bharti on 5/4/19.
- *
-*/
 class ReflectionUtil(private val gson: Gson) {
 
 

@@ -1,4 +1,4 @@
-package com.example.kotlinproject.networkCall
+package com.example.kotlinproject.apiUtils
 
 import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.global.sharedPref.PreferenceUtils

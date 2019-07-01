@@ -9,17 +9,17 @@ import android.widget.TimePicker
 import androidx.databinding.ViewDataBinding
 import com.example.kotlinproject.R
 import com.example.kotlinproject.base.BaseActivity
-import com.example.kotlinproject.global.sharedPref.PreferenceUtils
 import com.example.kotlinproject.databinding.ActivityMainBinding
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.viewModel.main.MainViewModel
+import org.koin.android.ext.android.inject
 
 class MainActivity : BaseActivity(), View.OnClickListener, DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
     private var mBinding: ActivityMainBinding? = null
-    private var mainViewModel: MainViewModel? = null;
-    private var preferenceMgr: PreferenceMgr? = null;
+    private var mainViewModel: MainViewModel? = null
+    private val preferenceMgr: PreferenceMgr  by inject()
 
 
     override fun getLayout(): Int {

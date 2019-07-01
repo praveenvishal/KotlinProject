@@ -3,8 +3,7 @@ package com.example.kotlinproject.global.sharedPref
 import com.example.kotlinproject.global.constant.PreferenceConstant
 import com.example.kotlinproject.model.preference.PreferenceBean
 
-class PreferenceMgr {
-    private var preferenceUtils: PreferenceUtils? = null
+class PreferenceMgr constructor(var preferenceUtils: PreferenceUtils){
     fun setUserInfo(preferenceBean: PreferenceBean) {
         preferenceUtils?.setPreference(PreferenceConstant.PREF_USER_NAME, preferenceBean.name)
         preferenceUtils?.setPreference(PreferenceConstant.PREF_USER_AGE, preferenceBean.age)

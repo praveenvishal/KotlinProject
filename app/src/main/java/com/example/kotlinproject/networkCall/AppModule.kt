@@ -62,7 +62,7 @@ val appModule = module {
 //        )
 //    }
     single { PreferenceUtils() }
-    single { PreferenceMgr() }
+    single { PreferenceMgr(get()) }
 
 //    single {
 //        ValidationHelper()

@@ -64,24 +64,24 @@ open class BaseActivity : AppCompatActivity(), PermissionHelper.Companion.Permis
         multiplePermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.CAMERA)
-        if (PermissionHelper.checkMultiplePermission(multiplePermission)) {
+        if (PermissionHelper.checkMultiplePermission(this,multiplePermission)) {
 //            FileUtils.createApplicationFolder()
             mHomeViewModel?.mIsPermissionGranted?.postValue(true)
         } else
-            PermissionHelper.requestMultiplePermission(multiplePermission, this)
+            PermissionHelper.requestMultiplePermission(this,multiplePermission, this)
     }
 
     protected fun checkLocationPermission() {
         val multiplePermission = ArrayList<String>()
         multiplePermission.add(Manifest.permission.ACCESS_FINE_LOCATION)
         multiplePermission.add(Manifest.permission.ACCESS_COARSE_LOCATION)
-        if (PermissionHelper.checkMultiplePermission(multiplePermission)) {
+        if (PermissionHelper.checkMultiplePermission(this,multiplePermission)) {
         } else
-            PermissionHelper.requestMultiplePermission(multiplePermission, this)
+            PermissionHelper.requestMultiplePermission(this,multiplePermission, this)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        PermissionHelper.Companion.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        PermissionHelper.Companion.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
     }
 
     override fun onPermissionGranted(mCustomPermission: List<String>) {

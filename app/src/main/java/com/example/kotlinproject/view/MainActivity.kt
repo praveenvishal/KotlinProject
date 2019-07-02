@@ -21,7 +21,6 @@ class MainActivity : BaseActivity(), View.OnClickListener, DatePickerDialog.OnDa
     private var mainViewModel: MainViewModel? = null
     private val preferenceMgr: PreferenceMgr  by inject()
 
-
     override fun getLayout(): Int {
         return R.layout.activity_main
     }

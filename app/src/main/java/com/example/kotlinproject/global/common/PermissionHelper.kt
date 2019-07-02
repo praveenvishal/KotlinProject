@@ -17,7 +17,7 @@ import java.util.*
 class PermissionHelper {
     companion object {
         private val PERMISSION_CODE = 1212
-        private var mActivity: Activity? = null
+//        private var mActivity: Activity? = null
         private var mCustomPermission: List<String>? = null
         private var mPerpermissionListener: PermissionListener? = null
         /**
@@ -28,13 +28,13 @@ class PermissionHelper {
          * @param permissionListener is describe permission status
          * @param permissions        is bundle of all permission
          */
-        fun requestMultiplePermission(@NonNull permissions: List<String>, @NonNull permissionListener: PermissionListener): Boolean {
+        fun requestMultiplePermission(activity: Activity,@NonNull permissions: List<String>, @NonNull permissionListener: PermissionListener): Boolean {
             mPerpermissionListener = permissionListener
             mCustomPermission = permissions
             if (Build.VERSION.SDK_INT >= 23) {
                 val listPermissionsAssign = ArrayList<String>()
                 for (per in permissions) {
-                    if (mActivity?.let {
+                    if (activity?.let {
                             ContextCompat.checkSelfPermission(
                                 it,
                                 per
@@ -44,7 +44,7 @@ class PermissionHelper {
                     }
                 }
                 if (!listPermissionsAssign.isEmpty()) {
-                    mActivity?.let {
+                    activity?.let {
                         ActivityCompat.requestPermissions(
                             it,
                             listPermissionsAssign.toTypedArray<String>(),
@@ -65,18 +65,18 @@ class PermissionHelper {
          * @param permissionListener is describe permission status
          * @param permissions        is single permission
          */
-        fun requestSinglePermission(@NonNull permissions: String, @NonNull permissionListener: PermissionListener): Boolean {
+        fun requestSinglePermission(activity: Activity,@NonNull permissions: String, @NonNull permissionListener: PermissionListener): Boolean {
             mPerpermissionListener = permissionListener
             mCustomPermission = Arrays.asList(*arrayOf(permissions))
             if (Build.VERSION.SDK_INT >= 23) {
-                if (mActivity?.let {
+                if (activity?.let {
                         ActivityCompat.checkSelfPermission(
                             it,
                             permissions
                         )
                     } !== PackageManager.PERMISSION_GRANTED) {
                     //                askRequestPermissions(new String[]{permissions});
-                    mActivity?.let {
+                    activity?.let {
                         ActivityCompat.requestPermissions(
                             it,
                             arrayOf<String>(permissions),
@@ -89,7 +89,7 @@ class PermissionHelper {
             return true
         }
 
-        fun onRequestPermissionsResult(@NonNull requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
+        fun onRequestPermissionsResult(activity: Activity,@NonNull requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
             when (requestCode) {
                 PERMISSION_CODE -> {
                     val listPermissionsNeeded =
@@ -118,7 +118,7 @@ class PermissionHelper {
                             var shouldRequest = false
                             if (listPermissionsNeeded != null) {
                                 for (permission in listPermissionsNeeded) {
-                                    if (mActivity?.let {
+                                    if (activity?.let {
                                             ActivityCompat.shouldShowRequestPermissionRationale(
                                                 it,
                                                 permission
@@ -130,11 +130,11 @@ class PermissionHelper {
                                 }
                             }
                             if (shouldRequest) {
-                                ifCancelledAndCanRequest()
+                                ifCancelledAndCanRequest(activity)
                             } else {
                                 //permission is denied (and never ask again is  checked)
                                 //shouldShowRequestPermissionRationale will return false
-                                ifCancelledAndCannotRequest()
+                                ifCancelledAndCannotRequest(activity)
                             }
                         }
                     }
@@ -145,8 +145,8 @@ class PermissionHelper {
         /**
          * permission cancel dialog
          */
-        private fun ifCancelledAndCanRequest() {
-            mActivity?.let {
+        private fun ifCancelledAndCanRequest(activity: Activity) {
+            activity?.let {
                 showDialogOK(
                     it, "Permission required for this app, please grant all permission .",
                     DialogInterface.OnClickListener { dialog, which ->
@@ -154,6 +154,7 @@ class PermissionHelper {
                             DialogInterface.BUTTON_POSITIVE -> mCustomPermission?.let { it1 ->
                                 mPerpermissionListener?.let { it2 ->
                                     requestMultiplePermission(
+                                        activity,
                                         it1,
                                         it2
                                     )
@@ -172,11 +173,11 @@ class PermissionHelper {
         /**
          * forcefully stoped all permission dialog
          */
-        private fun ifCancelledAndCannotRequest() {
-            mActivity?.let {
+        private fun ifCancelledAndCannotRequest(activity: Activity) {
+            activity?.let {
                 showDialogOK(
                     it,
-                    mActivity!!.getResources().getString(
+                    activity!!.getResources().getString(
                         R.string.forcefully_enable_permission
                     ),
                     DialogInterface.OnClickListener { dialog, which ->
@@ -186,11 +187,11 @@ class PermissionHelper {
                                 intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
                                 val uri = Uri.fromParts(
                                     "package",
-                                    mActivity!!.getPackageName(),
+                                    activity!!.getPackageName(),
                                     null
                                 )
                                 intent.data = uri
-                                mActivity!!.startActivity(
+                                activity!!.startActivity(
                                     intent
                                 )
                             }
@@ -217,12 +218,12 @@ class PermissionHelper {
          *
          * @param permissions is bundle of all permission
          */
-        fun checkMultiplePermission(@NonNull permissions: List<String>): Boolean {
+        fun checkMultiplePermission(activity: Activity,@NonNull permissions: List<String>): Boolean {
             mCustomPermission = permissions
             if (Build.VERSION.SDK_INT >= 23) {
                 val listPermissionsAssign = ArrayList<String>()
                 for (per in permissions) {
-                    if (mActivity?.let {
+                    if (activity?.let {
                             ContextCompat.checkSelfPermission(
                                 it,
                                 per
@@ -246,10 +247,10 @@ class PermissionHelper {
          *
          * @param permissions is single permission
          */
-        fun checkPermission(@NonNull permissions: String): Boolean {
+        fun checkPermission(activity: Activity,@NonNull permissions: String): Boolean {
             mCustomPermission = Arrays.asList(*arrayOf(permissions))
             if (Build.VERSION.SDK_INT >= 23) {
-                if (mActivity?.let {
+                if (activity?.let {
                         ActivityCompat.checkSelfPermission(
                             it,
                             permissions
@@ -267,7 +268,7 @@ class PermissionHelper {
         }
 
         fun clearPermission() {
-            mActivity = null
+//            mActivity = null
             mCustomPermission = null
             mPerpermissionListener = null
         }

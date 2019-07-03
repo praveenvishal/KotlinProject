@@ -1,4 +1,4 @@
-package com.example.kotlinproject.view.list
+package com.example.kotlinproject.view.news
 
 import android.app.ProgressDialog
 import android.content.Intent

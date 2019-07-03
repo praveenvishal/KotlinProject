@@ -24,7 +24,9 @@
             android:theme="@style/AppTheme">
         <activity android:name=".view.widget.MainActivity">
         </activity>
-        <activity android:name=".view.list.NewsActivity">
+        <activity android:name=".view.news.NewsActivity">
+        </activity>
+        <activity android:name=".view.profile.ProfileActivity">
         </activity>
         <activity android:name=".view.splash.SplashActivity">
             <intent-filter>

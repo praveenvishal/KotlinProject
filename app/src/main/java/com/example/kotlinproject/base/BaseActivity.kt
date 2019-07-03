@@ -11,11 +11,13 @@ import com.example.kotlinproject.global.common.AppApplication
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.common.PermissionHelper
 import com.example.kotlinproject.model.eventBus.EventBusListener
-import com.example.kotlinproject.viewModel.HomeViewModel
+import com.example.kotlinproject.viewModel.home.HomeViewModel
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
-open class BaseActivity : AppCompatActivity(), PermissionHelper.Companion.PermissionListener {
+abstract class BaseActivity : AppCompatActivity(), PermissionHelper.Companion.PermissionListener {
+
+
     private var mHomeViewModel: HomeViewModel? = null
     //    var mHomeViewModel: HomeViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +61,12 @@ open class BaseActivity : AppCompatActivity(), PermissionHelper.Companion.Permis
     fun EventBusListener(eventBusListener: EventBusListener) {
     }
 
+//    override fun onClick(v: View?) {
+//        super.onClick(v)
+//    }
+//    open fun onClickListener(v: View?){
+//
+//    }
     protected fun checkStoragePermission() {
         val multiplePermission = ArrayList<String>()
         multiplePermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)

@@ -11,9 +11,12 @@ abstract class DataFetchCall<ResultType>(private val responseLiveData: MutableLi
 
 
     abstract fun createCallAsync(): Deferred<Response<ResultType>>
-    abstract fun saveResult(result: ResultType)
     abstract fun shouldFetchFromDB(): Boolean
-    abstract fun loadFromDB()
+    open fun loadFromDB(){
+    }
+    open fun saveResult(result: ResultType){
+
+    }
 
      fun execute() {
         if (shouldFetchFromDB()) {

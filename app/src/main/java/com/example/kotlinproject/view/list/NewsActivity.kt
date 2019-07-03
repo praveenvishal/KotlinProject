@@ -1,0 +1,78 @@
+package com.example.kotlinproject.view.list
+
+import android.app.ProgressDialog
+import android.view.View
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlinproject.R
+import com.example.kotlinproject.base.BaseActivity
+import com.example.kotlinproject.databinding.ActivityListBinding
+import com.example.kotlinproject.global.common.GlobalUtility
+import com.example.kotlinproject.global.sharedPref.PreferenceMgr
+import com.example.kotlinproject.model.respo.newsChannel.NewsChanelRespo
+import com.example.kotlinproject.view.adapter.NewsAdapter
+import com.example.kotlinproject.viewModel.list.ListViewModel
+import com.prodege.shopathome.model.networkCall.ApiResponse
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+class NewsActivity : BaseActivity(), View.OnClickListener {
+    private var progressDialog: ProgressDialog? = null
+    private var mBinding: ActivityListBinding? = null
+    private val preferenceMgr: PreferenceMgr  by inject()
+    private val mViewModel: ListViewModel by viewModel()
+    private var newsAdapter: NewsAdapter? = null
+
+    override fun getLayout(): Int {
+        return R.layout.activity_list
+    }
+
+    override fun initUI(binding: ViewDataBinding) {
+        mBinding = binding as ActivityListBinding
+        init()
+        clickListener();
+    }
+
+    private fun init() {
+        callApi()
+    }
+
+    private fun clickListener() {
+//        mBinding?.btn?.setOnClickListener(this)
+        mBinding?.btn?.setOnClickListener(View.OnClickListener { callApi() })
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btn -> callApi()
+        }
+    }
+
+    private fun callApi() {
+        progressDialog = ProgressDialog.show(this@NewsActivity, getString(R.string.please_wait), getString(R.string.loading))
+        mViewModel?.getNewsChannelLiveData()?.observe(this, channelObserver)
+        mViewModel?.newsChannelApi("https://newsapi.org/v2/sources?language=en&pageSize=20&apiKey=" + getString(R.string.news_api_key))
+    }
+
+    private val channelObserver: Observer<ApiResponse<NewsChanelRespo>> by lazy {
+        Observer { response ->handleLoginResponse(response)}
+    }
+
+    private fun handleLoginResponse(response: ApiResponse<NewsChanelRespo>) {
+        when (response?.status) {
+            ApiResponse.Status.LOADING -> {
+            }
+            ApiResponse.Status.SUCCESS -> {
+                if (progressDialog!!.isShowing) progressDialog!!.dismiss()
+                newsAdapter = NewsAdapter(response.data!!.sources)
+                mBinding?.rvNewsChannel?.layoutManager = LinearLayoutManager(this)
+                mBinding!!.rvNewsChannel.adapter = newsAdapter
+            }
+            ApiResponse.Status.ERROR -> {
+                if (progressDialog!!.isShowing) progressDialog!!.dismiss()
+                GlobalUtility.showToast(getString(R.string.something_went_wrong))
+            }
+        }
+    }
+}

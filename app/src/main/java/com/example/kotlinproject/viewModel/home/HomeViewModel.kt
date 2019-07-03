@@ -1,4 +1,4 @@
-package com.example.kotlinproject.viewModel
+package com.example.kotlinproject.viewModel.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

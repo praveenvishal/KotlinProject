@@ -7,9 +7,11 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivitySplashBinding
 import com.example.kotlinproject.global.constant.AppConstant
-import com.example.kotlinproject.view.MainActivity
+import com.example.kotlinproject.view.list.NewsActivity
 
 class SplashActivity : BaseActivity() {
+
+
     private var mBinding: ActivitySplashBinding? = null
 
     override fun getLayout(): Int {
@@ -25,7 +27,7 @@ class SplashActivity : BaseActivity() {
      */
     private fun navigateToNext() {
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            startActivity(Intent(this@SplashActivity, NewsActivity::class.java))
             finish()
         }, AppConstant.SPLASH_DELAY)
     }

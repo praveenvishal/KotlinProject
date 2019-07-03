@@ -1,4 +1,4 @@
-package com.example.kotlinproject.view
+package com.example.kotlinproject.view.widget
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -15,7 +15,7 @@ import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.viewModel.main.MainViewModel
 import org.koin.android.ext.android.inject
 
-class MainActivity : BaseActivity(), View.OnClickListener, DatePickerDialog.OnDateSetListener,
+class MainActivity : BaseActivity(),View.OnClickListener, DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
     private var mBinding: ActivityMainBinding? = null
     private var mainViewModel: MainViewModel? = null

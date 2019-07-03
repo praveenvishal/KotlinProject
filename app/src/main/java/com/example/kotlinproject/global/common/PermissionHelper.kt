@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.view.View
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -265,6 +266,7 @@ class PermissionHelper {
             fun onPermissionGranted(mCustomPermission: List<String>)
 
             fun onPermissionDenied(mCustomPermission: List<String>)
+
         }
 
         fun clearPermission() {

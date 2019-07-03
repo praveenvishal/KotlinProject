@@ -19,5 +19,9 @@
     <string name="cancel">cancel</string>
     <string name="forcefully_enable_permission">You have forcefully denied some of the required permissions for this action.\nPlease go to permissions and allow them.</string>
     <string name="no_network_msg"><![CDATA[Please check your internet connection &amp; try again]]></string>
+    <string name="news_api_key">e5e212cc147343cb9389cfb497c52bc2</string>
+    <string name="please_wait">please wait</string>
+    <string name="loading">loading...</string>
+    <string name="something_went_wrong">something went wrong, please try again</string>
 
 </resources>

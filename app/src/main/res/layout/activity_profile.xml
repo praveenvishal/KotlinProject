@@ -23,7 +23,7 @@
                       android:layout_gravity="center"
                       android:gravity="center"
                       android:orientation="vertical">
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                     android:id="@+id/img_profile"
                     android:layout_width="@dimen/dp185"
                     android:layout_height="@dimen/dp185"

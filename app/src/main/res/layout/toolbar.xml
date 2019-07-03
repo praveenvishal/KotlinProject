@@ -38,7 +38,7 @@
                     android:paddingLeft="@dimen/dp35"
                     android:paddingRight="@dimen/dp30"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/sp15"/>
+                    android:textSize="@dimen/sp17"/>
             <ImageView
                     android:id="@+id/img_profile"
                     android:layout_height="@dimen/dp30"

@@ -4,7 +4,8 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import com.example.kotlinproject.apiUtils.appModule
+import com.example.kotlinproject.koin.appModule
+import com.example.kotlinproject.koin.commonModelModule
 import com.example.kotlinproject.koin.repoModule
 import com.example.kotlinproject.koin.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -23,6 +24,7 @@ class AppApplication :Application(),Application.ActivityLifecycleCallbacks{
     override fun onCreate() {
         super.onCreate()
         context = this
+        FileUtils.createApplicationFolder()
         startKoin {
             androidLogger()
             androidContext(this@AppApplication)
@@ -33,7 +35,8 @@ class AppApplication :Application(),Application.ActivityLifecycleCallbacks{
         return listOf(
             appModule,
             viewModelModule,
-            repoModule
+            repoModule,
+            commonModelModule
         )
     }
 

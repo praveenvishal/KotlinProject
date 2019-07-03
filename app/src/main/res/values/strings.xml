@@ -23,5 +23,8 @@
     <string name="please_wait">please wait</string>
     <string name="loading">loading...</string>
     <string name="something_went_wrong">something went wrong, please try again</string>
+    <string name="pick_image">choose image</string>
+    <string name="news_channel">news channel</string>
+    <string name="my_profile">my profile</string>
 
 </resources>

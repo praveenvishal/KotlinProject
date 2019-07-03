@@ -1,4 +1,4 @@
-package com.example.kotlinproject.apiUtils
+package com.example.kotlinproject.koin
 
 import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.global.sharedPref.PreferenceUtils
@@ -61,8 +61,7 @@ val appModule = module {
 //            )
 //        )
 //    }
-    single { PreferenceUtils() }
-    single { PreferenceMgr(get()) }
+
 
 //    single {
 //        ValidationHelper()

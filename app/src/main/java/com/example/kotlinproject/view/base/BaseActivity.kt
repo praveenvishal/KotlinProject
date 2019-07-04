@@ -21,7 +21,7 @@ import java.io.File
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, PermissionHelper.Companion.PermissionListener,
     ImagePicker.ImagePickerListener {
 
-    private val imagePicker: ImagePicker  by inject()
+    protected val imagePicker: ImagePicker  by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
@@ -43,7 +43,16 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     open abstract fun getLayout(): Int
 
     open abstract fun initUI(binding: ViewDataBinding)
-
+    /**
+     * placeholder type for image
+     *
+     * @param placeholderType position of string array placeholder
+     * @return
+     */
+    protected fun getPlaceHolder(placeholderType: Int): String {
+        val placeholderArray = getResources().getStringArray(R.array.image_loader)
+        return placeholderArray[placeholderType]
+    }
     override fun onBackPressed() {
         super.onBackPressed()
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out)
@@ -95,10 +104,6 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     }
 
     override fun onPermissionDenied(mCustomPermission: List<String>) {
-    }
-
-    protected fun captureImage() {
-        imagePicker.captureImage(this, this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -13,6 +13,7 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
+import com.example.kotlinproject.R
 import java.io.File
 import java.util.ArrayList
 /**
@@ -45,6 +46,23 @@ class ImagePicker {
         activity.startActivityForResult(intent, REQUEST_CAMERA)
     }
 
+    /**
+     * pick image from gallery
+     */
+    fun selectImage(activity: Activity, imagePickerListener: ImagePickerListener) {
+        mImagePickerListener = imagePickerListener
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mMimeTypesSingle)
+        intent.action = Intent.ACTION_GET_CONTENT
+        activity.startActivityForResult(
+            Intent.createChooser(
+                intent,
+                activity.resources.getString(R.string.select_picture)
+            ), SELECT_FILE
+        )
+    }
+
     fun onActivityResult(activity: Activity,requestCode: Int, resultCode: Int, data: Intent?) {
         try {
             Log.d("TAG", "Image picker")
@@ -53,22 +71,7 @@ class ImagePicker {
             when (requestCode) {
                 REQUEST_CAMERA -> {
                     var bitmap: Bitmap? = null
-//                    if (mTempPhotoPath != null && (data == null || data.data == null)) {
-//                        //                        Bitmap bitmapImg = FileUtils.resamplePic(mActivity, mTempPhotoPath);
-////                        if (mIsFromProfile) {
-////                            val imageUri = Uri.fromFile(File(mTempPhotoPath))
-////                            CropImage.activity(imageUri)
-////                                .setActivityTitle(mActivity.getResources().getString(R.string.crop_image))
-////                                .start(mActivity)
-////                            return
-////                        } else {
-////                            FileUtils.updateGallery(mActivity, mTempPhotoPath)
-////                            compressedFiles = CompressImage.compressImage(mTempPhotoPath.toString())
-////                            file.add(compressedFiles)
-////
-////                        }
-//                    } else
-                    if (data!!.extras != null && data.extras!!.get("data") != null) {
+                 if (data!!.extras != null && data.extras!!.get("data") != null) {
                         bitmap = data.extras!!.get("data") as Bitmap
                         file.add(FileUtils.saveBitmapImage(bitmap))
                     } else if (data.data != null) {
@@ -78,11 +81,11 @@ class ImagePicker {
                     mImagePickerListener?.imagePath(file)
                     mTempPhotoPath = null
                 }
-//                SELECT_FILE -> {
-//                    val uri = data!!.data
-//                    file.add(FileUtils.getPathFromUri(uri))
-//                    mImagePickerListener.imagePath(file)
-//                }
+                SELECT_FILE -> {
+                    val uri = data!!.data
+                    file.add(FileUtils.getPathFromUri(activity, uri))
+                    mImagePickerListener?.imagePath(file)
+                }
 //                PICK_IMAGE_MULTIPLE -> {
 //                    val files = getData(data!!)
 //                    if (mIsFromProfile) {

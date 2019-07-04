@@ -30,7 +30,11 @@
                     android:src="@drawable/logo"
             />
             <Button
-                    android:id="@+id/btn_choose_image"
+                    android:id="@+id/btn_capture_image"
+                    style="@style/Button"
+                    android:text="@string/capture_image"/>
+            <Button
+                    android:id="@+id/btn_pick_image"
                     style="@style/Button"
                     android:text="@string/pick_image"/>
         </LinearLayout>

@@ -6,13 +6,15 @@ import com.bumptech.glide.Glide
 import com.example.kotlinproject.R
 import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivityProfileBinding
+import com.example.kotlinproject.global.common.GlobalUtility
 import java.io.File
+
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
 class ProfileActivity : BaseActivity() {
     private var mBinding: ActivityProfileBinding? = null
-
+    var isCaptureImg: Boolean=false
     override fun getLayout(): Int {
         return R.layout.activity_profile
     }
@@ -25,32 +27,36 @@ class ProfileActivity : BaseActivity() {
 
     private fun init() {
         mBinding?.toolbar?.imgBack?.visibility = View.VISIBLE
-        mBinding?.toolbar?.imgProfile?.visibility = View.VISIBLE
         mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.my_profile)
     }
 
     private fun clickListener() {
-        mBinding?.btnChooseImage?.setOnClickListener(this)
+        mBinding?.btnCaptureImage?.setOnClickListener(this)
+        mBinding?.btnPickImage?.setOnClickListener(this)
         mBinding?.toolbar?.imgBack?.setOnClickListener(this)
-
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btn_choose_image -> checkStoragePermission()
+            R.id.btn_capture_image ->  {checkStoragePermission()
+                isCaptureImg = false}
+            R.id.btn_pick_image ->{
+                checkStoragePermission()
+                isCaptureImg = true
+            }
             R.id.img_back -> onBackPressed()
         }
     }
 
     override fun onPermissionGranted(mCustomPermission: List<String>) {
         super.onPermissionGranted(mCustomPermission)
-        captureImage()
+        if(isCaptureImg) imagePicker.captureImage(this, this)
+        else imagePicker.selectImage(this, this)
     }
 
     override fun imagePath(filePath: List<File>) {
         super.imagePath(filePath)
-        Glide.with(this).load(filePath.get(0)).placeholder(R.drawable.logo)
-            .into(mBinding?.imgProfile)
-
+        GlobalUtility.Companion.showImageUsingGLIDE(filePath.get(0), mBinding?.imgProfile!!, getPlaceHolder(1));
     }
+
 }

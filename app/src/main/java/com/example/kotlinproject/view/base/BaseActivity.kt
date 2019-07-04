@@ -1,4 +1,4 @@
-package com.example.kotlinproject.base
+package com.example.kotlinproject.view.base
 
 import android.Manifest
 import android.content.Intent
@@ -8,20 +8,16 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModelProviders
 import com.example.kotlinproject.R
-import com.example.kotlinproject.global.common.AppApplication
-import com.example.kotlinproject.global.common.GlobalUtility
-import com.example.kotlinproject.global.common.ImagePicker
-import com.example.kotlinproject.global.common.PermissionHelper
-import com.example.kotlinproject.global.sharedPref.PreferenceMgr
+import com.example.kotlinproject.global.common.*
 import com.example.kotlinproject.model.eventBus.EventBusListener
-import com.example.kotlinproject.viewModel.home.HomeViewModel
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
 import java.io.File
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, PermissionHelper.Companion.PermissionListener,
     ImagePicker.ImagePickerListener {
 
@@ -44,12 +40,9 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         }
     }
 
-    open fun getLayout(): Int {
-        return 0
-    }
+    open abstract fun getLayout(): Int
 
-    open fun initUI(binding: ViewDataBinding) {
-    }
+    open abstract fun initUI(binding: ViewDataBinding)
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -63,25 +56,19 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     }
 
     @Subscribe
-    fun EventBusListener(eventBusListener: EventBusListener) {
+    fun EventBusListener(eventBusListener: EventBusListener){
+
     }
 
-    override fun onClick(v: View?) {
-    }
-    //    override fun onClick(v: View?) {
-//        super.onClick(v)
-//    }
-//    open fun onClickListener(v: View?){
-//
-//    }
+    override fun onClick(v: View?){}
+
     protected fun checkStoragePermission() {
         val multiplePermission = ArrayList<String>()
         multiplePermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         multiplePermission.add(Manifest.permission.CAMERA)
         if (PermissionHelper.checkMultiplePermission(this, multiplePermission)) {
-//            FileUtils.createApplicationFolder()
-//            permissionGranted(multiplePermission);
+            FileUtils.createApplicationFolder()
             onPermissionGranted(multiplePermission)
         } else
             PermissionHelper.requestMultiplePermission(this, multiplePermission, this)
@@ -93,6 +80,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         multiplePermission.add(Manifest.permission.ACCESS_FINE_LOCATION)
         multiplePermission.add(Manifest.permission.ACCESS_COARSE_LOCATION)
         if (PermissionHelper.checkMultiplePermission(this, multiplePermission)) {
+
         } else
             PermissionHelper.requestMultiplePermission(this, multiplePermission, this)
     }
@@ -103,6 +91,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
 
 
     override fun onPermissionGranted(mCustomPermission: List<String>) {
+        FileUtils.createApplicationFolder()
     }
 
     override fun onPermissionDenied(mCustomPermission: List<String>) {
@@ -124,6 +113,5 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     }
 
     override fun imagePath(filePath: List<File>) {
-
     }
 }

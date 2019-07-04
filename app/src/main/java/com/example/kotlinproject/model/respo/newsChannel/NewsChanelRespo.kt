@@ -2,7 +2,9 @@ package com.example.kotlinproject.model.respo.newsChannel
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class NewsChanelRespo : Serializable {
     @SerializedName("status")
     var status: String = "";

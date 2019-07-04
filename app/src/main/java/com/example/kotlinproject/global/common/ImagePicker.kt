@@ -15,7 +15,9 @@ import android.provider.MediaStore
 import android.util.Log
 import java.io.File
 import java.util.ArrayList
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class ImagePicker {
     companion object {
         private val TAG = ImagePicker::class.java.simpleName

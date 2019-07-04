@@ -14,7 +14,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.kotlinproject.R
 import java.util.*
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class PermissionHelper {
     companion object {
         private val PERMISSION_CODE = 1212

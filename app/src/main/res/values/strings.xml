@@ -26,5 +26,8 @@
     <string name="pick_image">choose image</string>
     <string name="news_channel">news channel</string>
     <string name="my_profile">my profile</string>
-
+    <string-array name="image_loader">
+        <item>app_color</item><!--app color-->
+        <item>other image</item><!--other image-->
+    </string-array>
 </resources>

@@ -16,7 +16,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 val appModule = module {
 
     /* PROVIDE GSON SINGLETON */

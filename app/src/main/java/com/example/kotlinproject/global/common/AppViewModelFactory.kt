@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import java.security.Provider
 
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class AppViewModelFactory(val context: Context) : ViewModelProvider.NewInstanceFactory() {
 
 //    override fun <T : ViewModel> create(modelClass: Class<T>): T {

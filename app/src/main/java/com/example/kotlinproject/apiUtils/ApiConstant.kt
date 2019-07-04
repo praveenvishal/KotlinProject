@@ -1,6 +1,8 @@
 package com.prodege.shopathome.model.networkCall
 
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class ApiConstant {
 
     companion object {

@@ -1,5 +1,7 @@
 package com.example.kotlinproject.global.constant
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class DbConstant {
     companion object {
         const val DB_NAME = "user_details.db"

@@ -8,13 +8,15 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.databinding.ViewDataBinding
 import com.example.kotlinproject.R
-import com.example.kotlinproject.base.BaseActivity
+import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivityMainBinding
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.viewModel.main.MainViewModel
 import org.koin.android.ext.android.inject
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class MainActivity : BaseActivity(),View.OnClickListener, DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
     private var mBinding: ActivityMainBinding? = null

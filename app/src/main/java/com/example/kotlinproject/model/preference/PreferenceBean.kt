@@ -1,5 +1,7 @@
 package com.example.kotlinproject.model.preference
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 open class PreferenceBean {
     var name:String = ""
     var gender:String = ""

@@ -7,7 +7,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinproject.R
-import com.example.kotlinproject.base.BaseActivity
+import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivityNewsBinding
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.sharedPref.PreferenceMgr
@@ -19,12 +19,15 @@ import com.prodege.shopathome.model.networkCall.ApiResponse
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class NewsActivity : BaseActivity() {
     private var progressDialog: ProgressDialog? = null
     private var mBinding: ActivityNewsBinding? = null
     private val preferenceMgr: PreferenceMgr  by inject()
     private val mViewModel: NewsViewModel by viewModel()
-    private var newsAdapter: NewsAdapter? = null
+    private var newsAdapter: NewsAdapter?=null
 
     override fun getLayout(): Int {
         return R.layout.activity_news
@@ -38,7 +41,7 @@ class NewsActivity : BaseActivity() {
 
     private fun init() {
         mBinding?.toolbar?.imgProfile?.visibility = View.VISIBLE
-        mBinding?.toolbar?.txtToolbarTitle?.text= resources.getString(R.string.news_channel)
+        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.news_channel)
         callApi()
     }
 
@@ -48,7 +51,7 @@ class NewsActivity : BaseActivity() {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.img_profile-> startActivity(Intent(this@NewsActivity, ProfileActivity::class.java))
+            R.id.img_profile -> startActivity(Intent(this@NewsActivity, ProfileActivity::class.java))
         }
     }
 

@@ -6,10 +6,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 abstract class DataFetchCall<ResultType>(private val responseLiveData: MutableLiveData<ApiResponse<ResultType>>) {
-
-
     abstract fun createCallAsync(): Deferred<Response<ResultType>>
     abstract fun shouldFetchFromDB(): Boolean
     open fun loadFromDB(){

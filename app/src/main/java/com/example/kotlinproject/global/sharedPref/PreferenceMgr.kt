@@ -2,7 +2,9 @@ package com.example.kotlinproject.global.sharedPref
 
 import com.example.kotlinproject.global.constant.PreferenceConstant
 import com.example.kotlinproject.model.preference.PreferenceBean
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class PreferenceMgr constructor(var preferenceUtils: PreferenceUtils){
     /**
      * set user session info

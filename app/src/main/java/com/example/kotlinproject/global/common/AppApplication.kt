@@ -12,7 +12,9 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class AppApplication :Application(),Application.ActivityLifecycleCallbacks{
 
 

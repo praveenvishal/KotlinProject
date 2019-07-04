@@ -4,13 +4,14 @@ import android.content.Intent
 import android.os.Handler
 import androidx.databinding.ViewDataBinding
 import com.example.kotlinproject.R
-import com.example.kotlinproject.base.BaseActivity
+import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivitySplashBinding
 import com.example.kotlinproject.global.constant.AppConstant
 import com.example.kotlinproject.view.news.NewsActivity
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class SplashActivity : BaseActivity() {
-
 
     private var mBinding: ActivitySplashBinding? = null
 

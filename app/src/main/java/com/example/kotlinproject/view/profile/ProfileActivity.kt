@@ -4,10 +4,12 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
 import com.example.kotlinproject.R
-import com.example.kotlinproject.base.BaseActivity
+import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivityProfileBinding
 import java.io.File
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class ProfileActivity : BaseActivity() {
     private var mBinding: ActivityProfileBinding? = null
 

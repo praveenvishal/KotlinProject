@@ -5,21 +5,28 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.NonNull
+import com.bumptech.glide.DrawableTypeRequest
+import com.bumptech.glide.Glide
 import com.example.kotlinproject.R
 import com.example.kotlinproject.global.common.AppApplication.Companion.context
 import com.example.kotlinproject.global.common.AppApplication.Companion.mCurrencyActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import java.io.File
 import java.lang.reflect.Modifier
 import java.util.*
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class GlobalUtility {
 
     companion object {
@@ -126,6 +133,23 @@ class GlobalUtility {
             showToast(msg)
         }
 
+
+//    {START SHOW IMAGE USING GLIDE}
+
+        /**
+         * show image using glide
+         *
+         * @param imagePath       image url
+         * @param targetIv        image view
+         * @param imageLoaderType type of place holder show which is define in string
+         */
+        fun showImageUsingGLIDE(imagePath: String, targetIv: ImageView, imageLoaderType: String) {
+            val drawableTypeRequest = Glide.with(targetIv.context)
+                .load(imagePath)
+            getPlaceHolder(drawableTypeRequest, imageLoaderType).into(targetIv)
+        }
+
+
         //block up when loder show on screen
         /**
          * handle ui
@@ -147,5 +171,45 @@ class GlobalUtility {
             }
         }
 
+        /**
+         * show image using glide
+         *
+         * @param imgUrl          local image file path
+         * @param targetIv        image view
+         * @param imageLoaderType type of place holder show which is define in string
+         */
+        fun showImageUsingGLIDE(imgUrl: File, targetIv: ImageView, imageLoaderType: String) {
+            val drawableTypeRequest = Glide.with(targetIv.context)
+                .load(Uri.fromFile(imgUrl))
+            getPlaceHolder(drawableTypeRequest, imageLoaderType).into(targetIv)
+        }
+
+        /**
+         * apply different type of place holder
+         *
+         * @param drawableTypeRequest
+         * @param imageLoaderType     type of place holder show
+         * @param <T>
+         * @return
+        </T> */
+        private fun <T> getPlaceHolder(
+            drawableTypeRequest: DrawableTypeRequest<T>,
+            imageLoaderType: String
+        ): DrawableTypeRequest<T> {
+            val imageLoadersArray = context.getResources().getStringArray(R.array.image_loader)
+            if (imageLoadersArray[0] == imageLoaderType) {
+                drawableTypeRequest.error(R.color.app_color)
+                drawableTypeRequest.placeholder(R.color.app_color)
+            } else if (imageLoadersArray[1] == imageLoaderType) {
+                drawableTypeRequest.error(R.drawable.logo)
+                drawableTypeRequest.placeholder(R.drawable.logo)
+            } else {
+                drawableTypeRequest.error(R.color.app_color)
+                drawableTypeRequest.placeholder(R.color.app_color)
+            }
+            return drawableTypeRequest
+        }
+
+        //    {END SHOW IMAGE USING GLIDE}
     }
 }

@@ -4,7 +4,9 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.global.common.AppApplication
 import java.net.SocketTimeoutException
 
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class ApiResponse<T>(val status: Status, val data: T?, val error: Throwable?) {
 
     var errorMessage: String? = null

@@ -3,7 +3,9 @@ package com.prodege.shopathome.model.networkCall
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.util.*
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class ReflectionUtil(private val gson: Gson) {
 
 

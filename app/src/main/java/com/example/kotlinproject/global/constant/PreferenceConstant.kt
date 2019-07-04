@@ -1,5 +1,7 @@
 package com.example.kotlinproject.global.constant
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class PreferenceConstant {
     companion object {
         const val PREF_USER_NAME = "user_name"

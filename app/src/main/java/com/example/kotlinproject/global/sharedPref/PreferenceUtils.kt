@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class PreferenceUtils {
     private val PREFS_NAME = "local_pref"
     private val GLOBAL_PREFS_NAME = "global_pref"

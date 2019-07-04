@@ -7,7 +7,9 @@ import com.example.kotlinproject.model.respo.newsChannel.NewsChanelRespo
 import com.example.kotlinproject.model.repository.news.NewsRepository
 import com.prodege.shopathome.model.networkCall.ApiResponse
 import org.koin.core.KoinComponent
-
+/**
+ * Created by Deepak Sharma on 01/07/19.
+ */
 class NewsViewModel(application: AppApplication, private val projectRepository: NewsRepository) :
     AndroidViewModel(application), KoinComponent {
     private var channelResponse = MutableLiveData<ApiResponse<NewsChanelRespo>>()

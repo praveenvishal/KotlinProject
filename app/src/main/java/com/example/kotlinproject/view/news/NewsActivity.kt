@@ -23,11 +23,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Created by Deepak Sharma on 01/07/19.
  */
 class NewsActivity : BaseActivity() {
+    private lateinit var mBinding: ActivityNewsBinding
+    private lateinit var newsAdapter: NewsAdapter
     private var progressDialog: ProgressDialog? = null
-    private var mBinding: ActivityNewsBinding? = null
     private val preferenceMgr: PreferenceMgr  by inject()
     private val mViewModel: NewsViewModel by viewModel()
-    private var newsAdapter: NewsAdapter?=null
 
     override fun getLayout(): Int {
         return R.layout.activity_news

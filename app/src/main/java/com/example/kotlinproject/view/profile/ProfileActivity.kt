@@ -13,7 +13,7 @@ import java.io.File
  * Created by Deepak Sharma on 01/07/19.
  */
 class ProfileActivity : BaseActivity() {
-    private var mBinding: ActivityProfileBinding? = null
+    private lateinit var mBinding: ActivityProfileBinding
     var isCaptureImg: Boolean=false
     override fun getLayout(): Int {
         return R.layout.activity_profile

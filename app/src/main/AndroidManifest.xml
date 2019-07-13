@@ -22,12 +22,6 @@
             android:roundIcon="@drawable/logo"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".view.widget.MainActivity">
-        </activity>
-        <activity android:name=".view.news.NewsActivity">
-        </activity>
-        <activity android:name=".view.profile.ProfileActivity">
-        </activity>
         <activity android:name=".view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -35,6 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".view.onBoarding.OnBoardActivity"/>
+        <activity android:name=".view.widget.MainActivity"/>
+        <activity android:name=".view.news.NewsActivity"/>
+        <activity android:name=".view.profile.ProfileActivity"/>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.kotlinproject.view.widget
 
 import android.app.DatePickerDialog
+import android.app.PendingIntent.getActivity
 import android.app.TimePickerDialog
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivityMainBinding
 import com.example.kotlinproject.global.common.GlobalUtility
+import com.example.kotlinproject.global.constant.AppConstant
 import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.viewModel.main.MainViewModel
 import org.koin.android.ext.android.inject
@@ -19,8 +21,8 @@ import org.koin.android.ext.android.inject
  */
 class MainActivity : BaseActivity(),View.OnClickListener, DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
-    private var mBinding: ActivityMainBinding? = null
-    private var mainViewModel: MainViewModel? = null
+    private lateinit var mBinding: ActivityMainBinding
+    private lateinit var mainViewModel: MainViewModel
     private val preferenceMgr: PreferenceMgr  by inject()
 
     override fun getLayout(): Int {
@@ -54,7 +56,33 @@ class MainActivity : BaseActivity(),View.OnClickListener, DatePickerDialog.OnDat
                 GlobalUtility.showToast("login hit")
             }
             R.id.btn_data_picker -> {
-                GlobalUtility.datePicker(this).show()
+                val stringBuilder = StringBuilder()
+                GlobalUtility.getDate(this, mBinding.txtDateValue)
+                val dateformate = mBinding.txtDateValue.text.toString()
+                stringBuilder.append(dateformate + "\n")
+                stringBuilder.append(
+                    GlobalUtility.dateFormate(
+                        dateformate,
+                        AppConstant.DATE_FORMAT_D_M_Y,
+                        AppConstant.DATE_FORMAT_Y_M_D
+                    ) + "\n"
+                )
+                stringBuilder.append(
+                    GlobalUtility.dateFormate(
+                        dateformate,
+                        AppConstant.DATE_FORMAT_D_M_Y,
+                        AppConstant.DATE_FORMAT_D_M_Y_H
+                    ) + "\n"
+                )
+                stringBuilder.append(
+                    GlobalUtility.dateFormate(
+                        dateformate,
+                        AppConstant.DATE_FORMAT_D_M_Y,
+                        AppConstant.DATE_FORMAT_SRC
+                    ) + "\n"
+                )
+                mBinding.txtDateValue.text = stringBuilder.toString()
+
             }
             R.id.btn_time_picker -> GlobalUtility.timePicker(this).show()
             R.id.btn_start_progress -> {

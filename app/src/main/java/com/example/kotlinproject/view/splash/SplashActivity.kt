@@ -8,12 +8,14 @@ import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivitySplashBinding
 import com.example.kotlinproject.global.constant.AppConstant
 import com.example.kotlinproject.view.news.NewsActivity
+import com.example.kotlinproject.view.onBoarding.OnBoardActivity
+
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
 class SplashActivity : BaseActivity() {
 
-    private var mBinding: ActivitySplashBinding? = null
+    private lateinit var mBinding: ActivitySplashBinding
 
     override fun getLayout(): Int {
         return R.layout.activity_splash
@@ -28,7 +30,7 @@ class SplashActivity : BaseActivity() {
      */
     private fun navigateToNext() {
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, NewsActivity::class.java))
+            startActivity(Intent(this@SplashActivity, OnBoardActivity::class.java))
             finish()
         }, AppConstant.SPLASH_DELAY)
     }

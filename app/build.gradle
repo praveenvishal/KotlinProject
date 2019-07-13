@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.kotlinproject"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -77,6 +77,8 @@ dependencies {
     implementation "uk.co.chrisjenx:calligraphy:$CALLIGRAPHY_VERSION"
 //    Event bus
     implementation "org.greenrobot:eventbus:$EVENT_BUS_VERSION"
+    //    view pager dot indicator
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:2.1.2'
 
 }
 kapt {

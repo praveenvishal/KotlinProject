@@ -38,11 +38,12 @@ class ProfileActivity : BaseActivity() {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btn_capture_image ->  {checkStoragePermission()
-                isCaptureImg = false}
-            R.id.btn_pick_image ->{
+            R.id.btn_capture_image ->  {isCaptureImg = true
                 checkStoragePermission()
-                isCaptureImg = true
+                }
+            R.id.btn_pick_image ->{
+                isCaptureImg = false
+                checkStoragePermission()
             }
             R.id.img_back -> onBackPressed()
         }

@@ -1,7 +1,5 @@
-package com.example.kotlinproject.koin
+package com.example.kotlinproject.global.koin
 
-import com.example.kotlinproject.global.sharedPref.PreferenceMgr
-import com.example.kotlinproject.global.sharedPref.PreferenceUtils
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

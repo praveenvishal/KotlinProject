@@ -53,5 +53,27 @@
     <string name="full_name">full name</string>
     <string name="nick_name">nick name</string>
     <string name="mobile_no">mobile no</string>
-
+    <string name="error_uppercase_pattern">password must have atleast one uppercase character !!</string>
+    <string name="error_lowercase_pattern">password must have atleast one lowercase character !!</string>
+    <string name="error_digit_pattern">password must have atleast one digit character !!</string>
+    <string name="enter_first_name">enter first name</string>
+    <string name="enter_last_name">enter last name</string>
+    <string name="enter_your_email">enter email id</string>
+    <string name="error_enter_valid_email">enter valid email id</string>
+    <string name="error_email_must_be_different">email id must be different</string>
+    <string name="enter_dob">enter dob</string>
+    <string name="enter_country">enter country</string>
+    <string name="enter_passowrd">enter password</string>
+    <string name="error_passowrd_not_match">password not match</string>
+    <string name="error_password_different">password must be different</string>
+    <string name="error_referral_code">enter referral code</string>
+    <string name="error_valid_code">enter valid code</string>
+    <string name="error_six_digit_code">enter six digit code</string>
+    <string name="confirm_pwd_length">check confirm password length</string>
+    <string name="password_length">check password length</string>
+    <string name="please_enter_correct_password">please enter correct password</string>
+    <string name="create_an_account">create an account with this email</string>
+    <string name="first_name_can_not_blank">first name can\'t blank</string>
+    <string name="enter_mobile_no">mobile number can\'t blank</string>
+    <string name="enter_valid_mobile_no">enter valid mobile no</string>
 </resources>

@@ -5,26 +5,29 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.room.Room
 import com.example.kotlinproject.R
 import com.example.kotlinproject.global.common.*
+import com.example.kotlinproject.global.constant.DbConstant
+import com.example.kotlinproject.global.db.database.AppDatabase
 import com.example.kotlinproject.model.eventBus.EventBusListener
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
 import java.io.File
+
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, PermissionHelper.Companion.PermissionListener,
     ImagePicker.ImagePickerListener {
-
+    protected  var appDb: AppDatabase?=null
     protected val imagePicker: ImagePicker  by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +69,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         val placeholderArray = getResources().getStringArray(R.array.image_loader)
         return placeholderArray[placeholderType]
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out)
@@ -77,12 +81,20 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             EventBus.getDefault().unregister(this)
     }
 
+    fun getDbInstance(): AppDatabase {
+        if (appDb == null) {
+            appDb = Room.databaseBuilder(this, AppDatabase::class.java, DbConstant.DB_NAME)
+                .allowMainThreadQueries().build();
+        }
+        return appDb as AppDatabase
+    }
+
     @Subscribe
-    fun EventBusListener(eventBusListener: EventBusListener){
+    fun EventBusListener(eventBusListener: EventBusListener) {
 
     }
 
-    override fun onClick(v: View?){}
+    override fun onClick(v: View?) {}
 
     fun checkStoragePermission() {
         val multiplePermission = ArrayList<String>()

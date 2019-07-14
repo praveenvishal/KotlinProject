@@ -13,6 +13,7 @@ import com.example.kotlinproject.global.common.FileUtils
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.common.ImagePicker
 import com.example.kotlinproject.global.common.PermissionHelper
+import com.example.kotlinproject.global.db.dao.UserInfoDao
 import com.example.kotlinproject.model.eventBus.EventBusListener
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -120,6 +121,10 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
 
     fun checkLocationPermission() {
         (getActivity() as BaseActivity).checkLocationPermission()
+    }
+
+    protected fun getUserDao():UserInfoDao {
+        return (getActivity() as BaseActivity).getDbInstance().userInfoDao()
     }
 
     fun getPlaceHolder(imageLoaderPos: Int): String {

@@ -79,6 +79,8 @@ dependencies {
     implementation "org.greenrobot:eventbus:$EVENT_BUS_VERSION"
     //    view pager dot indicator
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:2.1.2'
+    //    location
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
 
 }
 kapt {

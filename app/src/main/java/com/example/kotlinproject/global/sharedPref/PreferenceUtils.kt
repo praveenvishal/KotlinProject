@@ -30,15 +30,15 @@ class PreferenceUtils {
     fun <T> getPreference(key: String, defautlValue: T): T? {
         try {
             if (defautlValue is String) {
-                return mLocalPreferences!!.getString(key, defautlValue as String) as T
+                return mLocalPreferences?.getString(key, defautlValue as String) as T
             } else if (defautlValue is Int) {
-                return mLocalPreferences!!.getInt(key, defautlValue as Int) as T
+                return mLocalPreferences?.getInt(key, defautlValue as Int) as T
             } else if (defautlValue is Boolean) {
-                return mLocalPreferences!!.getBoolean(key, defautlValue as Boolean) as T
+                return mLocalPreferences?.getBoolean(key, defautlValue as Boolean) as T
             } else if (defautlValue is Float) {
-                return mLocalPreferences!!.getFloat(key, defautlValue as Float) as T
+                return mLocalPreferences?.getFloat(key, defautlValue as Float) as T
             } else if (defautlValue is Long) {
-                return mLocalPreferences!!.getLong(key, defautlValue as Long) as T
+                return mLocalPreferences?.getLong(key, defautlValue as Long) as T
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -57,19 +57,19 @@ class PreferenceUtils {
     </T> */
     fun <T> setPreference(key: String, value: T) {
         try {
-            val editor = mLocalPreferences!!.edit()
+            val editor = mLocalPreferences?.edit()
             if (value is String) {
-                editor.putString(key, value as String)
+                editor?.putString(key, value as String)
             } else if (value is Int) {
-                editor.putInt(key, value as Int)
+                editor?.putInt(key, value as Int)
             } else if (value is Boolean) {
-                editor.putBoolean(key, value as Boolean)
+                editor?.putBoolean(key, value as Boolean)
             } else if (value is Float) {
-                editor.putFloat(key, value as Float)
+                editor?.putFloat(key, value as Float)
             } else if (value is Long) {
-                editor.putLong(key, value as Long)
+                editor?.putLong(key, value as Long)
             }
-            editor.commit()
+            editor?.commit()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -81,7 +81,7 @@ class PreferenceUtils {
      */
     fun removeKey(key: String) {
         if (mLocalPreferences != null)
-            mLocalPreferences!!.edit().remove(key).commit()
+            mLocalPreferences?.edit()?.remove(key)?.commit()
     }
 
     /**
@@ -89,7 +89,7 @@ class PreferenceUtils {
      */
     fun clearAllPreferences() {
         if (mLocalPreferences != null)
-            mLocalPreferences!!.edit().clear().commit()
+            mLocalPreferences?.edit()?.clear()?.commit()
     }
 
     /**
@@ -99,11 +99,11 @@ class PreferenceUtils {
      */
     fun clearAllPreferences(keyToBeSaved: Array<String>) {
         if (mLocalPreferences != null) {
-            val map = ConcurrentHashMap(mLocalPreferences!!.all)
+            val map = ConcurrentHashMap(mLocalPreferences?.all)
             for (stringObjectEntry in map.keys) {
                 if (!Arrays.asList(*keyToBeSaved).contains(stringObjectEntry)) {
-                    val editor = mLocalPreferences!!.edit()
-                    editor.remove(stringObjectEntry).commit()
+                    val editor = mLocalPreferences?.edit()
+                    editor?.remove(stringObjectEntry)?.commit()
                 }
             }
         }
@@ -123,15 +123,15 @@ class PreferenceUtils {
     fun <T> getGlobalPreference(key: String, defautlValue: T): T? {
         try {
             if (defautlValue is String) {
-                return mGlobalPreferences!!.getString(key, defautlValue as String) as T
+                return mGlobalPreferences?.getString(key, defautlValue as String) as T
             } else if (defautlValue is Int) {
-                return mGlobalPreferences!!.getInt(key, defautlValue as Int) as T
+                return mGlobalPreferences?.getInt(key, defautlValue as Int) as T
             } else if (defautlValue is Boolean) {
-                return mGlobalPreferences!!.getBoolean(key, defautlValue as Boolean) as T
+                return mGlobalPreferences?.getBoolean(key, defautlValue as Boolean) as T
             } else if (defautlValue is Float) {
-                return mGlobalPreferences!!.getFloat(key, defautlValue as Float) as T
+                return mGlobalPreferences?.getFloat(key, defautlValue as Float) as T
             } else if (defautlValue is Long) {
-                return mGlobalPreferences!!.getLong(key, defautlValue as Long) as T
+                return mGlobalPreferences?.getLong(key, defautlValue as Long) as T
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -150,19 +150,19 @@ class PreferenceUtils {
     </T> */
     fun <T> setGlobalPreference(key: String, value: T) {
         try {
-            val editor = mGlobalPreferences!!.edit()
+            val editor = mGlobalPreferences?.edit()
             if (value is String) {
-                editor.putString(key, value as String)
+                editor?.putString(key, value as String)
             } else if (value is Int) {
-                editor.putInt(key, value as Int)
+                editor?.putInt(key, value as Int)
             } else if (value is Boolean) {
-                editor.putBoolean(key, value as Boolean)
+                editor?.putBoolean(key, value as Boolean)
             } else if (value is Float) {
-                editor.putFloat(key, value as Float)
+                editor?.putFloat(key, value as Float)
             } else if (value is Long) {
-                editor.putLong(key, value as Long)
+                editor?.putLong(key, value as Long)
             }
-            editor.commit()
+            editor?.commit()
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -174,7 +174,7 @@ class PreferenceUtils {
      */
     fun removeGlobalKey(key: String) {
         if (mGlobalPreferences != null)
-            mGlobalPreferences!!.edit().remove(key).commit()
+            mGlobalPreferences?.edit()?.remove(key)?.commit()
     }
 
     /**
@@ -182,7 +182,7 @@ class PreferenceUtils {
      */
     fun clearAllGlobalPreferences() {
         if (mGlobalPreferences != null)
-            mGlobalPreferences!!.edit().clear().commit()
+            mGlobalPreferences?.edit()?.clear()?.commit()
     }
 
     /**
@@ -192,11 +192,11 @@ class PreferenceUtils {
      */
     fun clearAllGlobalPreferences(keyToBeSaved: Array<String>) {
         if (mGlobalPreferences != null) {
-            val map = ConcurrentHashMap(mGlobalPreferences!!.all)
+            val map = ConcurrentHashMap(mGlobalPreferences?.all)
             for (stringObjectEntry in map.keys) {
                 if (!Arrays.asList(*keyToBeSaved).contains(stringObjectEntry)) {
-                    val editor = mGlobalPreferences!!.edit()
-                    editor.remove(stringObjectEntry).commit()
+                    val editor = mGlobalPreferences?.edit()
+                    editor?.remove(stringObjectEntry)?.commit()
                 }
             }
         }

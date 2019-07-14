@@ -132,7 +132,7 @@ class GlobalUtility {
         fun hideKeyboard(activity: Activity) {
             try {
                 val inputManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+                inputManager.hideSoftInputFromWindow(activity.currentFocus?.windowToken, 0)
             } catch (ignored: Exception) {
                 Log.d("TAG", "hideKeyboard: " + ignored.message)
             }
@@ -302,43 +302,45 @@ class GlobalUtility {
                 sb.append(ALLOWED_CHARACTERS[random.nextInt(ALLOWED_CHARACTERS.length)])
             return sb.toString()
         }
-    }
-
-    /**
-     * two digit random number
-     *
-     * @return random number
-     */
-    fun getTwoDigitRandomNo(): Int {
-        return Random().nextInt(90) + 10
-    }
 
 
-    /**
-     * show string in different color using spannable
-     *
-     * @param textView     view
-     * @param txtSpannable string text
-     * @param starText     start index of text
-     * @param endText      end index of text
-     */
-    fun setSpannable(textView: TextView, txtSpannable: String, starText: Int, endText: Int) {
-        val spannableString = SpannableString(txtSpannable)
-        val foregroundSpan = ForegroundColorSpan(Color.GREEN)
-        //            BackgroundColorSpan backgroundSpan = new BackgroundColorSpan(Color.GRAY);
-        spannableString.setSpan(foregroundSpan, starText, endText, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        //            spannableString.setSpan(backgroundSpan, starText, endText, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView.text = spannableString
-    }
+        /**
+         * two digit random number
+         *
+         * @return random number
+         */
+        fun getTwoDigitRandomNo(): Int {
+            return Random().nextInt(90) + 10
+        }
 
-    /**
-     * button click fade animation
-     *
-     * @param view view reference
-     */
-    fun btnClickAnimation(view: View) {
-        val fadeAnimation = AnimationUtils.loadAnimation(view.context, R.anim.fade_in)
-        view.startAnimation(fadeAnimation)
+
+        /**
+         * show string in different color using spannable
+         *
+         * @param textView     view
+         * @param txtSpannable string text
+         * @param starText     start index of text
+         * @param endText      end index of text
+         */
+        fun setSpannable(textView: TextView, txtSpannable: String, starText: Int, endText: Int) {
+            val spannableString = SpannableString(txtSpannable)
+            val foregroundSpan = ForegroundColorSpan(Color.GREEN)
+            //            BackgroundColorSpan backgroundSpan = new BackgroundColorSpan(Color.GRAY);
+            spannableString.setSpan(foregroundSpan, starText, endText, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            //            spannableString.setSpan(backgroundSpan, starText, endText, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            textView.text = spannableString
+        }
+
+        /**
+         * button click fade animation
+         *
+         * @param view view reference
+         */
+        fun btnClickAnimation(view: View) {
+            val fadeAnimation = AnimationUtils.loadAnimation(view.context, R.anim.fade_in)
+            view.startAnimation(fadeAnimation)
+        }
+
     }
 
 }

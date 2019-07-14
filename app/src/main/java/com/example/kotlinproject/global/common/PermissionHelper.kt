@@ -157,7 +157,7 @@ class PermissionHelper {
             activity?.let {
                 showDialogOK(
                     it,
-                    activity!!.getResources().getString(
+                    activity?.getResources().getString(
                         R.string.forcefully_enable_permission
                     ),
                     DialogInterface.OnClickListener { dialog, which ->

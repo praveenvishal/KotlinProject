@@ -11,7 +11,7 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityOnboardingBinding
 import com.example.kotlinproject.view.adapter.OnBordingViewPagerAdapter
 import com.example.kotlinproject.view.base.BaseActivity
-import com.example.kotlinproject.view.news.NewsActivity
+import com.example.kotlinproject.view.login.LoginActivity
 
 /**
  * Created by Deepak Sharma on 01/07/19.
@@ -55,7 +55,7 @@ class OnBoardActivity : BaseActivity() {
         super.onClick(v)
         when (v?.id) {
             R.id.btn_skip, R.id.btn_got_it -> {
-                startActivity(Intent(this@OnBoardActivity, NewsActivity::class.java))
+                startActivity(Intent(this@OnBoardActivity, LoginActivity::class.java))
                 finish()
             }
             R.id.btn_next -> showNextSlide()

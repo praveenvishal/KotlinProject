@@ -267,7 +267,7 @@ class FileUtils {
                 type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
             }
             if (type == null) {
-                type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension!!.toLowerCase())
+                type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension?.toLowerCase())
             }
             return type
         }

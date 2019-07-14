@@ -12,7 +12,6 @@
     <!--<item name="android:fontFamily" tools:targetApi="jelly_bean">@fonts/Freshca-Regular.ttf-->
     <!--</item>-->
     <!--</style>-->
-
     <style name="DialogAnimation">
         <item name="android:windowEnterAnimation">@anim/dialog_slide_up</item>
         <item name="android:windowExitAnimation">@anim/dialog_slide_down</item>
@@ -52,9 +51,6 @@
         <item name="counterOverflowTextAppearance">@style/CounterOverFlow</item>
         <item name="counterTextAppearance">@style/CounterText</item>
         <item name="errorTextAppearance">@style/ErrorText</item>
-        <item name="android:layout_marginTop">@dimen/dp7</item>
-        <item name="android:layout_marginLeft">@dimen/dp45</item>
-        <item name="android:layout_marginRight">@dimen/dp45</item>
         <item name="hintTextAppearance">@style/CustomHint</item>
     </style>
 

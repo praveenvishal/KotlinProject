@@ -57,7 +57,7 @@ class ProfileActivity : BaseActivity() {
 
     override fun imagePath(filePath: List<File>) {
         super.imagePath(filePath)
-        GlobalUtility.Companion.showImageUsingGLIDE(filePath.get(0), mBinding?.imgProfile!!, getPlaceHolder(1));
+        GlobalUtility.Companion.showImageUsingGLIDE(filePath.get(0), mBinding?.imgProfile, getPlaceHolder(1));
     }
 
 }

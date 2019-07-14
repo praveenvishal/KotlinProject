@@ -1,55 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:elevation="@dimen/dp10"
+                  android:background="@color/app_color">
+        <Space
+                android:layout_width="match_parent" android:layout_height="21dp"/>
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/app_color"
-            android:elevation="@dimen/dp10"
-            app:contentInsetEnd="0dp"
-            app:contentInsetStart="0dp">
-
-        <RelativeLayout
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@color/app_color"
 
-            <ImageView
-                    android:id="@+id/img_back"
-                    android:layout_height="@dimen/dp46"
-                    android:layout_width="@dimen/dp55"
-                    android:paddingTop="@dimen/dp10"
-                    android:paddingBottom="@dimen/dp8"
-                    android:layout_centerVertical="true"
-                    android:tint="@color/white"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_back"/>
-
-            <TextView
-                    android:id="@+id/txt_toolbar_title"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp">
+            <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:paddingLeft="@dimen/dp35"
-                    android:paddingRight="@dimen/dp30"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/sp17"/>
-            <ImageView
-                    android:id="@+id/img_profile"
-                    android:layout_height="@dimen/dp30"
-                    android:layout_width="@dimen/dp30"
-                    android:layout_marginRight="@dimen/dp8"
-                    android:tint="@color/white"
-                    android:visibility="gone"
-                    android:layout_centerVertical="true"
-                  android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_profile"/>
+                    android:orientation="horizontal">
 
-        </RelativeLayout>
-    </androidx.appcompat.widget.Toolbar>
+                <ImageView
+                        android:id="@+id/img_back"
+                        android:layout_height="@dimen/dp46"
+                        android:layout_width="@dimen/dp55"
+                        android:paddingTop="@dimen/dp10"
+                        android:paddingBottom="@dimen/dp8"
+                        android:layout_centerVertical="true"
+                        android:tint="@color/white"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_back"/>
+
+                <TextView
+                        android:id="@+id/txt_toolbar_title"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/dp35"
+                        android:paddingRight="@dimen/dp30"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/sp17"/>
+                <ImageView
+                        android:id="@+id/img_profile"
+                        android:layout_height="@dimen/dp30"
+                        android:layout_width="@dimen/dp30"
+                        android:layout_marginRight="@dimen/dp8"
+                        android:tint="@color/white"
+                        android:visibility="gone"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_profile"/>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+    </LinearLayout>
 </layout>

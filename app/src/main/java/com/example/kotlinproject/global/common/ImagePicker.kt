@@ -71,10 +71,10 @@ class ImagePicker {
             when (requestCode) {
                 REQUEST_CAMERA -> {
                     var bitmap: Bitmap? = null
-                 if (data!!.extras != null && data.extras!!.get("data") != null) {
-                        bitmap = data.extras!!.get("data") as Bitmap
+                 if (data?.extras != null && data.extras?.get("data") != null) {
+                        bitmap = data.extras?.get("data") as Bitmap
                         file.add(FileUtils.saveBitmapImage(bitmap))
-                    } else if (data.data != null) {
+                    } else if (data?.data != null) {
                         //In case of video
                         file = getData(activity, data)
                     }
@@ -159,11 +159,11 @@ class ImagePicker {
         if (data.clipData != null) {
             for (i in 0 until data.clipData!!.itemCount) {
                 val uri = data.clipData!!.getItemAt(i).uri
-                selectedImage!!.add(File(getPath(activity, uri)))
+                selectedImage?.add(File(getPath(activity, uri)))
             }
         } else {
             val pathh = getPath(activity, data.data)
-            selectedImage!!.add(File(pathh))
+            selectedImage?.add(File(pathh))
         }
         return selectedImage as ArrayList<File>
     }
@@ -214,10 +214,10 @@ class ImagePicker {
                 return getDataColumn(context, contentUri, selection, selectionArgs)
             }// MediaProvider
             // DownloadsProvider
-        } else if ("content".equals(uri!!.scheme!!, ignoreCase = true)) {
+        } else if ("content".equals(uri?.scheme, ignoreCase = true)) {
             return getDataColumn(context, uri, null, null)
-        } else if ("file".equals(uri.scheme!!, ignoreCase = true)) {
-            return uri.path
+        } else if ("file".equals(uri?.scheme, ignoreCase = true)) {
+            return uri?.path
         }// File
         // MediaStore (and general)
 
@@ -244,7 +244,7 @@ class ImagePicker {
         val projection = arrayOf(column)
 
         try {
-            cursor = context.contentResolver.query(uri!!, projection, selection, selectionArgs, null)
+            cursor = context.contentResolver.query(uri, projection, selection, selectionArgs, null)
             if (cursor != null && cursor.moveToFirst()) {
                 val column_index = cursor.getColumnIndexOrThrow(column)
                 return cursor.getString(column_index)

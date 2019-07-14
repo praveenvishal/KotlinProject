@@ -71,10 +71,10 @@ class NewsActivity : BaseActivity() {
             ApiResponse.Status.LOADING -> {
             }
             ApiResponse.Status.SUCCESS -> {
-                if (progressDialog!!.isShowing) progressDialog!!.dismiss()
+                if (progressDialog!!.isShowing) progressDialog?.dismiss()
                 newsAdapter = NewsAdapter(response.data!!.sources)
-                mBinding?.rvNewsChannel?.layoutManager = LinearLayoutManager(this)
-                mBinding!!.rvNewsChannel.adapter = newsAdapter
+                mBinding?.rvNewsChannel.layoutManager = LinearLayoutManager(this)
+                mBinding?.rvNewsChannel.adapter = newsAdapter
             }
             ApiResponse.Status.ERROR -> {
                 if (progressDialog!!.isShowing) progressDialog!!.dismiss()

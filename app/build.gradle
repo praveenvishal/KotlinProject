@@ -45,9 +45,14 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:$LIVEDATA_VERSION"
     annotationProcessor "com.android.databinding:compiler:3.1.2"
     implementation "android.arch.lifecycle:runtime:$LIVEDATA_VERSION"
+    kapt "android.arch.lifecycle:compiler:1.1.0"
 //    Room database
     implementation "android.arch.persistence.room:runtime:$ROOM_DB_VERSION"
     annotationProcessor "android.arch.persistence.room:compiler:$ROOM_DB_VERSION"
+
+// Room
+    kapt "android.arch.persistence.room:compiler:1.0.0"
+//    kapt "androidx.room:room-compiler:$ROOM_DB_VERSION"
 //    Recycler view
     implementation "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"
     implementation "androidx.cardview:cardview:$CARD_VERSION"

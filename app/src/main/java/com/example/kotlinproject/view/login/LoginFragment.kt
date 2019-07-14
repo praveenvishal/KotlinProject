@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.FrmLoginBinding
 import com.example.kotlinproject.view.base.BaseFragment
-import com.example.kotlinproject.view.news.NewsActivity
+import com.example.kotlinproject.view.home.HomeActivity
 
 class LoginFragment : BaseFragment() {
     private lateinit var mBinding: FrmLoginBinding
@@ -52,7 +52,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun validate() {
-        startActivity(Intent(activity, NewsActivity::class.java))
+        startActivity(Intent(activity, HomeActivity::class.java))
     }
 
     /**

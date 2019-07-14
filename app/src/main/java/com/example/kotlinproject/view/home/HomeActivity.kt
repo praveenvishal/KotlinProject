@@ -1,4 +1,4 @@
-package com.example.kotlinproject.view.login
+package com.example.kotlinproject.view.home
 
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
@@ -6,11 +6,12 @@ import androidx.fragment.app.Fragment
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityCommonBinding
 import com.example.kotlinproject.view.base.BaseActivity
+import com.example.kotlinproject.view.news.NewsFragment
 
 /**
- * Created by Deepak Sharma on 10/07/19.
+ * Created by Deepak Sharma on 01/07/19.
  */
-class LoginActivity : BaseActivity() {
+class HomeActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivityCommonBinding
 
@@ -20,9 +21,8 @@ class LoginActivity : BaseActivity() {
 
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
-        navigateScreen(LoginFragment.TAG)
+        navigateScreen(NewsFragment.TAG)
     }
-
     /**
      * navigate on fragment
      *
@@ -31,8 +31,8 @@ class LoginActivity : BaseActivity() {
      */
     private fun navigateScreen(tag: String) {
         val frm: Fragment
-        if (tag == LoginFragment.TAG) {
-            frm = LoginFragment.getInstance(Bundle())
+        if (tag == NewsFragment.TAG) {
+            frm = NewsFragment.getInstance(Bundle())
             navigateFragment(R.id.container, frm, false)
         }
     }

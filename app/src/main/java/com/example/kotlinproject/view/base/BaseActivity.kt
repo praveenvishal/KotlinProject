@@ -131,20 +131,20 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     override fun imagePath(filePath: List<File>) {
     }
 
-    public fun navigateFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
+    fun navigateFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
+//        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
         fragmentTransaction.replace(layoutContainer, fragment)
         if (isEnableBackStack)
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
         fragmentTransaction.commitAllowingStateLoss()
     }
 
-    public  fun navigateAddFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
+    fun navigateAddFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
+//        fragmentTransaction.setCustomAnimations(R.anim.trans_left_in, R.anim.trans_left_out, R.anim.trans_right_in, R.anim.trans_right_out)
         fragmentTransaction.add(layoutContainer, fragment)
         if (isEnableBackStack)
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)

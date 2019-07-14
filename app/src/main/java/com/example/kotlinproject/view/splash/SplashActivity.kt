@@ -7,7 +7,6 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.ActivitySplashBinding
 import com.example.kotlinproject.global.constant.AppConstant
-import com.example.kotlinproject.view.news.NewsActivity
 import com.example.kotlinproject.view.onBoarding.OnBoardActivity
 
 /**

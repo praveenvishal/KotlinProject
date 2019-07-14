@@ -1,5 +1,6 @@
 package com.example.kotlinproject.view.base
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,18 +9,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.kotlinproject.R
+import com.example.kotlinproject.global.common.FileUtils
 import com.example.kotlinproject.global.common.GlobalUtility
+import com.example.kotlinproject.global.common.ImagePicker
+import com.example.kotlinproject.global.common.PermissionHelper
 import com.example.kotlinproject.model.eventBus.EventBusListener
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.koin.android.ext.android.inject
+import java.io.File
 
 
 /**
  * Created by Deepak Sharma on 15/1/19.
  */
-abstract class BaseFragment : Fragment(), View.OnClickListener {
+abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelper.Companion.PermissionListener,
+    ImagePicker.ImagePickerListener {
     private lateinit var mBinding: ViewDataBinding
-
+    protected val imagePicker: ImagePicker  by inject()
     abstract fun getLayout(): Int
     protected abstract fun onViewsInitialized(binding: ViewDataBinding?, view: View)
 
@@ -69,7 +76,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        GlobalUtility.Companion.btnClickAnimation(v)
+//        GlobalUtility.Companion.btnClickAnimation(v)
     }
 
 //    fun getLocation() {
@@ -90,14 +97,32 @@ abstract class BaseFragment : Fragment(), View.OnClickListener {
 //    }
 
     fun checkStoragePermission() {
-        (getActivity() as BaseActivity).checkStoragePermission()
+        val multiplePermission = ArrayList<String>()
+        multiplePermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        multiplePermission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        multiplePermission.add(Manifest.permission.CAMERA)
+        if (PermissionHelper.checkMultiplePermission(activity!!, multiplePermission)) {
+            FileUtils.createApplicationFolder()
+            onPermissionGranted(multiplePermission)
+        } else
+            PermissionHelper.requestMultiplePermission(activity!!, multiplePermission, this)
+    }
+    override fun onPermissionGranted(mCustomPermission: List<String>) {
+        FileUtils.createApplicationFolder()
+    }
+
+
+    override fun onPermissionDenied(mCustomPermission: List<String>) {
+    }
+
+    override fun imagePath(filePath: List<File>) {
     }
 
     fun checkLocationPermission() {
         (getActivity() as BaseActivity).checkLocationPermission()
     }
 
-    fun getImageLoader(imageLoaderPos: Int): String {
+    fun getPlaceHolder(imageLoaderPos: Int): String {
         val imageLoader = getResources().getStringArray(R.array.image_loader)
         return imageLoader[imageLoaderPos]
     }

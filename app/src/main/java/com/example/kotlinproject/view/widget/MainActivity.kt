@@ -23,7 +23,7 @@ class MainActivity : BaseActivity(),View.OnClickListener, DatePickerDialog.OnDat
     TimePickerDialog.OnTimeSetListener {
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mainViewModel: MainViewModel
-    private val preferenceMgr: PreferenceMgr  by inject()
+//    private val preferenceMgr: PreferenceMgr  by inject()
 
     override fun getLayout(): Int {
         return R.layout.activity_main

@@ -1,62 +1,40 @@
-package com.example.kotlinproject.global.common
+package com.prodege.sbshop.model.repo
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import java.security.Provider
+import com.example.kotlinproject.viewModel.main.MainViewModel
 
-/**
- * Created by Deepak Sharma on 01/07/19.
- */
-class AppViewModelFactory(val context: Context) : ViewModelProvider.NewInstanceFactory() {
+class AppViewModelFactory() : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            val key = "UserProfileViewModel"
+            if (hashMapViewModel.containsKey(MainViewModel::class.java)) {
+                return getViewModel(key) as T
+            } else {
+//               getVm(modelClass)
+                hashMapViewModel.put(MainViewModel::class.java, modelClass as ViewModel)
+                addViewModel(key, modelClass as T)
+                return getViewModel(key) as T
+            }
+        } else {
+            return modelClass as T;
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//
-//        return modelClass(context) as T
-//    }
+
+    companion object {
+        val hashMapViewModel = HashMap<Class<out ViewModel>, ViewModel>()
+        //        val hashMapViewModel = HashMap<String, ViewModel>()
+        fun addViewModel(key: String, viewModel: ViewModel?) {
+            hashMapViewModel.put(MainViewModel::class.java, viewModel!!)
+        }
+
+        fun getViewModel(key: String): ViewModel? {
+            return hashMapViewModel[MainViewModel::class.java]
+        }
+    }
 }
-//@Singleton
-//class AppViewModelFactory  constructor(private val viewModels: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>) :
-//    ViewModelProvider.Factory {
-//
-//    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-//        var creator: Provider<out ViewModel>? = viewModels[modelClass]
-//        if (creator == null) {
-//            for ((key, value) in viewModels) {
-//                if (modelClass.isAssignableFrom(key)) {
-//                    creator = value; break
-//                }
-//            }
-//        }
-//        if (creator == null) {
-//            throw IllegalArgumentException("unknown model class $modelClass")
-//        }
-//        try {
-//            /* NOTE: Get HomeOfferViewModel from static Scope throughout the app
-//             *
-//             * */
-////            if (creator.get() is HomeOffersViewModel) {
-////                var strViewModelName = creator.get()::class.java
-////                if (!viewModelsCommon.containsKey(strViewModelName))
-////                    viewModelsCommon[strViewModelName] = creator.get()
-////                return viewModelsCommon[strViewModelName] as T
-////            } else {
-//                /*  Returning ViewModel from Provider */
-//                return creator.get() as T
-////            }
-//        } catch (e: Exception) {
-//            throw RuntimeException(e)
-//        }
-//    }
-//    /*  override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//           return viewModels[modelClass]?.get() as T
-//      }
-//  */
-//    companion object {
-//        /* ViewModel Map used for static Scope  throughout the app  */
-//        val viewModelsCommon = HashMap<Class<out ViewModel>, ViewModel>()
-//    }
-//    fun nukeVm()
-//    {
-//     viewModelsCommon.clear()
-//    }
+
+
+

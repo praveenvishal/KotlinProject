@@ -6,6 +6,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityNewsBinding
@@ -15,7 +16,10 @@ import com.example.kotlinproject.model.respo.newsChannel.NewsChanelRespo
 import com.example.kotlinproject.view.adapter.NewsAdapter
 import com.example.kotlinproject.view.base.BaseFragment
 import com.example.kotlinproject.view.profile.ProfileFragment
+import com.example.kotlinproject.viewModel.home.HomeViewModel
 import com.example.kotlinproject.viewModel.list.NewsViewModel
+import com.example.kotlinproject.viewModel.main.MainViewModel
+import com.prodege.sbshop.model.repo.AppViewModelFactory
 import com.prodege.shopathome.model.networkCall.ApiResponse
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,8 +29,8 @@ class NewsFragment : BaseFragment() {
     private lateinit var mBinding: ActivityNewsBinding
     private lateinit var newsAdapter: NewsAdapter
     private var progressDialog: ProgressDialog? = null
-    private val preferenceMgr: PreferenceMgr  by inject()
     private val mViewModel: NewsViewModel by viewModel()
+
     companion object {
         val TAG = NewsFragment::class.java.simpleName
         fun getInstance(bundle: Bundle): NewsFragment {
@@ -35,14 +39,22 @@ class NewsFragment : BaseFragment() {
             return NewsFragment()
         }
     }
+
     override fun getLayout(): Int {
         return R.layout.activity_news
     }
+
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
         mBinding = binding as ActivityNewsBinding
+//        var mMainViewModel = ViewModelProviders.of(this, appViewModelFactory).get(MainViewModel::class.java)
+//        var mHomeViewModel = ViewModelProviders.of(this, appViewModelFactory).get(HomeViewModel::class.java)
+//        GlobalUtility.showToast("news  "+mMainViewModel.name)
+//        mMainViewModel.name = "my name"
+//        GlobalUtility.showToast("news  "+mMainViewModel.name)
         init()
         clickListener();
     }
+
     private fun init() {
         mBinding?.toolbar?.imgProfile?.visibility = View.VISIBLE
         mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.news_channel)
@@ -59,6 +71,7 @@ class NewsFragment : BaseFragment() {
             R.id.img_profile -> navigateScreen(ProfileFragment.TAG)
         }
     }
+
     /**
      * navigate on fragment
      *

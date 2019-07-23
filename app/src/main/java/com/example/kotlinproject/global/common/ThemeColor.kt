@@ -31,8 +31,6 @@ class ThemeColors(context: Context, preferenceMgr: PreferenceMgr) {
     }
 
     companion object {
-
-
         fun setNewThemeColor(activity: Activity, red: Int, green: Int, blue: Int, preferenceMgr: PreferenceMgr) {
             var red = red
             var green = green

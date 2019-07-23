@@ -6,22 +6,16 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityNewsBinding
 import com.example.kotlinproject.global.common.GlobalUtility
-import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.model.respo.newsChannel.NewsChanelRespo
 import com.example.kotlinproject.view.adapter.NewsAdapter
 import com.example.kotlinproject.view.base.BaseFragment
 import com.example.kotlinproject.view.profile.ProfileFragment
-import com.example.kotlinproject.viewModel.home.HomeViewModel
 import com.example.kotlinproject.viewModel.list.NewsViewModel
-import com.example.kotlinproject.viewModel.main.MainViewModel
-import com.prodege.sbshop.model.repo.AppViewModelFactory
 import com.prodege.shopathome.model.networkCall.ApiResponse
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsFragment : BaseFragment() {

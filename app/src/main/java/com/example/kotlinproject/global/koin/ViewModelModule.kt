@@ -14,7 +14,7 @@ import org.koin.dsl.module
  * Created by Deepak Sharma on 01/07/19.
  */
 val viewModelModule = module {
-    viewModel { CommonViewModel(androidApplication() as AppApplication, get()) }
+//    viewModel { CommonViewModel(androidApplication() as AppApplication, get()) }
     viewModel { NewsViewModel(androidApplication() as AppApplication, get()) }
     viewModel { HomeViewModel(androidApplication() as AppApplication, get()) }
     viewModel { MainViewModel(androidApplication() as AppApplication, get()) }

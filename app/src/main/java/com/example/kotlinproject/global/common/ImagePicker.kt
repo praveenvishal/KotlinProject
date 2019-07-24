@@ -63,7 +63,7 @@ class ImagePicker {
         )
     }
 
-    fun onActivityResult(activity: Activity,requestCode: Int, resultCode: Int, data: Intent?) {
+    fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, intent: Intent?) {
         try {
             Log.d("TAG", "Image picker")
             var file: MutableList<File> = ArrayList()
@@ -71,23 +71,23 @@ class ImagePicker {
             when (requestCode) {
                 REQUEST_CAMERA -> {
                     var bitmap: Bitmap? = null
-                 if (data?.extras != null && data.extras?.get("data") != null) {
-                        bitmap = data.extras?.get("data") as Bitmap
+                 if (intent?.extras != null && intent.extras?.get("intent") != null) {
+                        bitmap = intent.extras?.get("intent") as Bitmap
                         file.add(FileUtils.saveBitmapImage(bitmap))
-                    } else if (data?.data != null) {
+                    } else if (intent?.data != null) {
                         //In case of video
-                        file = getData(activity, data)
+                        file = getData(activity, intent)
                     }
                     mImagePickerListener?.imagePath(file)
                     mTempPhotoPath = null
                 }
                 SELECT_FILE -> {
-                    val uri = data!!.data
+                    val uri = intent!!.data
                     file.add(FileUtils.getPathFromUri(activity, uri))
                     mImagePickerListener?.imagePath(file)
                 }
 //                PICK_IMAGE_MULTIPLE -> {
-//                    val files = getData(data!!)
+//                    val files = getData(intent!!)
 //                    if (mIsFromProfile) {
 //                        val imageUri = Uri.fromFile(files.get(0))
 //                        CropImage.activity(imageUri)
@@ -131,7 +131,7 @@ class ImagePicker {
 //                    mTempPhotoPath = null
 //                }
 //                CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
-//                    val result = CropImage.getActivityResult(data)
+//                    val result = CropImage.getActivityResult(intent)
 //                    val resultUri = result.getUri()
 //                    val mFile = getPath(mActivity, resultUri)
 //                    compressedFiles = CompressImage.compressImage(mFile)
@@ -186,7 +186,8 @@ class ImagePicker {
                 }
 
                 // TODO handle non-primary volumes
-            } else if (isDownloadsDocument(uri)) {
+            } else if (
+                isDownloadsDocument(uri)) {
 
                 val id = DocumentsContract.getDocumentId(uri)
                 val contentUri = ContentUris.withAppendedId(

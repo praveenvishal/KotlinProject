@@ -51,10 +51,10 @@ class ImagePicker {
      */
     fun selectImage(activity: Activity, imagePickerListener: ImagePickerListener) {
         mImagePickerListener = imagePickerListener
-        val intent = Intent()
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_MIME_TYPES, mMimeTypesSingle)
-        intent.action = Intent.ACTION_GET_CONTENT
+//        intent.action = Intent.ACTION_GET_CONTENT
         activity.startActivityForResult(
             Intent.createChooser(
                 intent,

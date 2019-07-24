@@ -39,12 +39,11 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     protected val appViewModelFactory = AppViewModelFactory()
     protected lateinit var mCommonViewModel: CommonViewModel
 
-//    protected val themeColors: ThemeColors by inject()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
         supportActionBar?.hide()
+        setNavigationColor(getResources().getColor(R.color.app_color))
         mCommonViewModel = ViewModelProviders.of(this, appViewModelFactory).get(CommonViewModel::class.java)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window = window
@@ -66,6 +65,12 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+        }
+    }
+
+    protected fun setNavigationColor(color: Int) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow()?.setNavigationBarColor(color);
         }
     }
 

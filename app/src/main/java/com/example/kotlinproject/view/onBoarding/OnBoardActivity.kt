@@ -19,7 +19,8 @@ import com.example.kotlinproject.view.login.LoginActivity
 class OnBoardActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivityOnboardingBinding
-    private val layouts = intArrayOf(R.layout.welcome_slide1, R.layout.welcome_slide2, R.layout.welcome_slide3, R.layout.welcome_slide4)
+    private val layouts =
+        intArrayOf(R.layout.welcome_slide1, R.layout.welcome_slide2, R.layout.welcome_slide3, R.layout.welcome_slide4)
 
     override fun getLayout(): Int {
         return R.layout.activity_onboarding
@@ -43,6 +44,7 @@ class OnBoardActivity : BaseActivity() {
             }
         }
         mBinding.viewPager.addOnPageChangeListener(getChangeListener())
+        changeNavigatColor(0)
     }
 
     private fun clickListener() {
@@ -74,12 +76,21 @@ class OnBoardActivity : BaseActivity() {
                 mBinding.btnNext.visibility = if (isLastPage) View.GONE else View.VISIBLE
                 mBinding.btnSkip.visibility = if (isLastPage) View.INVISIBLE else View.VISIBLE
                 mBinding.btnGotIt.visibility = if (isLastPage) View.VISIBLE else View.GONE
+                changeNavigatColor(position)
             }
 
             override fun onPageScrolled(arg: Int, arg1: Float, arg2: Int) {}
 
             override fun onPageScrollStateChanged(arg: Int) {}
         }
+    }
+
+    private fun changeNavigatColor(position: Int) {
+        if (position == 0) setNavigationColor(getResources().getColor(R.color.bg_screen1))
+        else if (position == 1) setNavigationColor(getResources().getColor(R.color.bg_screen2))
+        else if (position == 2) setNavigationColor(getResources().getColor(R.color.bg_screen3))
+        else if (position == 3) setNavigationColor(getResources().getColor(R.color.bg_screen4))
+
     }
 
     private fun showNextSlide() {

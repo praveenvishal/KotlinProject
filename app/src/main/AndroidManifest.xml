@@ -34,6 +34,8 @@
         </activity>
         <activity android:name=".view.onBoarding.OnBoardActivity"
                   />
+        <activity android:name=".view.language.LanguageActivity"
+        />
         <activity android:name=".view.widget.MainActivity"/>
         <activity android:name=".view.login.LoginActivity"
                           android:windowSoftInputMode="stateAlwaysHidden"/>

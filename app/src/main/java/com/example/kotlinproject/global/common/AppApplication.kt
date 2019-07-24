@@ -4,10 +4,13 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.example.kotlinproject.global.constant.PreferenceConstant
 import com.example.kotlinproject.global.koin.appModule
 import com.example.kotlinproject.global.koin.commonModelModule
 import com.example.kotlinproject.global.koin.repoModule
 import com.example.kotlinproject.global.koin.viewModelModule
+import com.example.kotlinproject.global.sharedPref.PreferenceMgr
+import com.example.kotlinproject.global.sharedPref.PreferenceUtils
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -27,6 +30,7 @@ class AppApplication :Application(),Application.ActivityLifecycleCallbacks{
         super.onCreate()
         context = this
         FileUtils.createApplicationFolder()
+        PreferenceUtils.Companion.getInstance(this)
         startKoin {
             androidLogger()
             androidContext(this@AppApplication)

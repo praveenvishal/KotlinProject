@@ -8,7 +8,7 @@
     <!--&lt;!&ndash;name="loginActivityCallback"&ndash;&gt;-->
     <!--&lt;!&ndash;type="com.ryadav3.mvvmsample.view.callback.LoginActivityCallback" />&ndash;&gt;-->
     <!--</data>-->
-
+<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,5 +24,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
         />
+
     </LinearLayout>
+    <TextView android:id="@+id/txt_no_data_found"
+              android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="@string/txt_no_data_found"
+              android:layout_centerInParent="true"
+              android:gravity="center"
+              android:visibility="gone"
+              style="@style/TextView_Heading"
+    />
+</RelativeLayout>
 </layout>

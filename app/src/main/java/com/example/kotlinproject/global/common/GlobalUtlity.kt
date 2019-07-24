@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.Uri
@@ -264,8 +265,11 @@ class GlobalUtility {
                 drawableTypeRequest.error(R.color.app_color)
                 drawableTypeRequest.placeholder(R.color.app_color)
             } else if (imageLoadersArray[1] == imageLoaderType) {
-                drawableTypeRequest.error(R.drawable.logo)
-                drawableTypeRequest.placeholder(R.drawable.logo)
+                drawableTypeRequest.error(R.drawable.ic_flag)
+                drawableTypeRequest.placeholder(R.drawable.ic_flag)
+            }  else if (imageLoadersArray[2] == imageLoaderType) {
+                drawableTypeRequest.error(R.drawable.news_paper)
+                drawableTypeRequest.placeholder(R.drawable.news_paper)
             } else {
                 drawableTypeRequest.error(R.color.app_color)
                 drawableTypeRequest.placeholder(R.color.app_color)
@@ -341,6 +345,17 @@ class GlobalUtility {
             view.startAnimation(fadeAnimation)
         }
 
+        fun changeLanguage(context: Context, lancuageCode: String) {
+//            val languageToLoad = "en" // your language
+            val locale = Locale(lancuageCode)
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.locale = locale
+            context.getResources().updateConfiguration(
+                config,
+                context.getResources().getDisplayMetrics()
+            )
+        }
     }
 
 }

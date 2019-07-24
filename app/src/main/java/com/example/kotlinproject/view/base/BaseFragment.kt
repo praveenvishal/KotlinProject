@@ -1,6 +1,7 @@
 package com.example.kotlinproject.view.base
 
 import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.common.ImagePicker
 import com.example.kotlinproject.global.common.PermissionHelper
 import com.example.kotlinproject.global.db.dao.UserInfoDao
+import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.model.eventBus.EventBusListener
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -28,6 +30,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     ImagePicker.ImagePickerListener {
     private lateinit var mBinding: ViewDataBinding
     protected val imagePicker: ImagePicker  by inject()
+    protected val preferenceMgr: PreferenceMgr  by inject()
     abstract fun getLayout(): Int
     protected abstract fun onViewsInitialized(binding: ViewDataBinding?, view: View)
 

@@ -1,6 +1,7 @@
 package com.example.kotlinproject.global.sharedPref
 
 import com.example.kotlinproject.global.constant.PreferenceConstant
+import com.example.kotlinproject.model.language.LanguageBean
 import com.example.kotlinproject.model.preference.PreferenceBean
 
 /**
@@ -30,9 +31,31 @@ class PreferenceMgr constructor(var preferenceUtils: PreferenceUtils) {
         return preferenceBean
     }
 
+    /**
+     * set user session info
+     */
+    fun setLanguage(languageBean: LanguageBean) {
+        preferenceUtils?.setPreference(PreferenceConstant.PREF_LANGUAGE_ID, languageBean.id)
+        preferenceUtils?.setPreference(PreferenceConstant.PREF_LANGUAGE_NAME, languageBean.languageName)
+        preferenceUtils?.setPreference(PreferenceConstant.PREF_LANGUAGE_CODE, languageBean.languageCode)
+    }
+
+    /**
+     * get user session info
+     */
+    fun getLanguageInfo(): LanguageBean {
+        return LanguageBean().apply {
+            id = preferenceUtils.getPreference(PreferenceConstant.PREF_LANGUAGE_ID, "")!!
+            languageName = preferenceUtils.getPreference(PreferenceConstant.PREF_LANGUAGE_NAME, "")!!
+            languageCode = preferenceUtils.getPreference(PreferenceConstant.PREF_LANGUAGE_CODE, "")!!
+        }
+    }
+
+
     fun setThemeColor(themeHaxCode: String) {
         preferenceUtils.setPreference(PreferenceConstant.THEME_HAX_CODE, themeHaxCode)
     }
+
     fun getThemeColor() {
         preferenceUtils.getPreference(PreferenceConstant.THEME_HAX_CODE, "#825f3d")
     }

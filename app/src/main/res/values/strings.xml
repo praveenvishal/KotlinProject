@@ -32,7 +32,9 @@
     <string name="got_it">Got it</string>
     <string name="skip">skip</string>
     <string-array name="image_loader">
-        <item>app_color</item><!--app color-->
+        <item>app_color</item><!--app color 0 -->
+        <item>country_flag</item><!--country flag 1 -->
+        <item>news_placeholder</item><!--news paper 2 -->
         <item>other image</item><!--other image-->
     </string-array>
     <string name="slide_1_title">Hello Food!</string>
@@ -76,4 +78,8 @@
     <string name="first_name_can_not_blank">first name can\'t blank</string>
     <string name="enter_mobile_no">mobile number can\'t blank</string>
     <string name="enter_valid_mobile_no">enter valid mobile no</string>
+    <string name="select_language">select language</string>
+    <string name="submit">submit</string>
+    <string name="please_select_language">please select your preferred language</string>
+    <string name="txt_no_data_found">no data found for \nthis language</string>
 </resources>

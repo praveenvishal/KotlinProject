@@ -5,7 +5,8 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.Color
+import android.content.res.Resources
+import android.graphics.*
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.text.Spannable
@@ -355,6 +356,47 @@ class GlobalUtility {
                 config,
                 context.getResources().getDisplayMetrics()
             )
+        }
+
+        /**
+         * Adds a watermark on the given image.
+         */
+        fun addWatermark(res: Resources, source: Bitmap, mScreenwidth: Int): Bitmap {
+            val w: Int
+            val h: Int
+            val c: Canvas
+            val paint: Paint
+            val bmp: Bitmap
+            val watermark: Bitmap
+            val matrix: Matrix
+            val scale: Float
+            val r: RectF
+            w = source.width
+            h = source.height
+            // Create the new bitmap
+            bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+            paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG or Paint.FILTER_BITMAP_FLAG)
+            // Copy the original bitmap into the new one
+            c = Canvas(bmp)
+            c.drawBitmap(source, 0f, 0f, paint)
+            // Load the watermark
+            watermark = BitmapFactory.decodeResource(res, R.drawable.logo)
+            // Scale the watermark to be approximately 40% of the source image height
+            scale = (h.toFloat() * 0.15 / watermark.height.toFloat()).toFloat()
+            val scaleX = w.toFloat() / watermark.width.toFloat()
+            // Create the matrix
+            matrix = Matrix()
+            matrix.postScale(scaleX, scale)
+            // Determine the post-scaled size of the watermark
+            r = RectF(0f, 0f, watermark.width.toFloat(), watermark.height.toFloat())
+            matrix.mapRect(r)
+            // Move the watermark to the bottom right corner
+            matrix.postTranslate(w - r.width(), h - r.height())
+            // Draw the watermark
+            c.drawBitmap(watermark, matrix, paint)
+            // Free up the bitmap memory
+            watermark.recycle()
+            return bmp
         }
     }
 

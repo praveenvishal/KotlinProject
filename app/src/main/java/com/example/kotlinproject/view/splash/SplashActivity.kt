@@ -10,10 +10,6 @@ import com.example.kotlinproject.global.constant.AppConstant
 import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.view.language.LanguageActivity
 
-
-//import com.google.api.translate.Language;
-//import com.google.api.translate.Translate;
-
 /**
  * Created by Deepak Sharma on 01/07/19.
  */

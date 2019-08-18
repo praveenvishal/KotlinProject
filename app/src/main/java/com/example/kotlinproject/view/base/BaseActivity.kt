@@ -45,15 +45,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         supportActionBar?.hide()
         setNavigationColor(getResources().getColor(R.color.app_color))
         mCommonViewModel = ViewModelProviders.of(this, appViewModelFactory).get(CommonViewModel::class.java)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = window
-            if (window != null) {
-                window.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                window.statusBarColor = Color.TRANSPARENT
-            }
-        }
+       fullScreen();
         GlobalUtility.hideKeyboard(this)
         AppApplication.mCurrencyActivity = this
         var layoutResId = getLayout()
@@ -64,6 +56,18 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
                 initUI(binding)
             } catch (e: Exception) {
                 e.printStackTrace()
+            }
+        }
+    }
+
+    private fun fullScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window = window
+            if (window != null) {
+                window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                window.statusBarColor = Color.TRANSPARENT
             }
         }
     }

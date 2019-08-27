@@ -34,7 +34,7 @@
                   />
         <activity android:name=".view.language.LanguageActivity"
         />
-        <activity android:name=".view.widget.MainActivity"/>
+        <activity android:name=".view.widget.WidgetActivity"/>
         <activity android:name=".view.login.LoginActivity"
                           android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".view.home.HomeActivity"

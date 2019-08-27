@@ -7,6 +7,7 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityCommonBinding
 import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.view.news.NewsFragment
+import com.example.kotlinproject.view.task.TaskFrm
 
 /**
  * Created by Deepak Sharma on 01/07/19.
@@ -21,7 +22,7 @@ class HomeActivity : BaseActivity() {
 
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
-        navigateScreen(NewsFragment.TAG)
+        navigateScreen(TaskFrm.TAG)
     }
     /**
      * navigate on fragment
@@ -31,8 +32,8 @@ class HomeActivity : BaseActivity() {
      */
     private fun navigateScreen(tag: String) {
         val frm: Fragment
-        if (tag == NewsFragment.TAG) {
-            frm = NewsFragment.getInstance(Bundle())
+        if (tag == TaskFrm.TAG) {
+            frm = TaskFrm.getInstance(Bundle())
             navigateFragment(R.id.container, frm, false)
         }
     }

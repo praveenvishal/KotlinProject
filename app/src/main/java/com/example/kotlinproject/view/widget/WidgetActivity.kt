@@ -1,7 +1,6 @@
 package com.example.kotlinproject.view.widget
 
 import android.app.DatePickerDialog
-import android.app.PendingIntent.getActivity
 import android.app.TimePickerDialog
 import android.util.Log
 import android.view.View
@@ -10,27 +9,26 @@ import android.widget.TimePicker
 import androidx.databinding.ViewDataBinding
 import com.example.kotlinproject.R
 import com.example.kotlinproject.view.base.BaseActivity
-import com.example.kotlinproject.databinding.ActivityMainBinding
+import com.example.kotlinproject.databinding.FrmWidgetBinding
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.constant.AppConstant
-import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.viewModel.main.MainViewModel
-import org.koin.android.ext.android.inject
+
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class MainActivity : BaseActivity(),View.OnClickListener, DatePickerDialog.OnDateSetListener,
+class WidgetActivity : BaseActivity(),View.OnClickListener, DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
-    private lateinit var mBinding: ActivityMainBinding
+    private lateinit var mBinding: FrmWidgetBinding
     private lateinit var mainViewModel: MainViewModel
 //    private val preferenceMgr: PreferenceMgr  by inject()
 
     override fun getLayout(): Int {
-        return R.layout.activity_main
+        return R.layout.frm_widget
     }
 
     override fun initUI(binding: ViewDataBinding) {
-        mBinding = binding as ActivityMainBinding
+        mBinding = binding as FrmWidgetBinding
         for (i in 1..5) {
             Log.d("TAG", i.toString())
         }

@@ -96,11 +96,11 @@ class FileUtils {
             var res: String? = null
             val proj = arrayOf(MediaStore.Images.Media.DATA)
             val cursor = context.getContentResolver().query(contentUri, proj, null, null, null)
-            if (cursor.moveToFirst()) {
-                val column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                res = cursor.getString(column_index)
+            if (cursor?.moveToFirst()!!) {
+                val column_index = cursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+                res = cursor?.getString(column_index)
             }
-            cursor.close()
+            cursor?.close()
 
             return File(res)
         }

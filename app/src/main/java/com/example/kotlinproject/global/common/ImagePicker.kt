@@ -82,8 +82,7 @@ class ImagePicker {
                     mTempPhotoPath = null
                 }
                 SELECT_FILE -> {
-                    val uri = intent!!.data
-                    file.add(FileUtils.getPathFromUri(activity, uri))
+                    file.add(FileUtils.getPathFromUri(activity, intent!!.data!!))
                     mImagePickerListener?.imagePath(file)
                 }
 //                PICK_IMAGE_MULTIPLE -> {
@@ -212,11 +211,11 @@ class ImagePicker {
                 val selection = "_id=?"
                 val selectionArgs = arrayOf(split[1])
 
-                return getDataColumn(context, contentUri, selection, selectionArgs)
+                return getDataColumn(context, contentUri!!, selection, selectionArgs)
             }// MediaProvider
             // DownloadsProvider
         } else if ("content".equals(uri?.scheme, ignoreCase = true)) {
-            return getDataColumn(context, uri, null, null)
+            return uri?.let { getDataColumn(context, it, null, null) }
         } else if ("file".equals(uri?.scheme, ignoreCase = true)) {
             return uri?.path
         }// File
@@ -236,7 +235,7 @@ class ImagePicker {
      * @return The value of the _data column, which is typically a file path.
      */
     fun getDataColumn(
-        context: Context, uri: Uri?, selection: String?,
+        context: Context, uri: Uri, selection: String?,
         selectionArgs: Array<String>?
     ): String? {
 

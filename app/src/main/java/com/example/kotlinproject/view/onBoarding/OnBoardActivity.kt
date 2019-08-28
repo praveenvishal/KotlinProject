@@ -57,7 +57,7 @@ class OnBoardActivity : BaseActivity() {
         super.onClick(v)
         when (v?.id) {
             R.id.btn_skip, R.id.btn_got_it -> {
-                startActivity(Intent(this@OnBoardActivity, LoginActivity::class.java))
+                naviController.navigateToLogin(this)
                 finish()
             }
             R.id.btn_next -> showNextSlide()

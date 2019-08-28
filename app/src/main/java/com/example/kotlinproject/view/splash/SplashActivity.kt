@@ -37,7 +37,7 @@ class SplashActivity : BaseActivity() {
      */
     private fun navigateToNext() {
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, LanguageActivity::class.java))
+           naviController.navigateToLanguage(this)
             finish()
         }, AppConstant.SPLASH_DELAY)
     }

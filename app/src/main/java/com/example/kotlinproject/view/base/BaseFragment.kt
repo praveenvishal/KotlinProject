@@ -10,10 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.kotlinproject.R
-import com.example.kotlinproject.global.common.FileUtils
-import com.example.kotlinproject.global.common.GlobalUtility
-import com.example.kotlinproject.global.common.ImagePicker
-import com.example.kotlinproject.global.common.PermissionHelper
+import com.example.kotlinproject.global.common.*
 import com.example.kotlinproject.global.db.dao.UserInfoDao
 import com.example.kotlinproject.global.sharedPref.PreferenceMgr
 import com.example.kotlinproject.model.eventBus.EventBusListener
@@ -31,6 +28,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     private lateinit var mBinding: ViewDataBinding
     protected val imagePicker: ImagePicker  by inject()
     protected val preferenceMgr: PreferenceMgr  by inject()
+    protected val naviController: NavigationController by inject()
     abstract fun getLayout(): Int
     protected abstract fun onViewsInitialized(binding: ViewDataBinding?, view: View)
 

@@ -11,6 +11,7 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.FrmTaskListBinding
 import com.example.kotlinproject.view.adapter.TaskAdapter
 import com.example.kotlinproject.view.base.BaseFragment
+import com.example.kotlinproject.view.map.GoogleMapFrm
 import com.example.kotlinproject.view.news.NewsFragment
 import com.example.kotlinproject.view.widget.WidgetFragment
 import java.util.*
@@ -22,6 +23,8 @@ class TaskFrm : BaseFragment() {
     private var mTaskList: ArrayList<String>? = null
     internal var worktask = arrayOf(
         "widgets",
+        "news api",
+        "google map",
         "webview",
         "dialog",
         "location",
@@ -39,7 +42,6 @@ class TaskFrm : BaseFragment() {
         "share",
         "receiver",
         "services",
-        "google map",
         "sqlite data base",
         "viewpager tab",
         "finger print",
@@ -73,6 +75,8 @@ class TaskFrm : BaseFragment() {
     }
 
     private fun init() {
+        mBinding?.toolbar?.imgBack?.visibility = View.GONE
+        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.task_title)
         mTaskList = ArrayList(Arrays.asList(*worktask))
         setAdapter()
         clickListener()
@@ -111,8 +115,12 @@ class TaskFrm : BaseFragment() {
     fun onClicks(click: String) {
         if (click == "widgets")
             navigateScreen(WidgetFragment.TAG)
-        else if (click == "webview")
+        else if (click == "news api")
             navigateScreen(NewsFragment.TAG)
+        else if (click == "google map") {
+            activity?.let { naviController.navigateToMap(it) }
+            activity?.finish()
+        }
     }
 //            navigateScreen(WebViewFragment.TAG)
 //        else if (click == "login signup flow")
@@ -172,18 +180,18 @@ class TaskFrm : BaseFragment() {
 //        else if (click == "api") navigateScreen(ApiFragment.TAG)
 
 
-
-        /**
-         * navigate on fragment
-         *
-         * @param tag represent navigation activity
-         */
-        fun navigateScreen(tag: String) {
-            var frm: Fragment? = null
-            if (tag == WidgetFragment.TAG)
-                frm = WidgetFragment.getInstance(arguments!!)
+    /**
+     * navigate on fragment
+     *
+     * @param tag represent navigation activity
+     */
+    fun navigateScreen(tag: String) {
+        var frm: Fragment? = null
+        if (tag == WidgetFragment.TAG)
+            frm = WidgetFragment.getInstance(Bundle())
         else if (tag == NewsFragment.TAG)
-            frm = NewsFragment.getInstance(arguments!!)
+            frm = NewsFragment.getInstance(Bundle())
+
 //        else if (tag == SelectMultipleFileFragment.TAG)
 //            frm = SelectMultipleFileFragment.getInstance(arguments)
 //        else if (tag == GpsLocationFragment.TAG)
@@ -238,16 +246,16 @@ class TaskFrm : BaseFragment() {
 //            frm = CollpaseViewFragment.getInstance(arguments)
 //        else if (tag == ApiFragment.TAG)
 //            frm = ApiFragment.getInstance(arguments)
-            frm?.let { navigateFragment(R.id.container, it, true) }
-            //        navigateAddFragment(R.id.container, frm, true);
+        frm?.let { navigateFragment(R.id.container, it, true) }
+        //        navigateAddFragment(R.id.container, frm, true);
 
-            val bund = Bundle()
-        }
+        val bund = Bundle()
+    }
 
-        fun updateTitle() {
+    fun updateTitle() {
 //        (activity as HomeActivity).hideBackBtn()
 //        (activity as HomeActivity).setToolbarTitle(resources.getString(R.string.app_name))
-        }
+    }
 
 }
 

@@ -82,7 +82,7 @@ class LanguageActivity : BaseActivity() {
             return
         } else GlobalUtility.changeLanguage(baseContext, mLanguageList.get(position).languageCode)
         preferenceMgr.setLanguage(mLanguageList.get(position))
-        startActivity(Intent(this@LanguageActivity, OnBoardActivity::class.java))
+        naviController.navigateToOnBoard(this)
         finish()
     }
 

@@ -12,7 +12,6 @@ import com.example.kotlinproject.view.base.BaseActivity
 import com.example.kotlinproject.databinding.FrmWidgetBinding
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.constant.AppConstant
-import com.example.kotlinproject.viewModel.main.MainViewModel
 
 /**
  * Created by Deepak Sharma on 01/07/19.
@@ -20,7 +19,6 @@ import com.example.kotlinproject.viewModel.main.MainViewModel
 class WidgetActivity : BaseActivity(),View.OnClickListener, DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
     private lateinit var mBinding: FrmWidgetBinding
-    private lateinit var mainViewModel: MainViewModel
 //    private val preferenceMgr: PreferenceMgr  by inject()
 
     override fun getLayout(): Int {

@@ -1,14 +1,16 @@
 package com.example.kotlinproject.global.common
 
-import android.app.Activity
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.app.*
+import android.content.ClipDescription
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.*
+import android.media.RingtoneManager
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.format.DateFormat
@@ -22,6 +24,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.DrawableTypeRequest
@@ -29,6 +32,9 @@ import com.bumptech.glide.Glide
 import com.example.kotlinproject.R
 import com.example.kotlinproject.global.common.AppApplication.Companion.context
 import com.example.kotlinproject.global.common.AppApplication.Companion.mCurrencyActivity
+import com.example.kotlinproject.global.constant.AppConstant
+import com.example.kotlinproject.global.constant.AppConstant.Companion.NOTIFICATION_CHANNEL_ID
+import com.example.kotlinproject.view.home.HomeActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.File
@@ -398,6 +404,84 @@ class GlobalUtility {
             watermark.recycle()
             return bmp
         }
+
+        fun showOfflineNotification(context: Context, title:String, description: String) {
+            val intent = Intent(context, HomeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            if (intent != null) {
+                val pendingIntent = PendingIntent.getActivity(
+                    context, getTwoDigitRandomNo(), intent,
+                    PendingIntent.FLAG_ONE_SHOT
+                )
+                val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                val notificationBuilder = NotificationCompat.Builder(context)
+                notificationBuilder.setSmallIcon(R.mipmap.ic_launcher_round)
+                notificationBuilder.setLargeIcon(
+                    BitmapFactory.decodeResource(
+                        context.resources,
+                        R.mipmap.ic_launcher
+                    )
+                )
+                notificationBuilder.setBadgeIconType(R.mipmap.ic_launcher_round)
+                notificationBuilder.setContentTitle(title)
+                if (description != null) {
+                    notificationBuilder.setContentText(description)
+                    notificationBuilder.setStyle(
+                        NotificationCompat.BigTextStyle().bigText(description)
+                    )
+                }
+                notificationBuilder.setAutoCancel(true)
+                notificationBuilder.setSound(defaultSoundUri)
+                notificationBuilder.setVibrate(longArrayOf(1000, 1000))
+                notificationBuilder.setContentIntent(pendingIntent)
+                val notificationManager =
+                    context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val importance = NotificationManager.IMPORTANCE_HIGH
+                    val notificationChannel = NotificationChannel(
+                        NOTIFICATION_CHANNEL_ID,
+                        "NOTIFICATION_CHANNEL_NAME",
+                        importance
+                    )
+                    notificationChannel.enableLights(true)
+                    notificationChannel.lightColor = Color.RED
+                    notificationChannel.enableVibration(true)
+                    notificationChannel.vibrationPattern = longArrayOf(1000, 1000)
+                    assert(notificationManager != null)
+                    notificationBuilder.setChannelId(NOTIFICATION_CHANNEL_ID)
+                    notificationManager.createNotificationChannel(notificationChannel)
+                }
+                notificationManager.notify(
+                    getTwoDigitRandomNo()/*Id of Notification*/,
+                    notificationBuilder.build()
+                )
+            }
+        }
+//        fun showNotification(context: Context,text: String, bigText: String) {
+//
+//            // 1. Create a NotificationManager
+//            val notificationManager =
+//                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//
+//            // 2. Create a PendingIntent for AllGeofencesActivity
+//            val intent = Intent(context, HomeActivity::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            val pendingNotificationIntent =
+//                PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+//
+//            // 3. Create and send a notification
+//            val notification = NotificationCompat.Builder(context)
+//                .setSmallIcon(R.mipmap.ic_launcher)
+//                .setContentTitle("Title")
+//                .setContentText(text)
+//                .setContentIntent(pendingNotificationIntent)
+//                .setStyle(NotificationCompat.BigTextStyle().bigText(bigText))
+//                .setPriority(NotificationCompat.PRIORITY_HIGH)
+//                .setAutoCancel(true)
+//                .build()
+//            notificationManager.notify(0, notification)
+//        }
     }
+
 
 }

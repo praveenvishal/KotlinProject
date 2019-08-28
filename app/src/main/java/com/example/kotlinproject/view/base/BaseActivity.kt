@@ -36,6 +36,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     protected var appDb: AppDatabase? = null
     protected val imagePicker: ImagePicker  by inject()
     protected val preferenceMgr: PreferenceMgr  by inject()
+    protected val naviController: NavigationController  by inject()
     protected val appViewModelFactory = AppViewModelFactory()
     protected lateinit var mCommonViewModel: CommonViewModel
 

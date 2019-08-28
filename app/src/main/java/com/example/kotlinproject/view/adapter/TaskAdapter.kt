@@ -58,6 +58,11 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
 //            } else {
 //                mRowBinding.txtName.setText(mTaskList?.get(position))
 //            }
+//            mRowBinding.card.setOnClickListener {
+                mRowBinding.card.setOnClickListener({ view ->
+                    mTaskList?.get(position)?.let { taskFrm.onClicks(it) }
+                })
+//        }
         }
     }
 

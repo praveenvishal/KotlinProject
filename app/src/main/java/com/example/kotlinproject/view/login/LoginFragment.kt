@@ -36,8 +36,6 @@ class LoginFragment : BaseFragment() {
         clickListener()
         mBinding.edtEmail.setText("deepak@gmail.com")
         mBinding.edtPassword.setText("Test@12345")
-
-        1
     }
 
     private fun init() {
@@ -66,7 +64,7 @@ class LoginFragment : BaseFragment() {
             var userInfo = getUserDao().getCouponsBySize(mBinding.edtEmail.text.toString())
             if (userInfo==null)GlobalUtility.showToast(resources.getString(R.string.create_an_account))
             else if (userInfo.password.equals(mBinding.edtPassword.text.toString()))
-            startActivity(Intent(activity, HomeActivity::class.java))
+                activity?.let { naviController.navigateToHome(it) }
             else GlobalUtility.showToast(resources.getString(R.string.please_enter_correct_password))
         }
 

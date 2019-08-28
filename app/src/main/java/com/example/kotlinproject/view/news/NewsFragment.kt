@@ -6,6 +6,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinproject.R
@@ -18,7 +19,9 @@ import com.example.kotlinproject.view.base.BaseFragment
 import com.example.kotlinproject.view.base.ScrollListener
 import com.example.kotlinproject.view.profile.ProfileFragment
 import com.example.kotlinproject.viewModel.list.NewsViewModel
+import com.example.kotlinproject.viewModel.map.MapViewModel
 import com.prodege.shopathome.model.networkCall.ApiResponse
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsFragment : BaseFragment() {
@@ -28,6 +31,7 @@ class NewsFragment : BaseFragment() {
     private lateinit var newsAdapter: NewsAdapter
     private var progressDialog: ProgressDialog? = null
     private val mViewModel: NewsViewModel by viewModel()
+
     private var mPageCount: Int = 1
 
     companion object {

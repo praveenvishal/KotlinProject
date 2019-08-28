@@ -2,49 +2,47 @@ package com.example.kotlinproject.view.base
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.PendingIntent
+import android.content.Intent
 import android.content.IntentSender
 import android.location.Geocoder
-import android.location.LocationManager
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
 import com.example.kotlinproject.global.common.PermissionHelper
+import com.example.kotlinproject.global.constant.AppConstant
+import com.example.kotlinproject.global.constant.AppConstant.Companion.GEOFENCE_REQ_CODE
+import com.example.kotlinproject.global.constant.AppConstant.Companion.GEOFENCE_REQ_ID
+import com.example.kotlinproject.global.services.GeofenceTransitionsIntentService
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResultCallback
+import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.*
+import com.google.android.gms.maps.model.Circle
+import com.google.android.gms.maps.model.Marker
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
  * Created by deepaksharma
  */
 abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallbacks,
-    GoogleApiClient.OnConnectionFailedListener,LocationListener,
-    PermissionHelper.Companion.PermissionListener{
+    GoogleApiClient.OnConnectionFailedListener, LocationListener,
+    PermissionHelper.Companion.PermissionListener {
+    private var mFancyMarker: Marker? = null
+    private var mGeofencePendingIntent: PendingIntent? = null
     private var isUpdateLocation = false
     private var isShowAddress = false
-
-    // getting GPS status
-    protected val isGpsEnabled: Boolean
-        get() {
-            val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
-            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        }
-
-    // getting network status
-    protected val isNetworkEnabled: Boolean
-        get() {
-            val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
-            return locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-        }
-
+    private var mGeofenceList: ArrayList<Geofence>? = null
     /**
      * provide user current location single time
      */
-    fun getLocation() {
+    protected fun getLocation() {
         stopLocationUpdates()
         checkPermission()
     }
@@ -70,6 +68,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
      * check Gps status & location permission
      */
     private fun checkPermission() {
+        mGeofenceList = ArrayList()
         try {
             val locationList = ArrayList<String>()
             locationList.add(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -107,7 +106,11 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
             if (googleApiAvailability.isUserResolvableError(resultCode)) {
                 googleApiAvailability.getErrorDialog(this, resultCode, 1000).show()
             } else {
-                Toast.makeText(applicationContext, "This device is not supported.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    applicationContext,
+                    "This device is not supported.",
+                    Toast.LENGTH_LONG
+                ).show()
             }
             return false
         }
@@ -125,7 +128,8 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         mLocationRequest = createLocationRequest()
         val builder = LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest!!)
 
-        val result = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build())
+        val result =
+            LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build())
 
         result.setResultCallback(object : ResultCallback<LocationSettingsResult> {
             override fun onResult(locationSettingsResult: LocationSettingsResult) {
@@ -159,6 +163,81 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         })
     }
 
+    fun startGeoFencing(location: Location, fancyMarker: Marker?) {
+        mFancyMarker = fancyMarker
+        createGeofences(location?.latitude, location?.longitude);
+        try {
+            LocationServices.GeofencingApi.addGeofences(
+                mGoogleApiClient,
+                getGeofencingRequest(),
+                getGeofencePendingIntent()
+            ).setResultCallback(ResultCallback<Status> { status ->
+                if (status.isSuccess) {
+                    Log.i(TAG, "Saving Geofence")
+
+                } else {
+                    Log.e(
+                        TAG, "Registering geofence failed: " + status.statusMessage +
+                                " : " + status.statusCode
+                    )
+                }
+            })
+
+        } catch (securityException: SecurityException) {
+            // Catch exception generated if the app does not use ACCESS_FINE_LOCATION permission.
+            Log.e(TAG, "Error")
+        }
+    }
+
+    /**
+     * Create a Geofence list
+     */
+    fun createGeofences(latitude: Double, longitude: Double) {
+        mGeofenceList?.clear()
+
+        val fence = Geofence.Builder()
+            .setRequestId(GEOFENCE_REQ_ID)
+            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT)
+            .setCircularRegion(latitude, longitude, AppConstant.GEOFENCE_RADIUS)
+            .setExpirationDuration(Geofence.NEVER_EXPIRE)
+            .build()
+        mGeofenceList?.add(fence)
+    }
+
+    private fun getGeofencingRequest(): GeofencingRequest {
+        val builder = GeofencingRequest.Builder()
+        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
+        builder.addGeofences(mGeofenceList)
+        return builder.build()
+    }
+
+    private fun getGeofencePendingIntent(): PendingIntent? {
+        // Reuse the PendingIntent if we already have it.
+        if (mGeofencePendingIntent != null) {
+            return mGeofencePendingIntent
+        }
+        val intent = Intent(this, GeofenceTransitionsIntentService::class.java)
+        // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
+        // calling addGeofences() and removeGeofences().
+        return PendingIntent.getService(this, GEOFENCE_REQ_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
+
+    // Clear Geofence
+     fun stopGeoFencing(fancyMarker: Marker?, geoFenceCircle: Circle?) {
+            LocationServices.GeofencingApi.removeGeofences(
+                mGoogleApiClient,
+                getGeofencePendingIntent()
+            ).setResultCallback(ResultCallback<Status> { status ->
+                if (status.isSuccess) {
+                    fancyMarker?.remove()
+                    geoFenceCircle?.remove()
+                    // remove drawing
+//                removeGeofenceDraw()
+                }
+            })
+    }
+
     override fun onConnected(arg0: Bundle?) {
         // Once connected with google api, get the location
         startLocationUpdates()
@@ -174,7 +253,11 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         //        criteria.setAccuracy(Criteria.ACCURACY_FINE);
         //        criteria.setCostAllowed(true);
         if (mGoogleApiClient!!.isConnected()) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this)
+            LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient,
+                mLocationRequest,
+                this
+            )
         } else {
             buildGoogleApiClient()
         }
@@ -196,7 +279,10 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
     }
 
     override fun onConnectionFailed(result: ConnectionResult) {
-        Log.i(TAG, "login  Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode())
+        Log.i(
+            TAG,
+            "login  Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode()
+        )
         mGoogleApiClient!!.connect()
     }
 
@@ -344,7 +430,12 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
          * @param givenlng
          * @return distane in miles
          */
-        fun checkDistance(currlat: Double, currlng: Double, givenlat: Double, givenlng: Double): Double {
+        fun checkDistance(
+            currlat: Double,
+            currlng: Double,
+            givenlat: Double,
+            givenlng: Double
+        ): Double {
             val earthRadius = 3958.75 // in miles, change to 6371 for kilometer output
             val dLat = Math.toRadians(givenlat - currlat)
             val dLng = Math.toRadians(givenlng - currlng)

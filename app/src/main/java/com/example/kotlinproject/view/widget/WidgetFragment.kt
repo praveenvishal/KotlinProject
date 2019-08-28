@@ -37,7 +37,7 @@ class WidgetFragment : BaseFragment(), DatePickerDialog.OnDateSetListener,
     }
     private fun init() {
         mBinding?.toolbar?.imgBack?.visibility = View.VISIBLE
-        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.my_profile)
+        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.widget_title)
     }
 
     private fun clickListener() {
@@ -94,8 +94,6 @@ class WidgetFragment : BaseFragment(), DatePickerDialog.OnDateSetListener,
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-//        mBinding?.txtDateValue
-//        ?.text =dayOfMonth.toString()+":"+month+":"+year
         mBinding?.txtDateValue?.setText(dayOfMonth.toString() + "/" + month + "/" + year)
     }
 

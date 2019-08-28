@@ -68,6 +68,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
 
     private fun clickListener() {
         mBinding.btnGoogleMap.setOnClickListener(this)
+        mBinding.toolbar.imgBack.setOnClickListener(this)
         mBinding.btnCreatePolyline.setOnClickListener(this)
         mBinding.edtSearch.setOnClickListener(this)
         mBinding.btnGeoFencingStart.setOnClickListener(this)

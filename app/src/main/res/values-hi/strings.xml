@@ -84,4 +84,5 @@
     <string name="submit">जमा करें</string>
     <string name="please_select_language">कृपया अपनी पसंदीदा भाषा चुनें</string>
     <string name="txt_no_data_found">इस भाषा के लिए कोई \nडेटा नहीं मिला</string>
+    <string name="widget_title">widget</string>
 </resources>

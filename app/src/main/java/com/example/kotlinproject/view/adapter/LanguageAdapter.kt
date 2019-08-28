@@ -29,8 +29,8 @@ class LanguageAdapter(private val activity: Activity, private val languageList: 
             var source = languageList.get(position)
             mRowBinding.txtLanguageName.text = source.languageName
             showImageUsingGLIDE(
-                source.languageFlag,
                 mRowBinding.imgCountryFlag,
+                source.languageFlag,
                 getPlaceHolder(1)
             );
             if (selectedPos == position) mRowBinding.rbLanguage.isChecked = true

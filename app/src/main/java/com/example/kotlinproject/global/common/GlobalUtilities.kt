@@ -214,7 +214,7 @@ class GlobalUtility {
          * @param targetIv        image view
          * @param imageLoaderType type of place holder show which is define in string
          */
-        fun showImageUsingGLIDE(imagePath: String, targetIv: ImageView, imageLoaderType: String) {
+        fun showImageUsingGLIDE(targetIv: ImageView,imagePath: String,  imageLoaderType: String) {
             val drawableTypeRequest = Glide.with(targetIv.context)
                 .load(imagePath)
             getPlaceHolder(drawableTypeRequest, imageLoaderType).into(targetIv)
@@ -269,8 +269,8 @@ class GlobalUtility {
         ): DrawableTypeRequest<T> {
             val imageLoadersArray = context.getResources().getStringArray(R.array.image_loader)
             if (imageLoadersArray[0] == imageLoaderType) {
-                drawableTypeRequest.error(R.color.app_color)
-                drawableTypeRequest.placeholder(R.color.app_color)
+                drawableTypeRequest.error(R.drawable.logo)
+                drawableTypeRequest.placeholder(R.drawable.logo)
             } else if (imageLoadersArray[1] == imageLoaderType) {
                 drawableTypeRequest.error(R.drawable.ic_flag)
                 drawableTypeRequest.placeholder(R.drawable.ic_flag)

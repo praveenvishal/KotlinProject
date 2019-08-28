@@ -11,6 +11,7 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.FrmTaskListBinding
 import com.example.kotlinproject.view.adapter.TaskAdapter
 import com.example.kotlinproject.view.base.BaseFragment
+import com.example.kotlinproject.view.circle.CircleFrm
 import com.example.kotlinproject.view.map.GoogleMapFrm
 import com.example.kotlinproject.view.news.NewsFragment
 import com.example.kotlinproject.view.widget.WidgetFragment
@@ -25,6 +26,7 @@ class TaskFrm : BaseFragment() {
         "widgets",
         "news api",
         "google map",
+        "circle game",
         "webview",
         "dialog",
         "location",
@@ -117,10 +119,11 @@ class TaskFrm : BaseFragment() {
             navigateScreen(WidgetFragment.TAG)
         else if (click == "news api")
             navigateScreen(NewsFragment.TAG)
-        else if (click == "google map") {
+        else if (click == "google map")
             activity?.let { naviController.navigateToMap(it) }
-            activity?.finish()
-        }
+         else if (click =="circle game")
+            navigateScreen(CircleFrm.TAG)
+
     }
 //            navigateScreen(WebViewFragment.TAG)
 //        else if (click == "login signup flow")
@@ -191,7 +194,8 @@ class TaskFrm : BaseFragment() {
             frm = WidgetFragment.getInstance(Bundle())
         else if (tag == NewsFragment.TAG)
             frm = NewsFragment.getInstance(Bundle())
-
+        else if (tag == CircleFrm.TAG)
+            frm = CircleFrm.getInstance(Bundle())
 //        else if (tag == SelectMultipleFileFragment.TAG)
 //            frm = SelectMultipleFileFragment.getInstance(arguments)
 //        else if (tag == GpsLocationFragment.TAG)

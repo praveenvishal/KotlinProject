@@ -65,7 +65,7 @@ class CircleFrm : BaseFragment() {
     }
 
     private fun clickListener() {
-        mBinding?.toolbar?.imgProfile?.setOnClickListener(this)
+        mBinding?.toolbar?.imgBack?.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {

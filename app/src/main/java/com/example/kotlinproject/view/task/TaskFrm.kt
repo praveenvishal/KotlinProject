@@ -27,6 +27,7 @@ class TaskFrm : BaseFragment() {
         "news api",
         "google map",
         "circle game",
+        "calendar view",
         "webview",
         "dialog",
         "location",
@@ -121,9 +122,10 @@ class TaskFrm : BaseFragment() {
             navigateScreen(NewsFragment.TAG)
         else if (click == "google map")
             activity?.let { naviController.navigateToMap(it) }
-         else if (click =="circle game")
+        else if (click == "circle game")
             navigateScreen(CircleFrm.TAG)
-
+        else if (click == "calendar view")
+            activity?.let { naviController.navigateToCalendar(it) }
     }
 //            navigateScreen(WebViewFragment.TAG)
 //        else if (click == "login signup flow")
@@ -252,14 +254,15 @@ class TaskFrm : BaseFragment() {
 //            frm = ApiFragment.getInstance(arguments)
         frm?.let { navigateFragment(R.id.container, it, true) }
         //        navigateAddFragment(R.id.container, frm, true);
-
-        val bund = Bundle()
     }
 
     fun updateTitle() {
 //        (activity as HomeActivity).hideBackBtn()
 //        (activity as HomeActivity).setToolbarTitle(resources.getString(R.string.app_name))
     }
+
+
+
 
 }
 

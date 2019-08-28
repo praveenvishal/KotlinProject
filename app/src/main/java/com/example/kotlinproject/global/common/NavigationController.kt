@@ -2,6 +2,7 @@ package com.example.kotlinproject.global.common
 
 import android.content.Context
 import android.content.Intent
+import com.example.kotlinproject.view.CalendarActivity.CalendarActivity
 import com.example.kotlinproject.view.home.HomeActivity
 import com.example.kotlinproject.view.language.LanguageActivity
 import com.example.kotlinproject.view.login.LoginActivity
@@ -38,5 +39,11 @@ class NavigationController {
      */
     fun navigateToMap(context: Context) {
         context.startActivity(Intent(context, MapActivity::class.java))
+    }
+    /**
+     * navigate on MapActivity
+     */
+    fun navigateToCalendar(context: Context) {
+        context.startActivity(Intent(context, CalendarActivity::class.java))
     }
 }

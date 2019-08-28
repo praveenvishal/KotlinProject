@@ -56,6 +56,7 @@ class NewsFragment : BaseFragment() {
 
     private fun init() {
         mBinding?.toolbar?.imgProfile?.visibility = View.VISIBLE
+        mBinding?.toolbar?.imgBack?.visibility = View.VISIBLE
         mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.news_channel)
         mLanguageCode = preferenceMgr.getLanguageInfo().languageCode
         callApi()
@@ -63,12 +64,14 @@ class NewsFragment : BaseFragment() {
 
     private fun clickListener() {
         mBinding?.toolbar?.imgProfile?.setOnClickListener(this)
+        mBinding?.toolbar?.imgBack?.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v?.id) {
             R.id.img_profile -> navigateScreen(ProfileFragment.TAG)
+            R.id.img_back -> activity?.onBackPressed()
         }
     }
 
@@ -86,7 +89,11 @@ class NewsFragment : BaseFragment() {
     }
 
     private fun callApi() {
-        progressDialog = ProgressDialog.show(activity, getString(R.string.please_wait), getString(R.string.loading))
+        progressDialog = ProgressDialog.show(
+            activity,
+            getString(R.string.please_wait),
+            getString(R.string.loading)
+        )
         mViewModel?.getNewsChannelLiveData()?.observe(this, channelObserver)
 
         mViewModel?.newsChannelApi(

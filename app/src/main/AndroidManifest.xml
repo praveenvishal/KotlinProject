@@ -34,11 +34,11 @@
                 android:name=".global.services.GeofenceTransitionsIntentService"
                 android:exported="true" />
         <activity android:name=".view.splash.SplashActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".view.onBoarding.OnBoardActivity" />
         <activity android:name=".view.language.LanguageActivity" />
@@ -50,11 +50,11 @@
                 android:name=".view.home.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".view.map.MapActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 

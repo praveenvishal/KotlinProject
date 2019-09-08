@@ -1,27 +1,21 @@
 package com.example.kotlinproject.view.language
 
+import android.app.Activity
 import android.content.Intent
 
-import android.os.Handler
-import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityLanguageBinding
-import com.example.kotlinproject.databinding.ActivitySplashBinding
 import com.example.kotlinproject.global.common.GlobalUtility
-import com.example.kotlinproject.global.constant.AppConstant
-import com.example.kotlinproject.model.language.LanguageBean
+import com.example.kotlinproject.model.bean.language.LanguageBean
 import com.example.kotlinproject.view.adapter.LanguageAdapter
-import com.example.kotlinproject.view.adapter.NewsAdapter
 import com.example.kotlinproject.view.base.BaseActivity
-import com.example.kotlinproject.view.home.HomeActivity
-import com.example.kotlinproject.view.login.LoginActivity
 import com.example.kotlinproject.view.onBoarding.OnBoardActivity
-import com.example.kotlinproject.view.profile.ProfileFragment
-import kotlinx.android.synthetic.main.row_list_item.*
-import java.text.FieldPosition
+import com.example.kotlinproject.viewModel.main.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,10 +23,17 @@ import kotlin.collections.ArrayList
  * Created by Deepak Sharma on 01/07/19.
  */
 class LanguageActivity : BaseActivity() {
-    val TAG: String = LanguageActivity::class.java.simpleName
+
     private lateinit var mBinding: ActivityLanguageBinding
     private lateinit var mLanguageList: ArrayList<LanguageBean>
     private lateinit var languageAdapter: LanguageAdapter
+    private val mainViewModel: MainViewModel by viewModel()
+    companion object{
+        val TAG: String = LanguageActivity::class.java.simpleName
+       fun newIntent(activity: Activity){
+           activity.startActivity(Intent(activity, LanguageActivity::class.java))
+       }
+    }
 
     override fun getLayout(): Int {
         return R.layout.activity_language
@@ -81,8 +82,8 @@ class LanguageActivity : BaseActivity() {
             GlobalUtility.showToast(resources.getString(R.string.please_select_language))
             return
         } else GlobalUtility.changeLanguage(baseContext, mLanguageList.get(position).languageCode)
-        preferenceMgr.setLanguage(mLanguageList.get(position))
-        startActivity(Intent(this@LanguageActivity, OnBoardActivity::class.java))
+        mainViewModel.setLanguage(mLanguageList.get(position))
+        OnBoardActivity.newIntent(this)
         finish()
     }
 

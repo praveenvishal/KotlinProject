@@ -4,7 +4,7 @@ import androidx.databinding.ViewDataBinding
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.RowChannelListBinding
 import com.example.kotlinproject.global.common.GlobalUtility.Companion.showImageUsingGLIDE
-import com.example.kotlinproject.model.respo.newsChannel.NewsChanelRespo
+import com.example.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.example.kotlinproject.view.base.BaseAdapter
 
 /**

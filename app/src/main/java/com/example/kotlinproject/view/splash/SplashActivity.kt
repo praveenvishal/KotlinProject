@@ -26,9 +26,6 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun init() {
-        Log.d(TAG, "splash  ${mCommonViewModel.channelResponse}")
-        mCommonViewModel.channelResponse = "my name"
-        Log.d(TAG, "splash  ${mCommonViewModel.channelResponse}")
         navigateToNext()
     }
 
@@ -37,7 +34,7 @@ class SplashActivity : BaseActivity() {
      */
     private fun navigateToNext() {
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, LanguageActivity::class.java))
+           LanguageActivity.newIntent(this)
             finish()
         }, AppConstant.SPLASH_DELAY)
     }

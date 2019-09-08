@@ -1,15 +1,8 @@
 package com.example.kotlinproject.view.adapter
 
-import android.graphics.Color
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import androidx.databinding.ViewDataBinding
 import com.example.kotlinproject.R
-import com.example.kotlinproject.databinding.RowChannelListBinding
 import com.example.kotlinproject.databinding.RowTextListBinding
-import com.example.kotlinproject.global.common.GlobalUtility.Companion.showImageUsingGLIDE
-import com.example.kotlinproject.model.respo.newsChannel.NewsChanelRespo
 import com.example.kotlinproject.view.base.BaseAdapter
 import com.example.kotlinproject.view.task.TaskFrm
 import java.util.*

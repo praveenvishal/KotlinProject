@@ -19,8 +19,6 @@ import org.koin.core.module.Module
  * Created by Deepak Sharma on 01/07/19.
  */
 class AppApplication :Application(),Application.ActivityLifecycleCallbacks{
-
-
     companion object {
         lateinit var context: Context
         lateinit var mCurrencyActivity: Activity
@@ -54,18 +52,18 @@ class AppApplication :Application(),Application.ActivityLifecycleCallbacks{
         mCurrencyActivity = activity
     }
 
-    override fun onActivityStarted(activity: Activity?) {
+    override fun onActivityStarted(activity: Activity) {
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
     }
 
-    override fun onActivityStopped(activity: Activity?) {
+    override fun onActivityStopped(activity: Activity) {
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
     }
 }

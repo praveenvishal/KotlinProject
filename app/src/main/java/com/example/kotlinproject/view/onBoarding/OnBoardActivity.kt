@@ -1,5 +1,6 @@
 package com.example.kotlinproject.view.onBoarding
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -11,6 +12,7 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityOnboardingBinding
 import com.example.kotlinproject.view.adapter.OnBordingViewPagerAdapter
 import com.example.kotlinproject.view.base.BaseActivity
+import com.example.kotlinproject.view.language.LanguageActivity
 import com.example.kotlinproject.view.login.LoginActivity
 
 /**
@@ -21,7 +23,12 @@ class OnBoardActivity : BaseActivity() {
     private lateinit var mBinding: ActivityOnboardingBinding
     private val layouts =
         intArrayOf(R.layout.welcome_slide1, R.layout.welcome_slide2, R.layout.welcome_slide3, R.layout.welcome_slide4)
-
+    companion object{
+        val TAG: String = OnBoardActivity::class.java.simpleName
+        fun newIntent(activity: Activity){
+            activity.startActivity(Intent(activity, OnBoardActivity::class.java))
+        }
+    }
     override fun getLayout(): Int {
         return R.layout.activity_onboarding
     }
@@ -57,7 +64,7 @@ class OnBoardActivity : BaseActivity() {
         super.onClick(v)
         when (v?.id) {
             R.id.btn_skip, R.id.btn_got_it -> {
-                startActivity(Intent(this@OnBoardActivity, LoginActivity::class.java))
+                LoginActivity.newIntent(this)
                 finish()
             }
             R.id.btn_next -> showNextSlide()

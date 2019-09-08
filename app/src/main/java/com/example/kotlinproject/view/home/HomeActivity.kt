@@ -1,11 +1,14 @@
 package com.example.kotlinproject.view.home
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityCommonBinding
 import com.example.kotlinproject.view.base.BaseActivity
+import com.example.kotlinproject.view.language.LanguageActivity
 import com.example.kotlinproject.view.news.NewsFragment
 import com.example.kotlinproject.view.task.TaskFrm
 
@@ -15,7 +18,12 @@ import com.example.kotlinproject.view.task.TaskFrm
 class HomeActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivityCommonBinding
-
+    companion object{
+        val TAG: String = HomeActivity::class.java.simpleName
+        fun newIntent(activity: Activity){
+            activity.startActivity(Intent(activity, HomeActivity::class.java))
+        }
+    }
     override fun getLayout(): Int {
         return R.layout.activity_common
     }

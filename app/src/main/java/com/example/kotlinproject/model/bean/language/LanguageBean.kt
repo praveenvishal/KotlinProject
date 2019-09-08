@@ -1,4 +1,4 @@
-package com.example.kotlinproject.model.language
+package com.example.kotlinproject.model.bean.language
 
 open class LanguageBean {
     var id:String = ""

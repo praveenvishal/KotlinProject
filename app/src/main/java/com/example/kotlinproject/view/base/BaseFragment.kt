@@ -1,7 +1,6 @@
 package com.example.kotlinproject.view.base
 
 import android.Manifest
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +10,11 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.kotlinproject.R
 import com.example.kotlinproject.global.common.FileUtils
-import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.common.ImagePicker
 import com.example.kotlinproject.global.common.PermissionHelper
 import com.example.kotlinproject.global.db.dao.UserInfoDao
 import com.example.kotlinproject.global.sharedPref.PreferenceMgr
-import com.example.kotlinproject.model.eventBus.EventBusListener
+import com.example.kotlinproject.model.bean.eventBus.EventBusListener
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject

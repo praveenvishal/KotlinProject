@@ -12,7 +12,7 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityNewsBinding
 import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.constant.AppConstant
-import com.example.kotlinproject.model.respo.newsChannel.NewsChanelRespo
+import com.example.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.example.kotlinproject.view.adapter.NewsAdapter
 import com.example.kotlinproject.view.base.BaseFragment
 import com.example.kotlinproject.view.base.ScrollListener

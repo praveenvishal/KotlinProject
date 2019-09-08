@@ -5,7 +5,7 @@ import androidx.databinding.ViewDataBinding
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.RowLanguageBinding
 import com.example.kotlinproject.global.common.GlobalUtility.Companion.showImageUsingGLIDE
-import com.example.kotlinproject.model.language.LanguageBean
+import com.example.kotlinproject.model.bean.language.LanguageBean
 import com.example.kotlinproject.view.base.BaseAdapter
 import com.example.kotlinproject.view.language.LanguageActivity
 

@@ -1,8 +1,8 @@
 package com.example.kotlinproject.global.sharedPref
 
 import com.example.kotlinproject.global.constant.PreferenceConstant
-import com.example.kotlinproject.model.language.LanguageBean
-import com.example.kotlinproject.model.preference.PreferenceBean
+import com.example.kotlinproject.model.bean.language.LanguageBean
+import com.example.kotlinproject.model.bean.preference.PreferenceBean
 
 /**
  * Created by Deepak Sharma on 01/07/19.

@@ -11,18 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
 import com.example.kotlinproject.R
 import com.example.kotlinproject.global.common.*
 import com.example.kotlinproject.global.constant.DbConstant
 import com.example.kotlinproject.global.db.database.AppDatabase
-import com.example.kotlinproject.global.sharedPref.PreferenceMgr
-import com.example.kotlinproject.model.eventBus.EventBusListener
-import com.example.kotlinproject.viewModel.common.CommonViewModel
-import com.google.android.gms.common.internal.service.Common
-import com.prodege.sbshop.model.repo.AppViewModelFactory
+import com.example.kotlinproject.model.bean.eventBus.EventBusListener
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
@@ -35,16 +29,12 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     ImagePicker.ImagePickerListener {
     protected var appDb: AppDatabase? = null
     protected val imagePicker: ImagePicker  by inject()
-    protected val preferenceMgr: PreferenceMgr  by inject()
-    protected val appViewModelFactory = AppViewModelFactory()
-    protected lateinit var mCommonViewModel: CommonViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
         supportActionBar?.hide()
         setNavigationColor(getResources().getColor(R.color.app_color))
-        mCommonViewModel = ViewModelProviders.of(this, appViewModelFactory).get(CommonViewModel::class.java)
        fullScreen();
         GlobalUtility.hideKeyboard(this)
         AppApplication.mCurrencyActivity = this

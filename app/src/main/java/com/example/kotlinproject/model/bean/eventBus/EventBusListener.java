@@ -1,4 +1,4 @@
-package com.example.kotlinproject.model.eventBus;
+package com.example.kotlinproject.model.bean.eventBus;
 
 /**
  * Created by Deepak Sharma on 18/1/19.

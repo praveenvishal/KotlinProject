@@ -1,4 +1,4 @@
-package com.example.kotlinproject.model.preference
+package com.example.kotlinproject.model.bean.preference
 /**
  * Created by Deepak Sharma on 01/07/19.
  */

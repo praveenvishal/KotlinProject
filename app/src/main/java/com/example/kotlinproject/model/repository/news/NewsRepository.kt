@@ -1,7 +1,7 @@
 package com.example.kotlinproject.model.repository.news
 
 import androidx.lifecycle.MutableLiveData
-import com.example.kotlinproject.model.respo.newsChannel.NewsChanelRespo
+import com.example.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.prodege.shopathome.model.networkCall.ApiResponse
 import com.prodege.shopathome.model.networkCall.ApiServices
 import com.prodege.shopathome.model.networkCall.DataFetchCall

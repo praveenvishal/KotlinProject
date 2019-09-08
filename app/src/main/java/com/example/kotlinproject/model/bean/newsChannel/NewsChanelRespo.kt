@@ -1,4 +1,4 @@
-package com.example.kotlinproject.model.respo.newsChannel
+package com.example.kotlinproject.model.bean.newsChannel
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

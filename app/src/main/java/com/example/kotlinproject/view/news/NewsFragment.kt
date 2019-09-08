@@ -6,6 +6,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinproject.R
@@ -18,7 +19,9 @@ import com.example.kotlinproject.view.base.BaseFragment
 import com.example.kotlinproject.view.base.ScrollListener
 import com.example.kotlinproject.view.profile.ProfileFragment
 import com.example.kotlinproject.viewModel.list.NewsViewModel
+import com.example.kotlinproject.viewModel.map.MapViewModel
 import com.prodege.shopathome.model.networkCall.ApiResponse
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsFragment : BaseFragment() {
@@ -28,6 +31,7 @@ class NewsFragment : BaseFragment() {
     private lateinit var newsAdapter: NewsAdapter
     private var progressDialog: ProgressDialog? = null
     private val mViewModel: NewsViewModel by viewModel()
+
     private var mPageCount: Int = 1
 
     companion object {
@@ -52,6 +56,7 @@ class NewsFragment : BaseFragment() {
 
     private fun init() {
         mBinding?.toolbar?.imgProfile?.visibility = View.VISIBLE
+        mBinding?.toolbar?.imgBack?.visibility = View.VISIBLE
         mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.news_channel)
         mLanguageCode = preferenceMgr.getLanguageInfo().languageCode
         callApi()
@@ -59,12 +64,14 @@ class NewsFragment : BaseFragment() {
 
     private fun clickListener() {
         mBinding?.toolbar?.imgProfile?.setOnClickListener(this)
+        mBinding?.toolbar?.imgBack?.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
         when (v?.id) {
             R.id.img_profile -> navigateScreen(ProfileFragment.TAG)
+            R.id.img_back -> activity?.onBackPressed()
         }
     }
 
@@ -82,7 +89,11 @@ class NewsFragment : BaseFragment() {
     }
 
     private fun callApi() {
-        progressDialog = ProgressDialog.show(activity, getString(R.string.please_wait), getString(R.string.loading))
+        progressDialog = ProgressDialog.show(
+            activity,
+            getString(R.string.please_wait),
+            getString(R.string.loading)
+        )
         mViewModel?.getNewsChannelLiveData()?.observe(this, channelObserver)
 
         mViewModel?.newsChannelApi(

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="dp0">0dp</dimen>
     <dimen name="dp1">1dp</dimen>
     <dimen name="dp2">2dp</dimen>
     <dimen name="dp3">3dp</dimen>
@@ -1221,6 +1222,8 @@
     <dimen name="slide_desc">16sp</dimen>
     <dimen name="desc_padding">40dp</dimen>
     <dimen name="edt_round_corner">18dp</dimen>
-    
-    
+    <dimen name="dpmin50">-50dp</dimen>
+    <dimen name="dpmin25">-25dp</dimen>
+
+
 </resources>

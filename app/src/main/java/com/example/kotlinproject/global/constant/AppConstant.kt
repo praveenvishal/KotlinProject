@@ -18,5 +18,10 @@ class AppConstant {
         const val DATE_FORMAT_DST = "dd MMM yyyy hh:mm:ss a"
         const val SELECTED_POSITION = "selected_position"
         const val GALLERY_IMAGE = "gallery_image"
+        const val GEOFENCE_RADIUS= 50f // in meter
+        const val GEOFENCE_REQ_ID = "My Geofence"
+        const val GEOFENCE_REQ_CODE = 0
+        val NOTIFICATION_CHANNEL_ID = "com.example"
     }
+
 }

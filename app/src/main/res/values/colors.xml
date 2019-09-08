@@ -22,4 +22,6 @@
     <color name="dot_inactive">#4c4c4c</color>
     <!-- dots active colors -->
     <color name="dot_active">#e5e5e5</color>
+    <color name="brown_light">#2CBDBDBE</color>
+    <color name="geo_fency_color">#8AF92C53</color>
 </resources>

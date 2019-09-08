@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.kotlinproject.R
 import com.example.kotlinproject.global.common.FileUtils
+import com.example.kotlinproject.global.common.GlobalUtility
 import com.example.kotlinproject.global.common.ImagePicker
 import com.example.kotlinproject.global.common.PermissionHelper
 import com.example.kotlinproject.global.db.dao.UserInfoDao
@@ -47,6 +48,10 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.let { GlobalUtility.hideKeyboard(it) }
+    }
     override fun onDestroy() {
         super.onDestroy()
         if (EventBus.getDefault().isRegistered(this))

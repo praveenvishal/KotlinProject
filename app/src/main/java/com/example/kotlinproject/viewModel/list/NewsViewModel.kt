@@ -11,8 +11,7 @@ import org.koin.core.KoinComponent
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class NewsViewModel( private val projectRepository: NewsRepository) :
-   BaseViewModel(){
+class NewsViewModel( private val projectRepository: NewsRepository) : BaseViewModel(){
     private var channelResponse = MutableLiveData<ApiResponse<NewsChanelRespo>>()
 
     fun getNewsChannelLiveData(): MutableLiveData<ApiResponse<NewsChanelRespo>> {

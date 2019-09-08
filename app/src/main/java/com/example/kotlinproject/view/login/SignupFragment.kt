@@ -6,8 +6,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.example.androidkeyboardstatechecker.KeyboardEventListener
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.FrmLoginBinding
 import com.example.kotlinproject.databinding.FrmSignupBinding
@@ -59,7 +62,14 @@ class SignupFragment : BaseFragment() {
 
 //        mBinding.txtForgotPsw.setOnClickListener { this }
     }
-
+    override fun onResume() {
+        super.onResume()
+        KeyboardEventListener(activity as AppCompatActivity) { isKeyboardOpen: Boolean, softkeybordHeight: Int ->
+            if (isKeyboardOpen)
+                mBinding.space.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, softkeybordHeight)
+            else mBinding.space.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
+        }
+    }
     override fun onClick(v: View) {
         super.onClick(v)
         when (v?.id) {

@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -174,5 +175,8 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
         fragmentTransaction.commitAllowingStateLoss()
     }
+
+
+
 
 }

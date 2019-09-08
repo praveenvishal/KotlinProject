@@ -13,6 +13,7 @@ import com.example.kotlinproject.view.adapter.TaskAdapter
 import com.example.kotlinproject.view.base.BaseFragment
 import com.example.kotlinproject.view.circle.CircleFrm
 import com.example.kotlinproject.view.map.GoogleMapFrm
+import com.example.kotlinproject.view.map.MapActivity
 import com.example.kotlinproject.view.news.NewsFragment
 import com.example.kotlinproject.view.widget.WidgetFragment
 import java.util.*
@@ -121,11 +122,12 @@ class TaskFrm : BaseFragment() {
         else if (click == "news api")
             navigateScreen(NewsFragment.TAG)
         else if (click == "google map")
-            activity?.let { naviController.navigateToMap(it) }
+            activity?.let { MapActivity.newIntent(it) }
         else if (click == "circle game")
             navigateScreen(CircleFrm.TAG)
-        else if (click == "calendar view")
-            activity?.let { naviController.navigateToCalendar(it) }
+        else if (click == "calendar view"){
+
+        }
     }
 //            navigateScreen(WebViewFragment.TAG)
 //        else if (click == "login signup flow")

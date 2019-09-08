@@ -41,15 +41,6 @@ class OnBoardActivity : BaseActivity() {
     }
 
     private fun init() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window = window
-            if (window != null) {
-                window.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                window.statusBarColor = Color.TRANSPARENT
-            }
-        }
         mBinding.viewPager.addOnPageChangeListener(getChangeListener())
         changeNavigatColor(0)
     }

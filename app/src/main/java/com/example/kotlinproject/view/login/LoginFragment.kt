@@ -2,9 +2,14 @@ package com.example.kotlinproject.view.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.example.androidkeyboardstatechecker.KeyboardEventListener
 import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.FrmLoginBinding
 import com.example.kotlinproject.global.common.GlobalUtility
@@ -41,8 +46,24 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun init() {
+//        KeyboardEventListener(this) { isKeyboardOpen: Boolean, softkeybordHeight: Int ->
+//            Log.v("Keyboard checker", "Keyboard is open = softkeybordHeight")
+//            if (isKeyboardOpen) {
+//
+//                makeToast("Keyboard Open"+softkeybordHeight)
+//            } else {
+//                makeToast("Keyboard closed")
+//            }
+//        }
     }
-
+    override fun onResume() {
+        super.onResume()
+        KeyboardEventListener(activity as AppCompatActivity) { isKeyboardOpen: Boolean, softkeybordHeight: Int ->
+            if (isKeyboardOpen)
+                mBinding.space.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, softkeybordHeight)
+             else mBinding.space.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
+        }
+    }
     private fun clickListener() {
         mBinding.btnLogin.setOnClickListener(this)
         mBinding.btnSignup.setOnClickListener(this)

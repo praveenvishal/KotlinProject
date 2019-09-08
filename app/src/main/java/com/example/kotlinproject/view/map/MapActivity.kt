@@ -1,5 +1,7 @@
 package com.example.kotlinproject.view.map
 
+import android.app.Activity
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +11,7 @@ import com.example.kotlinproject.R
 import com.example.kotlinproject.databinding.ActivityCommonBinding
 import com.example.kotlinproject.view.base.BaseFragment
 import com.example.kotlinproject.view.base.BaseLocation
+import com.example.kotlinproject.view.login.LoginActivity
 import com.example.kotlinproject.viewModel.map.MapViewModel
 import com.google.android.gms.maps.model.Marker
 import org.koin.android.ext.android.inject
@@ -20,11 +23,12 @@ class MapActivity : BaseLocation() {
     private lateinit var mBinding: ActivityCommonBinding
     public val mapViewModel: MapViewModel by inject()
 
-
-    companion object {
-        val TAG = MapActivity::class.java.simpleName
+    companion object{
+        val TAG: String = MapActivity::class.java.simpleName
+        fun newIntent(activity: Activity){
+            activity.startActivity(Intent(activity, MapActivity::class.java))
+        }
     }
-
     override fun getLayout(): Int {
         return R.layout.activity_common
     }

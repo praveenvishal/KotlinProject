@@ -70,6 +70,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/wrapper_email"
                             android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/dp80"
                             android:layout_height="wrap_content"
                             android:textColorHint="@color/white"
                             android:theme="@style/EditTextWrapper">

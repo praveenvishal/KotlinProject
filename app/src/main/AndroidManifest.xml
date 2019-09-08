@@ -45,7 +45,7 @@
         <activity android:name=".view.widget.WidgetActivity" />
         <activity
                 android:name=".view.login.LoginActivity"
-                android:windowSoftInputMode="stateVisible|adjustResize" />
+                android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
                 android:name=".view.home.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />

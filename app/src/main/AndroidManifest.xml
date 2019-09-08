@@ -33,23 +33,28 @@
         <service
                 android:name=".global.services.GeofenceTransitionsIntentService"
                 android:exported="true" />
-        <activity android:name=".view.splash.SplashActivity">
+        <activity android:name=".view.splash.SplashActivity"
+                android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.onBoarding.OnBoardActivity" />
-        <activity android:name=".view.language.LanguageActivity" />
-        <activity android:name=".view.widget.WidgetActivity" />
+        <activity android:name=".view.onBoarding.OnBoardActivity"
+                android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".view.language.LanguageActivity"
+                android:windowSoftInputMode="stateAlwaysHidden"/>
+        <activity android:name=".view.widget.WidgetActivity"
+                android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
                 android:name=".view.login.LoginActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
                 android:name=".view.home.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".view.map.MapActivity" >
+        <activity android:name=".view.map.MapActivity"
+                android:windowSoftInputMode="stateAlwaysHidden">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 

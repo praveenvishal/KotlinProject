@@ -37,7 +37,6 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         setNavigationColor(getResources().getColor(R.color.app_color))
        fullScreen();
         GlobalUtility.hideKeyboard(this)
-        AppApplication.mCurrencyActivity = this
         var layoutResId = getLayout()
         var binding: ViewDataBinding? = null
         if (layoutResId != 0) {

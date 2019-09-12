@@ -23,6 +23,12 @@ android {
     dataBinding {
         enabled = true
     }
+    android {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
 }
 
 dependencies {
@@ -89,6 +95,7 @@ dependencies {
 //    implementation 'com.google.android.gms:play-services-location:11.0.2'
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.android.gms:play-services-places:16.0.0'
+    implementation project(path: ':calendarlibrary')
 }
 kapt {
     generateStubs = true

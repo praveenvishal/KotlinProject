@@ -30,7 +30,6 @@ import com.bumptech.glide.DrawableTypeRequest
 import com.bumptech.glide.Glide
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
-import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.mCurrencyActivity
 import com.webaddicted.kotlinproject.global.constant.AppConstant.Companion.NOTIFICATION_CHANNEL_ID
 import com.webaddicted.kotlinproject.view.activity.HomeActivity
 import com.google.gson.Gson
@@ -60,10 +59,10 @@ class GlobalUtility {
             datePickerDialog.show()
         }
 
-        fun timePicker(timeListener: TimePickerDialog.OnTimeSetListener): TimePickerDialog {
+        fun timePicker(activity: Activity,timeListener: TimePickerDialog.OnTimeSetListener): TimePickerDialog {
             val calendar = Calendar.getInstance()
             return TimePickerDialog(
-                mCurrencyActivity,
+                activity,
                 R.style.TimePicker,
                 timeListener,
                 calendar.get(Calendar.HOUR_OF_DAY),

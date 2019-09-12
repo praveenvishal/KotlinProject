@@ -15,7 +15,6 @@ import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
-    private    var isCaptureImg: Boolean=false
     private lateinit var mBinding: FrmWidgetBinding
     companion object {
         val TAG = WidgetFrm::class.java.simpleName
@@ -50,9 +49,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     override fun onClick(v: View) {
         super.onClick(v)
         when (v?.id) {
-            R.id.btn_login -> {
-                GlobalUtility.showToast("login hit")
-            }
+            R.id.btn_login -> GlobalUtility.showToast("login hit")
             R.id.btn_data_picker -> {
                 val stringBuilder = StringBuilder()
                 activity?.let { GlobalUtility.getDate(it, mBinding.txtDateValue) }
@@ -80,13 +77,9 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
                     ) + "\n"
                 )
                 mBinding.txtDateValue.text = stringBuilder.toString()
-
             }
-            R.id.btn_time_picker -> GlobalUtility.timePicker(this).show()
-            R.id.btn_start_progress -> {
-                checkStoragePermission()
-            }
-
+            R.id.btn_time_picker -> activity?.let { GlobalUtility.timePicker(it,this).show() }
+            R.id.btn_start_progress -> checkStoragePermission()
             R.id.img_back -> activity?.onBackPressed()
         }
     }

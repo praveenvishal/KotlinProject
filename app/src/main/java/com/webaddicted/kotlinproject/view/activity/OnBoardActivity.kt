@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.onBoarding
+package com.webaddicted.kotlinproject.view.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -9,7 +9,6 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityOnboardingBinding
 import com.webaddicted.kotlinproject.view.adapter.OnBordingViewPagerAdapter
 import com.webaddicted.kotlinproject.view.base.BaseActivity
-import com.webaddicted.kotlinproject.view.login.LoginActivity
 
 /**
  * Created by Deepak Sharma on 01/07/19.

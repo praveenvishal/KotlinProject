@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.home
+package com.webaddicted.kotlinproject.view.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -8,18 +8,18 @@ import androidx.fragment.app.Fragment
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
 import com.webaddicted.kotlinproject.view.base.BaseActivity
-import com.webaddicted.kotlinproject.view.task.TaskFrm
+import com.webaddicted.kotlinproject.view.fragment.LoginFrm
 
 /**
- * Created by Deepak Sharma on 01/07/19.
+ * Created by Deepak Sharma on 10/07/19.
  */
-class HomeActivity : BaseActivity() {
+class LoginActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivityCommonBinding
     companion object{
-        val TAG: String = HomeActivity::class.java.simpleName
+        val TAG: String = LoginActivity::class.java.simpleName
         fun newIntent(activity: Activity){
-            activity.startActivity(Intent(activity, HomeActivity::class.java))
+            activity.startActivity(Intent(activity, LoginActivity::class.java))
         }
     }
     override fun getLayout(): Int {
@@ -28,8 +28,9 @@ class HomeActivity : BaseActivity() {
 
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
-        navigateScreen(TaskFrm.TAG)
+        navigateScreen(LoginFrm.TAG)
     }
+
     /**
      * navigate on fragment
      *
@@ -38,8 +39,9 @@ class HomeActivity : BaseActivity() {
      */
     private fun navigateScreen(tag: String) {
         val frm: Fragment
-        if (tag == TaskFrm.TAG) {
-            frm = TaskFrm.getInstance(Bundle())
+        if (tag == LoginFrm.TAG) {
+            frm =
+                LoginFrm.getInstance(Bundle())
             navigateFragment(R.id.container, frm, false)
         }
     }

@@ -4,7 +4,7 @@ import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowTextListBinding
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
-import com.webaddicted.kotlinproject.view.task.TaskFrm
+import com.webaddicted.kotlinproject.view.fragment.TaskFrm
 import java.util.*
 
 /**

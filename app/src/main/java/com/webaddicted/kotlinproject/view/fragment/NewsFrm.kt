@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.news
+package com.webaddicted.kotlinproject.view.fragment
 
 import android.app.ProgressDialog
 import android.os.Bundle
@@ -16,12 +16,11 @@ import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.webaddicted.kotlinproject.view.adapter.NewsAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.base.ScrollListener
-import com.webaddicted.kotlinproject.view.profile.ProfileFragment
 import com.webaddicted.kotlinproject.viewModel.list.NewsViewModel
 import com.prodege.shopathome.model.networkCall.ApiResponse
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NewsFragment : BaseFragment() {
+class NewsFrm : BaseFragment() {
     private var mLanguageCode: String = ""
     private var newsList: ArrayList<NewsChanelRespo.Source>? = null
     private lateinit var mBinding: ActivityNewsBinding
@@ -32,11 +31,11 @@ class NewsFragment : BaseFragment() {
     private var mPageCount: Int = 1
 
     companion object {
-        val TAG = NewsFragment::class.java.simpleName
-        fun getInstance(bundle: Bundle): NewsFragment {
-            val fragment = NewsFragment()
+        val TAG = NewsFrm::class.java.simpleName
+        fun getInstance(bundle: Bundle): NewsFrm {
+            val fragment = NewsFrm()
             fragment.setArguments(bundle)
-            return NewsFragment()
+            return NewsFrm()
         }
     }
 
@@ -67,7 +66,7 @@ class NewsFragment : BaseFragment() {
     override fun onClick(v: View) {
         super.onClick(v)
         when (v?.id) {
-            R.id.img_profile -> navigateScreen(ProfileFragment.TAG)
+            R.id.img_profile -> navigateScreen(ProfileFrm.TAG)
             R.id.img_back -> activity?.onBackPressed()
         }
     }
@@ -131,8 +130,8 @@ class NewsFragment : BaseFragment() {
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == ProfileFragment.TAG)
-            frm = ProfileFragment.getInstance(Bundle())
+        if (tag == ProfileFrm.TAG)
+            frm = ProfileFrm.getInstance(Bundle())
 //          navigateFragment(R.id.container, frm!!, true)
         navigateAddFragment(R.id.container, frm!!, true);
     }

@@ -32,7 +32,7 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
 import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.mCurrencyActivity
 import com.webaddicted.kotlinproject.global.constant.AppConstant.Companion.NOTIFICATION_CHANNEL_ID
-import com.webaddicted.kotlinproject.view.home.HomeActivity
+import com.webaddicted.kotlinproject.view.activity.HomeActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.File

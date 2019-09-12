@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.login
+package com.webaddicted.kotlinproject.view.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -12,17 +12,17 @@ import com.webaddicted.kotlinproject.databinding.FrmLoginBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.ValidationHelper
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import com.webaddicted.kotlinproject.view.home.HomeActivity
+import com.webaddicted.kotlinproject.view.activity.HomeActivity
 
-class LoginFragment : BaseFragment() {
+class LoginFrm : BaseFragment() {
     private lateinit var mBinding: FrmLoginBinding
 
     companion object {
-        val TAG = LoginFragment::class.java.simpleName
-        fun getInstance(bundle: Bundle): LoginFragment {
-            val fragment = LoginFragment()
+        val TAG = LoginFrm::class.java.simpleName
+        fun getInstance(bundle: Bundle): LoginFrm {
+            val fragment = LoginFrm()
             fragment.setArguments(bundle)
-            return LoginFragment()
+            return LoginFrm()
         }
     }
 
@@ -69,7 +69,7 @@ class LoginFragment : BaseFragment() {
         super.onClick(v)
         when (v?.id) {
             R.id.btn_login -> validate()
-            R.id.btn_signup -> navigateScreen(SignupFragment.TAG)
+            R.id.btn_signup -> navigateScreen(SignupFrm.TAG)
             R.id.txt_forgot_psw -> {
             }
         }
@@ -95,8 +95,10 @@ class LoginFragment : BaseFragment() {
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == SignupFragment.TAG)
-            frm = SignupFragment.getInstance(Bundle())
+        if (tag == SignupFrm.TAG)
+            frm = SignupFrm.getInstance(
+                Bundle()
+            )
 //        navigateFragment(R.id.container, frm!!, true)
         navigateAddFragment(R.id.container, frm!!, true);
     }

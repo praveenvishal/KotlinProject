@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.circle
+package com.webaddicted.kotlinproject.view.fragment
 
 import android.app.ProgressDialog
 import android.os.Bundle
@@ -12,7 +12,6 @@ import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.webaddicted.kotlinproject.model.circle.CircleGameBean
 import com.webaddicted.kotlinproject.view.adapter.CircleGameAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import com.webaddicted.kotlinproject.view.profile.ProfileFragment
 import com.webaddicted.kotlinproject.viewModel.list.NewsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -119,8 +118,8 @@ class CircleFrm : BaseFragment() {
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == ProfileFragment.TAG)
-            frm = ProfileFragment.getInstance(Bundle())
+        if (tag == ProfileFrm.TAG)
+            frm = ProfileFrm.getInstance(Bundle())
 //          navigateFragment(R.id.container, frm!!, true)
         navigateAddFragment(R.id.container, frm!!, true);
     }

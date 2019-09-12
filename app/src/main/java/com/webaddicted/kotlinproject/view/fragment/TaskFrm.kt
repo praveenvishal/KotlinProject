@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.task
+package com.webaddicted.kotlinproject.view.fragment
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,13 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
-import com.webaddicted.kotlinproject.view.CalendarActivity.CalendarActivity
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import com.webaddicted.kotlinproject.view.circle.CircleFrm
-import com.webaddicted.kotlinproject.view.map.MapActivity
-import com.webaddicted.kotlinproject.view.news.NewsFragment
-import com.webaddicted.kotlinproject.view.widget.WidgetFragment
+import com.webaddicted.kotlinproject.view.activity.MapActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -32,6 +28,7 @@ class TaskFrm : BaseFragment() {
         "webview",
         "dialog",
         "location",
+        "SMS retriever",
         "login signup flow",
         "select multiple image",
         "dynamic layout",
@@ -118,15 +115,17 @@ class TaskFrm : BaseFragment() {
 
     fun onClicks(click: String) {
         if (click == "widgets")
-            navigateScreen(WidgetFragment.TAG)
+            navigateScreen(WidgetFrm.TAG)
         else if (click == "news api")
-            navigateScreen(NewsFragment.TAG)
+            navigateScreen(NewsFrm.TAG)
         else if (click == "google map")
             activity?.let { MapActivity.newIntent(it) }
         else if (click == "circle game")
             navigateScreen(CircleFrm.TAG)
         else if (click == "calendar view"){
-            activity?.let { CalendarActivity.newIntent(it) }
+            navigateScreen(CalendarFrm.TAG)
+        }else if (click == "SMS retriever"){
+            navigateScreen(SmsRetrieverFrm.TAG)
         }
     }
 //            navigateScreen(WebViewFragment.TAG)
@@ -194,12 +193,14 @@ class TaskFrm : BaseFragment() {
      */
     fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == WidgetFragment.TAG)
-            frm = WidgetFragment.getInstance(Bundle())
-        else if (tag == NewsFragment.TAG)
-            frm = NewsFragment.getInstance(Bundle())
+        if (tag == WidgetFrm.TAG)
+            frm = WidgetFrm.getInstance(Bundle())
+        else if (tag == NewsFrm.TAG)
+            frm = NewsFrm.getInstance(Bundle())
         else if (tag == CircleFrm.TAG)
             frm = CircleFrm.getInstance(Bundle())
+        else if (tag == CalendarFrm.TAG)
+            frm = CalendarFrm.getInstance(Bundle())
 //        else if (tag == SelectMultipleFileFragment.TAG)
 //            frm = SelectMultipleFileFragment.getInstance(arguments)
 //        else if (tag == GpsLocationFragment.TAG)

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <Button
+                android:id="@+id/btn_hashcode"
+                style="@style/Button"
+                android:layout_marginTop="@dimen/dp25"
+                android:text="@string/generate_hash_code" />
+
+        <TextView
+                android:id="@+id/txt_otp_is"
+                style="@style/TextView_Regular"
+                android:layout_marginTop="@dimen/dp10"
+                android:textStyle="bold"
+                android:text="otp code is -> " />
+    </LinearLayout>
+</layout>

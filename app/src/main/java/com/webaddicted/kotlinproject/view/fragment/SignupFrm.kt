@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.login
+package com.webaddicted.kotlinproject.view.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -8,21 +8,20 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.webaddicted.androidkeyboardstatechecker.KeyboardEventListener
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.FrmLoginBinding
 import com.webaddicted.kotlinproject.databinding.FrmSignupBinding
 import com.webaddicted.kotlinproject.global.common.ValidationHelper
 import com.webaddicted.kotlinproject.global.db.entity.UserInfoEntity
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
-class SignupFragment : BaseFragment() {
+class SignupFrm : BaseFragment() {
 
     private lateinit var mBinding: FrmSignupBinding
 
     companion object {
-        val TAG = SignupFragment::class.java.simpleName
+        val TAG = SignupFrm::class.java.simpleName
 
-        fun getInstance(bundle: Bundle): SignupFragment {
-            val fragment = SignupFragment()
+        fun getInstance(bundle: Bundle): SignupFrm {
+            val fragment = SignupFrm()
             fragment.setArguments(bundle)
             return fragment
         }
@@ -94,8 +93,10 @@ class SignupFragment : BaseFragment() {
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == LoginFragment.TAG)
-            frm = LoginFragment.getInstance(getArguments()!!)
+        if (tag == LoginFrm.TAG)
+            frm = LoginFrm.getInstance(
+                getArguments()!!
+            )
         navigateFragment(R.id.container, frm!!, true)
         //        navigateAddFragment(R.id.container, frm, true);
     }

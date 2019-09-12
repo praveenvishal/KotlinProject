@@ -1,50 +1,36 @@
-package com.webaddicted.kotlinproject.view.CalendarActivity
+package com.webaddicted.kotlinproject.view.fragment
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Build
+import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.ViewDataBinding
 import com.applandeo.materialcalendarview.utils.DateUtils
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.ActivityCalendarBinding
-import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
-import com.webaddicted.kotlinproject.view.base.BaseActivity
-import com.webaddicted.kotlinproject.view.login.LoginActivity
+import com.webaddicted.kotlinproject.databinding.FrmCalendarBinding
+import com.webaddicted.kotlinproject.view.base.BaseFragment
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Created by Deepak Sharma on 01/07/19.
- */
-class CalendarActivity : BaseActivity() {
-
-    private lateinit var mBinding: ActivityCalendarBinding
-
+class CalendarFrm : BaseFragment() {
+    private    var isCaptureImg: Boolean=false
+    private lateinit var mBinding: FrmCalendarBinding
     companion object {
-        val TAG: String = LoginActivity::class.java.simpleName
-        fun newIntent(activity: Activity) {
-            activity.startActivity(Intent(activity, CalendarActivity::class.java))
+        val TAG = CalendarFrm::class.java.simpleName
+        fun getInstance(bundle: Bundle): CalendarFrm {
+            val fragment = CalendarFrm()
+            fragment.setArguments(bundle)
+            return CalendarFrm()
         }
     }
-
     override fun getLayout(): Int {
-        return R.layout.activity_calendar
+        return R.layout.frm_calendar
     }
-
-    override fun initUI(binding: ViewDataBinding) {
-        mBinding = binding as ActivityCalendarBinding
+    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+        mBinding = binding as FrmCalendarBinding
         init()
-        clickListener()
-//        navigateScreen(TaskFrm.TAG)
-    }
-
-    private fun clickListener() {
-        mBinding.toolbar.imgBack.setOnClickListener(this)
+        clickListener();
     }
 
     private fun init() {
@@ -60,11 +46,14 @@ class CalendarActivity : BaseActivity() {
             )
         })
     }
+    private fun clickListener() {
+        mBinding.toolbar.imgBack.setOnClickListener(this)
+    }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
-            R.id.img_back -> finish()
+        when (v.id) {
+            R.id.img_back -> activity?.onBackPressed()
         }
     }
 
@@ -151,17 +140,5 @@ class CalendarActivity : BaseActivity() {
         )
         return Integer.parseInt(elapsedDays.toString() + "")
     }
-//    /**
-//     * navigate on fragment
-//     *
-//     *
-//     * @param tag represent navigation activity
-//     */
-//    private fun navigateScreen(tag: String) {
-//        val frm: Fragment
-//        if (tag == TaskFrm.TAG) {
-//            frm = TaskFrm.getInstance(Bundle())
-//            navigateFragment(R.id.container, frm, false)
-//        }
-//    }
 }
+

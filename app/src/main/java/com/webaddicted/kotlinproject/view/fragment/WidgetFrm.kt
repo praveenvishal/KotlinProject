@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.widget
+package com.webaddicted.kotlinproject.view.fragment
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -8,22 +8,21 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.ActivityProfileBinding
 import com.webaddicted.kotlinproject.databinding.FrmWidgetBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.constant.AppConstant
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
-class WidgetFragment : BaseFragment(), DatePickerDialog.OnDateSetListener,
+class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
     private    var isCaptureImg: Boolean=false
     private lateinit var mBinding: FrmWidgetBinding
     companion object {
-        val TAG = WidgetFragment::class.java.simpleName
-        fun getInstance(bundle: Bundle): WidgetFragment {
-            val fragment = WidgetFragment()
+        val TAG = WidgetFrm::class.java.simpleName
+        fun getInstance(bundle: Bundle): WidgetFrm {
+            val fragment = WidgetFrm()
             fragment.setArguments(bundle)
-            return WidgetFragment()
+            return WidgetFrm()
         }
     }
     override fun getLayout(): Int {

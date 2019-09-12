@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.language
+package com.webaddicted.kotlinproject.view.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -12,7 +12,6 @@ import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.model.bean.language.LanguageBean
 import com.webaddicted.kotlinproject.view.adapter.LanguageAdapter
 import com.webaddicted.kotlinproject.view.base.BaseActivity
-import com.webaddicted.kotlinproject.view.onBoarding.OnBoardActivity
 import com.webaddicted.kotlinproject.viewModel.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*

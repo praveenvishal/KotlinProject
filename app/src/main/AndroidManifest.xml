@@ -33,7 +33,7 @@
         <service
                 android:name="com.webaddicted.kotlinproject.global.services.GeofenceTransitionsIntentService"
                 android:exported="true" />
-        <activity android:name="com.webaddicted.kotlinproject.view.splash.SplashActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.activity.SplashActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,28 +41,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.webaddicted.kotlinproject.view.onBoarding.OnBoardActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.activity.OnBoardActivity"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name="com.webaddicted.kotlinproject.view.language.LanguageActivity"
-                android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name="com.webaddicted.kotlinproject.view.widget.WidgetActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.activity.LanguageActivity"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-                android:name="com.webaddicted.kotlinproject.view.login.LoginActivity"
+                android:name="com.webaddicted.kotlinproject.view.activity.LoginActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-                android:name="com.webaddicted.kotlinproject.view.home.HomeActivity"
+                android:name="com.webaddicted.kotlinproject.view.activity.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name="com.webaddicted.kotlinproject.view.map.MapActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.activity.MapActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
-<activity android:name=".view.CalendarActivity.CalendarActivity"
-        android:windowSoftInputMode="stateAlwaysHidden"/>
+        <receiver android:name=".global.services.SMSReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

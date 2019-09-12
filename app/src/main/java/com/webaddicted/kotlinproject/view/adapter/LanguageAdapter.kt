@@ -7,7 +7,7 @@ import com.webaddicted.kotlinproject.databinding.RowLanguageBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility.Companion.showImageUsingGLIDE
 import com.webaddicted.kotlinproject.model.bean.language.LanguageBean
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
-import com.webaddicted.kotlinproject.view.language.LanguageActivity
+import com.webaddicted.kotlinproject.view.activity.LanguageActivity
 
 /**
  * Created by Deepak Sharma on 01/07/19.

@@ -90,12 +90,19 @@ dependencies {
     implementation "org.greenrobot:eventbus:$EVENT_BUS_VERSION"
     //    view pager dot indicator
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:2.1.2'
+//    custom calendar
+    implementation project(path: ':calendarlibrary')
     //    location
     implementation 'com.google.android.gms:play-services-location:16.0.0'
 //    implementation 'com.google.android.gms:play-services-location:11.0.2'
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.android.gms:play-services-places:16.0.0'
-    implementation project(path: ':calendarlibrary')
+//    sms retriever
+    implementation 'com.google.android.gms:play-services-base:16.0.1'
+    implementation 'com.google.android.gms:play-services-identity:16.0.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:16.0.0'
+
 }
 kapt {
     generateStubs = true

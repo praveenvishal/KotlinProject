@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.map
+package com.webaddicted.kotlinproject.view.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -10,6 +10,7 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.base.BaseLocation
+import com.webaddicted.kotlinproject.view.fragment.GoogleMapFrm
 import com.webaddicted.kotlinproject.viewModel.map.MapViewModel
 import org.koin.android.ext.android.inject
 
@@ -42,7 +43,8 @@ class MapActivity : BaseLocation() {
     private fun navigateScreen(tag: String) {
         val frm: BaseFragment
         if (tag == GoogleMapFrm.TAG) {
-            frm = GoogleMapFrm.getInstance(Bundle())
+            frm =
+                GoogleMapFrm.getInstance(Bundle())
             navigateFragment(R.id.container, frm, false)
         }
     }

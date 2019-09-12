@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.view.map
+package com.webaddicted.kotlinproject.view.fragment
 
 import android.location.Location
 import android.os.Bundle
@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.webaddicted.kotlinproject.view.activity.MapActivity
 
 class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickListener {
     private var fancyMarker: Marker? = null

@@ -93,4 +93,6 @@
     <string name="circle_title">circle view</string>
     <string name="widget_title">widget</string>
     <string name="calendar_title">calendar</string>
+    <string name="generate_hash_code">generate hash code</string>
+    <string name="sms_retriever_title">sms retriever</string>
 </resources>

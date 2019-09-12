@@ -25,10 +25,10 @@ class TaskFrm : BaseFragment() {
         "google map",
         "circle game",
         "calendar view",
+        "SMS retriever",
         "webview",
         "dialog",
         "location",
-        "SMS retriever",
         "login signup flow",
         "select multiple image",
         "dynamic layout",
@@ -201,6 +201,8 @@ class TaskFrm : BaseFragment() {
             frm = CircleFrm.getInstance(Bundle())
         else if (tag == CalendarFrm.TAG)
             frm = CalendarFrm.getInstance(Bundle())
+        else if (tag == SmsRetrieverFrm.TAG)
+            frm = SmsRetrieverFrm.getInstance(Bundle())
 //        else if (tag == SelectMultipleFileFragment.TAG)
 //            frm = SelectMultipleFileFragment.getInstance(arguments)
 //        else if (tag == GpsLocationFragment.TAG)

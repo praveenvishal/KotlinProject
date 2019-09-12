@@ -47,7 +47,7 @@ class SmsRetrieverFrm : BaseFragment() {
     }
 
     /**
-     *
+     *From OREO
      * Starts SmsRetriever, which waits for ONE matching SMS message until timeout
      * (5 minutes). The matching SMS message will be sent via a Broadcast Intent with
      * action SmsRetriever#SMS_RETRIEVED_ACTION.

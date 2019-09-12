@@ -172,22 +172,22 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
                 showImageUsingGLIDE(
                     mBinding.imgFirst,
                     getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
                 showImageUsingGLIDE(
                     mBinding.imgSecond,
                     getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
                 showImageUsingGLIDE(
                     mBinding.imgThird,
                     getGameInfo(currentPos, 2).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
                 showImageUsingGLIDE(
                     mBinding.imgFourth,
                     getGameInfo(currentPos, 3).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
             }
             1 -> {
@@ -195,7 +195,7 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
                 showImageUsingGLIDE(
                     mBinding.imgFirst,
                     getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
             }
             2 -> {
@@ -204,12 +204,12 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
                 showImageUsingGLIDE(
                     mBinding.imgFirst,
                     getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
                 showImageUsingGLIDE(
                     mBinding.imgSecond,
                     getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
             }
             3 -> {
@@ -219,17 +219,17 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
                 showImageUsingGLIDE(
                     mBinding.imgFirst,
                     getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
                 showImageUsingGLIDE(
                     mBinding.imgSecond,
                     getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
                 showImageUsingGLIDE(
                     mBinding.imgThird,
                     getGameInfo(currentPos, 2).gameImg,
-                    getPlaceHolder(0)
+                    getPlaceHolder(3)
                 );
             }
         }

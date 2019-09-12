@@ -1,6 +1,5 @@
 package com.webaddicted.kotlinproject.view.fragment
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
@@ -12,19 +11,12 @@ import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.webaddicted.kotlinproject.model.circle.CircleGameBean
 import com.webaddicted.kotlinproject.view.adapter.CircleGameAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import com.webaddicted.kotlinproject.viewModel.list.NewsViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
 class CircleFrm : BaseFragment() {
-    private var newsList: ArrayList<NewsChanelRespo.Source>? = null
     private lateinit var mBinding: ActivityNewsBinding
     private lateinit var newsAdapter: CircleGameAdapter
-    private var progressDialog: ProgressDialog? = null
-    private val mViewModel: NewsViewModel by viewModel()
-
-    private var mPageCount: Int = 1
 
     companion object {
         val TAG = CircleFrm::class.java.simpleName
@@ -47,65 +39,65 @@ class CircleFrm : BaseFragment() {
     }
 
     private fun init() {
-        mBinding?.toolbar?.imgBack?.visibility = View.VISIBLE
-        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.circle_title)
+        mBinding.toolbar.imgBack.visibility = View.VISIBLE
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.circle_title)
         mBinding.relativeParent.setBackgroundColor(resources.getColor(R.color.app_color))
     }
 
     private fun clickListener() {
-        mBinding?.toolbar?.imgBack?.setOnClickListener(this)
+        mBinding.toolbar.imgBack.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.img_back -> activity?.onBackPressed()
         }
     }
 
     private fun setAdapter() {
         newsAdapter = CircleGameAdapter(setCircleGameBean())
-        mBinding?.rvNewsChannel.layoutManager = LinearLayoutManager(activity)
-        mBinding?.rvNewsChannel.adapter = newsAdapter
+        mBinding.rvNewsChannel.layoutManager = LinearLayoutManager(activity)
+        mBinding.rvNewsChannel.adapter = newsAdapter
     }
     private fun setCircleGameBean(): ArrayList<CircleGameBean> {
         var languageBeanList = ArrayList<CircleGameBean>()
         languageBeanList.add(CircleGameBean().apply {
             id = "0"
             gameName= "default (" + Locale.getDefault().displayName.toLowerCase() + ")"
-            gameImg = ""
+            gameImg = "https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
         })
         languageBeanList.add(CircleGameBean().also {
             it.id = "1"
             it.gameName = "argentina"
-            it.gameImg = "https://mirrorspectator.com/wp-content/uploads/2019/03/31WNPn82f2L._SX425_.jpg"
+            it.gameImg = "https://www.lovethisimages.com/wp-content/uploads/2018/04/sorry-images-download-1.jpg"
         })
         languageBeanList.add(CircleGameBean().apply {
             id = "2"
             gameName = "english"
             gameImg =
-                "https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/English_Language_Flag.png/640px-English_Language_Flag.png"
+                "https://jacquet-autocars.com/wp-content/uploads/2016/12/Courchevel-transfert-gare-ski-DR-JuliaKuznetsova.jpg"
         })
         languageBeanList.add(CircleGameBean().apply {
             id = "3"
             gameName = "hindi"
-            gameImg = "https://www.imediaethics.org/wp-content/uploads/archive/B_Image_4450.jpg"
+            gameImg = "https://i.imgur.com/R1eeO.jpg"
         })
         languageBeanList.add(CircleGameBean().also {
             it.id = "1"
             it.gameName = "argentina"
-            it.gameImg = "https://mirrorspectator.com/wp-content/uploads/2019/03/31WNPn82f2L._SX425_.jpg"
+            it.gameImg = "http://sfwallpaper.com/images/see-hd-wallpaper-26.jpg"
         })
         languageBeanList.add(CircleGameBean().apply {
             id = "2"
             gameName = "english"
             gameImg =
-                "https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/English_Language_Flag.png/640px-English_Language_Flag.png"
+                "https://broadway.showtickets.com/cdn/img/articles/broadway/the-5-best-places-to-see-fall-foliage-in-new-york-city/st-autumn-central-park-600.jpg"
         })
         languageBeanList.add(CircleGameBean().apply {
             id = "3"
             gameName = "hindi"
-            gameImg = "https://www.imediaethics.org/wp-content/uploads/archive/B_Image_4450.jpg"
+            gameImg = "https://www.tucantravel.com/blog/wp-content/uploads/2019/05/Northern-lights-in-Iceland-750x400.jpg"
         })
 
         return languageBeanList

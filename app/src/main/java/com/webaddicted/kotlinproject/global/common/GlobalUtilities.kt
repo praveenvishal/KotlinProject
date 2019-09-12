@@ -274,6 +274,9 @@ class GlobalUtility {
             }  else if (imageLoadersArray[2] == imageLoaderType) {
                 drawableTypeRequest.error(R.drawable.news_paper)
                 drawableTypeRequest.placeholder(R.drawable.news_paper)
+            } else if (imageLoadersArray[3] == imageLoaderType) {
+                drawableTypeRequest.error(R.drawable.good_morning_img)
+                drawableTypeRequest.placeholder(R.drawable.good_morning_img)
             } else {
                 drawableTypeRequest.error(R.color.app_color)
                 drawableTypeRequest.placeholder(R.color.app_color)

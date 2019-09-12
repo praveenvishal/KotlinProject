@@ -1,9 +1,7 @@
 package com.webaddicted.kotlinproject.global.common
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.os.Bundle
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.koin.appModule
 import com.webaddicted.kotlinproject.global.koin.commonModelModule
@@ -38,6 +36,9 @@ class AppApplication :Application(){
         }
     }
 
+    /**
+     * set default font for app
+     */
     fun setupDefaultFont() {
         CalligraphyConfig.initDefault(
             CalligraphyConfig.Builder()

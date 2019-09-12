@@ -92,4 +92,5 @@
     <string name="geo_fencing_start">geo fancing start</string>
     <string name="circle_title">circle view</string>
     <string name="widget_title">widget</string>
+    <string name="calendar_title">calendar</string>
 </resources>

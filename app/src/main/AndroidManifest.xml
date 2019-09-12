@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:dist="http://schemas.android.com/apk/distribution"
-        package="com.example.kotlinproject">
+        package="com.webaddicted.kotlinproject">
 
     <dist:module dist:instant="true" />
 
@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
-            android:name=".global.common.AppApplication"
+            android:name="com.webaddicted.kotlinproject.global.common.AppApplication"
             android:allowBackup="true"
             android:hardwareAccelerated="true"
             android:icon="@drawable/logo"
@@ -31,9 +31,9 @@
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version" />
         <service
-                android:name=".global.services.GeofenceTransitionsIntentService"
+                android:name="com.webaddicted.kotlinproject.global.services.GeofenceTransitionsIntentService"
                 android:exported="true" />
-        <activity android:name=".view.splash.SplashActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.splash.SplashActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,19 +41,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.onBoarding.OnBoardActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.onBoarding.OnBoardActivity"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".view.language.LanguageActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.language.LanguageActivity"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".view.widget.WidgetActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.widget.WidgetActivity"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-                android:name=".view.login.LoginActivity"
+                android:name="com.webaddicted.kotlinproject.view.login.LoginActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-                android:name=".view.home.HomeActivity"
+                android:name="com.webaddicted.kotlinproject.view.home.HomeActivity"
                 android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".view.map.MapActivity"
+        <activity android:name="com.webaddicted.kotlinproject.view.map.MapActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -61,6 +61,8 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
+<activity android:name=".view.CalendarActivity.CalendarActivity"
+        android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 
 </manifest>

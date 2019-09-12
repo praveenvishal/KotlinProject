@@ -40,12 +40,8 @@
                         android:orientation="vertical">
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true"
+                            style="@style/TextView_Regular"
                             android:text="Sign up"
-
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp32" />
 
@@ -85,6 +81,7 @@
                             android:layout_height="wrap_content"
                             android:drawableRight="@drawable/ic_email"
                             android:drawablePadding="@dimen/dp16"
+                            android:textAppearance="@style/TextView_Regular"
                             android:hint="@string/full_name"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
@@ -109,6 +106,7 @@
                             android:hint="@string/nick_name"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
+                            android:textAppearance="@style/TextView_Regular"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/sp16" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -128,6 +126,7 @@
                             android:drawableRight="@drawable/ic_email"
                             android:drawablePadding="@dimen/dp16"
                             android:hint="@string/mobile_no"
+                            android:textAppearance="@style/TextView_Regular"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
                             android:textColor="@android:color/white"
@@ -149,6 +148,7 @@
                             android:drawableRight="@drawable/ic_email"
                             android:drawablePadding="@dimen/dp16"
                             android:hint="@string/email"
+                            android:textAppearance="@style/TextView_Regular"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
                             android:textColor="@android:color/white"
@@ -169,6 +169,7 @@
                             android:drawableRight="@drawable/ic_lock"
                             android:drawablePadding="@dimen/dp16"
                             android:hint="@string/password"
+                            android:textAppearance="@style/TextView_Regular"
                             android:inputType="textPassword"
                             android:maxLines="1"
                             android:textColor="@android:color/white"

@@ -48,8 +48,8 @@ class LanguageActivity : BaseActivity() {
     }
 
     private fun init() {
-        mBinding?.toolbar?.imgProfile?.visibility = View.GONE
-        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.select_language)
+        mBinding.toolbar.imgProfile?.visibility = View.GONE
+        mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.select_language)
         mLanguageList = setLanguageBean();
     }
 
@@ -68,8 +68,8 @@ class LanguageActivity : BaseActivity() {
 
     private fun setAdapter() {
         languageAdapter = LanguageAdapter(this, mLanguageList)
-        mBinding?.rvLanguage.layoutManager = LinearLayoutManager(this)
-        mBinding?.rvLanguage.adapter = languageAdapter
+        mBinding.rvLanguage.layoutManager = LinearLayoutManager(this)
+        mBinding.rvLanguage.adapter = languageAdapter
     }
 
     /**
@@ -88,8 +88,8 @@ class LanguageActivity : BaseActivity() {
 
     fun languageObserver(position: Int) {
         GlobalUtility.changeLanguage(baseContext, mLanguageList.get(position).languageCode)
-        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.select_language)
-        mBinding?.btnNext?.text = resources.getString(R.string.submit)
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.select_language)
+        mBinding.btnNext.text = resources.getString(R.string.submit)
     }
 
     private fun setLanguageBean(): ArrayList<LanguageBean> {

@@ -7,16 +7,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
         <include
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
         <com.applandeo.materialcalendarview.CalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
-                android:layout_height="480dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:disabledDaysLabelsColor="@color/colorPrimary"
                 app:forwardButtonSrc="@drawable/ic_arrow_right"
                 app:headerColor="#FFFFFF"
                 app:headerLabelColor="@color/pink"
@@ -25,10 +28,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:previousButtonSrc="@drawable/ic_arrow_left"
                 app:selectionColor="@color/colorAccent"
-                app:disabledDaysLabelsColor="@color/colorPrimary"
                 app:todayLabelColor="#cc0000"
                 app:type="one_day_picker" />
 
+        <TextView
+                android:id="@+id/txt_click_data"
+                android:layout_width="match_parent"
+                android:textSize="@dimen/sp18"
+                android:text="sdfsdfsdfsdfsdf"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content" />
 
     </LinearLayout>
 </layout>

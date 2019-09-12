@@ -21,7 +21,7 @@ import kotlin.collections.ArrayList
 
 class TaskFrm : BaseFragment() {
     private lateinit var mBinding: FrmTaskListBinding
-    private var mHomeAdapter: TaskAdapter? = null
+    private lateinit var mHomeAdapter: TaskAdapter
     private var mTaskList: ArrayList<String>? = null
     internal var worktask = arrayOf(
         "widgets",
@@ -79,8 +79,8 @@ class TaskFrm : BaseFragment() {
     }
 
     private fun init() {
-        mBinding?.toolbar?.imgBack?.visibility = View.GONE
-        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.task_title)
+        mBinding.toolbar.imgBack.visibility = View.GONE
+        mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.task_title)
         mTaskList = ArrayList(Arrays.asList(*worktask))
         setAdapter()
         clickListener()

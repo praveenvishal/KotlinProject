@@ -53,10 +53,10 @@ class CalendarActivity : BaseActivity() {
         mBinding.calendarView.setDisabledDays(getDisabledDays())
         mBinding.calendarView.setFilledDays(getFilledDays())
         mBinding.calendarView.setOnDayClickListener({ eventDay ->
-            GlobalUtility.showToast(
-                "\n" + eventDay.getCalendar().getTime().toString()
-                        + "\nEnableDays -> " + eventDay.isEnabled() +
-                        "\nFilled Days -> " + eventDay.isFilled()
+            mBinding.txtClickData.setText(
+                "\n selected date -> " + eventDay.getCalendar().getTime().toString()
+                        + "\nis days Enable-> " + eventDay.isEnabled() +
+                        "\nis days Filled  -> " + eventDay.isFilled()
             )
         })
     }
@@ -118,13 +118,10 @@ class CalendarActivity : BaseActivity() {
         try {
             startDate = simpleDateFormat.parse(currentDate)
             endDate = simpleDateFormat.parse(endDateStr)
-
             //            obj.printDifference(date1, date2);
-
         } catch (e: ParseException) {
             e.printStackTrace()
         }
-
         //milliseconds
         var different = endDate!!.time - startDate!!.time
 

@@ -18,11 +18,12 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class AppApplication :Application(){
+class AppApplication : Application() {
     companion object {
         lateinit var context: Context
 
     }
+
     override fun onCreate() {
         super.onCreate()
         context = this
@@ -47,6 +48,7 @@ class AppApplication :Application(){
                 .build()
         )
     }
+
     private fun getModule(): Iterable<Module> {
         return listOf(
             appModule,
@@ -55,7 +57,5 @@ class AppApplication :Application(){
             commonModelModule
         )
     }
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
-    }
+
 }

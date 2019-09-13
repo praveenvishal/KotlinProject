@@ -96,4 +96,6 @@
     <string name="calendar_title">calendar</string>
     <string name="generate_hash_code">generate hash code</string>
     <string name="sms_retriever_title">sms retriever</string>
+    <string name="otp_code_is">otp code is</string>
+    <string name="refresh_hash_code"><![CDATA[refresh hash code before sending code\n <#> Your ExampleApp code is: 123ABC78     \nFA+9qCX9VSu]]></string>
 </resources>

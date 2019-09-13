@@ -9,7 +9,9 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmSmsRetrieverBinding
+import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.misc.AppSignatureHashHelper
+import com.webaddicted.kotlinproject.global.services.SMSReceiver
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class SmsRetrieverFrm : BaseFragment() {
@@ -37,13 +39,22 @@ class SmsRetrieverFrm : BaseFragment() {
     private fun init() {
         mBinding.toolbar.imgBack.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.sms_retriever_title)
+        SMSReceiver.requestData(object : SMSReceiver.OTPReceiveListener {
+            override fun onOTPReceived(otp: String) {
+                mBinding.txtOtpIs.setText(getString(R.string.otp_code_is)+" : "+otp)
+            }
+
+            override fun onOTPReceivedError(error: String) {
+                mBinding.txtOtpIs.setText(error)
+            }
+
+        })
         startSMSListener()
     }
 
     private fun clickListener() {
         mBinding.toolbar.imgBack.setOnClickListener(this)
         mBinding.btnHashcode.setOnClickListener(this)
-
     }
 
     /**
@@ -57,6 +68,7 @@ class SmsRetrieverFrm : BaseFragment() {
             val appSignatureHashHelper = AppSignatureHashHelper(activity)
             // This code requires one time to get Hash keys do comment and share key
             Log.d(TAG, "Apps Hash Key: " + appSignatureHashHelper.appSignatures.get(0))
+            mBinding.txtHashCode.setText("Apps Hash Key : " + appSignatureHashHelper.appSignatures.get(0))
             val client = activity?.let { SmsRetriever.getClient(it) }
 
             val task = client?.startSmsRetriever()

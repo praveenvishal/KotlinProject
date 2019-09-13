@@ -95,4 +95,6 @@
     <string name="calendar_title">calendar</string>
     <string name="generate_hash_code">generate hash code</string>
     <string name="sms_retriever_title">sms retriever</string>
+    <string name="otp_code_is">otp code is</string>
+    <string name="refresh_hash_code">refresh hash code befor sending code</string>
 </resources>

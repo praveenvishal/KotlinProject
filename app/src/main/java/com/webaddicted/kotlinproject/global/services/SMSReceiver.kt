@@ -7,9 +7,19 @@ import android.util.Log
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.common.api.Status
+import com.webaddicted.kotlinproject.view.fragment.TaskFrm
+import java.util.regex.Pattern
 
 class SMSReceiver : BroadcastReceiver() {
-    val TAG = SMSReceiver::class.java.simpleName
+
+    companion object {
+        val TAG = SMSReceiver::class.java.simpleName
+        private lateinit var otpReceiveListener: SMSReceiver.OTPReceiveListener
+        fun requestData(otpReceiveListener: OTPReceiveListener) {
+            this.otpReceiveListener = otpReceiveListener
+        }
+    }
+
     /**
      * @param context
      * @param intent
@@ -22,17 +32,36 @@ class SMSReceiver : BroadcastReceiver() {
                 CommonStatusCodes.SUCCESS -> {
                     //This is the full message
                     val message = extras.get(SmsRetriever.EXTRA_SMS_MESSAGE) as String?
-                    Log.d(TAG, "SUCCESS -> "+message)
+                    otpReceiveListener?.onOTPReceived(parseCode(message))
+                    Log.d(TAG, "SUCCESS -> " + message)
                     /*<#> Your ExampleApp code is: 123ABC78
                     FA+9qCX9VSu*/
                     //Extract the OTP code and send to the listener
                 }
-                CommonStatusCodes.TIMEOUT ->Log.d(TAG, "TIME out")
-                    // Waiting for SMS timed out (5 minutes)
-                CommonStatusCodes.API_NOT_CONNECTED ->  Log.d(TAG, "API NOT CONNECTED")
-                CommonStatusCodes.NETWORK_ERROR ->Log.d(TAG, "NETWORK ERROR")
-                CommonStatusCodes.ERROR ->Log.d(TAG, "SOME THING WENT WRONG")
+                CommonStatusCodes.TIMEOUT -> otpReceiveListener?.onOTPReceivedError("TIME out")
+                // Waiting for SMS timed out (5 minutes)
+                CommonStatusCodes.API_NOT_CONNECTED -> otpReceiveListener?.onOTPReceivedError("API NOT CONNECTED")
+                CommonStatusCodes.NETWORK_ERROR -> otpReceiveListener?.onOTPReceivedError("NETWORK ERROR")
+                CommonStatusCodes.ERROR -> otpReceiveListener?.onOTPReceivedError("SOME THING WENT WRONG")
             }
         }
+    }
+
+    private fun parseCode(message: String?): String {
+        val p = Pattern.compile("\\b\\d{6}\\b")
+        val m = p.matcher(message)
+        var code = ""
+        while (m.find()) {
+            code = m.group(0)
+        }
+        return code
+    }
+
+    /**
+     *
+     */
+    interface OTPReceiveListener {
+        fun onOTPReceived(otp: String)
+        fun onOTPReceivedError(error: String)
     }
 }

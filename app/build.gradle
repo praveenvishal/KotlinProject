@@ -7,7 +7,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.example.kotlinproject"
+        applicationId "com.webaddicted.kotlinproject"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -107,3 +107,4 @@ dependencies {
 kapt {
     generateStubs = true
 }
+apply plugin: 'com.google.gms.google-services'

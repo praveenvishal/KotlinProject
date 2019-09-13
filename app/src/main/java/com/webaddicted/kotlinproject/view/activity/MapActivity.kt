@@ -13,13 +13,14 @@ import com.webaddicted.kotlinproject.view.base.BaseLocation
 import com.webaddicted.kotlinproject.view.fragment.GoogleMapFrm
 import com.webaddicted.kotlinproject.viewModel.map.MapViewModel
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
 class MapActivity : BaseLocation() {
     private lateinit var mBinding: ActivityCommonBinding
-    public val mapViewModel: MapViewModel by inject()
+    public val mapViewModel: MapViewModel by viewModel()
 
     companion object{
         val TAG: String = MapActivity::class.java.simpleName

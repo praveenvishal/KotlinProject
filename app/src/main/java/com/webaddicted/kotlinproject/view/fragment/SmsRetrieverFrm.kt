@@ -55,7 +55,6 @@ class SmsRetrieverFrm : BaseFragment() {
     private fun clickListener() {
         mBinding.toolbar.imgBack.setOnClickListener(this)
         mBinding.btnHashcode.setOnClickListener(this)
-
     }
 
     /**

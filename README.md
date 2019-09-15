@@ -3,6 +3,9 @@
 Gives a detailed explanation of working all the features/functionality/integrations in android application development.
 
 ## feature/screen/design
+
+This repository provides the following components that are common to our open source projects:
+
 * androidX
 * base location (track location)
 * permission handler
@@ -20,4 +23,4 @@ Gives a detailed explanation of working all the features/functionality/integrati
 * sms retriever Api 
 * MVVM(model, view, viewModel)
 * webview
-*
+* retrofit

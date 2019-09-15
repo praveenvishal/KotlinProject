@@ -98,4 +98,6 @@
     <string name="sms_retriever_title">sms retriever</string>
     <string name="otp_code_is">otp code is</string>
     <string name="refresh_hash_code"><![CDATA[refresh hash code before sending code\n <#> Your ExampleApp code is: 123ABC78     \nFA+9qCX9VSu]]></string>
+    <string name="six_digit_otp">You will receive a 6-digit confirmation\n code via SMS to</string>
+    <string name="back">back</string>
 </resources>

@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:drawableRight="@drawable/selector_radio_button"
+                    android:drawableRight="@drawable/selector_checkbox"
                     android:checked="true"
                     style="@style/TextView_Regular"
                     android:layout_marginRight="@dimen/dp8"

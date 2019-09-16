@@ -3,10 +3,13 @@ package com.webaddicted.kotlinproject.view.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
+import com.webaddicted.androidkeyboardstatechecker.KeyboardEventListener
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmSmsRetrieverBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
@@ -42,6 +45,7 @@ class SmsRetrieverFrm : BaseFragment() {
         SMSReceiver.requestData(object : SMSReceiver.OTPReceiveListener {
             override fun onOTPReceived(otp: String) {
                 mBinding.txtOtpIs.setText(getString(R.string.otp_code_is)+" : "+otp)
+                mBinding.pinview.value = (otp)
             }
 
             override fun onOTPReceivedError(error: String) {
@@ -57,6 +61,14 @@ class SmsRetrieverFrm : BaseFragment() {
         mBinding.btnHashcode.setOnClickListener(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        KeyboardEventListener(activity as AppCompatActivity) { isKeyboardOpen: Boolean, softkeybordHeight: Int ->
+            if (isKeyboardOpen)
+                mBinding.space.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, softkeybordHeight)
+            else mBinding.space.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
+        }
+    }
     /**
      *From OREO
      * Starts SmsRetriever, which waits for ONE matching SMS message until timeout

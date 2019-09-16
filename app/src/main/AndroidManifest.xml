@@ -36,11 +36,11 @@
                 android:exported="true" />
         <activity android:name="com.webaddicted.kotlinproject.view.activity.SplashActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name="com.webaddicted.kotlinproject.view.activity.OnBoardActivity"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
@@ -51,7 +51,13 @@
                 android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
                 android:name="com.webaddicted.kotlinproject.view.activity.HomeActivity"
-                android:windowSoftInputMode="stateAlwaysHidden" />
+                android:windowSoftInputMode="stateAlwaysHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="com.webaddicted.kotlinproject.view.activity.MapActivity"
                 android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
@@ -60,6 +66,7 @@
                 <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
             </intent-filter>
         </receiver>
+        <activity android:name=".view.activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

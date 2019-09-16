@@ -12,6 +12,7 @@ import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.activity.MapActivity
+import com.webaddicted.kotlinproject.view.activity.WebViewActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -126,6 +127,9 @@ class TaskFrm : BaseFragment() {
             navigateScreen(CalendarFrm.TAG)
         }else if (click == "SMS retriever"){
             navigateScreen(SmsRetrieverFrm.TAG)
+        }else if (click == "webview"){
+            activity?.let { WebViewActivity.newIntent(it) }
+//            navigateScreen(WebViewActivity.TAG)
         }
     }
 //            navigateScreen(WebViewFragment.TAG)
@@ -203,6 +207,9 @@ class TaskFrm : BaseFragment() {
             frm = CalendarFrm.getInstance(Bundle())
         else if (tag == SmsRetrieverFrm.TAG)
             frm = SmsRetrieverFrm.getInstance(Bundle())
+        else
+//            if (tag == WebViewActivity.TAG)
+//            frm = WebViewActivity.newIntent(activity)
 //        else if (tag == SelectMultipleFileFragment.TAG)
 //            frm = SelectMultipleFileFragment.getInstance(arguments)
 //        else if (tag == GpsLocationFragment.TAG)

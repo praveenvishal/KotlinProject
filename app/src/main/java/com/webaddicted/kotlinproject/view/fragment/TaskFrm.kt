@@ -207,7 +207,7 @@ class TaskFrm : BaseFragment() {
             frm = CalendarFrm.getInstance(Bundle())
         else if (tag == SmsRetrieverFrm.TAG)
             frm = SmsRetrieverFrm.getInstance(Bundle())
-        else
+
 //            if (tag == WebViewActivity.TAG)
 //            frm = WebViewActivity.newIntent(activity)
 //        else if (tag == SelectMultipleFileFragment.TAG)

@@ -5,13 +5,18 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.room.Room
+import com.android.boxlty.global.common.Lg
+import com.android.boxlty.global.common.MediaPickerUtils
+import com.android.boxlty.global.common.NetworkChangeReceiver
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.global.constant.DbConstant
@@ -26,10 +31,12 @@ import java.io.File
  * Created by Deepak Sharma on 01/07/19.
  */
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, PermissionHelper.Companion.PermissionListener,
-    ImagePicker.ImagePickerListener {
+    MediaPickerUtils.ImagePickerListener {
     protected var appDb: AppDatabase? = null
-    protected val imagePicker: ImagePicker  by inject()
-
+    protected val mediaPicker: MediaPickerUtils by inject()
+    companion object{
+        val TAG = BaseActivity::class.java.simpleName
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
@@ -62,7 +69,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     }
 
     protected fun setNavigationColor(color: Int) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow()?.setNavigationBarColor(color);
         }
     }
@@ -145,8 +152,8 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
-            if (requestCode == ImagePicker.REQUEST_CAMERA || requestCode == ImagePicker.SELECT_FILE || requestCode == ImagePicker.PICK_IMAGE_MULTIPLE || requestCode == ImagePicker.REQUEST_CAPTURE_IMAGE) {
-                imagePicker.onActivityResult(this, requestCode, resultCode, data)
+            if (requestCode == mediaPicker.REQUEST_CAMERA_VIDEO || requestCode == mediaPicker.REQUEST_SELECT_FILE_FROM_GALLERY) {
+                data?.let { mediaPicker.onActivityResult(this, requestCode, resultCode, it) }
             }
         }
     }
@@ -173,8 +180,37 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
         fragmentTransaction.commitAllowingStateLoss()
     }
+    /**
+     * broadcast receiver for check internet connectivity
+     *
+     * @return
+     */
+    private fun getNetworkStateReceiver() {
+        NetworkChangeReceiver.isInternetAvailable(object :
+            NetworkChangeReceiver.ConnectivityReceiverListener {
+            override fun onNetworkConnectionChanged(isConnected: Boolean) {
+                try {
+                    isNetworkConnected(isConnected)
+                }catch (exception: Exception){
+                    Lg.d(TAG, "getNetworkStateReceiver : "+exception.toString())
+                }
+            }
+        })
+    }
 
+    open abstract fun isNetworkConnected(isConnected: Boolean)
 
-
+    protected fun showInternetSnackbar(internetConnected: Boolean, txtNoInternet: TextView) {
+        if (internetConnected) {
+            txtNoInternet.setText(getString(R.string.back_online))
+            txtNoInternet.setBackgroundResource(R.color.green_00de4a)
+            val handler = Handler()
+            handler.postDelayed({ txtNoInternet.setVisibility(View.GONE) }, 1000)
+        } else {
+            txtNoInternet.setText(getString(R.string.no_internet_connection))
+            txtNoInternet.setBackgroundResource(R.color.red_ff090b)
+            txtNoInternet.setVisibility(View.VISIBLE)
+        }
+    }
 
 }

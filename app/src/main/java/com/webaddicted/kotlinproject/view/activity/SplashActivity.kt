@@ -16,7 +16,9 @@ class SplashActivity : BaseActivity() {
     override fun getLayout(): Int {
         return R.layout.activity_splash
     }
-
+    override fun isNetworkConnected(isInternetConnected: Boolean) {
+        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
+    }
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivitySplashBinding
         init()

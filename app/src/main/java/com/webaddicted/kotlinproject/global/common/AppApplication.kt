@@ -2,6 +2,9 @@ package com.webaddicted.kotlinproject.global.common
 
 import android.app.Application
 import android.content.Context
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import com.android.boxlty.global.common.NetworkChangeReceiver
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.koin.appModule
 import com.webaddicted.kotlinproject.global.koin.commonModelModule
@@ -19,6 +22,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
  * Created by Deepak Sharma on 01/07/19.
  */
 class AppApplication : Application() {
+    private val mNetworkReceiver = NetworkChangeReceiver()
     companion object {
         lateinit var context: Context
 
@@ -57,5 +61,7 @@ class AppApplication : Application() {
             commonModelModule
         )
     }
-
+    private fun checkInternetConnection() {
+        registerReceiver(mNetworkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
 }

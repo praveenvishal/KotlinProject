@@ -25,7 +25,9 @@ class HomeActivity : BaseActivity() {
     override fun getLayout(): Int {
         return R.layout.activity_common
     }
-
+    override fun isNetworkConnected(isInternetConnected: Boolean) {
+        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
+    }
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
         navigateScreen(TaskFrm.TAG)

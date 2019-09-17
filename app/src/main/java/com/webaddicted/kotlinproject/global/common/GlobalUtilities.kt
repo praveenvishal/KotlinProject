@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import android.media.RingtoneManager
 import android.net.ConnectivityManager
 import android.net.Uri
@@ -24,6 +25,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.DrawableTypeRequest
@@ -457,6 +459,30 @@ class GlobalUtility {
                 )
             }
         }
+        /**
+         * This method is used to modify dialog bounds
+         *
+         * @param dialog
+         */
+        fun fullScreenDialogBound(dialog: Dialog) {
+            dialog.window!!.setBackgroundDrawable(
+                ColorDrawable(
+                    ContextCompat.getColor(
+                        dialog.context,
+                        android.R.color.transparent
+                    )
+                )
+            )
+            val lp = WindowManager.LayoutParams()
+            val window = dialog.window
+            lp.copyFrom(window!!.attributes)
+            //This makes the dialog take up the full width
+            //lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lp.width = dialog.context.resources.displayMetrics.widthPixels
+            //  lp.height = (int) (dialog.getContext().getResources().getDisplayMetrics().heightPixels * 0.55);
+            window.attributes = lp
+        }
+
 //        fun showNotification(context: Context,text: String, bigText: String) {
 //
 //            // 1. Create a NotificationManager

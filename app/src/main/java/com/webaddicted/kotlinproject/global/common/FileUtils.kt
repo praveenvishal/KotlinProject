@@ -12,6 +12,9 @@ import android.view.WindowManager
 import android.webkit.MimeTypeMap
 import java.io.*
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.*
+
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
@@ -420,7 +423,25 @@ class FileUtils {
             updateGallery(context, savedImagePath)
             return imageFile
         }
+        fun saveImage(image: Bitmap?, folderPath: File?): File {
+            var savedImagePath: String? = null
+            val timeStamp = SimpleDateFormat(
+                "yyyyMMdd_HHmmss",
+                Locale.getDefault()
+            ).format(Date())
+            val imageFileName = "JPEG_$timeStamp.jpg"
+            val imageFile = File(folderPath, imageFileName)
+            savedImagePath = imageFile.absolutePath
+            try {
+                val fOut = FileOutputStream(imageFile)
+                image?.compress(Bitmap.CompressFormat.JPEG, 100, fOut)
+                fOut.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
 
+            return imageFile
+        }
         /**
          * Method to update phone gallery after capturing file
          *

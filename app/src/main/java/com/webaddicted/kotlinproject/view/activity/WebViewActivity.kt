@@ -27,17 +27,20 @@ class WebViewActivity : BaseActivity() {
         }
     }
 
+    override fun getLayout(): Int {
+        return R.layout.activity_webview
+    }
+
+    override fun isNetworkConnected(isInternetConnected: Boolean) {
+        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
+    }
+
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityWebviewBinding
         init()
         clickListener();
 //        url = "https://www.journaldev.com"
     }
-
-    override fun getLayout(): Int {
-        return R.layout.activity_webview
-    }
-
     private fun init() {
         mBinding.toolbar.imgBack.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.webview_title)

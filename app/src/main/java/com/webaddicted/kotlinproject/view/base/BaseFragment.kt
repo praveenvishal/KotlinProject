@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.android.boxlty.global.common.MediaPickerUtils
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.FileUtils
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
-import com.webaddicted.kotlinproject.global.common.ImagePicker
 import com.webaddicted.kotlinproject.global.common.PermissionHelper
 import com.webaddicted.kotlinproject.global.db.dao.UserInfoDao
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceMgr
@@ -26,9 +26,9 @@ import java.io.File
  * Created by Deepak Sharma on 15/1/19.
  */
 abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelper.Companion.PermissionListener,
-    ImagePicker.ImagePickerListener {
+    MediaPickerUtils.ImagePickerListener {
     private lateinit var mBinding: ViewDataBinding
-    protected val imagePicker: ImagePicker  by inject()
+    protected val mediaPicker: MediaPickerUtils by inject()
     protected val preferenceMgr: PreferenceMgr  by inject()
     abstract fun getLayout(): Int
     protected abstract fun onViewsInitialized(binding: ViewDataBinding?, view: View)

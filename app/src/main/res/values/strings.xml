@@ -101,4 +101,8 @@
     <string name="webview_title">webview</string>
     <string name="six_digit_otp">You will receive a 6-digit confirmation\n code via SMS to</string>
     <string name="back">back</string>
+    <string name="take_photo">take photo</string>
+    <string name="photo_library">photo library</string>
+    <string name="back_online">back online</string>
+    <string name="no_internet_connection">no internet connection</string>
 </resources>

@@ -1,6 +1,6 @@
 package com.webaddicted.kotlinproject.global.koin
 
-import com.webaddicted.kotlinproject.global.common.ImagePicker
+import com.android.boxlty.global.common.MediaPickerUtils
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceMgr
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceUtils
 import org.koin.dsl.module
@@ -11,7 +11,7 @@ import org.koin.dsl.module
 val commonModelModule = module {
     single { PreferenceUtils() }
     single { PreferenceMgr(get()) }
-    single { ImagePicker() }
+    single { MediaPickerUtils() }
 
 //    single { AppViewModelFactory() }
 //    single { ThemeColors(get(), get()) }

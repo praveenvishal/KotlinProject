@@ -15,9 +15,11 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityWebviewBinding
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 
+
+
 class WebViewActivity : BaseActivity() {
 
-    private var url: String = "http://10.11.6.18:8080"
+    private var url: String = "http://boxlty-website.s3-website.ap-south-1.amazonaws.com/home?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbElkIjoiYmhhdm5hQHRlY2hhaGVhZGNvcnAuY29tIiwidXNlcklkIjozNzQsInByb3ZpZGVySWQiOjEsImlhdCI6MTU2OTQxNDYxNiwiZXhwIjozMTM4ODMyODMyfQ.nzSiAa7VGV9Qp9dY-qC0jw31lYKjgAYthfNHn0yHyk4"
     private lateinit var mBinding: ActivityWebviewBinding
 
     companion object {
@@ -37,16 +39,45 @@ class WebViewActivity : BaseActivity() {
 
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityWebviewBinding
-        init()
+//        webInterface()
+        webView()
         clickListener();
-//        url = "https://www.journaldev.com"
     }
-    private fun init() {
+
+    private fun webView() {
+        mBinding.webview.settings.setJavaScriptEnabled(true)
+        mBinding.webview.settings.setLoadWithOverviewMode(true)
+        mBinding.webview.settings.setUseWideViewPort(true)
+        mBinding.webview.setScrollbarFadingEnabled(true)
+        mBinding.webview.setVerticalScrollBarEnabled(false)
+        mBinding.webview.setWebViewClient(WebViewClient())
+        try {
+            mBinding.webview.loadUrl(url)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
+    inner class myWebClient : WebViewClient() {
+        override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
+            // TODO Auto-generated method stub
+            super.onPageStarted(view, url, favicon)
+        }
+
+        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+            // TODO Auto-generated method stub
+
+            view.loadUrl(url)
+            return true
+
+        }
+    }
+    private fun webInterface() {
         mBinding.toolbar.imgBack.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.webview_title)
         mBinding.webview.settings.setLoadsImagesAutomatically(true);
         mBinding.webview.settings.setUserAgentString("boxltyandroid");
-
         mBinding.webview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         mBinding.webview.settings.setJavaScriptEnabled(true)
         mBinding.webview.settings.setLoadWithOverviewMode(true)
@@ -133,8 +164,8 @@ class WebViewActivity : BaseActivity() {
                     " </script>\n" +
                     "</body>\n" +
                     "</html>"
-        mBinding.webview.loadData(str, "text/html", "utf-8")
-//        mBinding.webview.loadUrl(url)
+//        mBinding.webview.loadData(str, "text/html", "utf-8")
+        mBinding.webview.loadUrl(url)
     }
 
     private fun clickListener() {

@@ -38,7 +38,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
         mBinding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
         if (!EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().register(this)
-        return mBinding!!.getRoot()
+        return mBinding.root
     }
 
 
@@ -74,7 +74,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     }
 
     protected fun navigateChildFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
-        val fragmentManager = getChildFragmentManager()
+        val fragmentManager = childFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(layoutContainer, fragment)
         if (isEnableBackStack)
@@ -137,5 +137,4 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
         val imageLoader = getResources().getStringArray(R.array.image_loader)
         return imageLoader[imageLoaderPos]
     }
-
 }

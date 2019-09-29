@@ -184,41 +184,6 @@ class GlobalUtility {
 
         //{END STRING TO JSON & JSON TO STRING}
 
-        /**
-         * Gets network state.
-         *
-         * @return the network state
-         */
-        fun isNetworkAvailable(): Boolean {
-            val connMgr = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val activeNetwork = connMgr?.activeNetworkInfo
-            return activeNetwork != null && activeNetwork.isAvailable && activeNetwork.isConnected
-        }
-
-        /**
-         * show internet connection toast
-         */
-        fun showNoNetworkToast() {
-            val msg = context.getResources().getString(R.string.no_network_msg)
-            showToast(msg)
-        }
-
-
-//    {START SHOW IMAGE USING GLIDE}
-
-        /**
-         * show image using glide
-         *
-         * @param imagePath       image url
-         * @param targetIv        image view
-         * @param imageLoaderType type of place holder show which is define in string
-         */
-        fun showImageUsingGLIDE(targetIv: ImageView,imagePath: String,  imageLoaderType: String) {
-            val drawableTypeRequest = Glide.with(targetIv.context)
-                .load(imagePath)
-            getPlaceHolder(drawableTypeRequest, imageLoaderType).into(targetIv)
-        }
-
 
         //block up when loder show on screen
         /**
@@ -240,53 +205,6 @@ class GlobalUtility {
                 view.visibility = View.GONE
             }
         }
-
-        /**
-         * show image using glide
-         *
-         * @param imgUrl          local image file path
-         * @param targetIv        image view
-         * @param imageLoaderType type of place holder show which is define in string
-         */
-        fun showImageUsingGLIDE(imgUrl: File, targetIv: ImageView, imageLoaderType: String) {
-            val drawableTypeRequest = Glide.with(targetIv.context)
-                .load(Uri.fromFile(imgUrl))
-            getPlaceHolder(drawableTypeRequest, imageLoaderType).into(targetIv)
-        }
-
-        /**
-         * apply different type of place holder
-         *
-         * @param drawableTypeRequest
-         * @param imageLoaderType     type of place holder show
-         * @param <T>
-         * @return
-        </T> */
-        private fun <T> getPlaceHolder(
-            drawableTypeRequest: DrawableTypeRequest<T>,
-            imageLoaderType: String
-        ): DrawableTypeRequest<T> {
-            val imageLoadersArray = context.getResources().getStringArray(R.array.image_loader)
-            if (imageLoadersArray[0] == imageLoaderType) {
-                drawableTypeRequest.error(R.drawable.logo)
-                drawableTypeRequest.placeholder(R.drawable.logo)
-            } else if (imageLoadersArray[1] == imageLoaderType) {
-                drawableTypeRequest.error(R.drawable.ic_flag)
-                drawableTypeRequest.placeholder(R.drawable.ic_flag)
-            }  else if (imageLoadersArray[2] == imageLoaderType) {
-                drawableTypeRequest.error(R.drawable.news_paper)
-                drawableTypeRequest.placeholder(R.drawable.news_paper)
-            } else if (imageLoadersArray[3] == imageLoaderType) {
-                drawableTypeRequest.error(R.drawable.good_morning_img)
-                drawableTypeRequest.placeholder(R.drawable.good_morning_img)
-            } else {
-                drawableTypeRequest.error(R.color.app_color)
-                drawableTypeRequest.placeholder(R.color.app_color)
-            }
-            return drawableTypeRequest
-        }
-
-        //    {END SHOW IMAGE USING GLIDE}
 
         /**
          * provide binding of layout
@@ -459,54 +377,6 @@ class GlobalUtility {
                 )
             }
         }
-        /**
-         * This method is used to modify dialog bounds
-         *
-         * @param dialog
-         */
-        fun fullScreenDialogBound(dialog: Dialog) {
-            dialog.window!!.setBackgroundDrawable(
-                ColorDrawable(
-                    ContextCompat.getColor(
-                        dialog.context,
-                        android.R.color.transparent
-                    )
-                )
-            )
-            val lp = WindowManager.LayoutParams()
-            val window = dialog.window
-            lp.copyFrom(window!!.attributes)
-            //This makes the dialog take up the full width
-            //lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-            lp.width = dialog.context.resources.displayMetrics.widthPixels
-            //  lp.height = (int) (dialog.getContext().getResources().getDisplayMetrics().heightPixels * 0.55);
-            window.attributes = lp
-        }
-
-//        fun showNotification(context: Context,text: String, bigText: String) {
-//
-//            // 1. Create a NotificationManager
-//            val notificationManager =
-//                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//
-//            // 2. Create a PendingIntent for AllGeofencesActivity
-//            val intent = Intent(context, HomeActivity::class.java)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//            val pendingNotificationIntent =
-//                PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-//
-//            // 3. Create and send a notification
-//            val notification = NotificationCompat.Builder(context)
-//                .setSmallIcon(R.mipmap.ic_launcher)
-//                .setContentTitle("Title")
-//                .setContentText(text)
-//                .setContentIntent(pendingNotificationIntent)
-//                .setStyle(NotificationCompat.BigTextStyle().bigText(bigText))
-//                .setPriority(NotificationCompat.PRIORITY_HIGH)
-//                .setAutoCancel(true)
-//                .build()
-//            notificationManager.notify(0, notification)
-//        }
     }
 
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityNewsBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
@@ -34,7 +35,7 @@ class NewsFrm : BaseFragment() {
         val TAG = NewsFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): NewsFrm {
             val fragment = NewsFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return NewsFrm()
         }
     }
@@ -51,21 +52,21 @@ class NewsFrm : BaseFragment() {
     }
 
     private fun init() {
-        mBinding?.toolbar?.imgProfile?.visibility = View.VISIBLE
-        mBinding?.toolbar?.imgBack?.visibility = View.VISIBLE
-        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.news_channel)
+        mBinding.toolbar.imgProfile.visible()
+        mBinding.toolbar.imgBack.visible()
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.news_channel)
         mLanguageCode = preferenceMgr.getLanguageInfo().languageCode
         callApi()
     }
 
     private fun clickListener() {
-        mBinding?.toolbar?.imgProfile?.setOnClickListener(this)
-        mBinding?.toolbar?.imgBack?.setOnClickListener(this)
+        mBinding.toolbar.imgProfile.setOnClickListener(this)
+        mBinding.toolbar.imgBack.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.img_profile -> navigateScreen(ProfileFrm.TAG)
             R.id.img_back -> activity?.onBackPressed()
         }
@@ -73,15 +74,15 @@ class NewsFrm : BaseFragment() {
 
     private fun setAdapter() {
         newsAdapter = NewsAdapter(newsList)
-        mBinding?.rvNewsChannel.layoutManager = LinearLayoutManager(activity)
-        mBinding?.rvNewsChannel.addOnScrollListener(object :
+        mBinding.rvNewsChannel.layoutManager = LinearLayoutManager(activity)
+        mBinding.rvNewsChannel.addOnScrollListener(object :
             ScrollListener(mBinding.rvNewsChannel.getLayoutManager() as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 mPageCount++
                 callApi()
             }
         })
-        mBinding?.rvNewsChannel.adapter = newsAdapter
+        mBinding.rvNewsChannel.adapter = newsAdapter
     }
 
     private fun callApi() {
@@ -90,9 +91,9 @@ class NewsFrm : BaseFragment() {
             getString(R.string.please_wait),
             getString(R.string.loading)
         )
-        mViewModel?.getNewsChannelLiveData()?.observe(this, channelObserver)
+        mViewModel.getNewsChannelLiveData()?.observe(this, channelObserver)
 
-        mViewModel?.newsChannelApi(
+        mViewModel.newsChannelApi(
             "https://newsapi.org/v2/sources?language=" + mLanguageCode + "&page=" + mPageCount + "&pageSize=" + AppConstant.PAGINATION_SIZE + "&apiKey=" + getString(
                 R.string.news_api_key
             )
@@ -104,7 +105,7 @@ class NewsFrm : BaseFragment() {
     }
 
     private fun handleLoginResponse(response: ApiResponse<NewsChanelRespo>) {
-        when (response?.status) {
+        when (response.status) {
             ApiResponse.Status.LOADING -> {
             }
             ApiResponse.Status.SUCCESS -> {
@@ -130,12 +131,11 @@ class NewsFrm : BaseFragment() {
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == ProfileFrm.TAG)
-            frm = ProfileFrm.getInstance(Bundle())
-//          navigateFragment(R.id.container, frm!!, true)
-        navigateAddFragment(R.id.container, frm!!, true);
+        when (tag) {
+            ProfileFrm.TAG -> frm = ProfileFrm.getInstance(Bundle())
+        }
+        if (frm != null) navigateAddFragment(R.id.container, frm, false)
     }
-
 }
 
 

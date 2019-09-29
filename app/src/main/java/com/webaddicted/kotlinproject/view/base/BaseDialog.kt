@@ -26,8 +26,7 @@ abstract class BaseDialog() : DialogFragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
-
-        return mBinding.getRoot()
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

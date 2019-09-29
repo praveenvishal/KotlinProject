@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
+import com.android.boxlty.global.common.visible
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -24,7 +25,7 @@ class SmsRetrieverFrm : BaseFragment() {
         val TAG = SmsRetrieverFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): SmsRetrieverFrm {
             val fragment = SmsRetrieverFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return SmsRetrieverFrm()
         }
     }
@@ -40,7 +41,7 @@ class SmsRetrieverFrm : BaseFragment() {
     }
 
     private fun init() {
-        mBinding.toolbar.imgBack.visibility = View.VISIBLE
+        mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.sms_retriever_title)
         SMSReceiver.requestData(object : SMSReceiver.OTPReceiveListener {
             override fun onOTPReceived(otp: String) {

@@ -22,8 +22,8 @@ class NetworkChangeReceiver : BroadcastReceiver() {
 
     }
     override fun onReceive(context: Context, intent: Intent) {
-        Lg.d(TAG, "onReceive: isNetworkAvailable : "+GlobalUtility.isNetworkAvailable())
-        if (GlobalUtility.isNetworkAvailable()) {
+        Lg.d(TAG, "onReceive: isNetworkAvailable : "+context?.isNetworkAvailable())
+        if (context?.isNetworkAvailable()) {
             if (connectivityReceiverListener != null)
                 connectivityReceiverListener!!.onNetworkConnectionChanged(true)
         } else {

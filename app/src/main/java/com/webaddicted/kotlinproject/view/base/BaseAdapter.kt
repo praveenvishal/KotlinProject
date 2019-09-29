@@ -1,6 +1,7 @@
 package com.webaddicted.kotlinproject.view.base
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.databinding.DataBindingUtil
@@ -12,9 +13,11 @@ import com.webaddicted.kotlinproject.global.common.AppApplication
 abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     protected val mContext = AppApplication.context
     protected abstract fun getListSize(): Int
+
     companion object {
         private val TAG = BaseAdapter::class.java.simpleName
     }
+
     override fun getItemCount(): Int {
         return getListSize()
     }
@@ -45,7 +48,7 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      * @param placeholderType position of string array placeholder
      * @return
      */
-   protected fun getPlaceHolder(placeholderType: Int): String {
+    protected open fun getPlaceHolder(placeholderType: Int): String {
         val placeholderArray = mContext.getResources().getStringArray(R.array.image_loader)
         return placeholderArray[placeholderType]
     }
@@ -53,7 +56,8 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     /**
      * view holder
      */
-    inner class ViewHolder(private val mRowBinding: ViewDataBinding) : RecyclerView.ViewHolder(mRowBinding.getRoot()) {
+    inner class ViewHolder(private val mRowBinding: ViewDataBinding) :
+        RecyclerView.ViewHolder(mRowBinding.getRoot()) {
         /**
          * @param position current item position
          */
@@ -63,4 +67,13 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             else onBindTo(mRowBinding, position)
         }
     }
+
+    protected open fun onClickListener(view: View?, position: Int){
+        view?.setOnClickListener({ getClickEvent(view, position)})
+    }
+
+    protected open fun getClickEvent(view: View?, position: Int) {
+
+    }
+
 }

@@ -22,7 +22,7 @@ class SignupFrm : BaseFragment() {
 
         fun getInstance(bundle: Bundle): SignupFrm {
             val fragment = SignupFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return fragment
         }
     }
@@ -35,16 +35,14 @@ class SignupFrm : BaseFragment() {
         mBinding = binding as FrmSignupBinding
         init()
         clickListener()
+    }
+
+    private fun init() {
         mBinding.edtFullName.setText("deepak sharma")
         mBinding.edtNickName.setText("namesr")
         mBinding.edtMobileNo.setText("9950607002")
         mBinding.edtEmail.setText("deepak@gmail.com")
         mBinding.edtPassword.setText("Test@12345")
-
-    }
-
-    private fun init() {
-
     }
 
     private fun clickListener() {
@@ -63,7 +61,7 @@ class SignupFrm : BaseFragment() {
     }
     override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.btn_login -> activity?.onBackPressed()
             R.id.btn_signup -> validate()
         }
@@ -93,12 +91,10 @@ class SignupFrm : BaseFragment() {
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == LoginFrm.TAG)
-            frm = LoginFrm.getInstance(
-                getArguments()!!
-            )
-        navigateFragment(R.id.container, frm!!, true)
-        //        navigateAddFragment(R.id.container, frm, true);
+        when (tag) {
+            LoginFrm.TAG -> frm = LoginFrm.getInstance(Bundle())
+        }
+        if (frm != null) navigateFragment(R.id.container, frm, false)
     }
 
 

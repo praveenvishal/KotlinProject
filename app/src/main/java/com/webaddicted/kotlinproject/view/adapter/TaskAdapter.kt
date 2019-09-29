@@ -1,5 +1,6 @@
 package com.webaddicted.kotlinproject.view.adapter
 
+import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowTextListBinding
@@ -46,15 +47,20 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
 //                    )
 //                    i++
 //                }
-            mRowBinding.txtName.setText(mTaskList?.get(position))
+            mRowBinding.txtName.text = mTaskList?.get(position)
 //            } else {
 //                mRowBinding.txtName.setText(mTaskList?.get(position))
 //            }
 //            mRowBinding.card.setOnClickListener {
-                mRowBinding.card.setOnClickListener({ view ->
-                    mTaskList?.get(position)?.let { taskFrm.onClicks(it) }
-                })
+            onClickListener(mRowBinding.card, position)
 //        }
+        }
+    }
+
+    override fun getClickEvent(view: View?, position: Int) {
+        super.getClickEvent(view, position)
+        when (view?.id) {
+            R.id.card -> mTaskList?.get(position)?.let { taskFrm.onClicks(it) }
         }
     }
 

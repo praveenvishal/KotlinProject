@@ -7,12 +7,13 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.boxlty.global.common.gone
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
 import com.webaddicted.kotlinproject.view.activity.MapActivity
+import com.webaddicted.kotlinproject.view.activity.WebViewActivity
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import com.webaddicted.kotlinproject.view.activity.WebViewActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -58,7 +59,7 @@ class TaskFrm : BaseFragment() {
         val TAG = TaskFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): TaskFrm {
             val fragment = TaskFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return TaskFrm()
         }
     }
@@ -73,8 +74,8 @@ class TaskFrm : BaseFragment() {
     }
 
     private fun init() {
-        mBinding.toolbar.imgBack.visibility = View.GONE
-        mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.task_title)
+        mBinding.toolbar.imgBack.gone()
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.task_title)
         mTaskList = ArrayList(Arrays.asList(*worktask))
         setAdapter()
         clickListener()
@@ -87,7 +88,7 @@ class TaskFrm : BaseFragment() {
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
                 val text = mBinding.edtSearch.getText().toString().toLowerCase(Locale.getDefault())
-                mHomeAdapter?.filter(text)
+                mHomeAdapter.filter(text)
             }
 
             override fun afterTextChanged(editable: Editable) {
@@ -109,21 +110,16 @@ class TaskFrm : BaseFragment() {
     }
 
     fun onClicks(click: String) {
-        if (click == "widgets")
-            navigateScreen(WidgetFrm.TAG)
-        else if (click == "news api")
-            navigateScreen(NewsFrm.TAG)
-        else if (click == "google map/location")
-            activity?.let { MapActivity.newIntent(it) }
-        else if (click == "circle game")
-            navigateScreen(CircleFrm.TAG)
-        else if (click == "calendar view"){
-            navigateScreen(CalendarFrm.TAG)
-        }else if (click == "SMS retriever"){
-            navigateScreen(SmsRetrieverFrm.TAG)
-        }else if (click == "webview"){
-            activity?.let { WebViewActivity.newIntent(it) }
-//            navigateScreen(WebViewActivity.TAG)
+        when (click) {
+            "widgets" -> navigateScreen(WidgetFrm.TAG)
+            "news api" -> navigateScreen(NewsFrm.TAG)
+            "google map/location" -> activity?.let { MapActivity.newIntent(it) }
+            "circle game" -> navigateScreen(CircleFrm.TAG)
+            "calendar view" -> navigateScreen(CalendarFrm.TAG)
+            "SMS retriever" -> navigateScreen(SmsRetrieverFrm.TAG)
+            "webview" -> activity?.let { WebViewActivity.newIntent(it) }
+            "dialog" -> navigateScreen(DialogFrm.TAG)
+            else -> navigateScreen(WidgetFrm.TAG)
         }
     }
 
@@ -134,16 +130,15 @@ class TaskFrm : BaseFragment() {
      */
     fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == WidgetFrm.TAG)
-            frm = WidgetFrm.getInstance(Bundle())
-        else if (tag == NewsFrm.TAG)
-            frm = NewsFrm.getInstance(Bundle())
-        else if (tag == CircleFrm.TAG)
-            frm = CircleFrm.getInstance(Bundle())
-        else if (tag == CalendarFrm.TAG)
-            frm = CalendarFrm.getInstance(Bundle())
-        else if (tag == SmsRetrieverFrm.TAG)
-            frm = SmsRetrieverFrm.getInstance(Bundle())
+        when (tag) {
+            WidgetFrm.TAG -> frm = WidgetFrm.getInstance(Bundle())
+            NewsFrm.TAG -> frm = NewsFrm.getInstance(Bundle())
+            CircleFrm.TAG -> frm = CircleFrm.getInstance(Bundle())
+            CalendarFrm.TAG -> frm = CalendarFrm.getInstance(Bundle())
+            SmsRetrieverFrm.TAG -> frm = SmsRetrieverFrm.getInstance(Bundle())
+            DialogFrm.TAG -> frm = DialogFrm.getInstance(Bundle())
+            else -> frm = WidgetFrm.getInstance(Bundle())
+        }
         frm?.let { navigateFragment(R.id.container, it, true) }
     }
 }

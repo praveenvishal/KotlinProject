@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmGoogleMapBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
@@ -35,7 +36,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
         val TAG = GoogleMapFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): GoogleMapFrm {
             val fragment = GoogleMapFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return GoogleMapFrm()
         }
     }
@@ -52,8 +53,8 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
     }
 
     private fun init() {
-        mBinding?.toolbar?.imgBack?.visibility = View.VISIBLE
-        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.google_map_title)
+        mBinding.toolbar.imgBack.visible()
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.google_map_title)
         mLatLongList = ArrayList()
         initailizeMap()
         (activity as MapActivity).mapViewModel.locationUpdated.observe(
@@ -80,7 +81,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
 
     override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.btn_google_map -> {
                 (activity as MapActivity).getLocation(2, 3, 0);
             }

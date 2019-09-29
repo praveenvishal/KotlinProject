@@ -7,6 +7,7 @@ import com.android.boxlty.global.annotationDef.MediaPickerType
 import com.android.boxlty.global.common.*
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.DialogImagePickerBinding
+import com.webaddicted.kotlinproject.global.common.DialogUtil
 import com.webaddicted.kotlinproject.global.common.FileUtils
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.view.base.BaseDialog
@@ -70,7 +71,7 @@ class ImagePickerDialog : BaseDialog() {
 
     override fun onResume() {
         super.onResume()
-        GlobalUtility.fullScreenDialogBound(getDialog())
+        DialogUtil.fullScreenDialogBound(getDialog())
     }
 
     override fun onClick(v: View) {

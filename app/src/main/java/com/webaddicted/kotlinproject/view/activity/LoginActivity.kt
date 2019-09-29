@@ -9,6 +9,7 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 import com.webaddicted.kotlinproject.view.fragment.LoginFrm
+import com.webaddicted.kotlinproject.view.fragment.TaskFrm
 
 /**
  * Created by Deepak Sharma on 10/07/19.
@@ -35,16 +36,13 @@ class LoginActivity : BaseActivity() {
     }
     /**
      * navigate on fragment
-     *
-     *
      * @param tag represent navigation activity
      */
     private fun navigateScreen(tag: String) {
-        val frm: Fragment
-        if (tag == LoginFrm.TAG) {
-            frm =
-                LoginFrm.getInstance(Bundle())
-            navigateFragment(R.id.container, frm, false)
+        var frm: Fragment? = null
+        when (tag) {
+            LoginFrm.TAG -> frm = LoginFrm.getInstance(Bundle())
         }
+        if (frm != null) navigateFragment(R.id.container, frm, false)
     }
 }

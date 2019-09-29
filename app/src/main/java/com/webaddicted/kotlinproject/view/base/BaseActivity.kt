@@ -3,6 +3,8 @@ package com.webaddicted.kotlinproject.view.base
 import android.Manifest
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.TransitionDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -14,9 +16,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.room.Room
-import com.android.boxlty.global.common.Lg
-import com.android.boxlty.global.common.MediaPickerUtils
-import com.android.boxlty.global.common.NetworkChangeReceiver
+import com.android.boxlty.global.common.*
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.global.constant.DbConstant
@@ -26,6 +26,8 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
 import java.io.File
+
+
 
 /**
  * Created by Deepak Sharma on 01/07/19.
@@ -41,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
         supportActionBar?.hide()
-        setNavigationColor(getResources().getColor(R.color.app_color))
+        setNavigationColor(resources.getColor(R.color.app_color))
        fullScreen();
         GlobalUtility.hideKeyboard(this)
         var layoutResId = getLayout()
@@ -70,7 +72,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
 
     protected fun setNavigationColor(color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow()?.setNavigationBarColor(color);
+           window?.setNavigationBarColor(color);
         }
     }
 
@@ -133,12 +135,11 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         multiplePermission.add(Manifest.permission.ACCESS_COARSE_LOCATION)
         if (PermissionHelper.checkMultiplePermission(this, multiplePermission)) {
 
-        } else
-            PermissionHelper.requestMultiplePermission(this, multiplePermission, this)
+        } else PermissionHelper.requestMultiplePermission(this, multiplePermission, this)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        PermissionHelper.Companion.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+        PermissionHelper.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
     }
 
 
@@ -202,14 +203,19 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
 
     protected fun showInternetSnackbar(internetConnected: Boolean, txtNoInternet: TextView) {
         if (internetConnected) {
+
             txtNoInternet.setText(getString(R.string.back_online))
-            txtNoInternet.setBackgroundResource(R.color.green_00de4a)
+            val color = arrayOf<ColorDrawable>(ColorDrawable(resources.getColor(R.color.red_ff090b)),
+                ColorDrawable(resources.getColor(R.color.green_00de4a)))
+            val trans = TransitionDrawable(color)
+            txtNoInternet.background = (trans)
+            trans.startTransition(500)
             val handler = Handler()
-            handler.postDelayed({ txtNoInternet.setVisibility(View.GONE) }, 1000)
+            handler.postDelayed({ txtNoInternet.gone() }, 1300)
         } else {
-            txtNoInternet.setText(getString(R.string.no_internet_connection))
+            txtNoInternet.text = getString(R.string.no_internet_connection)
             txtNoInternet.setBackgroundResource(R.color.red_ff090b)
-            txtNoInternet.setVisibility(View.VISIBLE)
+            txtNoInternet.visible()
         }
     }
 

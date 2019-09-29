@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.bumptech.glide.DrawableTypeRequest
 import com.bumptech.glide.Glide
 import com.webaddicted.kotlinproject.R
+import de.hdodenhof.circleimageview.CircleImageView
 import java.io.File
 
 /**
@@ -32,6 +33,26 @@ fun View.gone() {
     visibility = View.GONE
 }
 //    {START SHOW IMAGE USING GLIDE}
+/**
+ * show local image using glide
+ *
+ * @param filePath          local image file path
+ * @param imageLoaderType type of place holder show which is define in string
+ */
+
+/**
+ * show remote image using glide
+ *
+ * @param imgUrl       remote image url
+ * @param imageLoaderType type of place holder show which is define in string
+ */
+fun CircleImageView.showImage(imgUrl: String, imageLoaderType: String) {
+    val drawableTypeRequest = Glide.with(context)
+        .load(imgUrl)
+    getPlaceHolder(context, drawableTypeRequest, imageLoaderType).into(this)
+}
+
+
 /**
  * show remote image using glide
  *
@@ -85,9 +106,6 @@ fun <T> getPlaceHolder(
 }
 //    {END SHOW IMAGE USING GLIDE}
 
-fun Context.showToast(message: String) {
-    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-}
 
 /**
  * Gets network state.
@@ -101,18 +119,21 @@ fun Context.isNetworkAvailable(): Boolean {
     return activeNetwork != null && activeNetwork.isAvailable && activeNetwork.isConnected
 }
 
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+}
+
 /**
  * show internet connection toast
  */
 fun Context.showNoNetworkToast() {
-    val msg = getResources().getString(R.string.no_network_msg)
-    showToast(msg)
+    showToast(getResources().getString(R.string.no_network_msg))
 }
+
 /**
  * show internet connection toast
  */
-fun Context.getResString() {
-    val msg = getResources().getString(R.string.no_network_msg)
-    showToast(msg)
+fun Context.showSomwthingWrongToast() {
+    showToast(getResources().getString(R.string.something_went_wrong))
 }
 

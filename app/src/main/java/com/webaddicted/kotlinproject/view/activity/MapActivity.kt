@@ -6,11 +6,13 @@ import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.base.BaseLocation
 import com.webaddicted.kotlinproject.view.fragment.GoogleMapFrm
+import com.webaddicted.kotlinproject.view.fragment.LoginFrm
 import com.webaddicted.kotlinproject.viewModel.map.MapViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,15 +46,12 @@ class MapActivity : BaseLocation() {
      * @param tag represent navigation activity
      */
     private fun navigateScreen(tag: String) {
-        val frm: BaseFragment
-        if (tag == GoogleMapFrm.TAG) {
-            frm =
-                GoogleMapFrm.getInstance(Bundle())
-            navigateFragment(R.id.container, frm, false)
+        var frm: Fragment? = null
+        when (tag) {
+            GoogleMapFrm.TAG -> frm = GoogleMapFrm.getInstance(Bundle())
         }
+        if (frm != null) navigateFragment(R.id.container, frm, false)
     }
-
-
 
     override fun getCurrentLocation(location: Location, address: String?) {
         Log.d(TAG, "lat -> " + location.latitude.toString() + "\n long -> " + location.longitude.toString())

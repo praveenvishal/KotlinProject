@@ -5,6 +5,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.android.boxlty.global.annotationDef.MediaPickerType
 import com.android.boxlty.global.common.showImage
+import com.android.boxlty.global.common.visible
 import com.android.boxlty.view.dialog.ImagePickerDialog
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityProfileBinding
@@ -21,7 +22,7 @@ class ProfileFrm : BaseFragment() {
         val TAG = ProfileFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): ProfileFrm {
             val fragment = ProfileFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return ProfileFrm()
         }
     }
@@ -37,7 +38,7 @@ class ProfileFrm : BaseFragment() {
     }
 
     private fun init() {
-        mBinding.toolbar.imgBack.visibility = View.VISIBLE
+        mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.my_profile)
     }
 
@@ -47,16 +48,11 @@ class ProfileFrm : BaseFragment() {
         mBinding.toolbar.imgBack.setOnClickListener(this)
     }
 
-
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.btn_capture_image -> {
-                requestCamera(MediaPickerType.CAPTURE_IMAGE)
-            }
-            R.id.btn_pick_image -> {
-                requestCamera(MediaPickerType.SELECT_IMAGE)
-            }
+            R.id.btn_capture_image -> requestCamera(MediaPickerType.CAPTURE_IMAGE)
+            R.id.btn_pick_image -> requestCamera(MediaPickerType.SELECT_IMAGE)
             R.id.img_back -> activity?.onBackPressed()
         }
     }
@@ -67,7 +63,7 @@ class ProfileFrm : BaseFragment() {
                     mBinding.imgProfile.showImage(file.get(0), getPlaceHolder(1))
                 }
             })
-        imgPickerDialog?.show(fragmentManager, ImagePickerDialog.TAG)
+        imgPickerDialog.show(fragmentManager, ImagePickerDialog.TAG)
     }
 
 }

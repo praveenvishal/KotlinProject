@@ -21,7 +21,7 @@ class LoginFrm : BaseFragment() {
         val TAG = LoginFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): LoginFrm {
             val fragment = LoginFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return LoginFrm()
         }
     }
@@ -34,22 +34,11 @@ class LoginFrm : BaseFragment() {
         mBinding = binding as FrmLoginBinding
         init()
         clickListener()
-        mBinding.edtEmail.setText("deepak@gmail.com")
-        mBinding.edtPassword.setText("Test@12345")
-
-        1
     }
 
     private fun init() {
-//        KeyboardEventListener(this) { isKeyboardOpen: Boolean, softkeybordHeight: Int ->
-//            Log.v("Keyboard checker", "Keyboard is open = softkeybordHeight")
-//            if (isKeyboardOpen) {
-//
-//                makeToast("Keyboard Open"+softkeybordHeight)
-//            } else {
-//                makeToast("Keyboard closed")
-//            }
-//        }
+        mBinding.edtEmail.setText("deepak@gmail.com")
+        mBinding.edtPassword.setText("Test@12345")
     }
     override fun onResume() {
         super.onResume()
@@ -67,7 +56,7 @@ class LoginFrm : BaseFragment() {
 
     override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.btn_login -> validate()
             R.id.btn_signup -> navigateScreen(SignupFrm.TAG)
             R.id.txt_forgot_psw -> {
@@ -76,7 +65,6 @@ class LoginFrm : BaseFragment() {
     }
 
     private fun validate() {
-
         if (ValidationHelper.validateEmail(mBinding.edtEmail, mBinding.wrapperEmail) &&
             ValidationHelper.validatePwd(mBinding.edtPassword, mBinding.wrapperPassword)) {
             var userInfo = getUserDao().getCouponsBySize(mBinding.edtEmail.text.toString())
@@ -85,7 +73,6 @@ class LoginFrm : BaseFragment() {
                 activity?.let { HomeActivity.newIntent(it) }
             else GlobalUtility.showToast(resources.getString(R.string.please_enter_correct_password))
         }
-
     }
 
     /**
@@ -95,12 +82,10 @@ class LoginFrm : BaseFragment() {
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == SignupFrm.TAG)
-            frm = SignupFrm.getInstance(
-                Bundle()
-            )
-//        navigateFragment(R.id.container, frm!!, true)
-        navigateAddFragment(R.id.container, frm!!, true);
+        when (tag) {
+            SignupFrm.TAG -> frm = SignupFrm.getInstance(Bundle())
+        }
+        if (frm != null) navigateFragment(R.id.container, frm, false)
     }
 
 }

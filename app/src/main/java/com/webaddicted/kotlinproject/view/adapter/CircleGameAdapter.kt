@@ -5,9 +5,11 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.ViewDataBinding
+import com.android.boxlty.global.common.gone
+import com.android.boxlty.global.common.showImage
+import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowCircleBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility.Companion.showImageUsingGLIDE
 import com.webaddicted.kotlinproject.model.circle.CircleGameBean
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 
@@ -28,9 +30,7 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
         var size = 0
         if (mFilterBean != null && mFilterBean!!.size > 0) {
             size = mFilterBean!!.size / 4
-            if (reminder != 0) {
-                size++
-            }
+            if (reminder != 0) size++
         }
         return size
     }
@@ -42,13 +42,13 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
     override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
         if (rowBinding is RowCircleBinding) {
             val mBinding = rowBinding as RowCircleBinding
-            mBinding.imgFirst.startAnimation(slideAnmimation)
+            mBinding.imgFirst.animation = slideAnmimation
             //            mBinding.imgSecond.startAnimation(slideAnmimation);
-            mBinding.imgThird.startAnimation(slideAnmimation)
+            mBinding.imgThird.animation = slideAnmimation
             //            mBinding.imgFourth.startAnimation(slideAnmimation);
             Handler().postDelayed({
-                mBinding.imgSecond.startAnimation(slideAnmimations)
-                mBinding.imgFourth.startAnimation(slideAnmimations)
+                mBinding.imgSecond.animation = slideAnmimations
+                mBinding.imgFourth.animation = slideAnmimations
             }, 1000)
             checkView(mBinding, position)
             clickEvent(mBinding, position)
@@ -62,54 +62,54 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
     fun checkView(mBinding: RowCircleBinding, position: Int) {
         when (getCurrentReminder(position)) {
             0 -> {
-                mBinding.imgFirst.setVisibility(View.VISIBLE)
-                mBinding.txtFirst.setVisibility(View.VISIBLE)
-                mBinding.imgSecond.setVisibility(View.VISIBLE)
-                mBinding.txtSecond.setVisibility(View.VISIBLE)
-                mBinding.imgThird.setVisibility(View.VISIBLE)
-                mBinding.txtThird.setVisibility(View.VISIBLE)
-                mBinding.imgFourth.setVisibility(View.VISIBLE)
-                mBinding.txtFourth.setVisibility(View.VISIBLE)
+                mBinding.imgFirst.visible()
+                mBinding.txtFirst.visible()
+                mBinding.imgSecond.visible()
+                mBinding.txtSecond.visible()
+                mBinding.imgThird.visible()
+                mBinding.txtThird.visible()
+                mBinding.imgFourth.visible()
+                mBinding.txtFourth.visible()
             }
             1 -> {
-                mBinding.imgFirst.setVisibility(View.VISIBLE)
-                mBinding.txtFirst.setVisibility(View.VISIBLE)
-                mBinding.imgSecond.setVisibility(View.GONE)
-                mBinding.txtSecond.setVisibility(View.GONE)
-                mBinding.imgThird.setVisibility(View.GONE)
-                mBinding.txtThird.setVisibility(View.GONE)
-                mBinding.imgFourth.setVisibility(View.GONE)
-                mBinding.txtFourth.setVisibility(View.GONE)
+                mBinding.imgFirst.visible()
+                mBinding.txtFirst.visible()
+                mBinding.imgSecond.gone()
+                mBinding.txtSecond.gone()
+                mBinding.imgThird.gone()
+                mBinding.txtThird.gone()
+                mBinding.imgFourth.gone()
+                mBinding.txtFourth.gone()
             }
             2 -> {
-                mBinding.imgFirst.setVisibility(View.VISIBLE)
-                mBinding.txtFirst.setVisibility(View.VISIBLE)
-                mBinding.imgSecond.setVisibility(View.VISIBLE)
-                mBinding.txtSecond.setVisibility(View.VISIBLE)
-                mBinding.imgThird.setVisibility(View.GONE)
-                mBinding.txtThird.setVisibility(View.GONE)
-                mBinding.imgFourth.setVisibility(View.GONE)
-                mBinding.txtFourth.setVisibility(View.GONE)
+                mBinding.imgFirst.visible()
+                mBinding.txtFirst.visible()
+                mBinding.imgSecond.visible()
+                mBinding.txtSecond.visible()
+                mBinding.imgThird.gone()
+                mBinding.txtThird.gone()
+                mBinding.imgFourth.gone()
+                mBinding.txtFourth.gone()
             }
             3 -> {
-                mBinding.imgFirst.setVisibility(View.VISIBLE)
-                mBinding.txtFirst.setVisibility(View.VISIBLE)
-                mBinding.imgSecond.setVisibility(View.VISIBLE)
-                mBinding.txtSecond.setVisibility(View.VISIBLE)
-                mBinding.imgThird.setVisibility(View.VISIBLE)
-                mBinding.txtThird.setVisibility(View.VISIBLE)
-                mBinding.imgFourth.setVisibility(View.GONE)
-                mBinding.txtFourth.setVisibility(View.GONE)
+                mBinding.imgFirst.visible()
+                mBinding.txtFirst.visible()
+                mBinding.imgSecond.visible()
+                mBinding.txtSecond.visible()
+                mBinding.imgThird.visible()
+                mBinding.txtThird.visible()
+                mBinding.imgFourth.gone()
+                mBinding.txtFourth.gone()
             }
             4 -> {
-                mBinding.imgFirst.setVisibility(View.VISIBLE)
-                mBinding.txtFirst.setVisibility(View.VISIBLE)
-                mBinding.imgSecond.setVisibility(View.VISIBLE)
-                mBinding.txtSecond.setVisibility(View.VISIBLE)
-                mBinding.imgThird.setVisibility(View.VISIBLE)
-                mBinding.txtThird.setVisibility(View.VISIBLE)
-                mBinding.imgFourth.setVisibility(View.VISIBLE)
-                mBinding.txtFourth.setVisibility(View.VISIBLE)
+                mBinding.imgFirst.visible()
+                mBinding.txtFirst.visible()
+                mBinding.imgSecond.visible()
+                mBinding.txtSecond.visible()
+                mBinding.imgThird.visible()
+                mBinding.txtThird.visible()
+                mBinding.imgFourth.visible()
+                mBinding.txtFourth.visible()
             }
         }
     }
@@ -118,27 +118,26 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
      * circle image row item click
      */
     private fun clickEvent(mBinding: RowCircleBinding, position: Int) {
-        mBinding.imgFirst.setOnClickListener(clickImg(mBinding.imgFirst, position))
-        mBinding.txtFirst.setOnClickListener(clickImg(mBinding.txtFirst, position))
-        mBinding.imgSecond.setOnClickListener(clickImg(mBinding.imgSecond, position))
-        mBinding.txtSecond.setOnClickListener(clickImg(mBinding.txtSecond, position))
-        mBinding.imgThird.setOnClickListener(clickImg(mBinding.imgThird, position))
-        mBinding.txtThird.setOnClickListener(clickImg(mBinding.txtThird, position))
-        mBinding.imgFourth.setOnClickListener(clickImg(mBinding.imgFourth, position))
-        mBinding.txtFourth.setOnClickListener(clickImg(mBinding.txtFourth, position))
+        onClickListener(mBinding.imgFirst, position)
+        onClickListener(mBinding.txtFirst, position)
+        onClickListener(mBinding.imgSecond, position)
+        onClickListener(mBinding.txtSecond, position)
+        onClickListener(mBinding.imgThird, position)
+        onClickListener(mBinding.txtThird, position)
+        onClickListener(mBinding.imgFourth, position)
+        onClickListener(mBinding.txtFourth, position)
     }
 
-    private fun clickImg(imgFirst: View?, position: Int): View.OnClickListener? {
+
+    override fun getClickEvent(view: View?, position: Int) {
+        super.getClickEvent(view, position)
         val currentPosi = position + 1
         var categoriesBean: CircleGameBean
-        return View.OnClickListener {
-            when (imgFirst?.id) {
+            when (view?.id) {
                 R.id.img_first -> categoriesBean = getGameInfo(currentPosi, 0)
                 R.id.img_second -> categoriesBean = getGameInfo(currentPosi, 1)
                 R.id.img_third -> categoriesBean = getGameInfo(currentPosi, 2)
                 R.id.img_fourth -> categoriesBean = getGameInfo(currentPosi, 3)
-
-            }
         }
     }
 
@@ -165,35 +164,30 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
         val currentPos = position + 1
         when (getCurrentReminder(position)) {
             0 -> {
-                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-                mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
-                mBinding.txtThird.setText(getGameInfo(currentPos, 2).gameName)
-                mBinding.txtFourth.setText(getGameInfo(currentPos, 3).gameName)
-                showImageUsingGLIDE(
-                    mBinding.imgFirst,
+                mBinding.txtFirst.text = getGameInfo(currentPos, 0).gameName
+                mBinding.txtSecond.text = getGameInfo(currentPos, 1).gameName
+                mBinding.txtThird.text = getGameInfo(currentPos, 2).gameName
+                mBinding.txtFourth.text = getGameInfo(currentPos, 3).gameName
+                    mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
                     getPlaceHolder(3)
                 );
-                showImageUsingGLIDE(
-                    mBinding.imgSecond,
+                    mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
                     getPlaceHolder(3)
                 );
-                showImageUsingGLIDE(
-                    mBinding.imgThird,
+                    mBinding.imgThird.showImage(
                     getGameInfo(currentPos, 2).gameImg,
                     getPlaceHolder(3)
                 );
-                showImageUsingGLIDE(
-                    mBinding.imgFourth,
+                    mBinding.imgFourth.showImage(
                     getGameInfo(currentPos, 3).gameImg,
                     getPlaceHolder(3)
                 );
             }
             1 -> {
                 mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-                showImageUsingGLIDE(
-                    mBinding.imgFirst,
+                mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
                     getPlaceHolder(3)
                 );
@@ -201,13 +195,11 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
             2 -> {
                 mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
                 mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
-                showImageUsingGLIDE(
-                    mBinding.imgFirst,
+                mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
                     getPlaceHolder(3)
                 );
-                showImageUsingGLIDE(
-                    mBinding.imgSecond,
+                    mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
                     getPlaceHolder(3)
                 );
@@ -216,18 +208,15 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
                 mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
                 mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
                 mBinding.txtThird.setText(getGameInfo(currentPos, 2).gameName)
-                showImageUsingGLIDE(
-                    mBinding.imgFirst,
+                    mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
                     getPlaceHolder(3)
                 );
-                showImageUsingGLIDE(
-                    mBinding.imgSecond,
+                    mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
                     getPlaceHolder(3)
                 );
-                showImageUsingGLIDE(
-                    mBinding.imgThird,
+                    mBinding.imgThird.showImage(
                     getGameInfo(currentPos, 2).gameImg,
                     getPlaceHolder(3)
                 );

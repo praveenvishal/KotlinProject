@@ -67,7 +67,7 @@ class DialogFrm : BaseFragment() {
                 object :
                     DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface, which: Int) {
-                        GlobalUtility.showToast("ok click$which")
+                        GlobalUtility.showToast("ok click $which")
                         dialog.dismiss()
                     }
                 })

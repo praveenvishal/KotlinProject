@@ -105,4 +105,13 @@
     <string name="photo_library">photo library</string>
     <string name="back_online">back online</string>
     <string name="no_internet_connection">no internet connection</string>
+    <string name="single_event_dialog">single event dialog</string>
+    <string name="two_event_dialog">two event dialog</string>
+    <string name="three_event_dialog">three event dialog</string>
+    <string name="custom_dialog">custom dialog</string>
+    <string name="dialog_fragment">dialog fragment</string>
+    <string name="list_dialog">list dialog</string>
+    <string name="selection_list_dialog">selection list dialog</string>
+    <string name="select_country">select country</string>
+    <string name="dialog_title">dialog</string>
 </resources>

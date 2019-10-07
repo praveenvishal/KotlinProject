@@ -14,13 +14,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class CalendarFrm : BaseFragment() {
-    private    var isCaptureImg: Boolean=false
     private lateinit var mBinding: FrmCalendarBinding
     companion object {
         val TAG = CalendarFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): CalendarFrm {
             val fragment = CalendarFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return CalendarFrm()
         }
     }

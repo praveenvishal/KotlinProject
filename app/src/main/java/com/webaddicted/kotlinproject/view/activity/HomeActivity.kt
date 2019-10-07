@@ -16,22 +16,27 @@ import com.webaddicted.kotlinproject.view.fragment.TaskFrm
 class HomeActivity : BaseActivity() {
 
     private lateinit var mBinding: ActivityCommonBinding
-    companion object{
+
+    companion object {
         val TAG: String = HomeActivity::class.java.simpleName
-        fun newIntent(activity: Activity){
+        fun newIntent(activity: Activity) {
             activity.startActivity(Intent(activity, HomeActivity::class.java))
         }
     }
+
     override fun getLayout(): Int {
         return R.layout.activity_common
     }
+
     override fun isNetworkConnected(isInternetConnected: Boolean) {
         showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
     }
+
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
         navigateScreen(TaskFrm.TAG)
     }
+
     /**
      * navigate on fragment
      *
@@ -39,10 +44,10 @@ class HomeActivity : BaseActivity() {
      * @param tag represent navigation activity
      */
     private fun navigateScreen(tag: String) {
-        val frm: Fragment
-        if (tag == TaskFrm.TAG) {
-            frm = TaskFrm.getInstance(Bundle())
-            navigateFragment(R.id.container, frm, false)
+        var frm: Fragment? = null
+        when (tag) {
+            TaskFrm.TAG -> frm = TaskFrm.getInstance(Bundle())
         }
+        if (frm != null) navigateFragment(R.id.container, frm, false)
     }
 }

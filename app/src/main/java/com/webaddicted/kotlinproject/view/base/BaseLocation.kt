@@ -227,7 +227,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
             LocationServices.GeofencingApi.removeGeofences(
                 mGoogleApiClient,
                 getGeofencePendingIntent()
-            ).setResultCallback(ResultCallback<Status> { status ->
+            ).setResultCallback({ status ->
                 if (status.isSuccess) {
                     fancyMarker?.remove()
                     geoFenceCircle?.remove()
@@ -346,11 +346,11 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
     private fun createLocationRequest(): LocationRequest {
         val mLocationRequest = LocationRequest()
         if (isUpdateLocation) {
-            mLocationRequest.setInterval(INTERVAL)
-            mLocationRequest.setFastestInterval(FASTEST_INTERVAL)
-            mLocationRequest.setSmallestDisplacement(MIN_DISTANCE_CHANGE_FOR_UPDATES)
+            mLocationRequest.interval = INTERVAL
+            mLocationRequest.fastestInterval = FASTEST_INTERVAL
+            mLocationRequest.smallestDisplacement= MIN_DISTANCE_CHANGE_FOR_UPDATES
         }
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         return mLocationRequest
     }
 

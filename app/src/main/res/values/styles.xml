@@ -373,5 +373,5 @@
         <item name="android:maxLines">1</item>
     </style>
 
-    <color name="gray_CDCDCD">#CDCDCD</color>
+
 </resources>

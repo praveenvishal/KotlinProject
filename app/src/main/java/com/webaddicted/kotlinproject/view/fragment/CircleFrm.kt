@@ -5,6 +5,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityNewsBinding
 import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
@@ -22,7 +23,7 @@ class CircleFrm : BaseFragment() {
         val TAG = CircleFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): CircleFrm {
             val fragment = CircleFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return CircleFrm()
         }
     }
@@ -39,7 +40,7 @@ class CircleFrm : BaseFragment() {
     }
 
     private fun init() {
-        mBinding.toolbar.imgBack.visibility = View.VISIBLE
+        mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.circle_title)
         mBinding.relativeParent.setBackgroundColor(resources.getColor(R.color.app_color))
     }
@@ -110,11 +111,12 @@ class CircleFrm : BaseFragment() {
      */
     private fun navigateScreen(tag: String) {
         var frm: Fragment? = null
-        if (tag == ProfileFrm.TAG)
-            frm = ProfileFrm.getInstance(Bundle())
-//          navigateFragment(R.id.container, frm!!, true)
-        navigateAddFragment(R.id.container, frm!!, true);
+        when (tag) {
+            ProfileFrm.TAG -> frm = ProfileFrm.getInstance(Bundle())
+        }
+        if (frm != null) navigateFragment(R.id.container, frm, false)
     }
+
 
 }
 

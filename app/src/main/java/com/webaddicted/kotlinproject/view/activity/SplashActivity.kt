@@ -21,9 +21,11 @@ class SplashActivity : BaseActivity() {
     override fun getLayout(): Int {
         return R.layout.activity_splash
     }
+
     override fun isNetworkConnected(isInternetConnected: Boolean) {
         showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
     }
+
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivitySplashBinding
         init()
@@ -34,7 +36,18 @@ class SplashActivity : BaseActivity() {
         })
     }
 
+    var isInternetConnectedtest = true
     private fun init() {
+//        mBinding.imgLogo.setOnClickListener(object : View.OnClickListener {
+//            override fun onClick(p0: View?) {
+//    if (isInternetConnectedtest){
+//        isInternetConnectedtest = false
+//    }else{
+//        isInternetConnectedtest = true
+//    }
+//                showInternetSnackbar(isInternetConnectedtest, mBinding.txtNoInternet)
+//            }
+//        })
         navigateToNext()
         val myScanner = Scanner(System.`in`)
         println("Enter the value of N")
@@ -85,7 +98,7 @@ class SplashActivity : BaseActivity() {
      */
     private fun navigateToNext() {
         Handler().postDelayed({
-           LanguageActivity.newIntent(this)
+            LanguageActivity.newIntent(this)
             finish()
         }, AppConstant.SPLASH_DELAY)
     }

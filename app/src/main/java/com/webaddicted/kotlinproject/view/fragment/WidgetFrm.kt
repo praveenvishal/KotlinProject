@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.databinding.ViewDataBinding
+import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmWidgetBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
@@ -20,7 +21,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
         val TAG = WidgetFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): WidgetFrm {
             val fragment = WidgetFrm()
-            fragment.setArguments(bundle)
+            fragment.arguments = bundle
             return WidgetFrm()
         }
     }
@@ -33,22 +34,22 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
         clickListener();
     }
     private fun init() {
-        mBinding?.toolbar?.imgBack?.visibility = View.VISIBLE
-        mBinding?.toolbar?.txtToolbarTitle?.text = resources.getString(R.string.widget_title)
+        mBinding.toolbar.imgBack.visible()
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.widget_title)
     }
 
     private fun clickListener() {
-        mBinding?.btnLogin?.setOnClickListener(this)
-        mBinding?.btnDataPicker?.setOnClickListener(this)
-        mBinding?.btnTimePicker?.setOnClickListener(this)
-        mBinding?.btnStartProgress?.setOnClickListener(this)
-        mBinding?.toolbar?.imgBack?.setOnClickListener(this)
+        mBinding.btnLogin.setOnClickListener(this)
+        mBinding.btnDataPicker.setOnClickListener(this)
+        mBinding.btnTimePicker.setOnClickListener(this)
+        mBinding.btnStartProgress.setOnClickListener(this)
+        mBinding.toolbar.imgBack.setOnClickListener(this)
     }
 
 
     override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.btn_login -> GlobalUtility.showToast("login hit")
             R.id.btn_data_picker -> {
                 val stringBuilder = StringBuilder()
@@ -85,11 +86,11 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        mBinding?.txtDateValue?.setText(dayOfMonth.toString() + "/" + month + "/" + year)
+        mBinding.txtDateValue.text = dayOfMonth.toString() + "/" + month + "/" + year
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        mBinding?.txtTimeValue?.setText(hourOfDay.toString() + ":" + minute)
+        mBinding.txtTimeValue.text = hourOfDay.toString() + ":" + minute
     }
 }
 

@@ -39,8 +39,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
     private var isUpdateLocation = false
     private var isShowAddress = false
     private var mGeofenceList: ArrayList<Geofence>? = null
-    /**
-     * provide user current location single time
+    /*** provide user current location single time
      */
     protected fun getLocation() {
         stopLocationUpdates()

@@ -138,7 +138,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        PermissionHelper.Companion.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+        PermissionHelper.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
     }
 
 

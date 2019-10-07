@@ -16,7 +16,7 @@ import com.webaddicted.kotlinproject.R
  * select player/fielder rule
  */
 @SuppressLint("ValidFragment")
-abstract class BaseDialog() : DialogFragment(), View.OnClickListener {
+abstract class BaseDialog : DialogFragment(), View.OnClickListener {
     private lateinit var mBinding: ViewDataBinding
     abstract fun getLayout(): Int
     protected abstract fun onViewsInitialized(binding: ViewDataBinding?, view: View)
@@ -27,7 +27,7 @@ abstract class BaseDialog() : DialogFragment(), View.OnClickListener {
     ): View? {
         mBinding = DataBindingUtil.inflate(inflater, getLayout(), container, false)
 
-        return mBinding.getRoot()
+        return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

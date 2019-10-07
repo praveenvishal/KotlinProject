@@ -153,7 +153,7 @@ class WebViewActivity : BaseActivity() {
                     " window.webkit.messageHandlers.boxlty.postMessage({param1:\"sourabh\"})\n" +
                     " }else if(navigator.userAgent==\"boxltyandroid\"){\n" +
                     " document.getElementById(\"responseP\").innerHTML=\"ANDROID FOUND\";\n" +
-                    " window.Android.showToast(\"Hello\");\n" +
+                    " window.Android.profileVerification(\"Hello\");\n" +
                     " \n" +
                     " } else{\n" +
                     " document.getElementById(\"responseP\").innerHTML=\"NORMAL BROWSER\";\n" +
@@ -164,8 +164,8 @@ class WebViewActivity : BaseActivity() {
                     " </script>\n" +
                     "</body>\n" +
                     "</html>"
-//        mBinding.webview.loadData(str, "text/html", "utf-8")
-        mBinding.webview.loadUrl(url)
+        mBinding.webview.loadData(str, "text/html", "utf-8")
+//        mBinding.webview.loadUrl(url)
     }
 
     private fun clickListener() {
@@ -209,7 +209,7 @@ class WebViewActivity : BaseActivity() {
     class WebAppInterface(private val mContext: Context) {
         /** Show a toast from the web page  */
         @JavascriptInterface
-        fun showToast(toast: String) {
+        fun profileVerification(toast: String) {
             Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show()
         }
     }

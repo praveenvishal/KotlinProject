@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.provider.MediaStore
 import com.android.boxlty.global.annotationDef.MediaPickerType
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.CompressImage
@@ -14,6 +13,7 @@ import java.io.File
 import java.util.ArrayList
 
 class MediaPickerUtils {
+    private var captureImageFile: File? = null
     private val TAG = MediaPickerUtils::class.java.simpleName
     val REQUEST_CAMERA_VIDEO = 5000
     val REQUEST_SELECT_FILE_FROM_GALLERY = 5002
@@ -33,7 +33,8 @@ class MediaPickerUtils {
         activity: Activity,
         @MediaPickerType.MediaType fileType: Int,
         filePath: File,
-        imagePickerListener: ImagePickerListener) {
+        imagePickerListener: ImagePickerListener
+    ) {
         mImagePickerListener = imagePickerListener
         mfilePath = filePath
         checkPermission(activity, fileType)
@@ -53,7 +54,7 @@ class MediaPickerUtils {
         if (PermissionHelper.requestMultiplePermission(
                 activity,
                 locationList,
-                object : PermissionHelper.Companion.PermissionListener{
+                object : PermissionHelper.Companion.PermissionListener {
                     override fun onPermissionGranted(mCustomPermission: List<String>) {
                         FileUtils.createApplicationFolder()
                         selectMediaType(activity, fileType)
@@ -74,7 +75,8 @@ class MediaPickerUtils {
         when (fileType) {
             //            capture image for native camera
             MediaPickerType.CAPTURE_IMAGE -> {
-                intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                captureImageFile = FileUtils.createNewCaptureFile()
+                val intent = FileUtils.getCaptureImageIntent(activity, captureImageFile)
                 activity.startActivityForResult(intent, REQUEST_CAMERA_VIDEO)
             }
             //            pick image from gallery
@@ -94,23 +96,22 @@ class MediaPickerUtils {
         }
     }
 
-    fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent) {
+    fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
         var file: MutableList<File> = ArrayList()
         var compressedFiles: File? = null
         when (requestCode) {
             REQUEST_CAMERA_VIDEO -> {
                 var bitmap: Bitmap? = null
-                if (data.extras != null) {
+                if (data?.extras != null) {
                     bitmap = data.extras!!.get("data") as Bitmap?
                     val originalFile = FileUtils.saveImage(bitmap, mfilePath)
                     file.add(originalFile)
-                    //                    Log.d(TAG, "onActivityResult: old Image - " + FileUtils.getFileSizeInMbTest(originalFile) +
-                    //                            "\n compress image - " + FileUtils.getFileSizeInMbTest(compressedFiles));
-                } else if (data.data != null) {
+                } else if (data?.data != null) {
                     // in case of record video
                     file = MediaPickerHelper().getData(activity, data)
                 }
-                mImagePickerListener!!.imagePath(file)
+                if (file.size==0) file.add(captureImageFile!!)
+                    mImagePickerListener!!.imagePath(file)
             }
             REQUEST_SELECT_FILE_FROM_GALLERY -> {
                 val files = MediaPickerHelper().getData(activity, data)
@@ -121,9 +122,17 @@ class MediaPickerUtils {
                         filePath.contains(mMimeTypes[1]) ||
                         filePath.contains(mMimeTypes[2])
                     ) {
-                        compressedFiles = CompressImage.compressImage(activity, files.get(i).toString())
-                        Lg.d(TAG, "onActivityResult: old Image - " + FileUtils.getFileSizeInMbTest(files.get(i)) +
-                                "\n compress image - " + FileUtils.getFileSizeInMbTest(compressedFiles))
+                        compressedFiles =
+                            CompressImage.compressImage(activity, files.get(i).toString())
+                        Lg.d(
+                            TAG,
+                            "onActivityResult: old Image - " + FileUtils.getFileSizeInMbTest(
+                                files.get(i)
+                            ) +
+                                    "\n compress image - " + FileUtils.getFileSizeInMbTest(
+                                compressedFiles
+                            )
+                        )
                         files.set(i, compressedFiles)
                     }
                 }

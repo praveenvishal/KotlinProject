@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import com.android.boxlty.global.annotationDef.MediaPickerType
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.CompressImage
@@ -139,8 +140,15 @@ class MediaPickerUtils {
                 mImagePickerListener!!.imagePath(files)
             }
         }
+    refreshMedia(activity)
     }
-
+    private fun refreshMedia(activity: Activity) {
+        if(captureImageFile!=null && captureImageFile!!.exists()) {
+            val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+            intent.data = Uri.fromFile(captureImageFile)
+            activity.sendBroadcast(intent)
+        }
+    }
     interface ImagePickerListener {
         fun imagePath(filePath: List<File>)
     }

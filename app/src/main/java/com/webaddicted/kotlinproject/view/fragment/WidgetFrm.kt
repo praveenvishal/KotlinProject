@@ -46,7 +46,6 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
         mBinding.toolbar.imgBack.setOnClickListener(this)
     }
 
-
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {

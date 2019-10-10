@@ -15,15 +15,15 @@ import java.util.ArrayList
 
 
 class MediaPickerHelper {
-    fun getData(activity: Activity, data: Intent): ArrayList<File> {
+    fun getData(activity: Activity, data: Intent?): ArrayList<File> {
         val selectedImage = ArrayList<File>()
-        if (data.clipData != null) {
+        if (data?.clipData != null) {
             for (i in 0 until data.clipData!!.itemCount) {
                 val uri = data.clipData!!.getItemAt(i).uri
                 selectedImage.add(File(getPath(activity, uri)!!))
             }
         } else {
-            val pathh = getPath(activity, data.data)
+            val pathh = getPath(activity, data?.data)
             selectedImage.add(File(pathh!!))
         }
         return selectedImage

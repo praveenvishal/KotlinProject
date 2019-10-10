@@ -1,5 +1,6 @@
 package com.webaddicted.kotlinproject.global.common
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,6 +11,8 @@ import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.webkit.MimeTypeMap
+import androidx.core.content.FileProvider
+import com.webaddicted.kotlinproject.R
 import java.io.*
 import java.net.URL
 import java.text.SimpleDateFormat
@@ -64,6 +67,7 @@ class FileUtils {
         fun subFolder(): File {
             return File(Environment.getExternalStorageDirectory().toString(), File.separator + APP_FOLDER + SUB_PROFILE)
         }
+
 
         fun thumbFolder(): File {
             return File(
@@ -310,26 +314,40 @@ class FileUtils {
             return file.path.substring(file.path.lastIndexOf("/") + 1)
         }
         //    {START CAPTURE IMAGE PROCESS}
+        /**
+         * Method to create new file of captured image
+         *
+         * @return
+         * @throws IOException
+         */
+        fun createNewCaptureFile(): File {
+            val mFile = File(
+                Environment.getExternalStorageDirectory().toString(),
+                File.separator + APP_FOLDER + SUB_PROFILE + File.separator + "IMG_"+System.currentTimeMillis() + ".jpg"
+            )
+            mFile.createNewFile()
+            return mFile
+        }
+        /**
+         *
+         * Method to get Intent
+         *
+         * @param activity
+         * @param photoFile
+         * @return
+         */
+        fun getCaptureImageIntent(activity: Activity, photoFile: File?): Intent {
+            var takePictureIntent: Intent? = null
+            takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
-//        /**
-//         * Method to get Intent
-//         *
-//         * @param activity
-//         * @param photoFile
-//         * @return
-//         */
-//        fun getCaptureImageIntent(activity: Activity, photoFile: File): Intent {
-//            var takePictureIntent: Intent? = null
-//            takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//
-//            val photoURI = FileProvider.getUriForFile(
-//                activity,
-//                activity.resources.getString(R.string.file_provider_authority),
-//                photoFile
-//            )
-//            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-//            return takePictureIntent
-//        }
+            val photoURI = FileProvider.getUriForFile(
+                activity,
+                activity.resources.getString(R.string.file_provider_authority),
+                photoFile!!
+            )
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+            return takePictureIntent
+        }
 
         /**
          * Method to create temporary image file
@@ -349,21 +367,6 @@ class FileUtils {
             )
         }
 
-        /**
-         * Method to create new file of captured image
-         *
-         * @return
-         * @throws IOException
-         */
-        @Throws(IOException::class)
-        fun createNewCaptureFile(): File {
-            val mFile = File(
-                Environment.getExternalStorageDirectory().toString(),
-                File.separator + APP_FOLDER + SUB_PROFILE + File.separator + System.currentTimeMillis() + ".jpg"
-            )
-            mFile.createNewFile()
-            return mFile
-        }
 
         /**
          * Method for sampling image

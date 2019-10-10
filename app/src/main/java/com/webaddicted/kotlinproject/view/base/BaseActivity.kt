@@ -154,7 +154,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             if (requestCode == mediaPicker.REQUEST_CAMERA_VIDEO || requestCode == mediaPicker.REQUEST_SELECT_FILE_FROM_GALLERY) {
-                data?.let { mediaPicker.onActivityResult(this, requestCode, resultCode, it) }
+              mediaPicker.onActivityResult(this, requestCode, resultCode, data)
             }
         }
     }

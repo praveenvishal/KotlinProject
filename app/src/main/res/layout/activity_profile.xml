@@ -33,10 +33,12 @@
             <Button
                     android:id="@+id/btn_capture_image"
                     style="@style/Button"
+                    android:layout_marginTop="@dimen/dp20"
                     android:text="@string/capture_image"/>
             <Button
                     android:id="@+id/btn_pick_image"
                     style="@style/Button"
+                    android:layout_marginTop="@dimen/dp20"
                     android:text="@string/pick_image"/>
         </LinearLayout>
     </RelativeLayout>

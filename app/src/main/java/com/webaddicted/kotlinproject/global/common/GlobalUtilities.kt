@@ -28,7 +28,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.bumptech.glide.DrawableTypeRequest
 import com.bumptech.glide.Glide
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context

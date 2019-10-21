@@ -79,6 +79,7 @@ class TaskFrm : BaseFragment() {
         mTaskList = ArrayList(Arrays.asList(*worktask))
         setAdapter()
         clickListener()
+
     }
 
     private fun clickListener() {
@@ -114,7 +115,7 @@ class TaskFrm : BaseFragment() {
             "Widgets" -> navigateScreen(WidgetFrm.TAG)
             "News Api" -> navigateScreen(NewsFrm.TAG)
             "Google Map / Location" -> activity?.let { MapActivity.newIntent(it) }
-            "circle Game" -> navigateScreen(CircleFrm.TAG)
+            "Circle Game" -> navigateScreen(CircleFrm.TAG)
             "Calendar View" -> navigateScreen(CalendarFrm.TAG)
             "SMS Retriever" -> navigateScreen(SmsRetrieverFrm.TAG)
             "Webview" -> activity?.let { WebViewActivity.newIntent(it) }
@@ -123,6 +124,10 @@ class TaskFrm : BaseFragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        addBlankSpace(mBinding.bottomSpace)
+    }
     /**
      * navigate on fragment
      *
@@ -139,6 +144,6 @@ class TaskFrm : BaseFragment() {
             DialogFrm.TAG -> frm = DialogFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
-        frm?.let { navigateFragment(R.id.container, it, true) }
+        frm?.let { navigateAddFragment(R.id.container, it, true) }
     }
 }

@@ -5,17 +5,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.android.boxlty.global.common.MediaPickerUtils
+import com.android.boxlty.global.common.showToast
+import com.prodege.shopathome.model.networkCall.ApiResponse
+import com.webaddicted.androidkeyboardstatechecker.KeyboardEventListener
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.FileUtils
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.PermissionHelper
+import com.webaddicted.kotlinproject.global.common.ValidationHelper
 import com.webaddicted.kotlinproject.global.db.dao.UserInfoDao
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceMgr
 import com.webaddicted.kotlinproject.model.bean.eventBus.EventBusListener
+import com.webaddicted.kotlinproject.view.dialog.LoaderDialog
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
@@ -28,6 +35,7 @@ import java.io.File
 abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelper.Companion.PermissionListener,
     MediaPickerUtils.ImagePickerListener {
     private lateinit var mBinding: ViewDataBinding
+    private var loaderDialog: LoaderDialog? = null
     protected val mediaPicker: MediaPickerUtils by inject()
     protected val preferenceMgr: PreferenceMgr  by inject()
     abstract fun getLayout(): Int
@@ -45,8 +53,38 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         onViewsInitialized(mBinding, view)
         super.onViewCreated(view, savedInstanceState)
+        if (loaderDialog == null) {
+            loaderDialog = LoaderDialog.dialog()
+            loaderDialog?.isCancelable = false
+        }
     }
 
+    protected fun showApiLoader() {
+        if (loaderDialog != null) {
+            val fragment = fragmentManager?.findFragmentByTag(LoaderDialog.TAG)
+            if (fragment != null) fragmentManager?.beginTransaction()?.remove(fragment)?.commit()
+            loaderDialog?.show(fragmentManager, LoaderDialog.TAG)
+        }
+    }
+
+
+    protected fun hideApiLoader() {
+        if (loaderDialog != null && loaderDialog?.isVisible!!) loaderDialog?.dismiss()
+    }
+
+    protected fun <T> apiResponseHandler(view: View, response: ApiResponse<T>) {
+        when (response?.status) {
+            ApiResponse.Status.LOADING -> {
+                showApiLoader()
+            }
+            ApiResponse.Status.ERROR -> {
+                hideApiLoader()
+                if (response.errorMessage != null && response.errorMessage?.length!! > 0)
+                    ValidationHelper.showSnackBar(view, response.errorMessage!!)
+                else activity?.showToast(getString(R.string.something_went_wrong))
+            }
+        }
+    }
     override fun onResume() {
         super.onResume()
         activity?.let { GlobalUtility.hideKeyboard(it) }
@@ -136,5 +174,16 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     fun getPlaceHolder(imageLoaderPos: Int): String {
         val imageLoader = getResources().getStringArray(R.array.image_loader)
         return imageLoader[imageLoaderPos]
+    }
+    protected fun addBlankSpace(bottomSpace: LinearLayout) {
+        KeyboardEventListener(activity as AppCompatActivity) { isKeyboardOpen: Boolean, softkeybordHeight: Int ->
+            if (isKeyboardOpen)
+                bottomSpace.layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    softkeybordHeight
+                )
+            else bottomSpace.layoutParams =
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
+        }
     }
 }

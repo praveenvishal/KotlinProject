@@ -53,11 +53,7 @@ class SignupFrm : BaseFragment() {
     }
     override fun onResume() {
         super.onResume()
-        KeyboardEventListener(activity as AppCompatActivity) { isKeyboardOpen: Boolean, softkeybordHeight: Int ->
-            if (isKeyboardOpen)
-                mBinding.space.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, softkeybordHeight)
-            else mBinding.space.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0)
-        }
+        addBlankSpace(mBinding.bottomSpace)
     }
     override fun onClick(v: View) {
         super.onClick(v)

@@ -40,6 +40,6 @@ abstract class BaseDialog : DialogFragment(), View.OnClickListener {
     override fun onActivityCreated(arg0: Bundle?) {
         super.onActivityCreated(arg0)
         dialog.window!!
-            .attributes.windowAnimations = R.style.DialogSlideUpAnimation
+            .attributes.windowAnimations = R.style.DialogFadeAnimation
     }
 }

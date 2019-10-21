@@ -7,10 +7,16 @@
     <!--&lt;!&ndash;<variable&ndash;&gt;-->
     <!--&lt;!&ndash;name="loginActivityCallback"&ndash;&gt;-->
     <!--&lt;!&ndash;type="com.ryadav3.mvvmsample.view.callback.LoginActivityCallback" />&ndash;&gt;-->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+        android:orientation="vertical">
     <!--</data>-->
     <RelativeLayout
-            android:id="@+id/relative_parent"
+            android:id="@+id/parent"
             android:layout_width="match_parent"
+            android:background="@color/white"
             android:layout_height="wrap_content">
 
         <LinearLayout
@@ -40,4 +46,5 @@
                 android:text="@string/txt_no_data_found"
                 android:visibility="gone" />
     </RelativeLayout>
+    </LinearLayout>
 </layout>

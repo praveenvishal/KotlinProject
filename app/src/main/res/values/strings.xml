@@ -36,9 +36,6 @@
     <string name="skip">Skip</string>
     <string-array name="image_loader">
         <item>app_color</item><!--app color 0 -->
-        <item>country_flag</item><!--country flag 1 -->
-        <item>news_placeholder</item><!--news paper 2 -->
-        <item>good_morning</item><!--good morning 3 -->
         <item>other image</item><!--other image-->
     </string-array>
     <string name="slide_1_title">Hello Food!</string>
@@ -117,4 +114,7 @@
     <string name="select_country">Select country</string>
     <string name="dialog_title">Dialog</string>
     <string name="search">Search</string>
+    <string name="normal_webview">Normal Webview</string>
+    <string name="click_webview">WebView btn click</string>
+    <string name="web_file_choose">Web file choose</string>
 </resources>

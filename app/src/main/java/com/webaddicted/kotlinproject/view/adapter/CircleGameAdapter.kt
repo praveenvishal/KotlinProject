@@ -164,61 +164,61 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
         val currentPos = position + 1
         when (getCurrentReminder(position)) {
             0 -> {
-                mBinding.txtFirst.text = getGameInfo(currentPos, 0).gameName
-                mBinding.txtSecond.text = getGameInfo(currentPos, 1).gameName
-                mBinding.txtThird.text = getGameInfo(currentPos, 2).gameName
-                mBinding.txtFourth.text = getGameInfo(currentPos, 3).gameName
+//                mBinding.txtFirst.text = getGameInfo(currentPos, 0).gameName
+//                mBinding.txtSecond.text = getGameInfo(currentPos, 1).gameName
+//                mBinding.txtThird.text = getGameInfo(currentPos, 2).gameName
+//                mBinding.txtFourth.text = getGameInfo(currentPos, 3).gameName
                     mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
                     mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
                     mBinding.imgThird.showImage(
                     getGameInfo(currentPos, 2).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
                     mBinding.imgFourth.showImage(
                     getGameInfo(currentPos, 3).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
             }
             1 -> {
-                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
+//                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
                 mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
             }
             2 -> {
-                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-                mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
+//                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
+//                mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
                 mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
                     mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
             }
             3 -> {
-                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
-                mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
-                mBinding.txtThird.setText(getGameInfo(currentPos, 2).gameName)
+//                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
+//                mBinding.txtSecond.setText(getGameInfo(currentPos, 1).gameName)
+//                mBinding.txtThird.setText(getGameInfo(currentPos, 2).gameName)
                     mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
                     mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
                     mBinding.imgThird.showImage(
                     getGameInfo(currentPos, 2).gameImg,
-                    getPlaceHolder(3)
+                    getPlaceHolder(0)
                 );
             }
         }

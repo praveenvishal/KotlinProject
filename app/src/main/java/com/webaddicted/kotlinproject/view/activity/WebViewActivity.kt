@@ -1,26 +1,33 @@
 package com.webaddicted.kotlinproject.view.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
-import android.webkit.JavascriptInterface
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
+import com.android.boxlty.global.common.Lg
+import com.android.boxlty.global.common.MediaPickerHelper
+import com.android.boxlty.global.common.showToast
+import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityWebviewBinding
+import com.webaddicted.kotlinproject.global.misc.WebChromeClientTest
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 
 
-
 class WebViewActivity : BaseActivity() {
-
-    private var url: String = "http://boxlty-website.s3-website.ap-south-1.amazonaws.com/home?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbElkIjoiYmhhdm5hQHRlY2hhaGVhZGNvcnAuY29tIiwidXNlcklkIjozNzQsInByb3ZpZGVySWQiOjEsImlhdCI6MTU2OTQxNDYxNiwiZXhwIjozMTM4ODMyODMyfQ.nzSiAa7VGV9Qp9dY-qC0jw31lYKjgAYthfNHn0yHyk4"
+    private var url: String = "http://www.google.com"
     private lateinit var mBinding: ActivityWebviewBinding
+    val INPUT_FILE_REQUEST_CODE = 1
+    var mUploadMessage: ValueCallback<Array<Uri>>? = null
+    var mCameraPhotoPath: String = ""
 
     companion object {
         val TAG = WebViewActivity::class.java.simpleName
@@ -39,58 +46,72 @@ class WebViewActivity : BaseActivity() {
 
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityWebviewBinding
-//        webInterface()
-        webView()
+        init()
         clickListener();
+        normalWebView(mBinding.webview)
+    }
+    private fun init() {
+        mBinding.toolbar.imgBack.visible()
+        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.webview_title)
+    }
+    private fun clickListener() {
+        mBinding.toolbar.imgBack.setOnClickListener(this)
+        mBinding.btnNormalWebview.setOnClickListener(this)
+        mBinding.btnWebClick.setOnClickListener(this)
+        mBinding.btnWebFileChoose.setOnClickListener(this)
     }
 
-    private fun webView() {
-        mBinding.webview.settings.setJavaScriptEnabled(true)
-        mBinding.webview.settings.setLoadWithOverviewMode(true)
-        mBinding.webview.settings.setUseWideViewPort(true)
-        mBinding.webview.setScrollbarFadingEnabled(true)
-        mBinding.webview.setVerticalScrollBarEnabled(false)
-        mBinding.webview.setWebViewClient(WebViewClient())
+    override fun onClick(v: View?) {
+        super.onClick(v)
+        when (v?.id) {
+            R.id.img_back -> onBackPressed()
+            R.id.btn_normal_webview -> normalWebView(mBinding.webview)
+            R.id.btn_web_click -> webInterface(mBinding.webview)
+            R.id.btn_web_file_choose -> chooseImageWebViewUrl(this, mBinding.webview, "https://en.imgbb.com/")
+
+        }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && this.mBinding.webview.canGoBack()) {
+            this.mBinding.webview.goBack()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    private fun normalWebView(webView: WebView) {
+        webView.settings.setJavaScriptEnabled(true)
+        webView.settings.setLoadWithOverviewMode(true)
+        webView.settings.setUseWideViewPort(true)
+        webView.setScrollbarFadingEnabled(true)
+        webView.setVerticalScrollBarEnabled(false)
+        webView.setWebViewClient(myTestBrowser())
         try {
-            mBinding.webview.loadUrl(url)
+            webView.loadUrl(url)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
     }
 
-    inner class myWebClient : WebViewClient() {
-        override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
-            // TODO Auto-generated method stub
-            super.onPageStarted(view, url, favicon)
-        }
-
-        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-            // TODO Auto-generated method stub
-
-            view.loadUrl(url)
-            return true
-
-        }
-    }
-    private fun webInterface() {
+    private fun webInterface(webView: WebView) {
         mBinding.toolbar.imgBack.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.webview_title)
-        mBinding.webview.settings.setLoadsImagesAutomatically(true);
-        mBinding.webview.settings.setUserAgentString("boxltyandroid");
-        mBinding.webview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        mBinding.webview.settings.setJavaScriptEnabled(true)
-        mBinding.webview.settings.setLoadWithOverviewMode(true)
-        mBinding.webview.settings.setUseWideViewPort(true)
-        mBinding.webview.setScrollbarFadingEnabled(true)
-        mBinding.webview.setVerticalScrollBarEnabled(false)
-
-        mBinding.webview.addJavascriptInterface(
+        webView.settings.setLoadsImagesAutomatically(true);
+        webView.settings.setUserAgentString("boxltyandroid");
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.settings.setJavaScriptEnabled(true)
+        webView.settings.setLoadWithOverviewMode(true)
+        webView.settings.setUseWideViewPort(true)
+        webView.setScrollbarFadingEnabled(true)
+        webView.setVerticalScrollBarEnabled(false)
+        webView.addJavascriptInterface(
             WebAppInterface(
                 this
             ), "Android"
         )
-        mBinding.webview.setWebViewClient(MyBrowser())
+        webView.setWebViewClient(myTestBrowser())
         val str =
             "<html>\n" +
                     "<head>\n" +
@@ -164,45 +185,24 @@ class WebViewActivity : BaseActivity() {
                     " </script>\n" +
                     "</body>\n" +
                     "</html>"
-        mBinding.webview.loadData(str, "text/html", "utf-8")
-//        mBinding.webview.loadUrl(url)
+        webView.loadData(str, "text/html", "utf-8")
     }
 
-    private fun clickListener() {
-        mBinding.toolbar.imgBack.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View?) {
-        super.onClick(v)
-        when (v?.id) {
-            R.id.img_back -> onBackPressed()
-        }
-    }
-
-    private inner class MyBrowser : WebViewClient() {
+    private inner class myTestBrowser : WebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-            Log.d(TAG, url)
             view.loadUrl(url)
             return true
         }
 
-        override fun onPageFinished(view: WebView, url: String) {
-            mBinding.progressBar.setVisibility(View.GONE)
-            super.onPageFinished(view, url)
-        }
-
-        override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
+        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             mBinding.progressBar.setVisibility(View.VISIBLE)
             super.onPageStarted(view, url, favicon)
         }
-    }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && this.mBinding.webview.canGoBack()) {
-            this.mBinding.webview.goBack()
-            return true
+        override fun onPageFinished(view: WebView?, url: String?) {
+            mBinding.progressBar.setVisibility(View.GONE)
+            super.onPageFinished(view, url)
         }
-        return super.onKeyDown(keyCode, event)
     }
 
     /** Instantiate the interface and set the context  */
@@ -212,6 +212,79 @@ class WebViewActivity : BaseActivity() {
         fun profileVerification(toast: String) {
             Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show()
         }
+    }
+
+
+    /**
+     * show response url on webview
+     *
+     * @param webView    view
+     * @param contentUrl webview url
+     */
+    fun chooseImageWebViewUrl(activity: Activity?, webView: WebView, contentUrl: String?) {
+        try {
+            val cookieManager = CookieManager.getInstance()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                cookieManager.removeAllCookies(ValueCallback<Boolean> { aBoolean ->
+                    // a callback which is executed when the cookies have been removed
+//                    Log.d(FragmentActivity.TAG, "Cookie removed: " + aBoolean!!)
+                })
+            } else
+                cookieManager.removeAllCookie()
+            webView.settings.javaScriptEnabled = true
+            webView.settings.loadWithOverviewMode = true
+            webView.settings.useWideViewPort = true
+            webView.isScrollbarFadingEnabled = true
+            webView.isVerticalScrollBarEnabled = false
+            webView.settings.userAgentString = "boxltyandroid"
+            webView.getSettings().setAppCacheEnabled(false)
+            webView.getSettings().domStorageEnabled = true
+            webView.clearCache(true)
+            webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+            webView.getSettings().setSupportZoom(true);
+            webView.getSettings().allowFileAccess = (true);
+            webView.getSettings().allowContentAccess = (true);
+            if (Build.VERSION.SDK_INT >= 19) {
+                webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
+            } else if (Build.VERSION.SDK_INT >= 11 && Build.VERSION.SDK_INT < 19) {
+                webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+            }
+//            webView.getSettings().Access = (true);
+            webView.webChromeClient = WebChromeClientTest(activity)
+            webView.webViewClient = myTestBrowser()
+            webView.loadUrl(contentUrl)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode != INPUT_FILE_REQUEST_CODE || mUploadMessage == null) {
+            super.onActivityResult(requestCode, resultCode, data)
+            return
+        }
+        try {
+            if (resultCode == 0) {
+                Lg.d(TAG, "when user cancel then reset web chrome client")
+                mBinding.webview?.webChromeClient = WebChromeClientTest(this)
+                mUploadMessage?.onReceiveValue(arrayOf(Uri.parse("")))
+                return
+            }
+            if (data?.data != null || data?.clipData != null) {
+                val files = MediaPickerHelper().getData(this, data)
+                val arrayLists = Array(files.size, { i -> Uri.fromFile(files[i]) })
+                showToast("selected image size - " + files.size)
+                mUploadMessage?.onReceiveValue(arrayLists)
+            } else {
+                mUploadMessage?.onReceiveValue(arrayOf(Uri.parse(mCameraPhotoPath)))
+                showToast("captured image - " + mCameraPhotoPath)
+            }
+        } catch (e: Exception) {
+            Log.e("Error!", "Error while opening image file" + e.localizedMessage)
+            mUploadMessage?.onReceiveValue(arrayOf(Uri.parse("")))
+            mUploadMessage = null
+        }
+        mUploadMessage = null
     }
 }
 

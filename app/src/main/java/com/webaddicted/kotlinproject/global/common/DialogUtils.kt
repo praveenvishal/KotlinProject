@@ -27,11 +27,11 @@ class DialogUtil {
          * @param activity reference of activity
          * @param dialog   reference of dialog
          */
-        fun modifyDialogBounds(activity: Activity, dialog: Dialog) {
+        fun modifyDialogBounds(activity: Activity?, dialog: Dialog) {
             dialog.window!!.setBackgroundDrawable(
                 ColorDrawable(
                     ContextCompat.getColor(
-                        activity,
+                        activity!!,
                         android.R.color.transparent
                     )
                 )

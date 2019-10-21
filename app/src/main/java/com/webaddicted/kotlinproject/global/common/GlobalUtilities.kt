@@ -54,12 +54,37 @@ class GlobalUtility {
 
         fun getDate(context: Context, mDobEtm: TextView) {
             val datePickerDialog = DatePickerDialog(context, R.style.TimePicker, { view, year, month, dayOfMonth ->
+                var monthValue = month + 1
+                var day:String = ""
+                var dayMonth:String = ""
+                if (dayOfMonth<=9) day= "0"+dayOfMonth
+                else day = dayOfMonth.toString()
+                if (monthValue<=9) dayMonth= "0"+monthValue
+                else dayMonth = monthValue.toString()
                 mDobEtm.text =
-                    "$dayOfMonth/$month/$year"
+                    "$dayMonth/$day/$year"
             }, Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH)
             datePickerDialog.show()
         }
+        fun getDOBDate(context: Context, mDobEtm: TextView) {
+            val datePickerDialog =
+                DatePickerDialog(context, R.style.TimePicker, { view, year, month, dayOfMonth ->
+                    var monthValue = month + 1
+                    var day:String = ""
+                    var dayMonth:String = ""
 
+                    if (dayOfMonth<=9) day= "0"+dayOfMonth
+                    else day = dayOfMonth.toString()
+                    if (monthValue<=9) dayMonth= "0"+monthValue
+                    else dayMonth = monthValue.toString()
+                    mDobEtm.text =
+                        "$dayMonth/$day/$year"
+                }, Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.MONTH),Calendar.getInstance().get(Calendar.DATE))
+            var calendar = Calendar.getInstance();
+            calendar.add(Calendar.YEAR, -16);
+            datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+            datePickerDialog.show()
+        }
         fun timePicker(activity: Activity,timeListener: TimePickerDialog.OnTimeSetListener): TimePickerDialog {
             val calendar = Calendar.getInstance()
             return TimePickerDialog(

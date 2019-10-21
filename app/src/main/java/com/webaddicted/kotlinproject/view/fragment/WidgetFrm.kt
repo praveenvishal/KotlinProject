@@ -39,7 +39,6 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     }
 
     private fun clickListener() {
-        mBinding.btnLogin.setOnClickListener(this)
         mBinding.btnDataPicker.setOnClickListener(this)
         mBinding.btnTimePicker.setOnClickListener(this)
         mBinding.btnStartProgress.setOnClickListener(this)
@@ -49,7 +48,6 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.btn_login -> GlobalUtility.showToast("login hit")
             R.id.btn_data_picker -> {
                 val stringBuilder = StringBuilder()
                 activity?.let { GlobalUtility.getDate(it, mBinding.txtDateValue) }

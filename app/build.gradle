@@ -21,6 +21,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "versionCode"
+    flavorDimensions "appId"
+    productFlavors {
+        UAT {
+            dimension "versionCode"
+            dimension "appId"
+            buildConfigField "String", "BASE_URL", '"https://www.google.com/staging/app/api/v1/"'
+            buildConfigField "boolean", "IS_LOCAL_DEV", "false"
+            buildConfigField "boolean", "IS_UAT", "true"
+        }
+        QA {
+            dimension "versionCode"
+            dimension "appId"
+            buildConfigField "String", "BASE_URL", '"https://www.google.com/staging/app/api/v1/"'
+            buildConfigField "boolean", "IS_LOCAL_DEV", "false"
+            buildConfigField "boolean", "IS_UAT", "false"
+        }
+    }
     dataBinding {
         enabled = true
     }
@@ -103,7 +121,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-identity:16.0.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'com.google.android.gms:play-services-auth-api-phone:16.0.0'
-    implementation 'com.airbnb.android:lottie:2.5.0'
+    implementation 'com.airbnb.android:lottie:3.0.0'
     implementation 'com.android.support:multidex:1.0.3'
 }
 kapt {

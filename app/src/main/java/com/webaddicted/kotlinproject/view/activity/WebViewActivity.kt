@@ -48,6 +48,7 @@ class WebViewActivity : BaseActivity() {
         mBinding = binding as ActivityWebviewBinding
         init()
         clickListener();
+        checkStoragePermission()
         normalWebView(mBinding.webview)
     }
     private fun init() {

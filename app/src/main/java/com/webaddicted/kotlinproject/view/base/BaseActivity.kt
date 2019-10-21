@@ -43,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
         supportActionBar?.hide()
-        setNavigationColor(resources.getColor(R.color.app_color))
+//        setNavigationColor(resources.getColor(R.color.app_color))
        fullScreen();
         GlobalUtility.hideKeyboard(this)
         var layoutResId = getLayout()
@@ -58,7 +58,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         }
     }
 
-    private fun fullScreen() {
+    protected fun fullScreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window = window
             if (window != null) {

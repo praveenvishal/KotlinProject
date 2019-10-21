@@ -49,6 +49,7 @@ class LanguageActivity : BaseActivity() {
     }
 
     private fun init() {
+        setNavigationColor(resources.getColor(R.color.app_color))
         mBinding.toolbar.imgProfile?.visibility = View.GONE
         mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.select_language)
         mLanguageList = setLanguageBean();
@@ -98,26 +99,26 @@ class LanguageActivity : BaseActivity() {
         languageBeanList.add(LanguageBean().apply {
             id = "0"
             languageCode = Locale.getDefault().language
-            languageName = "default (" + Locale.getDefault().displayName.toLowerCase() + ")"
+            languageName = "Default (" + Locale.getDefault().displayName.toLowerCase() + ")"
             languageFlag = ""
         })
         languageBeanList.add(LanguageBean().also {
             it.id = "1"
             it.languageCode = "ar"
-            it.languageName = "argentina"
+            it.languageName = "Argentina"
             it.languageFlag = "https://mirrorspectator.com/wp-content/uploads/2019/03/31WNPn82f2L._SX425_.jpg"
         })
         languageBeanList.add(LanguageBean().apply {
             id = "2"
             languageCode = "en"
-            languageName = "english"
+            languageName = "English"
             languageFlag =
                 "https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/English_Language_Flag.png/640px-English_Language_Flag.png"
         })
         languageBeanList.add(LanguageBean().apply {
             id = "3"
             languageCode = "hi"
-            languageName = "hindi"
+            languageName = "Hindi"
             languageFlag = "https://www.imediaethics.org/wp-content/uploads/archive/B_Image_4450.jpg"
         })
         return languageBeanList

@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:paddingLeft="@dimen/desc_padding"
-                android:textAppearance="@style/TextAppearance_open_sans_regular"
+                android:textAppearance="@style/TextAppearance_open_sans_semibold"
             android:paddingRight="@dimen/desc_padding"
             android:text="@string/slide_2_desc"
             android:textAlignment="center"

@@ -29,6 +29,7 @@ class SplashActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivitySplashBinding
         init()
+        setNavigationColor(resources.getColor(R.color.app_color))
         mBinding.imgLogo.setOnClickListener(object :View.OnClickListener{
             override fun onClick(p0: View?) {
                 init()

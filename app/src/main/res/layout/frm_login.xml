@@ -73,12 +73,13 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/edt_email"
-                                android:textAppearance="@style/TextAppearance_open_sans_regular"
+                                android:textAppearance="@style/TextAppearance_open_sans_semibold"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:drawableRight="@drawable/ic_email"
                                 android:drawablePadding="@dimen/dp16"
                                 android:hint="@string/email"
+
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
                                 android:textColor="@android:color/white"
@@ -96,7 +97,7 @@
                                 android:id="@+id/edt_password"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance_open_sans_regular"
+                                android:textAppearance="@style/TextAppearance_open_sans_semibold"
                                 android:drawableRight="@drawable/ic_lock"
                                 android:drawablePadding="@dimen/dp16"
                                 android:hint="@string/password"

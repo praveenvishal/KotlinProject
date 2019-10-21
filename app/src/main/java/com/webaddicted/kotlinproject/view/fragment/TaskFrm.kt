@@ -22,36 +22,36 @@ class TaskFrm : BaseFragment() {
     private lateinit var mHomeAdapter: TaskAdapter
     private var mTaskList: ArrayList<String>? = null
     internal var worktask = arrayOf(
-        "widgets",
-        "news api",
-        "google map/location",
-        "circle game",
-        "calendar view",
-        "SMS retriever",
-        "webview",
-        "dialog",
-        "select multiple image",
-        "dynamic layout",
-        "shared preference",
-        "device info",
-        "speech to text",
-        "animation",
-        "recycler view",
-        "expendable spinner list view",
-        "image",
-        "share",
-        "receiver",
-        "services",
-        "viewpager tab",
-        "finger print",
-        "barcode",
-        "digital signature",
-        "pdf",
-        "collapse",
-        "ui design",
-        "fab button",
-        "bottom navigation",
-        "bottom sheet"
+        "Widgets",
+        "News Api",
+        "Google Map / Location",
+        "Circle Game",
+        "Calendar View",
+        "SMS Retriever",
+        "Webview",
+        "Dialog",
+        "Select Multiple Image",
+        "Dynamic Layout",
+        "Shared Preference",
+        "Device Info",
+        "Speech to text",
+        "Animation",
+        "Recycler View",
+        "Expendable Spinner List View",
+        "Image",
+        "Share",
+        "Receiver",
+        "Services",
+        "Viewpager Tab",
+        "FingerPrint",
+        "Barcode",
+        "Digital Signature",
+        "PDF",
+        "Collapse",
+        "UI Design",
+        "Fab Button",
+        "Bottom Navigation",
+        "Bottom Sheet"
     )
 
 
@@ -111,14 +111,14 @@ class TaskFrm : BaseFragment() {
 
     fun onClicks(click: String) {
         when (click) {
-            "widgets" -> navigateScreen(WidgetFrm.TAG)
-            "news api" -> navigateScreen(NewsFrm.TAG)
-            "google map/location" -> activity?.let { MapActivity.newIntent(it) }
-            "circle game" -> navigateScreen(CircleFrm.TAG)
-            "calendar view" -> navigateScreen(CalendarFrm.TAG)
-            "SMS retriever" -> navigateScreen(SmsRetrieverFrm.TAG)
-            "webview" -> activity?.let { WebViewActivity.newIntent(it) }
-            "dialog" -> navigateScreen(DialogFrm.TAG)
+            "Widgets" -> navigateScreen(WidgetFrm.TAG)
+            "News Api" -> navigateScreen(NewsFrm.TAG)
+            "Google Map / Location" -> activity?.let { MapActivity.newIntent(it) }
+            "circle Game" -> navigateScreen(CircleFrm.TAG)
+            "Calendar View" -> navigateScreen(CalendarFrm.TAG)
+            "SMS Retriever" -> navigateScreen(SmsRetrieverFrm.TAG)
+            "Webview" -> activity?.let { WebViewActivity.newIntent(it) }
+            "Dialog" -> navigateScreen(DialogFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }

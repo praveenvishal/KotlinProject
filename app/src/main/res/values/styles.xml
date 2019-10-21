@@ -282,7 +282,7 @@
     </style>
 
     <style name="txt_pink_normal">
-        <item name="android:textAppearance">@style/TextAppearance_open_sans_regular</item>
+        <item name="android:textAppearance">@style/TextAppearance_open_sans_semibold</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/pink</item>

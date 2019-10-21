@@ -85,7 +85,7 @@ class LoginFrm : BaseFragment() {
         when (tag) {
             SignupFrm.TAG -> frm = SignupFrm.getInstance(Bundle())
         }
-        if (frm != null) navigateFragment(R.id.container, frm, false)
+        if (frm != null) navigateAddFragment(R.id.container, frm, true)
     }
 
 }

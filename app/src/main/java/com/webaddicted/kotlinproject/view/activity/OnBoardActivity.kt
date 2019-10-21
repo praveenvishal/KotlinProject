@@ -40,6 +40,7 @@ class OnBoardActivity : BaseActivity() {
     private fun init() {
         mBinding.viewPager.addOnPageChangeListener(getChangeListener())
         changeNavigatColor(0)
+
     }
 
     private fun clickListener() {

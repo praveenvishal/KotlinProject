@@ -31,7 +31,7 @@
             android:layout_marginTop="@dimen/dp20"
             android:paddingLeft="@dimen/desc_padding"
             android:paddingRight="@dimen/desc_padding"
-                android:textAppearance="@style/TextAppearance_open_sans_regular"
+                android:textAppearance="@style/TextAppearance_open_sans_semibold"
             android:text="@string/slide_4_desc"
             android:textAlignment="center"
             android:textColor="@android:color/white"

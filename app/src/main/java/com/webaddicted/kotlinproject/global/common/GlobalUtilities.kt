@@ -237,7 +237,7 @@ class GlobalUtility {
          * @param layout  layout
          * @return viewBinding
          */
-        fun getLayoutBinding(context: Context, layout: Int): ViewDataBinding {
+        fun getLayoutBinding(context: Context?, layout: Int): ViewDataBinding {
             return DataBindingUtil.inflate(
                 LayoutInflater.from(context),
                 layout,

@@ -25,6 +25,7 @@ class PreferenceMgr constructor(var preferenceUtils: PreferenceUtils) {
     fun getUserInfo(): PreferenceBean {
         val preferenceBean = PreferenceBean()
         preferenceBean.name = preferenceUtils.getPreference(PreferenceConstant.PREF_USER_NAME, "")!!
+        preferenceBean.gender = preferenceUtils?.getPreference(PreferenceConstant.PREF_USER_GENDER, "")!!
         preferenceBean.age = preferenceUtils?.getPreference(PreferenceConstant.PREF_USER_AGE, 0)!!
         preferenceBean.weight = preferenceUtils?.getPreference(PreferenceConstant.PREF_USER_WEIGHT, 0L)!!
         preferenceBean.isMarried = preferenceUtils?.getPreference(PreferenceConstant.PREF_USER_IS_MARRIED, false)!!
@@ -52,11 +53,10 @@ class PreferenceMgr constructor(var preferenceUtils: PreferenceUtils) {
     }
 
 
-    fun setThemeColor(themeHaxCode: String) {
-        preferenceUtils.setPreference(PreferenceConstant.THEME_HAX_CODE, themeHaxCode)
+    fun removeKey(removeKey: String) {
+        preferenceUtils.removeKey(removeKey)
     }
-
-    fun getThemeColor() {
-        preferenceUtils.getPreference(PreferenceConstant.THEME_HAX_CODE, "#825f3d")
+    fun clearPref() {
+        preferenceUtils.clearAllPreferences()
     }
 }

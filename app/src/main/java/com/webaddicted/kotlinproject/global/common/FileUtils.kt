@@ -34,7 +34,7 @@ class FileUtils {
     }
 
     companion object {
-        private val APP_FOLDER = "kotlinProhect"
+        private val APP_FOLDER = "kotlinProject"
         private val SUB_PROFILE = "/profile"
         private val SEPARATOR = "/"
         private val JPEG = ".jpeg"
@@ -457,6 +457,11 @@ class FileUtils {
             val contentUri = Uri.fromFile(f)
             mediaScanIntent.data = contentUri
             context.sendBroadcast(mediaScanIntent)
+        }
+
+        fun getBitmapFromFile(image: File): Bitmap {
+            val bmOptions = BitmapFactory.Options()
+            return BitmapFactory.decodeFile(image.absolutePath, bmOptions)
         }
     }
 

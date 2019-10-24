@@ -110,6 +110,7 @@ class DialogFrm : BaseFragment() {
                     activity?.showToast(getCountryList().get(which).toString())
                     dialog.dismiss()
                 })
+            R.id.img_back -> activity?.onBackPressed()
         }
     }
 

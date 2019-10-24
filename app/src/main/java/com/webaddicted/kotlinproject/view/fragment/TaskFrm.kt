@@ -11,6 +11,7 @@ import com.android.boxlty.global.common.gone
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
 import com.webaddicted.kotlinproject.view.activity.MapActivity
+import com.webaddicted.kotlinproject.view.activity.SpeechTextActivity
 import com.webaddicted.kotlinproject.view.activity.WebViewActivity
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
@@ -38,7 +39,6 @@ class TaskFrm : BaseFragment() {
         "Animation",
         "Recycler View",
         "Expendable Spinner List View",
-        "Image",
         "Share",
         "Receiver",
         "Services",
@@ -114,12 +114,18 @@ class TaskFrm : BaseFragment() {
         when (click) {
             "Widgets" -> navigateScreen(WidgetFrm.TAG)
             "News Api" -> navigateScreen(NewsFrm.TAG)
-            "Google Map / Location" -> activity?.let { MapActivity.newIntent(it) }
+            "Google Map / Location" -> navigateScreen(MapActivity.TAG)
             "Circle Game" -> navigateScreen(CircleFrm.TAG)
             "Calendar View" -> navigateScreen(CalendarFrm.TAG)
             "SMS Retriever" -> navigateScreen(SmsRetrieverFrm.TAG)
-            "Webview" -> activity?.let { WebViewActivity.newIntent(it) }
+            "Webview" -> navigateScreen(WebViewActivity.TAG)
             "Dialog" -> navigateScreen(DialogFrm.TAG)
+            "Select Multiple Image" -> navigateScreen(ProfileFrm.TAG)
+            "Dynamic Layout" -> navigateScreen(DynamicLayoutFrm.TAG)
+            "Shared Preference" -> navigateScreen(SharedPrefFrm.TAG)
+            "Speech to text" -> navigateScreen(SpeechTextActivity.TAG)
+            "Animation" -> navigateScreen(AnimationFrm.TAG)
+            "Share"-> navigateScreen(ShareDataFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -138,10 +144,19 @@ class TaskFrm : BaseFragment() {
         when (tag) {
             WidgetFrm.TAG -> frm = WidgetFrm.getInstance(Bundle())
             NewsFrm.TAG -> frm = NewsFrm.getInstance(Bundle())
+            MapActivity.TAG-> activity?.let { MapActivity.newIntent(it) }
             CircleFrm.TAG -> frm = CircleFrm.getInstance(Bundle())
             CalendarFrm.TAG -> frm = CalendarFrm.getInstance(Bundle())
             SmsRetrieverFrm.TAG -> frm = SmsRetrieverFrm.getInstance(Bundle())
+            WebViewActivity.TAG -> activity?.let { WebViewActivity.newIntent(it) }
             DialogFrm.TAG -> frm = DialogFrm.getInstance(Bundle())
+            ProfileFrm.TAG -> frm = ProfileFrm.getInstance(Bundle())
+            DynamicLayoutFrm.TAG -> frm = DynamicLayoutFrm.getInstance(Bundle())
+            SharedPrefFrm.TAG -> frm = SharedPrefFrm.getInstance(Bundle())
+            AnimationFrm.TAG -> frm = AnimationFrm.getInstance(Bundle())
+            ShareDataFrm.TAG -> frm = ShareDataFrm.getInstance(Bundle())
+            SpeechTextActivity.TAG -> activity?.let { MapActivity.newIntent(it) }
+
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

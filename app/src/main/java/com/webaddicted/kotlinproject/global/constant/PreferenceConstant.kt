@@ -7,7 +7,7 @@ class PreferenceConstant {
         const val PREF_LANGUAGE_ID: String = "LANGUAGE_ID"
         const val PREF_LANGUAGE_NAME: String = "LANGUAGE_NAME"
         const val PREF_LANGUAGE_CODE: String = "LANGUAGE_CODE"
-        const val THEME_HAX_CODE = "THEME_HAX_CODE"
+
         const val PREF_USER_NAME = "user_name"
         const val PREF_USER_AGE = "user_age"
         const val PREF_USER_GENDER = "user_gender"

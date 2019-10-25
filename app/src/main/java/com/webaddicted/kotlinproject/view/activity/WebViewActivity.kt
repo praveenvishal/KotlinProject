@@ -12,12 +12,12 @@ import android.view.View
 import android.webkit.*
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.Lg
-import com.android.boxlty.global.common.MediaPickerHelper
-import com.android.boxlty.global.common.showToast
-import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityWebviewBinding
+import com.webaddicted.kotlinproject.global.common.Lg
+import com.webaddicted.kotlinproject.global.common.MediaPickerHelper
+import com.webaddicted.kotlinproject.global.common.showToast
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.global.misc.WebChromeClientTest
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 

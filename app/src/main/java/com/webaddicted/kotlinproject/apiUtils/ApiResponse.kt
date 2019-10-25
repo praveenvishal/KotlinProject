@@ -1,4 +1,4 @@
-package com.prodege.shopathome.model.networkCall
+package com.webaddicted.kotlinproject.apiUtils
 
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.AppApplication

@@ -1,4 +1,4 @@
-package com.prodege.shopathome.model.networkCall
+package com.webaddicted.kotlinproject.apiUtils
 
 /**
  * Created by Deepak Sharma on 01/07/19.

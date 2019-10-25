@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.text.Html
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.FrmDynamicLayoutBinding
 import com.webaddicted.kotlinproject.databinding.FrmSharedPrefBinding
-import com.webaddicted.kotlinproject.databinding.RowDynamicLayoutBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.global.constant.PreferenceConstant.Companion.PREF_USER_AGE
 import com.webaddicted.kotlinproject.global.constant.PreferenceConstant.Companion.PREF_USER_IS_MARRIED
 import com.webaddicted.kotlinproject.global.constant.PreferenceConstant.Companion.PREF_USER_NAME

@@ -5,9 +5,9 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmNewsBinding
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.model.circle.CircleGameBean
 import com.webaddicted.kotlinproject.view.adapter.CircleGameAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment

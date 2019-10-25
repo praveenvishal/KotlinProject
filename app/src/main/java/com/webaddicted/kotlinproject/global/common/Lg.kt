@@ -1,4 +1,4 @@
-package com.android.boxlty.global.common
+package com.webaddicted.kotlinproject.global.common
 
 /**
  * Helper class for a list (or tree) of LoggerNodes.

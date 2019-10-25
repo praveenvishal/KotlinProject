@@ -9,7 +9,7 @@ import android.util.Log
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import com.android.boxlty.global.common.Lg
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.view.activity.WebViewActivity
 import java.io.File
 import java.io.IOException

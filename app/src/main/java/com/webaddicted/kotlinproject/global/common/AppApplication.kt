@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import com.android.boxlty.global.common.NetworkChangeReceiver
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.koin.appModule
 import com.webaddicted.kotlinproject.global.koin.commonModelModule
@@ -16,7 +15,6 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 /**
  * Created by Deepak Sharma on 01/07/19.

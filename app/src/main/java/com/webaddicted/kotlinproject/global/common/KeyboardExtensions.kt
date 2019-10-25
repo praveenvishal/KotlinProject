@@ -1,4 +1,4 @@
-package com.webaddicted.androidkeyboardstatechecker
+package com.webaddicted.kotlinproject.global.common
 
 import android.app.Activity
 import android.content.Context

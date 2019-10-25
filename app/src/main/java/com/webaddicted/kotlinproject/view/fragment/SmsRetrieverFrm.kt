@@ -6,14 +6,13 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.visible
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
-import com.webaddicted.androidkeyboardstatechecker.KeyboardEventListener
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmSmsRetrieverBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
+import com.webaddicted.kotlinproject.global.common.KeyboardEventListener
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.global.misc.AppSignatureHashHelper
 import com.webaddicted.kotlinproject.global.services.SMSReceiver
 import com.webaddicted.kotlinproject.view.base.BaseFragment

@@ -1,4 +1,4 @@
-package com.prodege.shopathome.model.networkCall
+package com.webaddicted.kotlinproject.apiUtils
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

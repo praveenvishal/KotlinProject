@@ -3,9 +3,9 @@ package com.webaddicted.kotlinproject.view.adapter
 import android.app.Activity
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.showImage
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowLanguageBinding
+import com.webaddicted.kotlinproject.global.common.showImage
 import com.webaddicted.kotlinproject.model.bean.language.LanguageBean
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 import com.webaddicted.kotlinproject.view.activity.LanguageActivity

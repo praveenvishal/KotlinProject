@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.webaddicted.kotlinproject.R
-
-
 /**
  * this class help in show working process of create game &
  * select player/fielder rule

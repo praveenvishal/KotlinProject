@@ -7,9 +7,9 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.boxlty.global.common.gone
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
+import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.view.activity.MapActivity
 import com.webaddicted.kotlinproject.view.activity.SpeechTextActivity
 import com.webaddicted.kotlinproject.view.activity.WebViewActivity

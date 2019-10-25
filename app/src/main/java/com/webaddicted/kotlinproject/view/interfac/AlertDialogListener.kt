@@ -1,4 +1,4 @@
-package com.android.boxlty.view.interfaces
+package com.webaddicted.kotlinproject.view.interfac
 
 interface AlertDialogListener {
     fun okClick()

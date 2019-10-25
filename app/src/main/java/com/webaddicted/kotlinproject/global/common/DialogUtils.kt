@@ -10,9 +10,9 @@ import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
-import com.android.boxlty.view.interfaces.AlertDialogListener
-import com.android.boxlty.view.interfaces.AlertRetryDialogListener
 import com.webaddicted.kotlinproject.R
+import com.webaddicted.kotlinproject.view.interfac.AlertDialogListener
+import com.webaddicted.kotlinproject.view.interfac.AlertRetryDialogListener
 
 
 class DialogUtil {

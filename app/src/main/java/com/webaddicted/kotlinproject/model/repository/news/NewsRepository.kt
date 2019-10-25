@@ -1,10 +1,10 @@
 package com.webaddicted.kotlinproject.model.repository.news
 
 import androidx.lifecycle.MutableLiveData
+import com.webaddicted.kotlinproject.apiUtils.ApiResponse
+import com.webaddicted.kotlinproject.apiUtils.ApiServices
+import com.webaddicted.kotlinproject.apiUtils.DataFetchCall
 import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
-import com.prodege.shopathome.model.networkCall.ApiResponse
-import com.prodege.shopathome.model.networkCall.ApiServices
-import com.prodege.shopathome.model.networkCall.DataFetchCall
 import kotlinx.coroutines.Deferred
 import org.koin.core.KoinComponent
 import retrofit2.Response

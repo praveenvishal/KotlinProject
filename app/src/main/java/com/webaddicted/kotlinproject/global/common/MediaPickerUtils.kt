@@ -1,15 +1,12 @@
-package com.android.boxlty.global.common
+package com.webaddicted.kotlinproject.global.common
 
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import com.android.boxlty.global.annotationDef.MediaPickerType
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.global.common.CompressImage
-import com.webaddicted.kotlinproject.global.common.FileUtils
-import com.webaddicted.kotlinproject.global.common.PermissionHelper
+import com.webaddicted.kotlinproject.global.annotationDef.MediaPickerType
 import java.io.File
 import java.util.ArrayList
 

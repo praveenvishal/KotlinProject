@@ -16,7 +16,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.room.Room
-import com.android.boxlty.global.common.*
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.global.constant.DbConstant

@@ -1,4 +1,4 @@
-package com.android.boxlty.global.common
+package com.webaddicted.kotlinproject.global.common
 
 import android.content.Context
 import android.net.ConnectivityManager

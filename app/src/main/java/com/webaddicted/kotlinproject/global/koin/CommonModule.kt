@@ -1,6 +1,6 @@
 package com.webaddicted.kotlinproject.global.koin
 
-import com.android.boxlty.global.common.MediaPickerUtils
+import com.webaddicted.kotlinproject.global.common.MediaPickerUtils
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceMgr
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceUtils
 import org.koin.dsl.module

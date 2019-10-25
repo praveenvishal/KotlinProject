@@ -3,9 +3,9 @@ package com.webaddicted.kotlinproject.view.activity
 import android.os.Handler
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.Lg
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivitySplashBinding
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.global.constant.AppConstant
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 import java.util.*

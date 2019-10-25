@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.webaddicted.kotlinproject.model.repository.news.NewsRepository
 import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.webaddicted.kotlinproject.viewModel.base.BaseViewModel
-import com.prodege.shopathome.model.networkCall.ApiResponse
+import com.webaddicted.kotlinproject.apiUtils.ApiResponse
 
 /**
  * Created by Deepak Sharma on 01/07/19.

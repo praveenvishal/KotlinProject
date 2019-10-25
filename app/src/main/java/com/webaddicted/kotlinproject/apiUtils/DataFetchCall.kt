@@ -1,4 +1,4 @@
-package com.prodege.shopathome.model.networkCall
+package com.webaddicted.kotlinproject.apiUtils
 
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Deferred

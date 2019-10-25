@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.boxlty.global.common.gone
-import com.android.boxlty.global.common.visible
-import com.prodege.shopathome.model.networkCall.ApiResponse
 import com.webaddicted.kotlinproject.R
+import com.webaddicted.kotlinproject.apiUtils.ApiResponse
 import com.webaddicted.kotlinproject.databinding.FrmNewsBinding
+import com.webaddicted.kotlinproject.global.common.gone
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.global.constant.AppConstant
 import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.webaddicted.kotlinproject.view.adapter.NewsAdapter

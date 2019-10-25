@@ -5,11 +5,11 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.gone
-import com.android.boxlty.global.common.showImage
-import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowCircleBinding
+import com.webaddicted.kotlinproject.global.common.gone
+import com.webaddicted.kotlinproject.global.common.showImage
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.model.circle.CircleGameBean
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 

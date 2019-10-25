@@ -1,15 +1,12 @@
-package com.android.boxlty.view.dialog
+package com.webaddicted.kotlinproject.view.dialog
 
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.annotationDef.MediaPickerType
-import com.android.boxlty.global.common.*
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.DialogImagePickerBinding
-import com.webaddicted.kotlinproject.global.common.DialogUtil
-import com.webaddicted.kotlinproject.global.common.FileUtils
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
+import com.webaddicted.kotlinproject.global.annotationDef.MediaPickerType
+import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.view.base.BaseDialog
 import com.webaddicted.kotlinproject.view.interfac.OnImageActionListener
 import org.koin.android.ext.android.inject

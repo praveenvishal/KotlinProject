@@ -1,9 +1,9 @@
 package com.webaddicted.kotlinproject.view.adapter
 
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.showImage
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowChannelListBinding
+import com.webaddicted.kotlinproject.global.common.showImage
 import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 

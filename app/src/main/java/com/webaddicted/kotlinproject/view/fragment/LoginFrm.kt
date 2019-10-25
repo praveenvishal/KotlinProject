@@ -2,11 +2,8 @@ package com.webaddicted.kotlinproject.view.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.webaddicted.androidkeyboardstatechecker.KeyboardEventListener
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmLoginBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility

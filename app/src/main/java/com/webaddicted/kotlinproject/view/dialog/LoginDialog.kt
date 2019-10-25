@@ -2,10 +2,10 @@ package com.android.boxlty.view.dialog
 
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.showToast
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.DialogCustomBinding
 import com.webaddicted.kotlinproject.global.common.DialogUtil
+import com.webaddicted.kotlinproject.global.common.showToast
 import com.webaddicted.kotlinproject.view.base.BaseDialog
 
 

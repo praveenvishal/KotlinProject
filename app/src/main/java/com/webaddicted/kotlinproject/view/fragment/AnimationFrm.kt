@@ -6,12 +6,9 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.TranslateAnimation
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmAnimationBinding
-import com.webaddicted.kotlinproject.databinding.FrmDynamicLayoutBinding
-import com.webaddicted.kotlinproject.databinding.RowDynamicLayoutBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class AnimationFrm : BaseFragment() {

@@ -1,4 +1,4 @@
-package com.webaddicted.androidkeyboardstatechecker
+package com.webaddicted.kotlinproject.global.common
 
 import android.view.ViewTreeObserver
 import androidx.annotation.CallSuper

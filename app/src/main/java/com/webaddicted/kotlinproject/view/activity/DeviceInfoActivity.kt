@@ -6,23 +6,13 @@ import android.content.Intent
 import android.speech.RecognizerIntent
 import android.speech.tts.TextToSpeech
 import android.util.Log
-
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.boxlty.global.common.visible
-import com.google.android.gms.location.places.ui.PlaceAutocomplete
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.ActivityLanguageBinding
 import com.webaddicted.kotlinproject.databinding.ActivitySpechTextBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
-import com.webaddicted.kotlinproject.model.bean.language.LanguageBean
-import com.webaddicted.kotlinproject.view.adapter.LanguageAdapter
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseActivity
-import com.webaddicted.kotlinproject.viewModel.main.MainViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Created by Deepak Sharma on 01/07/19.

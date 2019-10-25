@@ -4,9 +4,9 @@ import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.prodege.shopathome.model.networkCall.ApiConstant
-import com.prodege.shopathome.model.networkCall.ApiServices
-import com.prodege.shopathome.model.networkCall.ReflectionUtil
+import com.webaddicted.kotlinproject.apiUtils.ApiConstant
+import com.webaddicted.kotlinproject.apiUtils.ApiServices
+import com.webaddicted.kotlinproject.apiUtils.ReflectionUtil
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

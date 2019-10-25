@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import com.android.boxlty.global.common.visible
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmGoogleMapBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
@@ -17,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.activity.MapActivity
 
 class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickListener {

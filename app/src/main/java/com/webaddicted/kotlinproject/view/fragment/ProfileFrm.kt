@@ -3,14 +3,13 @@ package com.webaddicted.kotlinproject.view.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.global.annotationDef.MediaPickerType
-import com.android.boxlty.global.common.showImage
-import com.android.boxlty.global.common.visible
-import com.android.boxlty.view.dialog.ImagePickerDialog
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityProfileBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
+import com.webaddicted.kotlinproject.global.annotationDef.MediaPickerType
+import com.webaddicted.kotlinproject.global.common.showImage
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseFragment
+import com.webaddicted.kotlinproject.view.dialog.ImagePickerDialog
 import com.webaddicted.kotlinproject.view.interfac.OnImageActionListener
 import java.io.File
 

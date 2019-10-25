@@ -10,15 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.android.boxlty.global.common.MediaPickerUtils
-import com.android.boxlty.global.common.showToast
-import com.prodege.shopathome.model.networkCall.ApiResponse
-import com.webaddicted.androidkeyboardstatechecker.KeyboardEventListener
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.global.common.FileUtils
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
-import com.webaddicted.kotlinproject.global.common.PermissionHelper
-import com.webaddicted.kotlinproject.global.common.ValidationHelper
+import com.webaddicted.kotlinproject.apiUtils.ApiResponse
+import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.global.db.dao.UserInfoDao
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceMgr
 import com.webaddicted.kotlinproject.model.bean.eventBus.EventBusListener

@@ -46,7 +46,7 @@ fun View.gone() {
  * @param imgUrl       remote image url
  * @param imageLoaderType type of place holder show which is define in string
  */
-fun CircleImageView.showImage(imgUrl: String, imageLoaderType: String) {
+fun CircleImageView.showImage(imgUrl: String?, imageLoaderType: String) {
     val drawableTypeRequest = Glide.with(context)
         .load(imgUrl)
     getPlaceHolder(context, drawableTypeRequest, imageLoaderType).into(this)
@@ -59,7 +59,7 @@ fun CircleImageView.showImage(imgUrl: String, imageLoaderType: String) {
  * @param imgUrl       remote image url
  * @param imageLoaderType type of place holder show which is define in string
  */
-fun ImageView.showImage(imgUrl: String, imageLoaderType: String) {
+fun ImageView.showImage(imgUrl: String?, imageLoaderType: String) {
     val drawableTypeRequest = Glide.with(context)
         .load(imgUrl)
     getPlaceHolder(context, drawableTypeRequest, imageLoaderType).into(this)

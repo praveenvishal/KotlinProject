@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
+import com.webaddicted.kotlinproject.global.common.ShowSearchView
 import com.webaddicted.kotlinproject.global.common.gone
+import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.activity.MapActivity
 import com.webaddicted.kotlinproject.view.activity.SpeechTextActivity
 import com.webaddicted.kotlinproject.view.activity.WebViewActivity
@@ -38,7 +40,7 @@ class TaskFrm : BaseFragment() {
         "Speech to text",
         "Animation",
         "Recycler View",
-        "Expendable Spinner List View",
+        "Expendable/Spinner List View",
         "Share",
         "Receiver",
         "Services",
@@ -53,7 +55,7 @@ class TaskFrm : BaseFragment() {
         "Bottom Navigation",
         "Bottom Sheet"
     )
-
+    lateinit var showSearchView: ShowSearchView
 
     companion object {
         val TAG = TaskFrm::class.java.simpleName
@@ -75,27 +77,45 @@ class TaskFrm : BaseFragment() {
 
     private fun init() {
         mBinding.toolbar.imgBack.gone()
+        mBinding.toolbar.imgProfile.visible()
+        mBinding.toolbar.imgProfile.setImageDrawable(resources.getDrawable(R.drawable.ic_search))
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.task_title)
         mTaskList = ArrayList(Arrays.asList(*worktask))
+        showSearchView = ShowSearchView()
         setAdapter()
         clickListener()
 
     }
 
     private fun clickListener() {
-        mBinding.edtSearch.addTextChangedListener(object : TextWatcher {
+        mBinding.toolbar.imgProfile.setOnClickListener(this)
+        mBinding.toolbar.imgSearchBack.setOnClickListener(this)
+        mBinding.toolbar.editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                val text = mBinding.edtSearch.getText().toString().toLowerCase(Locale.getDefault())
+                val text = mBinding.toolbar.editTextSearch.getText().toString()
+                    .toLowerCase(Locale.getDefault())
                 mHomeAdapter.filter(text)
             }
 
             override fun afterTextChanged(editable: Editable) {
-
             }
         })
+
+    }
+
+    override fun onClick(v: View) {
+        super.onClick(v)
+        when (v.id) {
+            R.id.img_search_back, R.id.img_profile ->
+                showSearchView.handleToolBar(
+                    activity,
+                    mBinding.toolbar.cardSearch,
+                    mBinding.toolbar.editTextSearch
+                )
+        }
     }
 
     private fun setAdapter() {
@@ -125,7 +145,12 @@ class TaskFrm : BaseFragment() {
             "Shared Preference" -> navigateScreen(SharedPrefFrm.TAG)
             "Speech to text" -> navigateScreen(SpeechTextActivity.TAG)
             "Animation" -> navigateScreen(AnimationFrm.TAG)
-            "Share"-> navigateScreen(ShareDataFrm.TAG)
+            "Share" -> navigateScreen(ShareDataFrm.TAG)
+            "Recycler View" -> navigateScreen(RecyclerViewFrm.TAG)
+            "Expendable/Spinner List View" -> navigateScreen(ExpendableFrm.TAG)
+            "Receiver" -> navigateScreen(ReceiverFrm.TAG)
+            "Services" -> navigateScreen(ServiceFrm.TAG)
+
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -134,6 +159,7 @@ class TaskFrm : BaseFragment() {
         super.onResume()
         addBlankSpace(mBinding.bottomSpace)
     }
+
     /**
      * navigate on fragment
      *
@@ -144,7 +170,7 @@ class TaskFrm : BaseFragment() {
         when (tag) {
             WidgetFrm.TAG -> frm = WidgetFrm.getInstance(Bundle())
             NewsFrm.TAG -> frm = NewsFrm.getInstance(Bundle())
-            MapActivity.TAG-> activity?.let { MapActivity.newIntent(it) }
+            MapActivity.TAG -> activity?.let { MapActivity.newIntent(it) }
             CircleFrm.TAG -> frm = CircleFrm.getInstance(Bundle())
             CalendarFrm.TAG -> frm = CalendarFrm.getInstance(Bundle())
             SmsRetrieverFrm.TAG -> frm = SmsRetrieverFrm.getInstance(Bundle())
@@ -155,7 +181,12 @@ class TaskFrm : BaseFragment() {
             SharedPrefFrm.TAG -> frm = SharedPrefFrm.getInstance(Bundle())
             AnimationFrm.TAG -> frm = AnimationFrm.getInstance(Bundle())
             ShareDataFrm.TAG -> frm = ShareDataFrm.getInstance(Bundle())
-            SpeechTextActivity.TAG -> activity?.let { MapActivity.newIntent(it) }
+            SpeechTextActivity.TAG -> activity?.let { SpeechTextActivity.newIntent(it) }
+            RecyclerViewFrm.TAG -> frm = RecyclerViewFrm.getInstance(Bundle())
+            ExpendableFrm.TAG -> frm = ExpendableFrm.getInstance(Bundle())
+            ReceiverFrm.TAG -> frm = ReceiverFrm.getInstance(Bundle())
+            ServiceFrm.TAG -> frm = ServiceFrm.getInstance(Bundle())
+
 
             else -> frm = WidgetFrm.getInstance(Bundle())
         }

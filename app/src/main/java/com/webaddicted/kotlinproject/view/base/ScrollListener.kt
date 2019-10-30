@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
  * Created by Deepak Sharma(webaddicted) on 24-07-2019.
  */
 abstract class ScrollListener : RecyclerView.OnScrollListener {
-    private var mLayoutManager: RecyclerView.LayoutManager
+    private var mLayoutManager: RecyclerView.LayoutManager?=null
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private var visibleThreshold = 5
@@ -35,6 +35,18 @@ abstract class ScrollListener : RecyclerView.OnScrollListener {
         visibleThreshold = visibleThreshold * layoutManager.spanCount
     }
 
+    constructor(layoutMgr: RecyclerView.LayoutManager){
+        if (layoutMgr is LinearLayoutManager){
+            this.mLayoutManager = layoutMgr as LinearLayoutManager
+        }else if (layoutMgr is GridLayoutManager){
+            this.mLayoutManager = layoutMgr as GridLayoutManager
+            visibleThreshold = visibleThreshold * layoutMgr.spanCount
+        }else if (layoutMgr is StaggeredGridLayoutManager){
+            this.mLayoutManager = layoutMgr as  StaggeredGridLayoutManager
+            visibleThreshold = visibleThreshold * layoutMgr.spanCount
+        }
+    }
+
     fun getLastVisibleItem(lastVisibleItemPositions: IntArray): Int {
         var maxSize = 0
         for (i in lastVisibleItemPositions.indices) {
@@ -52,7 +64,7 @@ abstract class ScrollListener : RecyclerView.OnScrollListener {
     // but first we check if we are waiting for the previous load to finish.
     override fun onScrolled(view: RecyclerView, dx: Int, dy: Int) {
         var lastVisibleItemPosition = 0
-        val totalItemCount = mLayoutManager.itemCount
+        val totalItemCount = mLayoutManager?.itemCount
         if (mLayoutManager is StaggeredGridLayoutManager) {
             val lastVisibleItemPositions =
                 (mLayoutManager as StaggeredGridLayoutManager).findLastVisibleItemPositions(null)
@@ -65,7 +77,7 @@ abstract class ScrollListener : RecyclerView.OnScrollListener {
         }
         // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state
-        if (totalItemCount < previousTotalItemCount) {
+        if (totalItemCount!! < previousTotalItemCount) {
             this.currentPage = this.startingPageIndex
             this.previousTotalItemCount = totalItemCount
             if (totalItemCount == 0) {

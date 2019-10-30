@@ -17,7 +17,6 @@ import kotlin.collections.ArrayList
 class CircleFrm : BaseFragment() {
     private lateinit var mBinding: FrmNewsBinding
     private lateinit var newsAdapter: CircleGameAdapter
-
     companion object {
         val TAG = CircleFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): CircleFrm {

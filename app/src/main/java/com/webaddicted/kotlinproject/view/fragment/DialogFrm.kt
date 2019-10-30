@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.Window
 import androidx.databinding.ViewDataBinding
-import com.android.boxlty.view.dialog.LoginDialog
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.DialogCustomBinding
 import com.webaddicted.kotlinproject.databinding.FrmDialogBinding
@@ -17,6 +16,7 @@ import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.showToast
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseFragment
+import com.webaddicted.kotlinproject.view.dialog.LoginDialog
 import java.util.*
 
 class DialogFrm : BaseFragment() {

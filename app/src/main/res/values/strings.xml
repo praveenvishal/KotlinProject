@@ -162,4 +162,23 @@
     <string name="share_title">Share Data On Social</string>
     <string name="text_to_speech">Text to speech</string>
     <string name="speech_to_text">Speech To Text</string>
+    <string name="list">ListView</string>
+    <string name="grid">Grid View</string>
+    <string name="header">Header</string>
+    <string name="end_less_scroll">End less scroll</string>
+    <string name="staggered">Staggered</string>
+    <string name="btn_swipe_to_delete">Swipe to delete</string>
+    <string name="recycler_view_title">Recycler View</string>
+    <string name="change_animation">Change Animation</string>
+    <string name="expendable">Expendable</string>
+    <string name="spinner">Spinner</string>
+    <string name="expendable_title">Expendable/Spinner</string>
+    <string name="receiver_title">Receiver Type</string>
+    <string name="services_title">Services</string>
+    <string name="normal">Normal</string>
+    <string name="custom">Custom</string>
+    <string name="ordered">Ordered</string>
+    <string name="check_internet_connection">To check internet connection receiver turn off mobile data</string>
+    <string name="broadcast_receiver">This is custom receiver</string>
+    <string name="turn_off_internet">Turn off internet</string>
 </resources>

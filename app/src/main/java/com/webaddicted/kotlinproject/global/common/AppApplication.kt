@@ -37,6 +37,7 @@ class AppApplication : Application() {
             androidContext(this@AppApplication)
             modules(getModule())
         }
+        checkInternetConnection()
     }
 
     /**

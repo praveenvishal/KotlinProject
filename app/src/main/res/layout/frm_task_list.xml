@@ -21,26 +21,6 @@
             <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
-                <EditText
-                        android:id="@+id/edt_search"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp40"
-                        android:layout_marginLeft="@dimen/dp5"
-                        android:layout_marginTop="@dimen/dp5"
-                        android:layout_marginRight="@dimen/dp5"
-                        android:layout_marginBottom="@dimen/dp5"
-                        android:background="@drawable/edt_round_corner"
-                        android:drawableLeft="@drawable/ic_search"
-                        android:drawablePadding="@dimen/dp5"
-                        android:drawableTint="@color/gray"
-                        android:ems="10"
-                        android:hint="@string/search"
-                        android:imeOptions="actionSend"
-                        android:inputType="textPersonName"
-                        android:paddingLeft="@dimen/dp15"
-                        android:textColorHint="@color/gray" />
-
                 <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

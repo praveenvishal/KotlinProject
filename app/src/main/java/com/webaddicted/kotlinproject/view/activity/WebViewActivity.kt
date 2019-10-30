@@ -100,7 +100,7 @@ class WebViewActivity : BaseActivity() {
         mBinding.toolbar.imgBack.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.webview_title)
         webView.settings.setLoadsImagesAutomatically(true);
-        webView.settings.setUserAgentString("boxltyandroid");
+        webView.settings.setUserAgentString("android");
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.settings.setJavaScriptEnabled(true)
         webView.settings.setLoadWithOverviewMode(true)
@@ -172,8 +172,8 @@ class WebViewActivity : BaseActivity() {
                     " \$(\"#btnClick\").bind(\"click\", function(){\n" +
                     " if(navigator.userAgent==\"boxltyios\"){\n" +
                     " document.getElementById(\"responseP\").innerHTML=\"IOS FOUND\";\n" +
-                    " window.webkit.messageHandlers.boxlty.postMessage({param1:\"sourabh\"})\n" +
-                    " }else if(navigator.userAgent==\"boxltyandroid\"){\n" +
+                    " window.webkit.messageHandlers.android.postMessage({param1:\"sourabh\"})\n" +
+                    " }else if(navigator.userAgent==\"android\"){\n" +
                     " document.getElementById(\"responseP\").innerHTML=\"ANDROID FOUND\";\n" +
                     " window.Android.profileVerification(\"Hello\");\n" +
                     " \n" +
@@ -237,7 +237,7 @@ class WebViewActivity : BaseActivity() {
             webView.settings.useWideViewPort = true
             webView.isScrollbarFadingEnabled = true
             webView.isVerticalScrollBarEnabled = false
-            webView.settings.userAgentString = "boxltyandroid"
+            webView.settings.userAgentString = "android"
             webView.getSettings().setAppCacheEnabled(false)
             webView.getSettings().domStorageEnabled = true
             webView.clearCache(true)

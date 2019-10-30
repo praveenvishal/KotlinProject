@@ -1,4 +1,4 @@
-package com.android.boxlty.view.dialog
+package com.webaddicted.kotlinproject.view.dialog
 
 import android.view.View
 import androidx.databinding.ViewDataBinding

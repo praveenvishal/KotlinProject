@@ -181,4 +181,13 @@
     <string name="check_internet_connection">To check internet connection receiver turn off mobile data</string>
     <string name="broadcast_receiver">This is custom receiver</string>
     <string name="turn_off_internet">Turn off internet</string>
+    <string name="normal_service">Normal Service</string>
+    <string name="start_normal_service">Start normal service</string>
+    <string name="stop_normal_service">Stop normal service</string>
+    <string name="bind_service">Bind Service</string>
+    <string name="start_bind_service">Start bind service</string>
+    <string name="stop_bind_service">Stop bind service</string>
+    <string name="intent_service">Intent Service</string>
+    <string name="start_intent_service">Start intent service</string>
+    <string name="stop_intent_service">Stop intent service</string>
 </resources>

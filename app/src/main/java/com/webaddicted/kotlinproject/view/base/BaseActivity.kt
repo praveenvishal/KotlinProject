@@ -55,6 +55,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
                 e.printStackTrace()
             }
         }
+        getNetworkStateReceiver()
     }
 
     protected fun fullScreen() {
@@ -169,7 +170,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         if (isEnableBackStack)
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
         fragmentTransaction.commitAllowingStateLoss()
-        getNetworkStateReceiver()
+
     }
 
     fun navigateAddFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {

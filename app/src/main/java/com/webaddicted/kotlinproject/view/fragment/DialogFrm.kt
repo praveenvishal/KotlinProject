@@ -61,9 +61,9 @@ class DialogFrm : BaseFragment() {
         when (v.id) {
             R.id.btn_single_click -> DialogUtil.showOkDialog(
                 activity!!,
-                "Title",
-                "msg",
-                "ok",
+                getString(R.string.app_name),
+                getString(R.string.dummyText),
+                getString(R.string.ok),
                 object :
                     DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface, which: Int) {
@@ -73,8 +73,8 @@ class DialogFrm : BaseFragment() {
                 })
             R.id.btn_two_event_dialog -> DialogUtil.showOkCancelDialog(
                 activity!!,
-                "Title",
-                "msg",
+                getString(R.string.app_name),
+                getString(R.string.dummyText),
                 object :
                     DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface, which: Int) {
@@ -134,8 +134,8 @@ class DialogFrm : BaseFragment() {
             R.layout.dialog_custom
         ) as DialogCustomBinding
         dialog.setContentView(dialogBinding.getRoot())
-        dialogBinding.txtTitle.setText("this is demo")
-        dialogBinding.txtMessage.setText(resources.getString(R.string.marquee_txt))
+        dialogBinding.txtTitle.setText(getString(R.string.app_name))
+        dialogBinding.txtMessage.setText(resources.getString(R.string.dummyText))
         dialogBinding.btnOk.setOnClickListener({ v ->
             GlobalUtility.showToast(resources.getString(R.string.ok))
             dialog.dismiss()

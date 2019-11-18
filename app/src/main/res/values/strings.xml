@@ -190,4 +190,25 @@
     <string name="intent_service">Intent Service</string>
     <string name="start_intent_service">Start intent service</string>
     <string name="stop_intent_service">Stop intent service</string>
+    <string name="deep_mobile_no">+919024061407</string>
+    <string name="enter_mobile">Enter Mobile Number</string>
+    <string name="mobile_no_linked">Your mobile number will be linked with \n deepaksharma040695@gmail.com</string>
+    <string name="otp">OTP</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="mobile_no_will_be_linked">+919024061407  will be linked with \ndeepaksharma040695@gmail.com</string>
+    <string name="edit_mobile_no">Edit Mobile Number</string>
+    <string name="we_are_verifying">We are verifying your mobile number</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="otp_send_success">OTP successfully send to your mobile number.</string>
+    <string name="v_commerce">Commerce</string>
+    <string name="fashion">Fashion</string>
+    <string name="mens_wear">Mens Wear</string>
+    <string name="mobiles_and_elec">Mobile and Electronics</string>
+    <string name="home_deco">Home Decorations</string>
+    <string name="search_mobile">Mobile Category</string>
+    <string name="sort">Sort By</string>
+    <string name="save">Save</string>
+    <string name="price60999">60,999</string>
+    <string name="Rs">Rs</string>
+    <string name="i_phone">I phone X (Black, 128GB) 6GB Ram with 500mAh...</string>
 </resources>

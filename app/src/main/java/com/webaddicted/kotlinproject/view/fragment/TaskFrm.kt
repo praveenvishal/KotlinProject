@@ -1,5 +1,7 @@
 package com.webaddicted.kotlinproject.view.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +19,7 @@ import com.webaddicted.kotlinproject.view.activity.SpeechTextActivity
 import com.webaddicted.kotlinproject.view.activity.WebViewActivity
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
+import com.webaddicted.kotlinproject.view.ecommerce.EcommLoginFrm
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -47,6 +50,7 @@ class TaskFrm : BaseFragment() {
         "Viewpager Tab",
         "FingerPrint",
         "Barcode",
+        "Ecommerce",
         "Digital Signature",
         "PDF",
         "Collapse",
@@ -90,6 +94,7 @@ class TaskFrm : BaseFragment() {
     private fun clickListener() {
         mBinding.toolbar.imgProfile.setOnClickListener(this)
         mBinding.toolbar.imgSearchBack.setOnClickListener(this)
+        mBinding.linearMobileNo.setOnClickListener(this)
         mBinding.toolbar.editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
             }
@@ -115,6 +120,11 @@ class TaskFrm : BaseFragment() {
                     mBinding.toolbar.cardSearch,
                     mBinding.toolbar.editTextSearch
                 )
+            R.id.linear_mobile_no-> {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:" + getString(R.string.deep_mobile_no))
+                startActivity(intent)
+            }
         }
     }
 
@@ -150,7 +160,7 @@ class TaskFrm : BaseFragment() {
             "Expendable/Spinner List View" -> navigateScreen(ExpendableFrm.TAG)
             "Receiver" -> navigateScreen(ReceiverFrm.TAG)
             "Services" -> navigateScreen(ServiceFrm.TAG)
-
+            "Ecommerce" -> navigateScreen(EcommLoginFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -186,8 +196,7 @@ class TaskFrm : BaseFragment() {
             ExpendableFrm.TAG -> frm = ExpendableFrm.getInstance(Bundle())
             ReceiverFrm.TAG -> frm = ReceiverFrm.getInstance(Bundle())
             ServiceFrm.TAG -> frm = ServiceFrm.getInstance(Bundle())
-
-
+            EcommLoginFrm.TAG -> frm = EcommLoginFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

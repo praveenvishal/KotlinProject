@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.ActivityProfileBinding
+import com.webaddicted.kotlinproject.databinding.FrmProfileBinding
 import com.webaddicted.kotlinproject.global.annotationDef.MediaPickerType
 import com.webaddicted.kotlinproject.global.common.showImage
 import com.webaddicted.kotlinproject.global.common.visible
@@ -15,7 +15,7 @@ import java.io.File
 
 class ProfileFrm : BaseFragment() {
     private lateinit var imgPickerDialog: ImagePickerDialog
-    private lateinit var mBinding: ActivityProfileBinding
+    private lateinit var mBinding: FrmProfileBinding
 
     companion object {
         val TAG = ProfileFrm::class.java.simpleName
@@ -27,11 +27,11 @@ class ProfileFrm : BaseFragment() {
     }
 
     override fun getLayout(): Int {
-        return R.layout.activity_profile
+        return R.layout.frm_profile
     }
 
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
-        mBinding = binding as ActivityProfileBinding
+        mBinding = binding as FrmProfileBinding
         init()
         clickListener();
     }

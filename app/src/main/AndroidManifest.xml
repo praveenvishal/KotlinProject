@@ -89,6 +89,8 @@
             </intent-filter>
         </receiver>
         <activity android:name=".view.activity.WebViewActivity"></activity>
+        <activity android:name=".view.ecommerce.EcommHomeActivity"></activity>
+
         <service android:name=".global.services.NormalService" />
     </application>
 

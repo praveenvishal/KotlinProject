@@ -94,7 +94,12 @@ class ValidationHelper {
             return false
         }
 
-        fun hasMinimumLength(editText: EditText, length: Int, message: String, showToast: Boolean): Boolean {
+        fun hasMinimumLength(
+            editText: EditText,
+            length: Int,
+            message: String,
+            showToast: Boolean
+        ): Boolean {
             if (!hasMinimumLength(editText.text.toString().trim { it <= ' ' }, length)) {
                 if (showToast)
                     showToast(editText.context, message)
@@ -155,7 +160,10 @@ class ValidationHelper {
             return false
         }
 
-        fun isEmailValid(@NonNull targetEditText: EditText, msg: String, showToast: Boolean): Boolean {
+        fun isEmailValid(
+            @NonNull targetEditText: EditText, msg: String,
+            showToast: Boolean
+        ): Boolean {
             val source = targetEditText.text.toString().trim { it <= ' ' }
             val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
             val p = Pattern.compile(
@@ -277,7 +285,10 @@ class ValidationHelper {
 
         }
 
-        fun isSame(@NonNull sourceEditText: TextView, destinationString: String, msg: String): Boolean {
+        fun isSame(
+            @NonNull sourceEditText: TextView, destinationString: String,
+            msg: String
+        ): Boolean {
 
             val source = sourceEditText.text.toString().trim { it <= ' ' }
             if (source.equals(destinationString, ignoreCase = true)) {
@@ -341,7 +352,12 @@ class ValidationHelper {
             return false
         }
 
-        fun hasMinimumwords(editText: EditText, alertType: ALERT_TYPE, length: Int, message: String): Boolean {
+        fun hasMinimumwords(
+            editText: EditText,
+            alertType: ALERT_TYPE,
+            length: Int,
+            message: String
+        ): Boolean {
             if (editText.text.toString().trim { it <= ' ' }.length >= length) {
                 showAlert(editText, alertType, message)
                 return false
@@ -384,7 +400,11 @@ class ValidationHelper {
             return true
         }
 
-        fun isValidPassword(layoutPassword: TextInputLayout, password: String, errorMsg: String): Boolean {
+        fun isValidPassword(
+            layoutPassword: TextInputLayout,
+            password: String,
+            errorMsg: String
+        ): Boolean {
             val UpperCasePatten = Pattern.compile("[A-Z ]")
             val lowerCasePatten = Pattern.compile("[a-z ]")
             val digitCasePatten = Pattern.compile("[0-9 ]")
@@ -492,7 +512,10 @@ class ValidationHelper {
          * @param wrapperCountry
          * @return country validation status
          */
-        fun validateCountry(edtCountry: TextInputEditText, wrapperCountry: TextInputLayout): Boolean {
+        fun validateCountry(
+            edtCountry: TextInputEditText,
+            wrapperCountry: TextInputLayout
+        ): Boolean {
             if (ValidationHelper.isBlank(edtCountry)) {
                 wrapperCountry.setError(edtCountry.getContext().getResources().getString(R.string.enter_country))
             } else {
@@ -584,7 +607,10 @@ class ValidationHelper {
             return false
         }
 
-        fun validateReferral(edtReferralCode: TextInputEditText, wrapperReferralCode: TextInputLayout): Boolean {
+        fun validateReferral(
+            edtReferralCode: TextInputEditText,
+            wrapperReferralCode: TextInputLayout
+        ): Boolean {
             if (ValidationHelper.isBlank(edtReferralCode)) {
                 wrapperReferralCode.setError(edtReferralCode.getContext().getResources().getString(R.string.error_referral_code))
             } else {
@@ -594,7 +620,11 @@ class ValidationHelper {
             return false
         }
 
-        fun validateBlank(textInput: TextInputEditText, wrapper: TextInputLayout, enter_subject: String): Boolean {
+        fun validateBlank(
+            textInput: TextInputEditText,
+            wrapper: TextInputLayout,
+            enter_subject: String
+        ): Boolean {
             if (ValidationHelper.isBlank(textInput)) {
                 wrapper.setError(enter_subject)
             } else {
@@ -603,24 +633,48 @@ class ValidationHelper {
             }
             return false
         }
+
         fun validateMobileNo(textInput: TextInputEditText, wrapper: TextInputLayout): Boolean {
-            if (ValidationHelper.isBlank(textInput)) {
-                wrapper.setError(textInput.getContext().getResources().getString(R.string.enter_mobile_no))
-            } else if (textInput.text.toString().trim().length!=10) {
-                wrapper.setError(textInput.getContext().getResources().getString(R.string.enter_valid_mobile_no))
+            if (isBlank(textInput)) {
+                    wrapper.setError(textInput.getContext().getResources().getString(R.string.enter_mobile_no))
+            } else if (textInput.text.toString().trim().length != 10) {
+                    wrapper.setError(textInput.getContext().getResources().getString(R.string.enter_valid_mobile_no))
             } else {
-                wrapper.setError(null)
+                    wrapper.setError(null)
+                return true
+            }
+            return false
+        }
+        fun validateMobileNo(textInput: TextInputEditText): Boolean {
+            if (isBlank(textInput)) {
+                textInput.setError(textInput.getContext().getResources().getString(R.string.enter_mobile_no))
+            } else if (textInput.text.toString().trim().length != 10) {
+                textInput.setError(textInput.getContext().getResources().getString(R.string.enter_valid_mobile_no))
+            } else {
+                textInput.setError(null)
                 return true
             }
             return false
         }
         fun validateCode(textInput: TextInputEditText, wrapperCode: TextInputLayout): Boolean {
-            if (ValidationHelper.isBlank(textInput)) {
-                wrapperCode.setError(textInput.getContext().getResources().getString(R.string.error_valid_code))
+            if (isBlank(textInput)) {
+                 wrapperCode.setError(textInput.getContext().getResources().getString(R.string.error_valid_code))
             } else if (!(textInput.getText().toString().length === 6)) {
                 wrapperCode.setError(textInput.getContext().getResources().getString(R.string.error_six_digit_code))
             } else {
                 wrapperCode.setError(null)
+                return true
+            }
+            return false
+        }
+
+        fun validateCode(textInput: TextInputEditText): Boolean {
+            if (isBlank(textInput)) {
+                textInput.setError(textInput.getContext().getResources().getString(R.string.error_valid_code))
+            } else if (!(textInput.getText().toString().length === 6)) {
+                textInput.setError(textInput.getContext().getResources().getString(R.string.error_six_digit_code))
+            } else {
+                textInput.setError(null)
                 return true
             }
             return false

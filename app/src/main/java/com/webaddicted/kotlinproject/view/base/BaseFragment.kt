@@ -146,6 +146,19 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
         } else
             PermissionHelper.requestMultiplePermission(activity!!, multiplePermission, this)
     }
+
+
+     fun checkBlinkPermission() {
+        val multiplePermission = ArrayList<String>()
+        multiplePermission.add(Manifest.permission.CAMERA)
+        multiplePermission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        multiplePermission.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        multiplePermission.add(Manifest.permission.ACCESS_FINE_LOCATION)
+        multiplePermission.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+         if (PermissionHelper.checkMultiplePermission(activity!!, multiplePermission))onPermissionGranted(multiplePermission)
+         else PermissionHelper.requestMultiplePermission(activity!!, multiplePermission, this)
+    }
+
     override fun onPermissionGranted(mCustomPermission: List<String>) {
         FileUtils.createApplicationFolder()
     }

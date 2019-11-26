@@ -71,7 +71,7 @@ fun ImageView.showImage(imgUrl: String?, imageLoaderType: String) {
  * @param filePath          local image file path
  * @param imageLoaderType type of place holder show which is define in string
  */
-fun ImageView.showImage(filePath: File, imageLoaderType: String) {
+fun ImageView.showImage(filePath: File?, imageLoaderType: String) {
     val drawableTypeRequest = Glide.with(context)
         .load(Uri.fromFile(filePath))
     getPlaceHolder(context, drawableTypeRequest, imageLoaderType).into(this)

@@ -41,7 +41,7 @@ class EcommProductListFrm : BaseFragment() {
         mBinding.tabLayout.setTabGravity(TabLayout.GRAVITY_FILL)
         val adapter = CategoryPagerAdapterProductGrid(activity?.supportFragmentManager!!, 4)
         mBinding.pager.setAdapter(adapter)
-        mBinding.pager.setOffscreenPageLimit(1)
+        mBinding.pager.setOffscreenPageLimit(4)
         mBinding.pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(mBinding.tabLayout))
         mBinding.tabLayout.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {

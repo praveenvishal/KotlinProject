@@ -50,6 +50,8 @@ class TaskFrm : BaseFragment() {
         "Viewpager Tab",
         "FingerPrint",
         "Barcode",
+        "Timer",
+//        "BlinkScan",
         "Ecommerce",
         "Digital Signature",
         "PDF",
@@ -161,6 +163,8 @@ class TaskFrm : BaseFragment() {
             "Receiver" -> navigateScreen(ReceiverFrm.TAG)
             "Services" -> navigateScreen(ServiceFrm.TAG)
             "Ecommerce" -> navigateScreen(EcommLoginFrm.TAG)
+            "Timer" -> navigateScreen(TimerFrm.TAG)
+//            "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -197,6 +201,8 @@ class TaskFrm : BaseFragment() {
             ReceiverFrm.TAG -> frm = ReceiverFrm.getInstance(Bundle())
             ServiceFrm.TAG -> frm = ServiceFrm.getInstance(Bundle())
             EcommLoginFrm.TAG -> frm = EcommLoginFrm.getInstance(Bundle())
+            TimerFrm.TAG -> frm = TimerFrm.getInstance(Bundle())
+            BlinkScanFrm.TAG -> frm = BlinkScanFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

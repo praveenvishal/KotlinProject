@@ -211,4 +211,16 @@
     <string name="price60999">60,999</string>
     <string name="Rs">Rs</string>
     <string name="i_phone">I phone X (Black, 128GB) 6GB Ram with 500mAh...</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="resume">Resume</string>
+    <string name="handler_timer">Handler Timer</string>
+    <string name="countdown_timer">Countdown Timer</string>
+    <string name="timer_title">Timer</string>
+    <string name="reset">Reset</string>
+    <string name="scan_dl">Scan DL</string>
+    <string name="capture_selfie">Capture Selfie</string>
+           <string name="plz_blink_for_selfie">Please position your face in front of the front camera and blink</string>
+          <string name="plz_scan_dl">Please scan drivers license</string>
+    <string name="blink_scan_title">Blink scan</string>
 </resources>

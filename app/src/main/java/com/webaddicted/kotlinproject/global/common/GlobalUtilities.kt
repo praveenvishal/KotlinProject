@@ -28,13 +28,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.bumptech.glide.Glide
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
 import com.webaddicted.kotlinproject.global.constant.AppConstant.Companion.NOTIFICATION_CHANNEL_ID
 import com.webaddicted.kotlinproject.view.activity.HomeActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.webaddicted.kotlinproject.model.bean.common.NotificationData
 import java.io.File
 import java.lang.reflect.Modifier
 import java.text.ParseException
@@ -401,6 +401,25 @@ class GlobalUtility {
                 )
             }
         }
+        fun getIntentForPush(
+            ctx: Context,
+            mNotificationData: NotificationData?
+        ): Intent? {
+            var mIntent: Intent? = null
+            if (mNotificationData != null) {
+//                if (mPrefMgr.getUserId() != null && !mPrefMgr.getUserId().isEmpty()) {
+                mIntent = Intent(ctx, HomeActivity::class.java)
+//                    mIntent.putExtra(
+//                        AppConstant.NOTIFICATION_GAME_ID,
+//                        String.valueOf(mNotificationData!!.getId())
+//                    )
+//                    mIntent.putExtra(AppConstant.NOTIFICATION_CODE, mNotificationData!!.getType())
+                mIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                }
+            }
+            return mIntent
+        }
+
     }
 
 

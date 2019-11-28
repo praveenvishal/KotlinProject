@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.webaddicted.kotlinproject.R
-import de.hdodenhof.circleimageview.CircleImageView
+import com.webaddicted.kotlinproject.global.customview.CircleImageView
 import java.io.File
 
 /**

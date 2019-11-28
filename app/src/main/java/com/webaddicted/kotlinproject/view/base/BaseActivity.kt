@@ -114,7 +114,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
 
     }
 
-    override fun onClick(v: View?) {}
+    override fun onClick(v: View) {}
 
     fun checkStoragePermission() {
         val multiplePermission = ArrayList<String>()

@@ -20,7 +20,7 @@
                 android:layout_marginBottom="@dimen/dp8"
                 android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.webaddicted.kotlinproject.global.customview.CircleImageView
                     android:id="@+id/img_initial"
                     android:layout_width="@dimen/dp80"
                     android:layout_height="@dimen/dp80"

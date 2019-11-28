@@ -10,7 +10,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp22">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.webaddicted.kotlinproject.global.customview.CircleImageView
                     android:id="@+id/img_first"
                     android:layout_width="@dimen/dp200"
                     android:layout_height="@dimen/dp200"
@@ -30,7 +30,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp14" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.webaddicted.kotlinproject.global.customview.CircleImageView
                     android:id="@+id/img_second"
                     android:layout_width="@dimen/dp140"
                     android:layout_height="@dimen/dp140"
@@ -56,7 +56,7 @@
                     android:textSize="@dimen/sp14" />
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.webaddicted.kotlinproject.global.customview.CircleImageView
                     android:id="@+id/img_third"
                     android:layout_width="@dimen/dp145"
                     android:layout_height="@dimen/dp145"
@@ -81,7 +81,7 @@
 
                     />
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.webaddicted.kotlinproject.global.customview.CircleImageView
                     android:id="@+id/img_fourth"
                     android:layout_width="@dimen/dp172"
                     android:layout_height="@dimen/dp172"

@@ -223,4 +223,5 @@
            <string name="plz_blink_for_selfie">Please position your face in front of the front camera and blink</string>
           <string name="plz_scan_dl">Please scan drivers license</string>
     <string name="blink_scan_title">Blink scan</string>
+    <string name="navigation_drawer">Navigation Drawer</string>
 </resources>

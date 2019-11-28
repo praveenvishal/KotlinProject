@@ -62,14 +62,17 @@ class WebViewActivity : BaseActivity() {
         mBinding.btnWebFileChoose.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.img_back -> onBackPressed()
             R.id.btn_normal_webview -> normalWebView(mBinding.webview)
             R.id.btn_web_click -> webInterface(mBinding.webview)
-            R.id.btn_web_file_choose -> chooseImageWebViewUrl(this, mBinding.webview, "https://en.imgbb.com/")
-
+            R.id.btn_web_file_choose -> chooseImageWebViewUrl(
+                this,
+                mBinding.webview,
+                "https://en.imgbb.com/"
+            )
         }
     }
 

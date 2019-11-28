@@ -35,6 +35,7 @@ class HomeActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
         navigateScreen(TaskFrm.TAG)
+        navigateScreen(NavigationDrawerActivity.TAG)
     }
 
     /**
@@ -47,6 +48,7 @@ class HomeActivity : BaseActivity() {
         var frm: Fragment? = null
         when (tag) {
             TaskFrm.TAG -> frm = TaskFrm.getInstance(Bundle())
+            NavigationDrawerActivity.TAG ->NavigationDrawerActivity.newIntent(this)
         }
         if (frm != null) navigateFragment(R.id.container, frm, false)
     }

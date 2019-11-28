@@ -49,9 +49,9 @@ class OnBoardActivity : BaseActivity() {
         mBinding.btnSkip.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.btn_skip, R.id.btn_got_it -> {
                 LoginActivity.newIntent(this)
                 finish()

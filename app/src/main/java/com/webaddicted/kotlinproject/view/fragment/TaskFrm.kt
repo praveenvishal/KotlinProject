@@ -15,6 +15,7 @@ import com.webaddicted.kotlinproject.global.common.ShowSearchView
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.activity.MapActivity
+import com.webaddicted.kotlinproject.view.activity.NavigationDrawerActivity
 import com.webaddicted.kotlinproject.view.activity.SpeechTextActivity
 import com.webaddicted.kotlinproject.view.activity.WebViewActivity
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
@@ -53,6 +54,8 @@ class TaskFrm : BaseFragment() {
         "Timer",
 //        "BlinkScan",
         "Ecommerce",
+        "Navigation Drawer",
+
         "Digital Signature",
         "PDF",
         "Collapse",
@@ -164,6 +167,7 @@ class TaskFrm : BaseFragment() {
             "Services" -> navigateScreen(ServiceFrm.TAG)
             "Ecommerce" -> navigateScreen(EcommLoginFrm.TAG)
             "Timer" -> navigateScreen(TimerFrm.TAG)
+            "Navigation Drawer" ->navigateScreen(NavigationDrawerActivity.TAG)
 //            "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
@@ -203,6 +207,7 @@ class TaskFrm : BaseFragment() {
             EcommLoginFrm.TAG -> frm = EcommLoginFrm.getInstance(Bundle())
             TimerFrm.TAG -> frm = TimerFrm.getInstance(Bundle())
             BlinkScanFrm.TAG -> frm = BlinkScanFrm.getInstance(Bundle())
+            NavigationDrawerActivity.TAG -> activity?.let { NavigationDrawerActivity.newIntent(it) }
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

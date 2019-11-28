@@ -16,7 +16,7 @@
                 android:orientation="vertical">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.webaddicted.kotlinproject.global.customview.CircleImageView
                     android:id="@+id/img_product"
                     android:layout_width="50dp"
                     android:layout_height="50dp"

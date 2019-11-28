@@ -53,7 +53,7 @@ class AnimationFrm : BaseFragment() {
         animFade = AnimationUtils.loadAnimation(activity, R.anim.fade)
         animZoom = AnimationUtils.loadAnimation(activity, R.anim.zoom)
         animMove = AnimationUtils.loadAnimation(activity, R.anim.move)
-        animRotate = AnimationUtils.loadAnimation(activity, R.anim.rotate)
+            animRotate = AnimationUtils.loadAnimation(activity, R.anim.rotate)
         animFadeIn = AnimationUtils.loadAnimation(activity, R.anim.fade_in)
         animFadeOut = AnimationUtils.loadAnimation(activity, R.anim.fade_out)
         animZoomIn = AnimationUtils.loadAnimation(activity, R.anim.zoom_in)

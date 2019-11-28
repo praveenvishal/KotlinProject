@@ -8,6 +8,7 @@ import android.content.IntentSender
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
@@ -39,6 +40,8 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
     private var isUpdateLocation = false
     private var isShowAddress = false
     private var mGeofenceList: ArrayList<Geofence>? = null
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var locationCallback: LocationCallback
     /*** provide user current location single time
      */
     protected fun getLocation() {
@@ -60,7 +63,9 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         if (fastInterval > 0) FASTEST_INTERVAL = FASTEST_INTERVAL * fastInterval
         //        if (displacement > 0)
         MIN_DISTANCE_CHANGE_FOR_UPDATES = MIN_DISTANCE_CHANGE_FOR_UPDATES * displacement
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         checkPermission()
+
     }
 
     /**
@@ -74,6 +79,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
             locationList.add(Manifest.permission.ACCESS_COARSE_LOCATION)
             if (PermissionHelper.requestMultiplePermission(this, locationList, this)) {
                 checkGpsLocation()
+                initLocationCallBack()
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -293,6 +299,7 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
 
     override fun onPermissionGranted(mCustomPermission: List<String>) {
         checkGpsLocation()
+        initLocationCallBack()
     }
 
     override fun onPermissionDenied(mCustomPermission: List<String>) {
@@ -305,40 +312,33 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
         stopLocationUpdates()
     }
 
-
-    //    @Override
-    //    protected void onDestroy() {
-    //        super.onDestroy();
-    //        stopLocationUpdates();
-    //    }
-
+     fun initLocationCallBack() {
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                super.onLocationResult(locationResult)
+                getCurrentLocation(locationResult!!.lastLocation, null)
+                fusedLocationProviderClient.removeLocationUpdates(locationCallback)
+            }
+        }
+    }
     /**
      * gps is not enabled then it gives last location
      *
      * @return
      */
-    //    @SuppressLint("MissingPermission")
-    //    public android.location.Location getLastLocation() {
-    //        // Get last known recent location using new Google Play Services SDK (v11+)
-    //        FusedLocationProviderClient locationClient = getFusedLocationProviderClient(this);
-    //
-    //        locationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-    //            @Override
-    //            public void onSuccess(android.location.Location location) {
-    //                if (location != null) {
-    //                    mLocation = location;
-    ////                    Log.d(TAG, "onSuccess: not null check");
-    //                }
-    //            }
-    //        }).addOnFailureListener(new OnFailureListener() {
-    //            @Override
-    //            public void onFailure(@NonNull Exception e) {
-    //                Log.d(TAG, "Error trying to get last GPS location");
-    //                e.printStackTrace();
-    //            }
-    //        });
-    //        return mLocation;
-    //    }
+        @SuppressLint("MissingPermission")
+        fun getKnownLocation() {
+            fusedLocationProviderClient.lastLocation.addOnCompleteListener {
+                val location = it.result
+                if (location == null) {
+                    fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, locationCallback, Looper.myLooper())
+                } else {
+                    getCurrentLocation(location, null)
+                }
+            }
+
+
+        }
 
     /**
      * location update interval

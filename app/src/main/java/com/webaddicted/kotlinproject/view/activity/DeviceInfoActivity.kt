@@ -57,9 +57,9 @@ class DeviceInfoActivity : BaseActivity() {
         mBinding.imgSpeechToText.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.getId()) {
+        when (v.getId()) {
             R.id.img_back -> onBackPressed()
             R.id.btn_text_to_speech -> {
                 val edtText = mBinding.edtText.text.toString()

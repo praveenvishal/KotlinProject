@@ -97,6 +97,11 @@
             android:screenOrientation="portrait" />
 
         <service android:name=".global.services.NormalService" />
+        <activity
+                android:name=".view.activity.NavigationDrawerActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeFullScreen"
+                android:windowSoftInputMode="stateAlwaysHidden"  />
     </application>
 
 </manifest>

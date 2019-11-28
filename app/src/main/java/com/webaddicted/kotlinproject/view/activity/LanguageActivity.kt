@@ -59,9 +59,9 @@ class LanguageActivity : BaseActivity() {
         mBinding.btnNext.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
+    override fun onClick(v: View) {
         super.onClick(v)
-        when (v?.id) {
+        when (v.id) {
             R.id.btn_next -> {
                 navigateToNext()
             }

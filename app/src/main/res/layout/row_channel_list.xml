@@ -24,7 +24,7 @@
 
                     android:orientation="horizontal">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.webaddicted.kotlinproject.global.customview.CircleImageView
                         android:id="@+id/img_channel_img"
                         android:layout_width="@dimen/dp80"
                         android:layout_height="@dimen/dp80"

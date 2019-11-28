@@ -173,7 +173,7 @@ class WebViewActivity : BaseActivity() {
                     " \n" +
                     " \n" +
                     " \$(\"#btnClick\").bind(\"click\", function(){\n" +
-                    " if(navigator.userAgent==\"boxltyios\"){\n" +
+                    " if(navigator.userAgent==\"testios\"){\n" +
                     " document.getElementById(\"responseP\").innerHTML=\"IOS FOUND\";\n" +
                     " window.webkit.messageHandlers.android.postMessage({param1:\"sourabh\"})\n" +
                     " }else if(navigator.userAgent==\"android\"){\n" +

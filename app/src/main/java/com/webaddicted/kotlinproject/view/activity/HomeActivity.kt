@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.google.firebase.iid.FirebaseInstanceId
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityCommonBinding
+import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 import com.webaddicted.kotlinproject.view.fragment.TaskFrm
 
@@ -34,8 +36,10 @@ class HomeActivity : BaseActivity() {
 
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
+        Lg.d(TAG, "ok token - "+FirebaseInstanceId.getInstance().getToken())
         navigateScreen(TaskFrm.TAG)
-        navigateScreen(NavigationDrawerActivity.TAG)
+
+//        navigateScreen(NavigationDrawerActivity.TAG)
     }
 
     /**

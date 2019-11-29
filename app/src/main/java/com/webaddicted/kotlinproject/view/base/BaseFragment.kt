@@ -174,9 +174,6 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
         (getActivity() as BaseActivity).checkLocationPermission()
     }
 
-    protected fun getUserDao():UserInfoDao {
-        return (getActivity() as BaseActivity).getDbInstance().userInfoDao()
-    }
 
     fun getPlaceHolder(imageLoaderPos: Int): String {
         val imageLoader = getResources().getStringArray(R.array.image_loader)

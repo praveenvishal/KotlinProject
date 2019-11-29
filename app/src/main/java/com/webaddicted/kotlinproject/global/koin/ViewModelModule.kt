@@ -1,6 +1,7 @@
 package com.webaddicted.kotlinproject.global.koin
 
 
+import com.webaddicted.kotlinproject.viewModel.common.CommonViewModel
 import com.webaddicted.kotlinproject.viewModel.home.HomeViewModel
 import com.webaddicted.kotlinproject.viewModel.list.NewsViewModel
 import com.webaddicted.kotlinproject.viewModel.main.MainViewModel
@@ -16,5 +17,5 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { MainViewModel(get()) }
     viewModel { MapViewModel(get()) }
-
+    viewModel { CommonViewModel() }
 }

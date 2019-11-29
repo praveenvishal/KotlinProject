@@ -1,6 +1,5 @@
-package com.webaddicted.kotlinproject.viewModel.base
+package com.webaddicted.kotlinproject.model.repository.news
 
-import androidx.lifecycle.ViewModel
 import com.webaddicted.kotlinproject.global.db.dao.UserInfoDao
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceMgr
 import org.koin.core.KoinComponent
@@ -9,7 +8,8 @@ import org.koin.core.inject
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-open class BaseViewModel() :ViewModel(), KoinComponent {
+open class BaseRepository : KoinComponent {
     protected val preferenceMgr: PreferenceMgr by inject()
     protected val userInfoDao: UserInfoDao by inject()
+
 }

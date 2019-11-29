@@ -5,10 +5,7 @@ import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.global.koin.appModule
-import com.webaddicted.kotlinproject.global.koin.commonModelModule
-import com.webaddicted.kotlinproject.global.koin.repoModule
-import com.webaddicted.kotlinproject.global.koin.viewModelModule
+import com.webaddicted.kotlinproject.global.koin.*
 import com.webaddicted.kotlinproject.global.sharedPref.PreferenceUtils
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -57,7 +54,8 @@ class AppApplication : Application() {
             appModule,
             viewModelModule,
             repoModule,
-            commonModelModule
+            commonModelModule,
+            dbModule
         )
     }
     private fun checkInternetConnection() {

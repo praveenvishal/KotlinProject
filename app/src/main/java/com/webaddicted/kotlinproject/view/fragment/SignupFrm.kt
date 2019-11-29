@@ -9,11 +9,13 @@ import com.webaddicted.kotlinproject.databinding.FrmSignupBinding
 import com.webaddicted.kotlinproject.global.common.ValidationHelper
 import com.webaddicted.kotlinproject.global.db.entity.UserInfoEntity
 import com.webaddicted.kotlinproject.view.base.BaseFragment
+import com.webaddicted.kotlinproject.viewModel.common.CommonViewModel
+import com.webaddicted.kotlinproject.viewModel.main.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignupFrm : BaseFragment() {
-
     private lateinit var mBinding: FrmSignupBinding
-
+    private val commonViewModel: CommonViewModel by viewModel()
     companion object {
         val TAG = SignupFrm::class.java.simpleName
 
@@ -72,7 +74,7 @@ class SignupFrm : BaseFragment() {
             user.mobileno = mBinding.edtMobileNo.text.toString().trim()
             user.email = mBinding.edtEmail.text.toString().trim()
             user.password = mBinding.edtPassword.text.toString().trim()
-            getUserDao().insertUser(user)
+            commonViewModel.insertUser(user)
             activity?.onBackPressed()
         }
     }

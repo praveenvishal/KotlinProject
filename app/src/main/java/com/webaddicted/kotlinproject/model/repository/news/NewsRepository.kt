@@ -11,7 +11,7 @@ import retrofit2.Response
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class NewsRepository constructor(private val apiServices: ApiServices) : KoinComponent {
+class NewsRepository constructor(private val apiServices: ApiServices) : BaseRepository() {
     fun getNewsChannel(strUrl: String, loginResponse: MutableLiveData<ApiResponse<NewsChanelRespo>>) {
         object : DataFetchCall<NewsChanelRespo>(loginResponse) {
             override fun createCallAsync(): Deferred<Response<NewsChanelRespo>> {

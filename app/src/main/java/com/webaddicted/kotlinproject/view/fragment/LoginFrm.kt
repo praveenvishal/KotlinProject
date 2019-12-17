@@ -10,10 +10,12 @@ import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.ValidationHelper
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.activity.HomeActivity
+import com.webaddicted.kotlinproject.viewModel.common.CommonViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFrm : BaseFragment() {
     private lateinit var mBinding: FrmLoginBinding
-
+    private val commonViewModel: CommonViewModel by viewModel()
     companion object {
         val TAG = LoginFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): LoginFrm {
@@ -60,7 +62,7 @@ class LoginFrm : BaseFragment() {
     private fun validate() {
         if (ValidationHelper.validateEmail(mBinding.edtEmail, mBinding.wrapperEmail) &&
             ValidationHelper.validatePwd(mBinding.edtPassword, mBinding.wrapperPassword)) {
-            var userInfo = getUserDao().getCouponsBySize(mBinding.edtEmail.text.toString())
+            var userInfo = commonViewModel.getCouponsBySize(mBinding.edtEmail.text.toString())
             if (userInfo==null)GlobalUtility.showToast(resources.getString(R.string.create_an_account))
             else if (userInfo.password.equals(mBinding.edtPassword.text.toString()))
                 activity?.let { HomeActivity.newIntent(it) }

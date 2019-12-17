@@ -1,5 +1,6 @@
 package com.webaddicted.kotlinproject.global.koin
 
+import androidx.room.Room
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -7,8 +8,12 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.webaddicted.kotlinproject.apiUtils.ApiConstant
 import com.webaddicted.kotlinproject.apiUtils.ApiServices
 import com.webaddicted.kotlinproject.apiUtils.ReflectionUtil
+import com.webaddicted.kotlinproject.global.common.AppApplication
+import com.webaddicted.kotlinproject.global.constant.DbConstant
+import com.webaddicted.kotlinproject.global.db.database.AppDatabase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,7 +26,8 @@ val appModule = module {
 
     /* PROVIDE GSON SINGLETON */
     single<Gson> {
-        val builder = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+        val builder =
+            GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         builder.setLenient().create()
     }
 
@@ -40,7 +46,7 @@ val appModule = module {
         var okHttpClient = httpClient.build()
 
         Retrofit.Builder()
-            .baseUrl( ApiConstant.BASE_URL)
+            .baseUrl(ApiConstant.BASE_URL)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(get() as Gson))
@@ -51,7 +57,15 @@ val appModule = module {
     single {
         (get<Retrofit>()).create<ApiServices>(ApiServices::class.java)
     }
-
+    single {
+        Room.databaseBuilder(
+            (androidApplication() as AppApplication),
+            AppDatabase::class.java,
+            DbConstant.DB_NAME
+        ).allowMainThreadQueries().build()
+        //.addMigrations(migration4To5, migration5To6).build()
+    }
+    single { (get() as AppDatabase).userInfoDao() }
 
 //    single {
 //        PreferenceHelper(

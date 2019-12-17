@@ -33,7 +33,6 @@ import java.io.File
  */
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, PermissionHelper.Companion.PermissionListener,
     MediaPickerUtils.ImagePickerListener {
-    protected var appDb: AppDatabase? = null
     protected val mediaPicker: MediaPickerUtils by inject()
     companion object{
         val TAG = BaseActivity::class.java.simpleName
@@ -99,14 +98,6 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         super.onDestroy()
         if (EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().unregister(this)
-    }
-
-    fun getDbInstance(): AppDatabase {
-        if (appDb == null) {
-            appDb = Room.databaseBuilder(this, AppDatabase::class.java, DbConstant.DB_NAME)
-                .allowMainThreadQueries().build();
-        }
-        return appDb as AppDatabase
     }
 
     @Subscribe

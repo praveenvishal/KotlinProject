@@ -6,21 +6,21 @@ Gives a detailed explanation of working all the features/functionality/integrati
 
 This repository provides the following components that are common to our open source projects:
 
-* androidX
-* base location (track location)
-* permission handler
-* local media file picker 
-* google map
-* geo fancing (enter & exit event)
-* room database
-* onBoarding screen
-* calligraphy fonts
-* login/signup screen
-* koin for DI(Dependency inversion)
-* custom calendar with (disable date, multiple/single selection, edited date)
-* simple all default widget
-* api calling
-* sms retriever Api 
+* AndroidX
+* Base location (track location)
+* Permission handler
+* Local media file picker 
+* Google map
+* Geo fancing (enter & exit event)
+* Room database
+* OnBoarding screen
+* Calligraphy fonts
+* Login/signup screen
+* Koin for DI(Dependency inversion)
+* Custom calendar with (disable date, multiple/single selection, edited date)
+* Simple all default widget
+* Api calling
+* Sms retriever Api 
 * MVVM(model, view, viewModel)
-* webview
-* retrofit
+* Webview
+* Retrofit

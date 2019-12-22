@@ -75,10 +75,10 @@ class SharedPrefFrm : BaseFragment() {
     private fun getValuePref() {
         var userInfo = preferenceMgr.getUserInfo()
         var userInfoString = "<br><font color='#000000'>Name : </font>" + userInfo.name+"<br>" +
-                "<font color='#000000'>Gender : </font>" + userInfo.gender + "<br>" +
-                "<font color='#000000'>Age : </font>" + userInfo.age + "<br>" +
-                "<font color='#000000'>Weight : </font>" + userInfo.weight + "<br>" +
-                "<font color='#000000'>Married : </font>" + userInfo.isMarried + "<br>"
+                "<font color='"+resources.getColor(R.color.black)+"'>Gender : </font>" + userInfo.gender + "<br>" +
+                "<font color='"+resources.getColor(R.color.black)+"'>Age : </font>" + userInfo.age + "<br>" +
+                "<font color='"+resources.getColor(R.color.black)+"'>Weight : </font>" + userInfo.weight + "<br>" +
+                "<font color='"+resources.getColor(R.color.black)+"'>Married : </font>" + userInfo.isMarried + "<br>"
         mBinding.txtGetPreference.setText(Html.fromHtml(userInfoString))
     }
 
@@ -88,10 +88,10 @@ class SharedPrefFrm : BaseFragment() {
         preferenceMgr.removeKey(PREF_USER_IS_MARRIED)
         var userInfo = preferenceMgr.getUserInfo()
         var userInfoString = "<br><font color='#000000'>Name : </font>" + userInfo.name + "<br>" +
-                "<font color='#000000'>Gender : </font>" + userInfo.gender + "<br>" +
-                "<font color='#000000'>Age : </font>" + userInfo.age + "<br>" +
-                "<font color='#000000'>Weight : </font>" + userInfo.weight + "<br>" +
-                "<font color='#000000'>Married : </font>" + userInfo.isMarried + "<br>"
+                "<font color='"+resources.getColor(R.color.black)+"'>Gender : </font>" + userInfo.gender + "<br>" +
+                "<font color='"+resources.getColor(R.color.black)+"'>Age : </font>" + userInfo.age + "<br>" +
+                "<font color='"+resources.getColor(R.color.black)+"'>Weight : </font>" + userInfo.weight + "<br>" +
+                "<font color='"+resources.getColor(R.color.black)+"'>Married : </font>" + userInfo.isMarried + "<br>"
         mBinding.txtRemoveKey.setText(Html.fromHtml(userInfoString))
     }
 

@@ -8,12 +8,12 @@
 <!--    e31d24-->
     <!--    4584DB-->
 <!--    1dbf73-->
-    <color name="colorPrimary">#1dbf73</color>
-    <color name="colorPrimaryDark">#1dbf73</color>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#1dbf73</color>
-    <color name="app_color">#1dbf73</color>
-    <color name="white">@android:color/white</color>
-    <color name="black">@android:color/black</color>
+    <color name="app_color">#212121</color>
+    <color name="white">#000000</color>
+    <color name="black">#FFFFFF</color>
     <color name="red">#ffff0000</color>
 
     <color name="green">#00de4a</color>

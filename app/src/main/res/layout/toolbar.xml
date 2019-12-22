@@ -39,7 +39,7 @@
                             android:paddingTop="@dimen/dp10"
                             android:paddingBottom="@dimen/dp8"
                             android:src="@drawable/ic_back"
-                            android:tint="@color/white"
+                            android:tint="@android:color/white"
                             android:visibility="gone" />
 
                     <TextView
@@ -60,7 +60,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginRight="@dimen/dp8"
                             android:src="@drawable/ic_profile"
-                            android:tint="@color/white"
+                            android:tint="@color/gray_CDCDCD"
                             android:visibility="gone" />
 
                 </RelativeLayout>

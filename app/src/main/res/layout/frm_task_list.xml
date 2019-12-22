@@ -66,9 +66,10 @@
                     <TextView
                             style="@style/txt_white_normal"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/dp10"
                             android:gravity="center"
-                            android:text="For business inquiry, lets chat on whatsapp"
+
+                            android:text="@string/inquiry_info"
                             android:textSize="@dimen/sp13" />
 
                     <LinearLayout
@@ -90,14 +91,11 @@
                                 android:paddingTop="5dp"
                                 android:paddingRight="15dp"
                                 android:paddingBottom="5dp">
-
-
                             <ImageView
                                     android:layout_width="15dp"
                                     android:layout_height="15dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_whatsapp" />
-
                             <TextView
                                     style="@style/txt_white_normal"
                                     android:layout_gravity="center"
@@ -105,7 +103,6 @@
                                     android:text="@string/deep_mobile_no"
                                     android:textSize="@dimen/sp12" />
                         </LinearLayout>
-
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>

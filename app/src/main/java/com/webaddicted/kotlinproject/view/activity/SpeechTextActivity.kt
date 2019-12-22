@@ -47,7 +47,7 @@ class SpeechTextActivity : BaseActivity() {
     private fun init() {
         mTextToSpeechListener =
             TextToSpeech(this) { status -> mTextToSpeechListener?.setLanguage(Locale.UK) }
-        mBinding.toolbar.imgProfile?.visible()
+        mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.speech_to_text)
     }
 

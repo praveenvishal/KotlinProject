@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
 import com.webaddicted.kotlinproject.global.common.ShowSearchView
 import com.webaddicted.kotlinproject.global.common.gone
+import com.webaddicted.kotlinproject.global.common.showToast
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.activity.MapActivity
 import com.webaddicted.kotlinproject.view.activity.NavigationDrawerActivity
@@ -93,7 +95,12 @@ class TaskFrm : BaseFragment() {
         showSearchView = ShowSearchView()
         setAdapter()
         clickListener()
-
+var currentMode = AppCompatDelegate.getDefaultNightMode()
+        if (currentMode==AppCompatDelegate.MODE_NIGHT_YES){
+            activity?.showToast("Night Mode")
+        }else if (currentMode==AppCompatDelegate.MODE_NIGHT_NO){
+            activity?.showToast("Day Mode")
+        }
     }
 
     private fun clickListener() {

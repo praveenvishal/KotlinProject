@@ -32,7 +32,7 @@
                     android:src="@drawable/hunter" />
                 <TextView
                     android:id="@+id/txt_blink"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         
                     android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
@@ -45,7 +45,7 @@
                     android:text="@string/blink" />
                 <TextView
                     android:id="@+id/txt_fade"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -57,7 +57,7 @@
                     android:text="@string/fade" />
                 <TextView
                     android:id="@+id/txt_zoom"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -69,7 +69,7 @@
                     android:text="@string/zoom" />
                 <TextView
                     android:id="@+id/txt_move"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -81,7 +81,7 @@
                     android:text="@string/move" />
                 <TextView
                     android:id="@+id/txt_rotate"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -94,7 +94,7 @@
 
                 <TextView
                     android:id="@+id/txt_fade_in"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -108,7 +108,7 @@
 
                 <TextView
                     android:id="@+id/txt_fade_out"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -122,7 +122,7 @@
 
                 <TextView
                     android:id="@+id/txt_cross_fade_out"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -137,7 +137,7 @@
 
                 <TextView
                     android:id="@+id/txt_cross_fade_in"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -151,7 +151,7 @@
 
                 <TextView
                     android:id="@+id/txt_zoom_in"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -165,7 +165,7 @@
 
                 <TextView
                     android:id="@+id/txt_zoom_out"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -179,7 +179,7 @@
 
                 <TextView
                     android:id="@+id/txt_slide_up"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -193,7 +193,7 @@
 
                 <TextView
                     android:id="@+id/txt_slide_down"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -208,7 +208,7 @@
 
                 <TextView
                     android:id="@+id/txt_bounce"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -222,7 +222,7 @@
 
                 <TextView
                     android:id="@+id/txt_sequence"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
              android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"
@@ -235,7 +235,7 @@
                     android:text="@string/sequence" />
                 <TextView
                     android:id="@+id/txt_together"
-                    style="@style/TextView_Regular"
+                    style="@style/txt_black_normal"
              android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/dp10"
                     android:layout_marginLeft="@dimen/dp10"

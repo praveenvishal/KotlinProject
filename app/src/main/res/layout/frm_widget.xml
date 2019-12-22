@@ -34,6 +34,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/dp5"
+                        app:cardBackgroundColor="@color/white"
                         android:layout_marginTop="@dimen/dp20"
                         app:cardCornerRadius="4dp">
 
@@ -56,7 +57,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
                                     android:text="@string/app_name"
-                                    android:textColor="@color/white" />
+                                    style="@style/txt_white_normal"
+                            />
 
                             <ImageView
                                     android:id="@+id/img_option_menu"
@@ -67,61 +69,78 @@
                         </RelativeLayout>
 
                         <TextView
-                                style="@style/TextView_Regular"
+                                style="@style/txt_black_normal"
                                 android:layout_marginTop="@dimen/dp10"
-                                android:text="ratingBarStyle"
+                                android:layout_gravity="center_horizontal"
+                                android:text="Rating Bar Style"
                                 android:textSize="@dimen/sp19" />
-
+<!--                        the filled stars color (progressTint)-->
+<!--                        the unfilled stars color (progressBackgroundTint)-->
+<!--                        and the border color (secondaryProgressTint) of the stars-->
                         <RatingBar
                                 android:id="@+id/rb_style"
-                                style="?android:attr/ratingBarStyle"
+                                style="@style/RatingBar"
+                                android:progressTint="@color/app_color"
+                                android:progressBackgroundTint="@color/gray_CDCDCD"
+                                android:secondaryProgressTint="@color/gray_CDCDCD"
+                                android:rating="3"
+                                android:stepSize="0.5"
+                                android:numStars="5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center" />
 
                         <TextView
-                                style="@style/TextView_Regular"
+                                style="@style/txt_black_normal"
                                 android:layout_marginTop="@dimen/dp10"
-                                android:text="ratingBarStyleIndicator"
+                                android:layout_gravity="center_horizontal"
+                                android:text="Rating Bar Style Indicator"
                                 android:textSize="@dimen/sp17" />
 
                         <RatingBar
                                 android:id="@+id/rb_indicator"
-                                style="?android:attr/ratingBarStyleIndicator"
+                                style="@style/RatingBar"
                                 android:layout_width="wrap_content"
+                                android:rating="3"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center" />
 
                         <TextView
-                                style="@style/TextView_Regular"
+                                style="@style/txt_black_normal"
                                 android:layout_marginTop="@dimen/dp10"
-                                android:text="ratingBarStyleSmall"
+                                android:layout_gravity="center_horizontal"
+                                android:text="Rating Bar Style Small"
                                 android:textSize="@dimen/sp15" />
 
                         <RatingBar
                                 android:id="@+id/rb_small"
-                                style="?android:attr/ratingBarStyleSmall"
+                                style="@style/RatingBar"
                                 android:layout_width="wrap_content"
+                                android:rating="3"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center" />
 
                         <TextView
-                                style="@style/TextView_Regular"
+                                style="@style/txt_black_normal"
                                 android:layout_marginTop="@dimen/dp10"
+                                android:layout_gravity="center_horizontal"
                                 android:text="One Touch Rating Bar"
                                 android:textSize="@dimen/sp12" />
 
                         <RatingBar
                                 android:id="@+id/rb_one_touch"
+                                style="@style/RatingBar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:scaleX="0.2"
+                                android:rating="3"
                                 android:scaleY="0.2" />
 
                         <TextView
-                                style="@style/TextView_Regular"
+                                style="@style/txt_black_normal"
                                 android:layout_marginTop="@dimen/dp10"
+                                android:layout_gravity="center_horizontal"
                                 android:text="Custom RatingBar with Images"
                                 android:textSize="@dimen/sp16" />
 
@@ -130,7 +149,10 @@
                                 style="@style/CustomStarRatingBar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+
                                 android:layout_gravity="center"
+                   android:paddingTop="@dimen/dp5"
+                                android:paddingBottom="@dimen/dp5"
                                 android:rating="3" />
 
                     </LinearLayout>
@@ -153,13 +175,14 @@
                         android:gravity="center" />
                 <TextView
                         android:id="@+id/txt_marquee"
-                        style="@style/TextView_Regular"
+                        style="@style/txt_black_normal"
                         android:layout_marginTop="@dimen/dp15"
                         android:ellipsize="marquee"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:marqueeRepeatLimit="marquee_forever"
                         android:paddingLeft="10dip"
+                        android:textColor="@color/black"
                         android:paddingRight="10dip"
                         android:scrollHorizontally="true"
                         android:singleLine="true"

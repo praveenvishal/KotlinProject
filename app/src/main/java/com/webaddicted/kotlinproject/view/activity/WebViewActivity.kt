@@ -103,7 +103,7 @@ class WebViewActivity : BaseActivity() {
         mBinding.toolbar.imgBack.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.webview_title)
         webView.settings.setLoadsImagesAutomatically(true);
-        webView.settings.setUserAgentString("android");
+//        webView.settings.setUserAgentString("android");
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.settings.setJavaScriptEnabled(true)
         webView.settings.setLoadWithOverviewMode(true)
@@ -113,82 +113,21 @@ class WebViewActivity : BaseActivity() {
         webView.addJavascriptInterface(
             WebAppInterface(
                 this
-            ), "Android"
+            ), "android"
         )
         webView.setWebViewClient(myTestBrowser())
-        val str =
-            "<html>\n" +
-                    "<head>\n" +
-                    " <title>Express HTML</title>\n" +
-                    " <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\"></script>\n" +
-                    " <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css\">\n" +
-                    " <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css\">\n" +
-                    " <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js\"></script>\n" +
-                    " <script>\n" +
-                    " \n" +
-                    " \n" +
-                    " //alert(txt);\n" +
-                    " </script>\n" +
-                    "</head>\n" +
-                    "<body>\n" +
-                    " <div style=\"margin:100px;\">\n" +
-                    " <nav class=\"navbar navbar-inverse navbar-static-top\">\n" +
-                    " <div class=\"container\">\n" +
-                    " <a class=\"navbar-brand\" href=\"/\">Express HTML</a>\n" +
-                    " <ul class=\"nav navbar-nav\">\n" +
-                    " <li class=\"active\">\n" +
-                    " <a href=\"/\">Home</a>\n" +
-                    " </li>\n" +
-                    " <li>\n" +
-                    " <a href=\"/about\">About</a>\n" +
-                    " </li>\n" +
-                    " <li>\n" +
-                    " <a href=\"/sitemap\">Sitemap</a>\n" +
-                    " </li>\n" +
-                    " </ul>\n" +
-                    " </div>\n" +
-                    "</nav>\n" +
-                    " <div class=\"jumbotron\" style=\"padding:40px;\">\n" +
-                    " <h1>Hello, world!</h1>\n" +
-                    " <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>\n" +
-                    " <p>---------------------------------------------------------<br></p>\n" +
-                    " <p id=\"agentId\"></p>\n" +
-                    " <p>---------------------------------------------------------<br></p>\n" +
-                    " <p id=\"responseP\"></p>\n" +
-                    " <p><button id=\"btnClick\">Android click</button></p>\n" +
-                    " </div>\n" +
-                    " </div>\n" +
-                    " <script>\n" +
-                    " \$(document).ready(function(){\n" +
-                    " var txt = \"\";\n" +
-                    " txt += \"<p>Browser CodeName: \" + navigator.appCodeName + \"</p>\";\n" +
-                    " txt += \"<p>Browser Name: \" + navigator.appName + \"</p>\";\n" +
-                    " txt += \"<p>Browser Version: \" + navigator.appVersion + \"</p>\";\n" +
-                    " txt += \"<p>Cookies Enabled: \" + navigator.cookieEnabled + \"</p>\";\n" +
-                    " txt += \"<p>Browser Language: \" + navigator.language + \"</p>\";\n" +
-                    " txt += \"<p>Browser Online: \" + navigator.onLine + \"</p>\";\n" +
-                    " txt += \"<p>Platform: \" + navigator.platform + \"</p>\";\n" +
-                    " txt += \"<p>User-agent header: \" + navigator.userAgent + \"</p>\";\n" +
-                    " document.getElementById(\"agentId\").innerHTML=txt;\n" +
-                    " \n" +
-                    " \n" +
-                    " \$(\"#btnClick\").bind(\"click\", function(){\n" +
-                    " if(navigator.userAgent==\"testios\"){\n" +
-                    " document.getElementById(\"responseP\").innerHTML=\"IOS FOUND\";\n" +
-                    " window.webkit.messageHandlers.android.postMessage({param1:\"sourabh\"})\n" +
-                    " }else if(navigator.userAgent==\"android\"){\n" +
-                    " document.getElementById(\"responseP\").innerHTML=\"ANDROID FOUND\";\n" +
-                    " window.Android.profileVerification(\"Hello\");\n" +
-                    " \n" +
-                    " } else{\n" +
-                    " document.getElementById(\"responseP\").innerHTML=\"NORMAL BROWSER\";\n" +
-                    " }\n" +
-                    " }); \n" +
-                    " \n" +
-                    " })\n" +
-                    " </script>\n" +
-                    "</body>\n" +
-                    "</html>"
+        val str = "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<body>\n" +
+                "<h2>Sample HTML Page</h2>\n" +
+                "<input type=\"button\" value=\"Say hello\" onClick=\"showAndroidToast('Hello Android!')\" />\n" +
+                "<script type=\"text/javascript\">\n" +
+                "    function showAndroidToast(toast) {\n" +
+                "        android.showToast(toast);\n" +
+                "    }\n" +
+                "</script>\n" +
+                "</body>\n" +
+                "</html>"
         webView.loadData(str, "text/html", "utf-8")
     }
 
@@ -213,7 +152,7 @@ class WebViewActivity : BaseActivity() {
     class WebAppInterface(private val mContext: Context) {
         /** Show a toast from the web page  */
         @JavascriptInterface
-        fun profileVerification(toast: String) {
+        fun showToast(toast: String) {
             Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show()
         }
     }

@@ -45,6 +45,8 @@ class ProfileFrm : BaseFragment() {
         mBinding.btnCaptureImage.setOnClickListener(this)
         mBinding.btnPickImage.setOnClickListener(this)
         mBinding.toolbar.imgBack.setOnClickListener(this)
+//        mBinding.toolbar.imgBack.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View) {
@@ -59,7 +61,7 @@ class ProfileFrm : BaseFragment() {
         imgPickerDialog = ImagePickerDialog.dialog(captureImage,
             object : OnImageActionListener {
                 override fun onAcceptClick(file: List<File>) {
-                    mBinding.imgProfile.showImage(file.get(0), getPlaceHolder(1))
+                    mBinding.imgProfile.showImage(file.get(0), getPlaceHolder(0))
                 }
             })
         imgPickerDialog.show(fragmentManager, ImagePickerDialog.TAG)

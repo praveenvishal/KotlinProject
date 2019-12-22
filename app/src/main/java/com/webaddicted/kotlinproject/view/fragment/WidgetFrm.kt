@@ -48,34 +48,35 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.btn_data_picker -> {
-                val stringBuilder = StringBuilder()
+            R.id.btn_data_picker ->
+//            {
+//                val stringBuilder = StringBuilder()
                 activity?.let { GlobalUtility.getDate(it, mBinding.txtDateValue) }
-                val dateformate = mBinding.txtDateValue.text.toString()
-                stringBuilder.append(dateformate + "\n")
-                stringBuilder.append(
-                    GlobalUtility.dateFormate(
-                        dateformate,
-                        AppConstant.DATE_FORMAT_D_M_Y,
-                        AppConstant.DATE_FORMAT_Y_M_D
-                    ) + "\n"
-                )
-                stringBuilder.append(
-                    GlobalUtility.dateFormate(
-                        dateformate,
-                        AppConstant.DATE_FORMAT_D_M_Y,
-                        AppConstant.DATE_FORMAT_D_M_Y_H
-                    ) + "\n"
-                )
-                stringBuilder.append(
-                    GlobalUtility.dateFormate(
-                        dateformate,
-                        AppConstant.DATE_FORMAT_D_M_Y,
-                        AppConstant.DATE_FORMAT_SRC
-                    ) + "\n"
-                )
-                mBinding.txtDateValue.text = stringBuilder.toString()
-            }
+//                val dateformate = mBinding.txtDateValue.text.toString()
+//                stringBuilder.append(dateformate + "\n")
+//                stringBuilder.append(
+//                    GlobalUtility.dateFormate(
+//                        dateformate,
+//                        AppConstant.DATE_FORMAT_D_M_Y,
+//                        AppConstant.DATE_FORMAT_Y_M_D
+//                    ) + "\n"
+//                )
+//                stringBuilder.append(
+//                    GlobalUtility.dateFormate(
+//                        dateformate,
+//                        AppConstant.DATE_FORMAT_D_M_Y,
+//                        AppConstant.DATE_FORMAT_D_M_Y_H
+//                    ) + "\n"
+//                )
+//                stringBuilder.append(
+//                    GlobalUtility.dateFormate(
+//                        dateformate,
+//                        AppConstant.DATE_FORMAT_D_M_Y,
+//                        AppConstant.DATE_FORMAT_SRC
+//                    ) + "\n"
+//                )
+//                mBinding.txtDateValue.text = stringBuilder.toString()
+//            }
             R.id.btn_time_picker -> activity?.let { GlobalUtility.timePicker(it,this).show() }
             R.id.btn_start_progress -> checkStoragePermission()
             R.id.img_back -> activity?.onBackPressed()

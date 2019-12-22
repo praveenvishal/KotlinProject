@@ -62,8 +62,8 @@ class GlobalUtility {
                 if (monthValue<=9) dayMonth= "0"+monthValue
                 else dayMonth = monthValue.toString()
                 mDobEtm.text =
-                    "$dayMonth/$day/$year"
-            }, Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH)
+                    "$day/$dayMonth/$year"
+            }, Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.MONTH),Calendar.getInstance().get(Calendar.DATE))
             datePickerDialog.show()
         }
         fun getDOBDate(context: Context, mDobEtm: TextView) {

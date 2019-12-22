@@ -95,6 +95,9 @@ fun <T> getPlaceHolder(
     if (imageLoadersArray[0] == imageLoaderType) {
         drawableTypeRequest.error(R.drawable.logo)
         drawableTypeRequest.placeholder(R.drawable.logo)
+    } else if (imageLoadersArray[1] == imageLoaderType) {
+        drawableTypeRequest.error(R.drawable.ic_flag)
+        drawableTypeRequest.placeholder(R.drawable.ic_flag)
     }  else {
         drawableTypeRequest.error(R.color.app_color)
         drawableTypeRequest.placeholder(R.color.app_color)

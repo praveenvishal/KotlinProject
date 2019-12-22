@@ -39,6 +39,7 @@
                         android:singleLine="true"
                         android:text="assasssssss"
                         android:textColor="@color/black"
+                        android:background="@color/transprant"
                         android:textSize="@dimen/sp16"
                         android:textStyle="bold" />
             </LinearLayout>

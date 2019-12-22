@@ -36,6 +36,7 @@
     <string name="skip">Skip</string>
     <string-array name="image_loader">
         <item>app_color</item><!--app color 0 -->
+        <item>flag</item><!--flag  1 -->
         <item>other image</item><!--other image-->
     </string-array>
     <string name="slide_1_title">Hello Food!</string>
@@ -220,8 +221,9 @@
     <string name="reset">Reset</string>
     <string name="scan_dl">Scan DL</string>
     <string name="capture_selfie">Capture Selfie</string>
-           <string name="plz_blink_for_selfie">Please position your face in front of the front camera and blink</string>
-          <string name="plz_scan_dl">Please scan drivers license</string>
+    <string name="plz_blink_for_selfie">Please position your face in front of the front camera and blink</string>
+    <string name="plz_scan_dl">Please scan drivers license</string>
     <string name="blink_scan_title">Blink scan</string>
     <string name="navigation_drawer">Navigation Drawer</string>
+    <string name="inquiry_info">For business inquiry, lets chat on whatsapp</string>
 </resources>

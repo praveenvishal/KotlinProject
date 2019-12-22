@@ -120,7 +120,7 @@ class NewsFrm : BaseFragment() {
         when (tag) {
             ProfileFrm.TAG -> frm = ProfileFrm.getInstance(Bundle())
         }
-        if (frm != null) navigateAddFragment(R.id.container, frm, false)
+        if (frm != null) navigateAddFragment(R.id.container, frm, true)
     }
 }
 

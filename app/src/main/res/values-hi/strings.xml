@@ -37,6 +37,7 @@
   <string name="skip">छोड़ें</string>
   <string-array name="image_loader">
     <item>app_color</item><!--app color-->
+    <item>flag</item><!--flag  1 -->
     <item>other image</item><!--other image-->
   </string-array>
   <string name="slide_1_title">नमस्कार भोजन!</string>

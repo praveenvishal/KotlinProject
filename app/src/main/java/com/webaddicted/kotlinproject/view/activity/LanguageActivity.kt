@@ -100,7 +100,7 @@ class LanguageActivity : BaseActivity() {
             id = "0"
             languageCode = Locale.getDefault().language
             languageName = "Default (" + Locale.getDefault().displayName.toLowerCase() + ")"
-            languageFlag = ""
+            languageFlag = "https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/English_Language_Flag.png/640px-English_Language_Flag.png"
         })
         languageBeanList.add(LanguageBean().also {
             it.id = "1"

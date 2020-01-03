@@ -54,7 +54,7 @@ class TaskFrm : BaseFragment() {
         "FingerPrint",
         "Barcode",
         "Timer",
-//        "BlinkScan",
+        "BlinkScan",
         "Ecommerce",
         "Navigation Drawer",
 
@@ -64,7 +64,8 @@ class TaskFrm : BaseFragment() {
         "UI Design",
         "Fab Button",
         "Bottom Navigation",
-        "Bottom Sheet"
+        "Bottom Sheet",
+        "Coroutines"
     )
     lateinit var showSearchView: ShowSearchView
 
@@ -175,7 +176,8 @@ var currentMode = AppCompatDelegate.getDefaultNightMode()
             "Ecommerce" -> navigateScreen(EcommLoginFrm.TAG)
             "Timer" -> navigateScreen(TimerFrm.TAG)
             "Navigation Drawer" ->navigateScreen(NavigationDrawerActivity.TAG)
-//            "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
+            "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
+            "Coroutines" -> navigateScreen(CoroutineFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -215,6 +217,7 @@ var currentMode = AppCompatDelegate.getDefaultNightMode()
             TimerFrm.TAG -> frm = TimerFrm.getInstance(Bundle())
             BlinkScanFrm.TAG -> frm = BlinkScanFrm.getInstance(Bundle())
             NavigationDrawerActivity.TAG -> activity?.let { NavigationDrawerActivity.newIntent(it) }
+             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

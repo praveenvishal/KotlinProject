@@ -419,6 +419,25 @@ class GlobalUtility {
             }
             return mIntent
         }
+          fun captureScreen(activity: Activity) {
+            val v: View = activity.getWindow().getDecorView().getRootView()
+            v.isDrawingCacheEnabled = true
+            val bmp: Bitmap = Bitmap.createBitmap(v.drawingCache)
+            v.isDrawingCacheEnabled = false
+            try {
+                val sd = FileUtils.appFolder()
+                val dest = File(sd, "SCREEN"
+                        + System.currentTimeMillis() + ".png")
+                val fos = FileOutputStream(dest)
+                bmp.compress(Bitmap.CompressFormat.PNG, 100, fos)
+                fos.flush()
+                fos.close()
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
 
     }
 

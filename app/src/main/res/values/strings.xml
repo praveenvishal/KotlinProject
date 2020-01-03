@@ -226,4 +226,15 @@
     <string name="blink_scan_title">Blink scan</string>
     <string name="navigation_drawer">Navigation Drawer</string>
     <string name="inquiry_info">For business inquiry, lets chat on whatsapp</string>
+    <string name="launch">Launch</string>
+    <string name="job_cancel">Job Cancel</string>
+    <string name="sequentially">Sequentially</string>
+    <string name="launch_timeout">Launch Timeout</string>
+    <string name="exception_handler">Exception Handler</string>
+    <string name="lifecycle_aware">Lifecycle Aware</string>
+    <string name="android_scoped">Android Scoped</string>
+    <string name="coroutine_title">Coroutine</string>
+    <string name="parallel_async">Parallel Async</string>
+    <string name="lifecycle_aware_coroutine_title">Lifecycle Aware Coroutine</string>
+    <string name="scope_coroutine_title">Scope Coroutine</string>
 </resources>

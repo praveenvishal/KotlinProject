@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import android.widget.MultiAutoCompleteTextView
 import android.widget.TimePicker
-import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.ViewDataBinding
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmWidgetBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
@@ -20,6 +22,34 @@ import com.webaddicted.kotlinproject.view.base.BaseFragment
 class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
     private lateinit var mBinding: FrmWidgetBinding
+    var autoArray = arrayOf(
+        "America",
+        "Belgium",
+        "Canada",
+        "Denmark",
+        "England",
+        "France",
+        "Germany",
+        "Holland",
+        "India",
+        "Indonesia",
+        "Italy",
+        "Spain"
+    )
+    var multiArray = arrayOf(
+        "America",
+        "Belgium",
+        "Canada",
+        "Denmark",
+        "England",
+        "France",
+        "Germany",
+        "Holland",
+        "India",
+        "Indonesia",
+        "Italy",
+        "Spain"
+    )
 
     companion object {
         val TAG = WidgetFrm::class.java.simpleName
@@ -43,6 +73,9 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     private fun init() {
         mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.widget_title)
+        mBinding.txtMarquee.setSelected(true)
+        setAutoCompleteAdapter()
+        startAnimation(1)
     }
 
     private fun clickListener() {
@@ -94,5 +127,52 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
 
     }
 
+    private fun setAutoCompleteAdapter() {
+        val adapter =
+            ArrayAdapter(
+                activity!!,
+                android.R.layout.simple_list_item_1,
+                autoArray
+            )
+
+        mBinding.autoCompleteTextVie.setAdapter(adapter)
+        mBinding.autoCompleteTextVie.setThreshold(1)
+        mBinding.autoCompleteTextVie.setOnItemClickListener({ adapterView, view, position, l ->
+            val selection = adapterView.getItemAtPosition(position) as String
+            GlobalUtility.showToast(selection)
+        })
+//        val seledd: String = mBinding.autoCompleteTextVie.getText().toString()
+//        GlobalUtility.showToast(seledd)
+        mBinding.multiAutoCompleteTextView.setTokenizer(MultiAutoCompleteTextView.CommaTokenizer())
+
+        val adapt =
+            ArrayAdapter(
+                activity!!,
+                android.R.layout.simple_list_item_1,
+                multiArray
+            )
+        mBinding.multiAutoCompleteTextView.setAdapter(adapt)
+        mBinding.multiAutoCompleteTextView.setThreshold(1)
+    }
+
+    private fun startAnimation(animatorType:Int) {
+        var drawable: AnimatedVectorDrawableCompat? = null
+        when (animatorType) {
+            1 -> drawable =
+                AnimatedVectorDrawableCompat.create(activity!!, R.drawable.animate_wave_1)
+            2 -> drawable =
+                AnimatedVectorDrawableCompat.create(activity!!, R.drawable.animate_wave_2)
+            3 -> drawable =
+                AnimatedVectorDrawableCompat.create(activity!!, R.drawable.animate_wave_3)
+            4 -> drawable =
+                AnimatedVectorDrawableCompat.create(activity!!, R.drawable.animate_wave_4)
+            5 ->
+                drawable =
+                    AnimatedVectorDrawableCompat.create(activity!!, R.drawable.animate_wave_5)
+        }
+        mBinding.waveForm.setBackground(drawable)
+        assert(drawable != null)
+        drawable?.start()
+    }
 }
 

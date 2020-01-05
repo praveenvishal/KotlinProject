@@ -73,17 +73,10 @@ abstract class BaseLocation : BaseActivity(), GoogleApiClient.ConnectionCallback
      */
     private fun checkPermission() {
         mGeofenceList = ArrayList()
-        try {
             val locationList = ArrayList<String>()
             locationList.add(Manifest.permission.ACCESS_FINE_LOCATION)
             locationList.add(Manifest.permission.ACCESS_COARSE_LOCATION)
-            if (PermissionHelper.requestMultiplePermission(this, locationList, this)) {
-                checkGpsLocation()
-                initLocationCallBack()
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+            PermissionHelper.requestMultiplePermission(this, locationList, this)
 
     }
 

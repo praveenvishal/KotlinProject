@@ -1,5 +1,6 @@
 package com.webaddicted.kotlinproject.view.fragment
 
+import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,10 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
-import com.webaddicted.kotlinproject.global.common.ShowSearchView
-import com.webaddicted.kotlinproject.global.common.gone
-import com.webaddicted.kotlinproject.global.common.showToast
-import com.webaddicted.kotlinproject.global.common.visible
+import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.view.activity.MapActivity
 import com.webaddicted.kotlinproject.view.activity.NavigationDrawerActivity
 import com.webaddicted.kotlinproject.view.activity.SpeechTextActivity

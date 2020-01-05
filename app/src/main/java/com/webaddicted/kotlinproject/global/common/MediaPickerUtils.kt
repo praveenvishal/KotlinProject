@@ -49,7 +49,7 @@ class MediaPickerUtils {
         locationList.add(Manifest.permission.READ_EXTERNAL_STORAGE)
         locationList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         locationList.add(Manifest.permission.CAMERA)
-        if (PermissionHelper.requestMultiplePermission(
+      PermissionHelper.requestMultiplePermission(
                 activity,
                 locationList,
                 object : PermissionHelper.Companion.PermissionListener {
@@ -62,10 +62,6 @@ class MediaPickerUtils {
 
                     }
                 })
-        ) {
-            FileUtils.createApplicationFolder()
-            selectMediaType(activity, fileType)
-        }
     }
 
     private fun selectMediaType(activity: Activity, @MediaPickerType.MediaType fileType: Int) {

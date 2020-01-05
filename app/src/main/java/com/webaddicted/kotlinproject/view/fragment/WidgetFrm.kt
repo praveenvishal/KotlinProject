@@ -155,7 +155,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
         mBinding.multiAutoCompleteTextView.setThreshold(1)
     }
 
-    private fun startAnimation(animatorType:Int) {
+    private fun startAnimation(animatorType: Int) {
         var drawable: AnimatedVectorDrawableCompat? = null
         when (animatorType) {
             1 -> drawable =

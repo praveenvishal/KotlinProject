@@ -23,6 +23,28 @@ class PermissionHelper {
         //        private var mActivity: Activity? = null
         private var mCustomPermission: List<String>? = null
         private var mPerpermissionListener: PermissionListener? = null
+       
+        /**
+         * Check if version is marshmallow and above.
+         * Used in deciding to ask runtime permission
+         * check single permission
+         *
+         * @param permissionListener is describe permission status
+         * @param permissions        is single permission
+         */
+        fun requestSinglePermission(activity: Activity, @NonNull permissions: String, @NonNull permissionListener: PermissionListener) {
+            mPerpermissionListener = permissionListener
+            mCustomPermission = Arrays.asList(*arrayOf(permissions))
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (ActivityCompat.checkSelfPermission(activity, permissions) !== PackageManager.PERMISSION_GRANTED) {
+                    //                askRequestPermissions(new String[]{permissions});
+                    ActivityCompat.requestPermissions(activity, arrayOf<String>(permissions), PERMISSION_CODE)
+                    return
+                }
+            }
+            permissionListener.onPermissionGranted(listOf(permissions))
+        }
+
         /**
          * Check if version is marshmallow and above.
          * Used in deciding to ask runtime permission
@@ -31,7 +53,7 @@ class PermissionHelper {
          * @param permissionListener is describe permission status
          * @param permissions        is bundle of all permission
          */
-        fun requestMultiplePermission(activity: Activity, @NonNull permissions: List<String>, @NonNull permissionListener: PermissionListener): Boolean {
+        fun requestMultiplePermission(activity: Activity, @NonNull permissions: List<String>, @NonNull permissionListener: PermissionListener) {
             mPerpermissionListener = permissionListener
             mCustomPermission = permissions
             if (Build.VERSION.SDK_INT >= 23) {
@@ -46,31 +68,10 @@ class PermissionHelper {
                         listPermissionsAssign.toTypedArray<String>(),
                         PERMISSION_CODE
                     )
-                    return false
+                    return
                 }
             }
-            return true
-        }
-
-        /**
-         * Check if version is marshmallow and above.
-         * Used in deciding to ask runtime permission
-         * check single permission
-         *
-         * @param permissionListener is describe permission status
-         * @param permissions        is single permission
-         */
-        fun requestSinglePermission(activity: Activity, @NonNull permissions: String, @NonNull permissionListener: PermissionListener): Boolean {
-            mPerpermissionListener = permissionListener
-            mCustomPermission = Arrays.asList(*arrayOf(permissions))
-            if (Build.VERSION.SDK_INT >= 23) {
-                if (ActivityCompat.checkSelfPermission(activity, permissions) !== PackageManager.PERMISSION_GRANTED) {
-                    //                askRequestPermissions(new String[]{permissions});
-                    ActivityCompat.requestPermissions(activity, arrayOf<String>(permissions), PERMISSION_CODE)
-                    return false
-                }
-            }
-            return true
+            permissionListener.onPermissionGranted(permissions)
         }
 
         fun onRequestPermissionsResult(activity: Activity, @NonNull requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {

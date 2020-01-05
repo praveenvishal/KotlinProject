@@ -54,17 +54,18 @@ class TaskFrm : BaseFragment() {
         "FingerPrint",
         "Barcode",
         "Timer",
-//        "BlinkScan",
+        "BlinkScan",
         "Ecommerce",
         "Navigation Drawer",
-
+ "ScreenShot",
         "Digital Signature",
         "PDF",
         "Collapse",
         "UI Design",
         "Fab Button",
         "Bottom Navigation",
-        "Bottom Sheet"
+        "Bottom Sheet",
+        "Coroutines"
     )
     lateinit var showSearchView: ShowSearchView
 
@@ -175,7 +176,9 @@ var currentMode = AppCompatDelegate.getDefaultNightMode()
             "Ecommerce" -> navigateScreen(EcommLoginFrm.TAG)
             "Timer" -> navigateScreen(TimerFrm.TAG)
             "Navigation Drawer" ->navigateScreen(NavigationDrawerActivity.TAG)
-//            "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
+            "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
+            "Coroutines" -> navigateScreen(CoroutineFrm.TAG)
+            "ScreenShot"->generateScreenShot()
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -215,8 +218,30 @@ var currentMode = AppCompatDelegate.getDefaultNightMode()
             TimerFrm.TAG -> frm = TimerFrm.getInstance(Bundle())
             BlinkScanFrm.TAG -> frm = BlinkScanFrm.getInstance(Bundle())
             NavigationDrawerActivity.TAG -> activity?.let { NavigationDrawerActivity.newIntent(it) }
+             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }
     }
+//  Tooltip -> https://github.com/skydoves/Balloon/blob/master/app/src/main/java/com/skydoves/balloondemo/BalloonUtils.kt    
+    private fun generateScreenShot() {
+        val locationList = java.util.ArrayList<String>()
+        locationList.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        locationList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+       PermissionHelper.requestMultiplePermission(
+                activity!!,
+                locationList,
+                object : PermissionHelper.Companion.PermissionListener {
+                    override fun onPermissionGranted(mCustomPermission: List<String>) {
+                        GlobalUtility.captureScreen(activity!!)
+                        activity?.showToast("Screen capture successfully")
+                    }
+
+                    override fun onPermissionDenied(mCustomPermission: List<String>) {
+
+                    }
+                })
+    }
+  
+    
 }

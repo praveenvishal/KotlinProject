@@ -237,4 +237,6 @@
     <string name="parallel_async">Parallel Async</string>
     <string name="lifecycle_aware_coroutine_title">Lifecycle Aware Coroutine</string>
     <string name="scope_coroutine_title">Scope Coroutine</string>
+    <string name="descending">(Z - A) Descending</string>
+    <string name="ascending">(A - Z) Ascending</string>
 </resources>

@@ -10,8 +10,8 @@
     <!--</data>-->
     <LinearLayout
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:orientation="vertical">
 
         <include
@@ -29,13 +29,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                 <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/dp5"
-                        app:cardBackgroundColor="@color/white"
                         android:layout_marginTop="@dimen/dp20"
+                        app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="4dp">
 
                     <LinearLayout
@@ -53,12 +54,11 @@
                                 android:orientation="horizontal">
 
                             <TextView
+                                    style="@style/txt_white_normal"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
-                                    android:text="@string/app_name"
-                                    style="@style/txt_white_normal"
-                            />
+                                    android:text="@string/app_name" />
 
                             <ImageView
                                     android:id="@+id/img_option_menu"
@@ -70,30 +70,30 @@
 
                         <TextView
                                 style="@style/txt_black_normal"
-                                android:layout_marginTop="@dimen/dp10"
                                 android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/dp10"
                                 android:text="Rating Bar Style"
                                 android:textSize="@dimen/sp19" />
-<!--                        the filled stars color (progressTint)-->
-<!--                        the unfilled stars color (progressBackgroundTint)-->
-<!--                        and the border color (secondaryProgressTint) of the stars-->
+                        <!--                        the filled stars color (progressTint)-->
+                        <!--                        the unfilled stars color (progressBackgroundTint)-->
+                        <!--                        and the border color (secondaryProgressTint) of the stars-->
                         <RatingBar
                                 android:id="@+id/rb_style"
                                 style="@style/RatingBar"
-                                android:progressTint="@color/app_color"
-                                android:progressBackgroundTint="@color/gray_CDCDCD"
-                                android:secondaryProgressTint="@color/gray_CDCDCD"
-                                android:rating="3"
-                                android:stepSize="0.5"
-                                android:numStars="5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
+                                android:layout_gravity="center"
+                                android:numStars="5"
+                                android:progressBackgroundTint="@color/gray_CDCDCD"
+                                android:progressTint="@color/app_color"
+                                android:rating="3"
+                                android:secondaryProgressTint="@color/gray_CDCDCD"
+                                android:stepSize="0.5" />
 
                         <TextView
                                 style="@style/txt_black_normal"
-                                android:layout_marginTop="@dimen/dp10"
                                 android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/dp10"
                                 android:text="Rating Bar Style Indicator"
                                 android:textSize="@dimen/sp17" />
 
@@ -101,14 +101,14 @@
                                 android:id="@+id/rb_indicator"
                                 style="@style/RatingBar"
                                 android:layout_width="wrap_content"
-                                android:rating="3"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
+                                android:layout_gravity="center"
+                                android:rating="3" />
 
                         <TextView
                                 style="@style/txt_black_normal"
-                                android:layout_marginTop="@dimen/dp10"
                                 android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/dp10"
                                 android:text="Rating Bar Style Small"
                                 android:textSize="@dimen/sp15" />
 
@@ -116,14 +116,14 @@
                                 android:id="@+id/rb_small"
                                 style="@style/RatingBar"
                                 android:layout_width="wrap_content"
-                                android:rating="3"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center" />
+                                android:layout_gravity="center"
+                                android:rating="3" />
 
                         <TextView
                                 style="@style/txt_black_normal"
-                                android:layout_marginTop="@dimen/dp10"
                                 android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/dp10"
                                 android:text="One Touch Rating Bar"
                                 android:textSize="@dimen/sp12" />
 
@@ -133,14 +133,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:scaleX="0.2"
                                 android:rating="3"
+                                android:scaleX="0.2"
                                 android:scaleY="0.2" />
 
                         <TextView
                                 style="@style/txt_black_normal"
-                                android:layout_marginTop="@dimen/dp10"
                                 android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/dp10"
                                 android:text="Custom RatingBar with Images"
                                 android:textSize="@dimen/sp16" />
 
@@ -149,21 +149,21 @@
                                 style="@style/CustomStarRatingBar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
                                 android:layout_gravity="center"
-                   android:paddingTop="@dimen/dp5"
+                                android:paddingTop="@dimen/dp5"
                                 android:paddingBottom="@dimen/dp5"
                                 android:rating="3" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <com.airbnb.lottie.LottieAnimationView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp150"
+                        android:layout_gravity="center_horizontal"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
-                        android:layout_gravity="center_horizontal"
-                        app:lottie_rawRes="@raw/sleepy_loading"/>
+                        app:lottie_rawRes="@raw/sleepy_loading" />
 
                 <TextView
                         android:id="@+id/txt_spannable"
@@ -173,6 +173,7 @@
                         android:layout_marginRight="@dimen/dp15"
                         android:layout_marginBottom="@dimen/dp50"
                         android:gravity="center" />
+
                 <TextView
                         android:id="@+id/txt_marquee"
                         style="@style/txt_black_normal"
@@ -182,11 +183,11 @@
                         android:focusableInTouchMode="true"
                         android:marqueeRepeatLimit="marquee_forever"
                         android:paddingLeft="10dip"
-                        android:textColor="@color/black"
                         android:paddingRight="10dip"
                         android:scrollHorizontally="true"
                         android:singleLine="true"
-                        android:text="@string/dummyText" />
+                        android:text="@string/dummyText"
+                        android:textColor="@color/black" />
 
 
                 <androidx.cardview.widget.CardView
@@ -213,10 +214,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp10"
-                                android:textAppearance="@style/TextAppearance_open_sans_semibold"
                                 android:drawablePadding="@dimen/dp4"
                                 android:ems="10"
-                                android:hint="Select country">
+                                android:hint="Select country"
+                                android:textAppearance="@style/TextAppearance_open_sans_semibold">
 
                         </AutoCompleteTextView>
 
@@ -225,12 +226,13 @@
                                 android:id="@+id/multiAutoCompleteTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                  android:textAppearance="@style/TextAppearance_open_sans_semibold"
                                 android:ems="10"
-                                android:hint="Select multiple country" />
+                                android:hint="Select multiple country"
+                                android:textAppearance="@style/TextAppearance_open_sans_semibold" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -330,6 +332,7 @@
                                 android:text="@string/start_progress" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
                 <LinearLayout
                         android:id="@+id/bottom_space"
                         android:layout_width="match_parent"

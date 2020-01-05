@@ -11,12 +11,12 @@ import java.util.*
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>?) : BaseAdapter() {
+class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: List<String>?) : BaseAdapter() {
     public var searchText: String? = null
-    private val searchArray: ArrayList<String>
+    private val searchArray: List<String>
 
     init {
-        this.searchArray = java.util.ArrayList<String>()
+        this.searchArray = ArrayList()
         mTaskList?.let { this.searchArray.addAll(it) }
     }
 
@@ -49,7 +49,7 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
 //                }
             mRowBinding.txtName.text = mTaskList?.get(position)
             val test = mTaskList?.get(position)
-            val initial= test?.get(0)
+            val initial = test?.get(0)
             mRowBinding.txtInitial.setText(initial.toString())
 
 //            } else {
@@ -68,21 +68,22 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
         }
     }
 
-    //    fun notifyAdapter(newsBeanList: ArrayList<NewsChanelRespo.Source>) {
-//        newsList = newsBeanList
-//        notifyDataSetChanged()
-//    }
+    fun notifyAdapter(list: List<String>) {
+        this.mTaskList = list
+        notifyDataSetChanged()
+    }
+
     fun filter(charText: String?) {
         var charText = charText
         charText = charText!!.toLowerCase(Locale.getDefault())
         searchText = charText
-        mTaskList?.clear()
+        mTaskList?.toMutableList()?.clear()
         if (charText == null && charText!!.length == 0) {
-            mTaskList?.addAll(searchArray)
+            mTaskList?.toMutableList()?.addAll(searchArray)
         } else {
             for (wp in searchArray) {
                 if (wp != null && wp!!.toLowerCase(Locale.getDefault()).contains(charText)) {
-                    mTaskList?.add(wp)
+                    mTaskList?.toMutableList()?.add(wp)
                 }
                 //                else if (wp.toLowerCase(Locale.getDefault()).contains(charText)) {
                 //                    mAction.add(wp);

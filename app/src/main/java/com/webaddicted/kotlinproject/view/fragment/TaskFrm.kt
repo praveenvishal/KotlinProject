@@ -1,13 +1,15 @@
 package com.webaddicted.kotlinproject.view.fragment
 
-import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +29,7 @@ import kotlin.collections.ArrayList
 class TaskFrm : BaseFragment() {
     private lateinit var mBinding: FrmTaskListBinding
     private lateinit var mHomeAdapter: TaskAdapter
-    private var mTaskList: ArrayList<String>? = null
+    private var mTaskList: List<String>? = ArrayList()
     internal var worktask = arrayOf(
         "Widgets",
         "News Api",
@@ -55,7 +57,7 @@ class TaskFrm : BaseFragment() {
         "BlinkScan",
         "Ecommerce",
         "Navigation Drawer",
- "ScreenShot",
+        "ScreenShot",
         "Digital Signature",
         "PDF",
         "Collapse",
@@ -88,23 +90,26 @@ class TaskFrm : BaseFragment() {
     private fun init() {
         mBinding.toolbar.imgBack.gone()
         mBinding.toolbar.imgProfile.visible()
+        mBinding.toolbar.imgSort.visible()
         mBinding.toolbar.imgProfile.setImageDrawable(resources.getDrawable(R.drawable.ic_search))
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.task_title)
         mTaskList = ArrayList(Arrays.asList(*worktask))
         showSearchView = ShowSearchView()
         setAdapter()
         clickListener()
-var currentMode = AppCompatDelegate.getDefaultNightMode()
-        if (currentMode==AppCompatDelegate.MODE_NIGHT_YES){
+        sortList(true)
+        var currentMode = AppCompatDelegate.getDefaultNightMode()
+        if (currentMode == AppCompatDelegate.MODE_NIGHT_YES)
             activity?.showToast("Night Mode")
-        }else if (currentMode==AppCompatDelegate.MODE_NIGHT_NO){
+        else if (currentMode == AppCompatDelegate.MODE_NIGHT_NO)
             activity?.showToast("Day Mode")
-        }
+
     }
 
     private fun clickListener() {
         mBinding.toolbar.imgProfile.setOnClickListener(this)
         mBinding.toolbar.imgSearchBack.setOnClickListener(this)
+        mBinding.toolbar.imgSort.setOnClickListener(this)
         mBinding.linearMobileNo.setOnClickListener(this)
         mBinding.toolbar.editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -131,11 +136,12 @@ var currentMode = AppCompatDelegate.getDefaultNightMode()
                     mBinding.toolbar.cardSearch,
                     mBinding.toolbar.editTextSearch
                 )
-            R.id.linear_mobile_no-> {
+            R.id.linear_mobile_no -> {
                 val intent = Intent(Intent.ACTION_DIAL)
                 intent.data = Uri.parse("tel:" + getString(R.string.deep_mobile_no))
                 startActivity(intent)
             }
+            R.id.img_sort ->showPopupMenu(mBinding.toolbar.imgSort)
         }
     }
 
@@ -173,10 +179,10 @@ var currentMode = AppCompatDelegate.getDefaultNightMode()
             "Services" -> navigateScreen(ServiceFrm.TAG)
             "Ecommerce" -> navigateScreen(EcommLoginFrm.TAG)
             "Timer" -> navigateScreen(TimerFrm.TAG)
-            "Navigation Drawer" ->navigateScreen(NavigationDrawerActivity.TAG)
+            "Navigation Drawer" -> navigateScreen(NavigationDrawerActivity.TAG)
             "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
             "Coroutines" -> navigateScreen(CoroutineFrm.TAG)
-            "ScreenShot"->generateScreenShot()
+            "ScreenShot" -> checkStoragePermission()
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -216,30 +222,42 @@ var currentMode = AppCompatDelegate.getDefaultNightMode()
             TimerFrm.TAG -> frm = TimerFrm.getInstance(Bundle())
             BlinkScanFrm.TAG -> frm = BlinkScanFrm.getInstance(Bundle())
             NavigationDrawerActivity.TAG -> activity?.let { NavigationDrawerActivity.newIntent(it) }
-             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
+            CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }
     }
-//  Tooltip -> https://github.com/skydoves/Balloon/blob/master/app/src/main/java/com/skydoves/balloondemo/BalloonUtils.kt    
-    private fun generateScreenShot() {
-        val locationList = java.util.ArrayList<String>()
-        locationList.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-        locationList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-       PermissionHelper.requestMultiplePermission(
-                activity!!,
-                locationList,
-                object : PermissionHelper.Companion.PermissionListener {
-                    override fun onPermissionGranted(mCustomPermission: List<String>) {
-                        GlobalUtility.captureScreen(activity!!)
-                        activity?.showToast("Screen capture successfully")
-                    }
 
-                    override fun onPermissionDenied(mCustomPermission: List<String>) {
+    //  Tooltip -> https://github.com/skydoves/Balloon/blob/master/app/src/main/java/com/skydoves/balloondemo/BalloonUtils.kt
 
-                    }
-                })
+    override fun onPermissionGranted(mCustomPermission: List<String>) {
+        super.onPermissionGranted(mCustomPermission)
+        GlobalUtility.captureScreen(activity!!)
+        activity?.showToast("Screen capture successfully")
     }
-  
-    
+
+    private fun sortList(isAscending: Boolean) {
+        if (isAscending) mTaskList = mTaskList?.sortedBy { it.toLowerCase() }
+        else mTaskList = mTaskList?.sortedByDescending { it.toLowerCase() }
+        if(mHomeAdapter!=null) mTaskList?.let { mHomeAdapter.notifyAdapter(it) }
+    }
+
+    private fun showPopupMenu(view: View) { // inflate menu
+        val popup = PopupMenu(activity!!, view)
+        val inflater: MenuInflater = popup.getMenuInflater()
+        inflater.inflate(R.menu.menu_sort, popup.getMenu())
+        popup.setOnMenuItemClickListener(MyMenuItemClickListen(this))
+        popup.show()
+    }
+
+    internal class MyMenuItemClickListen(var taskFrm: TaskFrm) :PopupMenu.OnMenuItemClickListener {
+        override fun onMenuItemClick(menuItem: MenuItem): Boolean {
+            when (menuItem.itemId) {
+                R.id.menu_ascending ->  taskFrm.sortList(true)
+                R.id.menu_descending ->  taskFrm.sortList(false)
+            }
+            return false
+        }
+
+    }
 }

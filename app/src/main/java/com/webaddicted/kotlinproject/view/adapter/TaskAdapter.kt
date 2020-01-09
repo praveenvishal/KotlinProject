@@ -11,7 +11,7 @@ import java.util.*
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: List<String>?) : BaseAdapter() {
+class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>?) : BaseAdapter() {
     public var searchText: String? = null
     private val searchArray: List<String>
 
@@ -68,7 +68,7 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: List<String>?) : 
         }
     }
 
-    fun notifyAdapter(list: List<String>) {
+    fun notifyAdapter(list: ArrayList<String>) {
         this.mTaskList = list
         notifyDataSetChanged()
     }
@@ -77,13 +77,13 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: List<String>?) : 
         var charText = charText
         charText = charText!!.toLowerCase(Locale.getDefault())
         searchText = charText
-        mTaskList?.toMutableList()?.clear()
+        mTaskList?.clear()
         if (charText == null && charText!!.length == 0) {
-            mTaskList?.toMutableList()?.addAll(searchArray)
+            mTaskList?.addAll(searchArray)
         } else {
             for (wp in searchArray) {
                 if (wp != null && wp!!.toLowerCase(Locale.getDefault()).contains(charText)) {
-                    mTaskList?.toMutableList()?.add(wp)
+                    mTaskList?.add(wp)
                 }
                 //                else if (wp.toLowerCase(Locale.getDefault()).contains(charText)) {
                 //                    mAction.add(wp);

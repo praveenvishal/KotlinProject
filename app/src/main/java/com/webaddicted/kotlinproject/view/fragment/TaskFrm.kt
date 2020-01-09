@@ -237,8 +237,8 @@ class TaskFrm : BaseFragment() {
     }
 
     private fun sortList(isAscending: Boolean) {
-        if (isAscending) mTaskList = mTaskList?.sortedBy { it.toLowerCase() }
-        else mTaskList = mTaskList?.sortedByDescending { it.toLowerCase() }
+              if (isAscending) Collections.sort(mTaskList)
+        else Collections.sort(mTaskList, Collections.reverseOrder())
         if(mHomeAdapter!=null) mTaskList?.let { mHomeAdapter.notifyAdapter(it) }
     }
 

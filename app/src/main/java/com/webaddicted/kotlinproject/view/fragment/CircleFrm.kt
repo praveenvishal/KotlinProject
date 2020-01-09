@@ -55,7 +55,9 @@ class CircleFrm : BaseFragment() {
     }
 
     private fun setAdapter() {
-        newsAdapter = CircleGameAdapter(setCircleGameBean())
+         var circleBean=setCircleGameBean()
+        Collections.sort(circleBean, CircleGameBean())
+        newsAdapter = CircleGameAdapter(circleBean)
         mBinding.rvNewsChannel.layoutManager = LinearLayoutManager(activity)
         mBinding.rvNewsChannel.adapter = newsAdapter
     }

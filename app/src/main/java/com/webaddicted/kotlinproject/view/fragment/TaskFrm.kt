@@ -255,6 +255,8 @@ class TaskFrm : BaseFragment() {
             when (menuItem.itemId) {
                 R.id.menu_ascending ->  taskFrm.sortList(true)
                 R.id.menu_descending ->  taskFrm.sortList(false)
+              R.id.menu_default -> {  taskFrm.mTaskList = ArrayList(Arrays.asList(*taskFrm.worktask))
+                    if(taskFrm.mHomeAdapter!=null) taskFrm.mTaskList?.let { taskFrm.mHomeAdapter.notifyAdapter(it) }}
             }
             return false
         }

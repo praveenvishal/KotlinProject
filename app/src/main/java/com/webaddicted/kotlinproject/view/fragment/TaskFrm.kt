@@ -29,7 +29,7 @@ import kotlin.collections.ArrayList
 class TaskFrm : BaseFragment() {
     private lateinit var mBinding: FrmTaskListBinding
     private lateinit var mHomeAdapter: TaskAdapter
-    private var mTaskList: List<String>? = ArrayList()
+    private var mTaskList: ArrayList<String>? = ArrayList()
     internal var worktask = arrayOf(
         "Widgets",
         "News Api",

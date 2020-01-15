@@ -1,7 +1,6 @@
-package com.webaddicted.kotlinproject.apiUtils
+package com.webaddicted.kotlinproject.apiutils
 
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import java.util.*
 /**
  * Created by Deepak Sharma on 01/07/19.

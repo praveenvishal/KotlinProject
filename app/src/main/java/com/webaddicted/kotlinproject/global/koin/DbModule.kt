@@ -1,28 +1,11 @@
 package com.webaddicted.kotlinproject.global.koin
 
 import androidx.room.Room
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.webaddicted.kotlinproject.apiUtils.ApiConstant
-import com.webaddicted.kotlinproject.apiUtils.ApiServices
-import com.webaddicted.kotlinproject.apiUtils.ReflectionUtil
 import com.webaddicted.kotlinproject.global.common.AppApplication
-import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.global.constant.DbConstant
 import com.webaddicted.kotlinproject.global.db.database.AppDatabase
-import com.webaddicted.kotlinproject.global.db.entity.UserInfoEntity
-import com.webaddicted.kotlinproject.global.db.migration.DbMigrationHelper
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by Deepak Sharma on 01/07/19.

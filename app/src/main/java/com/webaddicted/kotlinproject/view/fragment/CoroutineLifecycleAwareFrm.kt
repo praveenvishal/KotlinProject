@@ -47,10 +47,12 @@ class CoroutineLifecycleAwareFrm : BaseFragment() {
             return CoroutineLifecycleAwareFrm()
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycle.addObserver(mainScope)
     }
+
     override fun getLayout(): Int {
         return R.layout.frm_coroutine
     }
@@ -63,7 +65,8 @@ class CoroutineLifecycleAwareFrm : BaseFragment() {
 
     private fun init() {
         mBinding.toolbar.imgBack.visible()
-        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.lifecycle_aware_coroutine_title)
+        mBinding.toolbar.txtToolbarTitle.text =
+            resources.getString(R.string.lifecycle_aware_coroutine_title)
     }
 
     private fun clickListener() {
@@ -85,7 +88,7 @@ class CoroutineLifecycleAwareFrm : BaseFragment() {
         super.onClick(v)
         when (v.id) {
             R.id.img_back -> activity?.onBackPressed()
-            R.id.btn_lifecycle_aware -> launchLifecycleAware()
+            R.id.btn_lifecycle_aware -> launchLifecycleAware(mBinding.txtLifecycleAware)
             R.id.btn_cancel -> {
                 activity?.showToast(getString(R.string.job_cancel))
             }
@@ -93,14 +96,16 @@ class CoroutineLifecycleAwareFrm : BaseFragment() {
     }
 
 
-    private fun launchLifecycleAware() {
-        mBinding.txtLifecycleAware.setText("Step 1 ")
-        mainScope.launch{
-            mBinding.txtLifecycleAware.setText(mBinding.txtLifecycleAware.text.toString() + "\nStep 2")
+    private fun launchLifecycleAware(textView: TextView) {
+        textView.setText("Step 1 ")
+        mainScope.launch {
+            textView.setText(textView.text.toString() + "\nStep 2")
             var result = loadData(mBinding.txtLifecycleAware)
-            mBinding.txtLifecycleAware.setText(mBinding.txtLifecycleAware.text.toString() + "\nStep 5 :- result  :- $result")
+            textView.setText(textView.text.toString() + "\nStep 5 :- result  :- $result")
         }
+        textView.setText(textView.text.toString() + "\nOut of launch ")
     }
+
     suspend fun loadData(txtLaunch: TextView): String {
         txtLaunch.setText(txtLaunch.text.toString() + "\nStep 3")
         delay(TimeUnit.SECONDS.toMillis(3)) // imitate long running operation

@@ -2,9 +2,9 @@ package com.webaddicted.kotlinproject.viewModel.home
 
 import androidx.lifecycle.MutableLiveData
 import com.webaddicted.kotlinproject.model.repository.news.NewsRepository
-import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
+import com.webaddicted.kotlinproject.model.bean.newschannel.NewsChanelRespo
 import com.webaddicted.kotlinproject.viewModel.base.BaseViewModel
-import com.webaddicted.kotlinproject.apiUtils.ApiResponse
+import com.webaddicted.kotlinproject.apiutils.ApiResponse
 
 /**
  * Created by Deepak Sharma on 01/07/19.

@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.global.annotationDef
+package com.webaddicted.kotlinproject.global.annotationdef
 
 import androidx.annotation.IntDef
 

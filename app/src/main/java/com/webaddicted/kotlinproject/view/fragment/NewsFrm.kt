@@ -8,12 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.apiUtils.ApiResponse
+import com.webaddicted.kotlinproject.apiutils.ApiResponse
 import com.webaddicted.kotlinproject.databinding.FrmNewsBinding
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.global.constant.AppConstant
-import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
+import com.webaddicted.kotlinproject.model.bean.newschannel.NewsChanelRespo
 import com.webaddicted.kotlinproject.view.adapter.NewsAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.webaddicted.kotlinproject.view.base.ScrollListener

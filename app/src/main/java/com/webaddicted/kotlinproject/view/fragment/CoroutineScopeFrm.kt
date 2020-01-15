@@ -82,7 +82,7 @@ class CoroutineScopeFrm : ScopedFragment() {
         super.onClick(v)
         when (v.id) {
             R.id.img_back -> activity?.onBackPressed()
-            R.id.btn_android_scoped -> launchAndroidScope()
+            R.id.btn_android_scoped -> launchAndroidScope(mBinding.txtAndroidScoped)
             R.id.btn_cancel -> {
                 activity?.showToast(getString(R.string.job_cancel))
             }
@@ -90,13 +90,14 @@ class CoroutineScopeFrm : ScopedFragment() {
     }
 
 
-    private fun launchAndroidScope() {
-        mBinding.txtAndroidScoped.setText("Step 1 ")
+    private fun launchAndroidScope(textView: TextView) {
+        textView.setText("Step 1 ")
         launch{
-            mBinding.txtAndroidScoped.setText(mBinding.txtAndroidScoped.text.toString() + "\nStep 2")
+            textView.setText(textView.text.toString() + "\nStep 2")
             var result = loadData(mBinding.txtAndroidScoped)
-            mBinding.txtAndroidScoped.setText(mBinding.txtAndroidScoped.text.toString() + "\nStep 5 :- result  :- $result")
+            textView.setText(textView.text.toString() + "\nStep 5 :- result  :- $result")
         }
+        textView.setText(textView.text.toString() + "\nOut of launch ")
     }
     suspend fun loadData(txtLaunch: TextView): String {
         txtLaunch.setText(txtLaunch.text.toString() + "\nStep 3")

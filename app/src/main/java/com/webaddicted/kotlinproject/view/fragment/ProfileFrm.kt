@@ -5,7 +5,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmProfileBinding
-import com.webaddicted.kotlinproject.global.annotationDef.MediaPickerType
+import com.webaddicted.kotlinproject.global.annotationdef.MediaPickerType
 import com.webaddicted.kotlinproject.global.common.showImage
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseFragment

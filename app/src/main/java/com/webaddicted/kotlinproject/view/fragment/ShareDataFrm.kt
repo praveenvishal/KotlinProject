@@ -10,7 +10,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmShareBinding
-import com.webaddicted.kotlinproject.global.annotationDef.MediaPickerType
+import com.webaddicted.kotlinproject.global.annotationdef.MediaPickerType
 import com.webaddicted.kotlinproject.global.common.FileUtils
 import com.webaddicted.kotlinproject.global.common.MediaPickerUtils
 import com.webaddicted.kotlinproject.global.common.visible

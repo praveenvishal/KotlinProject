@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.apiUtils
+package com.webaddicted.kotlinproject.apiutils
 
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.AppApplication

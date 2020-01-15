@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.apiUtils
+package com.webaddicted.kotlinproject.apiutils
 
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Deferred

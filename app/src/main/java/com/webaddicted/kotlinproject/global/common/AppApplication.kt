@@ -6,7 +6,7 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.koin.*
-import com.webaddicted.kotlinproject.global.sharedPref.PreferenceUtils
+import com.webaddicted.kotlinproject.global.sharedpref.PreferenceUtils
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

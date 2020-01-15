@@ -6,7 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.global.annotationDef.MediaPickerType
+import com.webaddicted.kotlinproject.global.annotationdef.MediaPickerType
 import java.io.File
 import java.util.ArrayList
 

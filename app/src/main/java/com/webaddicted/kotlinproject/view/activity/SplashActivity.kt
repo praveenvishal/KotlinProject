@@ -1,5 +1,7 @@
 package com.webaddicted.kotlinproject.view.activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Handler
 import android.view.View
 import androidx.databinding.ViewDataBinding
@@ -16,8 +18,14 @@ import java.util.*
  * Created by Deepak Sharma on 01/07/19.
  */
 class SplashActivity : BaseActivity() {
-    public val TAG: String = SplashActivity::class.java.simpleName
     private lateinit var mBinding: ActivitySplashBinding
+    companion object {
+        val TAG: String = SplashActivity::class.java.simpleName
+        fun newIntent(activity: Activity) {
+            activity.startActivity(Intent(activity, SplashActivity::class.java))
+        }
+    }
+
     override fun getLayout(): Int {
         return R.layout.activity_splash
     }

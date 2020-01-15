@@ -5,9 +5,9 @@ import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.webaddicted.kotlinproject.apiUtils.ApiConstant
-import com.webaddicted.kotlinproject.apiUtils.ApiServices
-import com.webaddicted.kotlinproject.apiUtils.ReflectionUtil
+import com.webaddicted.kotlinproject.apiutils.ApiConstant
+import com.webaddicted.kotlinproject.apiutils.ApiServices
+import com.webaddicted.kotlinproject.apiutils.ReflectionUtil
 import com.webaddicted.kotlinproject.global.common.AppApplication
 import com.webaddicted.kotlinproject.global.constant.DbConstant
 import com.webaddicted.kotlinproject.global.db.database.AppDatabase

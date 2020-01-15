@@ -1,7 +1,7 @@
 package com.webaddicted.kotlinproject.model.repository.news
 
 import com.webaddicted.kotlinproject.global.db.dao.UserInfoDao
-import com.webaddicted.kotlinproject.global.sharedPref.PreferenceMgr
+import com.webaddicted.kotlinproject.global.sharedpref.PreferenceMgr
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 

@@ -60,17 +60,23 @@ class CalendarFrm : BaseFragment() {
     private fun getDisabledDays(): List<Calendar> {
         val firstDisabled = DateUtils.getCalendar()
         firstDisabled.add(Calendar.DAY_OF_MONTH, printDifference("12/09/2019"))
-
         val secondDisabled = DateUtils.getCalendar()
         secondDisabled.add(Calendar.DAY_OF_MONTH, printDifference("09/09/2019"))
-
         val thirdDisabled = DateUtils.getCalendar()
         thirdDisabled.add(Calendar.DAY_OF_MONTH, printDifference("14/09/2019"))
-
+        val forthDisabled = DateUtils.getCalendar()
+         forthDisabled.add(Calendar.DAY_OF_MONTH, 2)
+        val fifthDisabled = DateUtils.getCalendar()
+         fifthDisabled.add(Calendar.DAY_OF_MONTH, 4)
+        val sixDisabled = DateUtils.getCalendar()
+         sixDisabled.add(Calendar.DAY_OF_MONTH, 6)
         val calendars = ArrayList<Calendar>()
         calendars.add(firstDisabled)
         calendars.add(secondDisabled)
         calendars.add(thirdDisabled)
+        calendars.add(forthDisabled)
+        calendars.add(fifthDisabled)
+        calendars.add(sixDisabled)
         return calendars
     }
 
@@ -78,17 +84,24 @@ class CalendarFrm : BaseFragment() {
     private fun getFilledDays(): List<Calendar> {
         val firstDisabled = DateUtils.getCalendar()
         firstDisabled.add(Calendar.DAY_OF_MONTH, printDifference("24/09/2019"))
-
         val secondDisabled = DateUtils.getCalendar()
         secondDisabled.add(Calendar.DAY_OF_MONTH, printDifference("25/09/2019"))
-
         val thirdDisabled = DateUtils.getCalendar()
         thirdDisabled.add(Calendar.DAY_OF_MONTH, printDifference("26/09/2019"))
-
+        val forthDisabled = DateUtils.getCalendar()
+        forthDisabled.add(Calendar.DAY_OF_MONTH, 12)
+        val fifthDisabled = DateUtils.getCalendar()
+        fifthDisabled.add(Calendar.DAY_OF_MONTH, 14)
+        val sixDisabled = DateUtils.getCalendar()
+        sixDisabled.add(Calendar.DAY_OF_MONTH, 16)
         val calendars = ArrayList<Calendar>()
         calendars.add(firstDisabled)
         calendars.add(secondDisabled)
         calendars.add(thirdDisabled)
+        calendars.add(forthDisabled)
+        calendars.add(fifthDisabled)
+        calendars.add(sixDisabled)
+
         return calendars
     }
 

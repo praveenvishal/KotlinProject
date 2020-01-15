@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.global.sharedPref
+package com.webaddicted.kotlinproject.global.sharedpref
 
 import com.webaddicted.kotlinproject.global.constant.PreferenceConstant
 import com.webaddicted.kotlinproject.model.bean.language.LanguageBean

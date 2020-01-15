@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.apiUtils
+package com.webaddicted.kotlinproject.apiutils
 
 /**
  * Created by Deepak Sharma on 01/07/19.

@@ -1,6 +1,6 @@
-package com.webaddicted.kotlinproject.apiUtils
+package com.webaddicted.kotlinproject.apiutils
 
-import com.webaddicted.kotlinproject.model.bean.newsChannel.NewsChanelRespo
+import com.webaddicted.kotlinproject.model.bean.newschannel.NewsChanelRespo
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET

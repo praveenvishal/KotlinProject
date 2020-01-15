@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.model.bean.newsChannel
+package com.webaddicted.kotlinproject.model.bean.newschannel
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

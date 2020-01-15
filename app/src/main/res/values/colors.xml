@@ -42,4 +42,10 @@
     <color name="circular_pic_border">#5f707070</color>
     <color name="gray_f6f6f6">#f6f6f6</color>
     <color name="gray_74f6f6f6">#74f6f6f6</color>
+
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextDisable">#66FFFFFF</color>
+    <color name="cyan_500">#64418b</color>
+    <color name="light_blue_500">#3e2483</color>
+    <color name="divider">#d9d9d9</color>
 </resources>

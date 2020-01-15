@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.global.sharedPref
+package com.webaddicted.kotlinproject.global.sharedpref
 
 import android.content.Context
 import android.content.SharedPreferences

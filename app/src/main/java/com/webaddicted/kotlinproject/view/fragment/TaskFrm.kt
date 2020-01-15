@@ -15,13 +15,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmTaskListBinding
+import com.webaddicted.kotlinproject.global.annotationdef.SortListType
 import com.webaddicted.kotlinproject.global.common.*
-import com.webaddicted.kotlinproject.view.activity.MapActivity
-import com.webaddicted.kotlinproject.view.activity.NavigationDrawerActivity
-import com.webaddicted.kotlinproject.view.activity.SpeechTextActivity
-import com.webaddicted.kotlinproject.view.activity.WebViewActivity
+import com.webaddicted.kotlinproject.view.activity.*
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
+import com.webaddicted.kotlinproject.view.deviceinfo.DeviceInfoFrm
 import com.webaddicted.kotlinproject.view.ecommerce.EcommLoginFrm
 import java.util.*
 import kotlin.collections.ArrayList
@@ -65,7 +64,9 @@ class TaskFrm : BaseFragment() {
         "Fab Button",
         "Bottom Navigation",
         "Bottom Sheet",
-        "Coroutines"
+        "Coroutines",
+        "Splash"
+
     )
     lateinit var showSearchView: ShowSearchView
 
@@ -97,13 +98,12 @@ class TaskFrm : BaseFragment() {
         showSearchView = ShowSearchView()
         setAdapter()
         clickListener()
-        sortList(true)
+        sortList(SortListType.ASCENDING)
         var currentMode = AppCompatDelegate.getDefaultNightMode()
         if (currentMode == AppCompatDelegate.MODE_NIGHT_YES)
             activity?.showToast("Night Mode")
         else if (currentMode == AppCompatDelegate.MODE_NIGHT_NO)
             activity?.showToast("Day Mode")
-
     }
 
     private fun clickListener() {
@@ -124,7 +124,6 @@ class TaskFrm : BaseFragment() {
             override fun afterTextChanged(editable: Editable) {
             }
         })
-
     }
 
     override fun onClick(v: View) {
@@ -141,7 +140,7 @@ class TaskFrm : BaseFragment() {
                 intent.data = Uri.parse("tel:" + getString(R.string.deep_mobile_no))
                 startActivity(intent)
             }
-            R.id.img_sort ->showPopupMenu(mBinding.toolbar.imgSort)
+            R.id.img_sort -> showPopupMenu(mBinding.toolbar.imgSort)
         }
     }
 
@@ -183,13 +182,10 @@ class TaskFrm : BaseFragment() {
             "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
             "Coroutines" -> navigateScreen(CoroutineFrm.TAG)
             "ScreenShot" -> checkStoragePermission()
+            "Splash" -> navigateScreen(SplashActivity.TAG)
+            "Device Info"->navigateScreen(DeviceInfoFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        addBlankSpace(mBinding.bottomSpace)
     }
 
     /**
@@ -223,6 +219,8 @@ class TaskFrm : BaseFragment() {
             BlinkScanFrm.TAG -> frm = BlinkScanFrm.getInstance(Bundle())
             NavigationDrawerActivity.TAG -> activity?.let { NavigationDrawerActivity.newIntent(it) }
             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
+            SplashActivity.TAG -> activity?.let { SplashActivity.newIntent(it) }
+            DeviceInfoFrm.TAG ->frm = DeviceInfoFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }
@@ -236,10 +234,13 @@ class TaskFrm : BaseFragment() {
         activity?.showToast("Screen capture successfully")
     }
 
-    private fun sortList(isAscending: Boolean) {
-              if (isAscending) Collections.sort(mTaskList)
-        else Collections.sort(mTaskList, Collections.reverseOrder())
-        if(mHomeAdapter!=null) mTaskList?.let { mHomeAdapter.notifyAdapter(it) }
+    private fun sortList(@SortListType.SortType sortType: Int) {
+        when(sortType){
+            SortListType.DEFAULT-> mTaskList = ArrayList(Arrays.asList(*worktask))
+            SortListType.ASCENDING ->Collections.sort(mTaskList)
+            SortListType.DESCENDING->Collections.sort(mTaskList, Collections.reverseOrder())
+        }
+        if (mHomeAdapter != null) mTaskList?.let { mHomeAdapter.notifyAdapter(it) }
     }
 
     private fun showPopupMenu(view: View) { // inflate menu
@@ -250,16 +251,18 @@ class TaskFrm : BaseFragment() {
         popup.show()
     }
 
-    internal class MyMenuItemClickListen(var taskFrm: TaskFrm) :PopupMenu.OnMenuItemClickListener {
+    internal class MyMenuItemClickListen(var taskFrm: TaskFrm) : PopupMenu.OnMenuItemClickListener {
         override fun onMenuItemClick(menuItem: MenuItem): Boolean {
             when (menuItem.itemId) {
-                R.id.menu_ascending ->  taskFrm.sortList(true)
-                R.id.menu_descending ->  taskFrm.sortList(false)
-              R.id.menu_default -> {  taskFrm.mTaskList = ArrayList(Arrays.asList(*taskFrm.worktask))
-                    if(taskFrm.mHomeAdapter!=null) taskFrm.mTaskList?.let { taskFrm.mHomeAdapter.notifyAdapter(it) }}
+                R.id.menu_default -> taskFrm.sortList(SortListType.DEFAULT)
+                R.id.menu_ascending -> taskFrm.sortList(SortListType.ASCENDING)
+                R.id.menu_descending -> taskFrm.sortList(SortListType.DESCENDING)
             }
             return false
         }
-
+    }
+    override fun onResume() {
+        super.onResume()
+        addBlankSpace(mBinding.bottomSpace)
     }
 }

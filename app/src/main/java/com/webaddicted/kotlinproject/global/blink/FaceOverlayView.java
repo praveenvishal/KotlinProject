@@ -163,7 +163,7 @@ public class FaceOverlayView extends View {
         float currentRightEyeOpenProbability = face.getIsRightEyeOpenProbability();
         if (currentLeftEyeOpenProbability == -1.0 || currentRightEyeOpenProbability == -1.0)
             return false;
-        if (leftEyeOpenProbability > 0.9 && rightEyeOpenProbability > 0.9) {
+        if (leftEyeOpenProbability > 0.98 && rightEyeOpenProbability > 0.98) {
             boolean blinked = false;
 //            if(currentLeftEyeOpenProbability<0.6 || rightEyeOpenProbability< 0.6)blinked = true;
             leftEyeOpenProbability = currentLeftEyeOpenProbability;

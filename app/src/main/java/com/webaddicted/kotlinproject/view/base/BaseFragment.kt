@@ -11,10 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.apiUtils.ApiResponse
+import com.webaddicted.kotlinproject.apiutils.ApiResponse
 import com.webaddicted.kotlinproject.global.common.*
-import com.webaddicted.kotlinproject.global.db.dao.UserInfoDao
-import com.webaddicted.kotlinproject.global.sharedPref.PreferenceMgr
+import com.webaddicted.kotlinproject.global.sharedpref.PreferenceMgr
 import com.webaddicted.kotlinproject.model.bean.eventBus.EventBusListener
 import com.webaddicted.kotlinproject.view.dialog.LoaderDialog
 import org.greenrobot.eventbus.EventBus

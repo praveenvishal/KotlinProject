@@ -14,19 +14,20 @@ import com.webaddicted.kotlinproject.view.base.BaseFragment
 class AnimationFrm : BaseFragment() {
     private lateinit var mBinding: FrmAnimationBinding
     private var animBlink: Animation? = null
-    private var animFade:Animation? = null
-    private var animZoom:Animation? = null
-    private var animMove:Animation? = null
-    private var animRotate:Animation? = null
-    private var animFadeIn:Animation? = null
-    private var animFadeOut:Animation? = null
+    private var animFade: Animation? = null
+    private var animZoom: Animation? = null
+    private var animMove: Animation? = null
+    private var animRotate: Animation? = null
+    private var animFadeIn: Animation? = null
+    private var animFadeOut: Animation? = null
     private var animZoomIn: Animation? = null
-    private var animZoomOut:Animation? = null
-    private var animSlideUp:Animation? = null
-    private var animSlideDown:Animation? = null
-    private var animBounce:Animation? = null
-    private var animSequential:Animation? = null
+    private var animZoomOut: Animation? = null
+    private var animSlideUp: Animation? = null
+    private var animSlideDown: Animation? = null
+    private var animBounce: Animation? = null
+    private var animSequential: Animation? = null
     private var animTogether: Animation? = null
+
     companion object {
         val TAG = AnimationFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): AnimationFrm {
@@ -53,7 +54,7 @@ class AnimationFrm : BaseFragment() {
         animFade = AnimationUtils.loadAnimation(activity, R.anim.fade)
         animZoom = AnimationUtils.loadAnimation(activity, R.anim.zoom)
         animMove = AnimationUtils.loadAnimation(activity, R.anim.move)
-            animRotate = AnimationUtils.loadAnimation(activity, R.anim.rotate)
+        animRotate = AnimationUtils.loadAnimation(activity, R.anim.rotate)
         animFadeIn = AnimationUtils.loadAnimation(activity, R.anim.fade_in)
         animFadeOut = AnimationUtils.loadAnimation(activity, R.anim.fade_out)
         animZoomIn = AnimationUtils.loadAnimation(activity, R.anim.zoom_in)
@@ -88,6 +89,8 @@ class AnimationFrm : BaseFragment() {
         mBinding.btnBottomToTop.setOnClickListener(this)
         mBinding.btnRightToLeft.setOnClickListener(this)
         mBinding.btnLeftToRight.setOnClickListener(this)
+        mBinding.btnExpend.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View) {
@@ -141,8 +144,13 @@ class AnimationFrm : BaseFragment() {
             R.id.btn_bottom_to_top -> leftRigtAnimation()
             R.id.btn_right_to_left -> leftRigtAnimation()
             R.id.btn_left_to_right -> leftRigtAnimation()
+            R.id.btn_expend -> {
+                if (mBinding.expandableLayout.isExpanded()) mBinding.expandableLayout.collapse();
+                else mBinding.expandableLayout.expand();
+            }
         }
     }
+
     fun startAnimation(animation: Animation?, btnView: View, txtView: View) {
         btnView.startAnimation(animation)
         txtView.startAnimation(animation)

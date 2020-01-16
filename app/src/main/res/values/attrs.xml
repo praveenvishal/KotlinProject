@@ -30,28 +30,36 @@
 
     <!--    {START OTP WAVE VIEW}-->
     <declare-styleable name="WaveView">
-        <attr name="above_wave_color" format="color"/>
-        <attr name="blow_wave_color" format="color"/>
-        <attr name="progress" format="integer"/>
+        <attr name="above_wave_color" format="color" />
+        <attr name="blow_wave_color" format="color" />
+        <attr name="progress" format="integer" />
         <attr name="wave_length" format="enum">
-            <enum name="large" value="1"/>
-            <enum name="middle" value="2"/>
-            <enum name="little" value="3"/>
+            <enum name="large" value="1" />
+            <enum name="middle" value="2" />
+            <enum name="little" value="3" />
         </attr>
         <attr name="wave_height" format="enum">
-            <enum name="large" value="1"/>
-            <enum name="middle" value="2"/>
-            <enum name="little" value="3"/>
+            <enum name="large" value="1" />
+            <enum name="middle" value="2" />
+            <enum name="little" value="3" />
         </attr>
         <attr name="wave_hz" format="enum">
-            <enum name="fast" value="1"/>
-            <enum name="normal" value="2"/>
-            <enum name="slow" value="3"/>
+            <enum name="fast" value="1" />
+            <enum name="normal" value="2" />
+            <enum name="slow" value="3" />
         </attr>
     </declare-styleable>
 
     <declare-styleable name="Themes">
-        <attr name="waveViewStyle" format="reference"/>
+        <attr name="waveViewStyle" format="reference" />
     </declare-styleable>
     <!--    {END OTP WAVE VIEW}-->
+    <!--    START EXPENDABLE LAYOUT-->
+    <declare-styleable name="ExpandableLayout">
+        <attr name="el_duration" format="integer" />
+        <attr name="el_expanded" format="boolean" />
+        <attr name="el_parallax" format="float" />
+        <attr name="android:orientation" />
+    </declare-styleable>
+    <!--    END EXPENDABLE LAYOUT-->
 </resources>

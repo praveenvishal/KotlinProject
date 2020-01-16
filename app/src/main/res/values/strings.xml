@@ -270,4 +270,5 @@
     <string name="bt_discover">Bluetooth Discovery</string>
     <string name="rear_camera">Rear Camera</string>
     <string name="front_camera">Front Camera</string>
+    <string name="expend">Expend/Collapse</string>
 </resources>

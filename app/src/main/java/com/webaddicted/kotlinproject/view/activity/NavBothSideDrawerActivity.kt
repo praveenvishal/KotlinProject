@@ -8,28 +8,28 @@ import android.view.animation.AnimationUtils
 import androidx.core.view.GravityCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.ActivityNavDrawerBinding
+import com.webaddicted.kotlinproject.databinding.ActivityNavBothDrawerBinding
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 
 
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class NavigationDrawerActivity : BaseActivity() {
+class NavBothSideDrawerActivity : BaseActivity() {
 
     private var isLeftDrawer: Boolean = false
     lateinit var animRotate: Animation
-    private lateinit var mBinding: ActivityNavDrawerBinding
+    private lateinit var mBinding: ActivityNavBothDrawerBinding
 
     companion object {
-        val TAG: String = NavigationDrawerActivity::class.java.simpleName
+        val TAG: String = NavBothSideDrawerActivity::class.java.simpleName
         fun newIntent(activity: Activity) {
-            activity.startActivity(Intent(activity, NavigationDrawerActivity::class.java))
+            activity.startActivity(Intent(activity, NavBothSideDrawerActivity::class.java))
         }
     }
 
     override fun getLayout(): Int {
-        return R.layout.activity_nav_drawer
+        return R.layout.activity_nav_both_drawer
     }
 
     override fun isNetworkConnected(isInternetConnected: Boolean) {
@@ -37,7 +37,7 @@ class NavigationDrawerActivity : BaseActivity() {
     }
 
     override fun initUI(binding: ViewDataBinding) {
-        mBinding = binding as ActivityNavDrawerBinding
+        mBinding = binding as ActivityNavBothDrawerBinding
         init()
         clickListener();
     }
@@ -47,8 +47,8 @@ class NavigationDrawerActivity : BaseActivity() {
         mBinding.toolbar.imgProfile?.visibility = View.VISIBLE
         mBinding.toolbar.imgBack?.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.navigation_drawer)
-        mBinding.toolbar.imgProfile?.setImageResource(R.drawable.ic_nav)
-        mBinding.toolbar.imgBack?.setImageResource(R.drawable.ic_nav)
+        mBinding.toolbar.imgProfile?.setImageResource(R.drawable.nevigaiton)
+        mBinding.toolbar.imgBack?.setImageResource(R.drawable.nevigaiton)
         animRotate = AnimationUtils.loadAnimation(this, R.anim.rotate)
     }
 

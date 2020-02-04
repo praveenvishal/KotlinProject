@@ -271,4 +271,9 @@
     <string name="rear_camera">Rear Camera</string>
     <string name="front_camera">Front Camera</string>
     <string name="expend">Expend/Collapse</string>
+    <string name="logout">Logout</string>
+    <string name="faq">FAQ</string>
+    <string name="profile">Profile</string>
+    <string name="create_lead">Create Lead</string>
+    <string name="home">Home</string>
 </resources>

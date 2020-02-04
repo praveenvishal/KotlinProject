@@ -55,6 +55,7 @@ class TaskFrm : BaseFragment() {
         "Timer",
         "BlinkScan",
         "Ecommerce",
+        "Navigation Drawer Both Side",
         "Navigation Drawer",
         "ScreenShot",
         "Digital Signature",
@@ -178,7 +179,8 @@ class TaskFrm : BaseFragment() {
             "Services" -> navigateScreen(ServiceFrm.TAG)
             "Ecommerce" -> navigateScreen(EcommLoginFrm.TAG)
             "Timer" -> navigateScreen(TimerFrm.TAG)
-            "Navigation Drawer" -> navigateScreen(NavigationDrawerActivity.TAG)
+            "Navigation Drawer Both Side" -> navigateScreen(NavBothSideDrawerActivity.TAG)
+            "Navigation Drawer" -> navigateScreen(NavieDrawerActivity.TAG)
             "BlinkScan" -> navigateScreen(BlinkScanFrm.TAG)
             "Coroutines" -> navigateScreen(CoroutineFrm.TAG)
             "ScreenShot" -> checkStoragePermission()
@@ -217,7 +219,8 @@ class TaskFrm : BaseFragment() {
             EcommLoginFrm.TAG -> frm = EcommLoginFrm.getInstance(Bundle())
             TimerFrm.TAG -> frm = TimerFrm.getInstance(Bundle())
             BlinkScanFrm.TAG -> frm = BlinkScanFrm.getInstance(Bundle())
-            NavigationDrawerActivity.TAG -> activity?.let { NavigationDrawerActivity.newIntent(it) }
+            NavBothSideDrawerActivity.TAG -> activity?.let { NavBothSideDrawerActivity.newIntent(it) }
+            NavieDrawerActivity.TAG -> activity?.let { NavieDrawerActivity.newIntent(it) }
             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
             SplashActivity.TAG -> activity?.let { SplashActivity.newIntent(it) }
             DeviceInfoFrm.TAG ->frm = DeviceInfoFrm.getInstance(Bundle())

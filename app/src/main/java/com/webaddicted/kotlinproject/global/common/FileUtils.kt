@@ -342,7 +342,7 @@ class FileUtils {
 
             val photoURI = FileProvider.getUriForFile(
                 activity,
-                activity.resources.getString(R.string.file_provider_authority),
+                activity.packageName+ ".provider",
                 photoFile!!
             )
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)

@@ -52,7 +52,7 @@ class HomeActivity : BaseActivity() {
         var frm: Fragment? = null
         when (tag) {
             TaskFrm.TAG -> frm = TaskFrm.getInstance(Bundle())
-            NavigationDrawerActivity.TAG ->NavigationDrawerActivity.newIntent(this)
+            NavBothSideDrawerActivity.TAG ->NavBothSideDrawerActivity.newIntent(this)
         }
         if (frm != null) navigateFragment(R.id.container, frm, false)
     }

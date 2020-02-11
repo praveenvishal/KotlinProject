@@ -12,7 +12,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
-
+import com.facebook.stetho.Stetho;
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
@@ -26,6 +26,7 @@ class AppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
+           Stetho.initializeWithDefaults(this)
         FileUtils.createApplicationFolder()
         setupDefaultFont()
         PreferenceUtils.Companion.getInstance(this)

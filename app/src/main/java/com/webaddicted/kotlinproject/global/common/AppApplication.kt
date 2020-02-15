@@ -26,7 +26,7 @@ class AppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
-           Stetho.initializeWithDefaults(this)
+        Stetho.initializeWithDefaults(this)
         FileUtils.createApplicationFolder()
         setupDefaultFont()
         PreferenceUtils.Companion.getInstance(this)

@@ -21,6 +21,7 @@ import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.global.constant.DbConstant
 import com.webaddicted.kotlinproject.global.db.database.AppDatabase
 import com.webaddicted.kotlinproject.model.bean.eventBus.EventBusListener
+import com.webaddicted.kotlinproject.view.activity.SplashActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
@@ -37,6 +38,9 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     companion object{
         val TAG = BaseActivity::class.java.simpleName
     }
+    open abstract fun getLayout(): Int
+
+    open abstract fun initUI(binding: ViewDataBinding)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
@@ -75,9 +79,6 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         }
     }
 
-    open abstract fun getLayout(): Int
-
-    open abstract fun initUI(binding: ViewDataBinding)
     /**
      * placeholder type for image
      *
@@ -94,18 +95,25 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (EventBus.getDefault().isRegistered(this))
-            EventBus.getDefault().unregister(this)
-    }
-
-    @Subscribe
-    fun EventBusListener(eventBusListener: EventBusListener) {
-
-    }
-
     override fun onClick(v: View) {}
+    /**
+     * broadcast receiver for check internet connectivity
+     *
+     * @return
+     */
+    private fun getNetworkStateReceiver() {
+        NetworkChangeReceiver.isInternetAvailable(object :
+            NetworkChangeReceiver.ConnectivityReceiverListener {
+            override fun onNetworkConnectionChanged(networkConnected: Boolean) {
+                try {
+                    if(!(this@BaseActivity is SplashActivity))
+                        GlobalUtility.initSnackBar(this@BaseActivity,networkConnected)
+                }catch (exception: Exception){
+                    Lg.d(TAG, "getNetworkStateReceiver : "+exception.toString())
+                }
+            }
+        })
+    }
 
     fun checkStoragePermission() {
         val multiplePermission = ArrayList<String>()
@@ -173,24 +181,5 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             fragmentTransaction.addToBackStack(fragment.javaClass.simpleName)
         fragmentTransaction.commitAllowingStateLoss()
     }
-    /**
-     * broadcast receiver for check internet connectivity
-     *
-     * @return
-     */
-    private fun getNetworkStateReceiver() {
-        NetworkChangeReceiver.isInternetAvailable(object :
-            NetworkChangeReceiver.ConnectivityReceiverListener {
-            override fun onNetworkConnectionChanged(networkConnected: Boolean) {
-                try {
-                    GlobalUtility.initSnackBar(this@BaseActivity,networkConnected)
-                }catch (exception: Exception){
-                    Lg.d(TAG, "getNetworkStateReceiver : "+exception.toString())
-                }
-            }
-        })
-    }
-
-
 
 }

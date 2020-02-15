@@ -181,9 +181,9 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
     private fun getNetworkStateReceiver() {
         NetworkChangeReceiver.isInternetAvailable(object :
             NetworkChangeReceiver.ConnectivityReceiverListener {
-            override fun onNetworkConnectionChanged(isConnected: Boolean) {
+            override fun onNetworkConnectionChanged(networkConnected: Boolean) {
                 try {
-                    isNetworkConnected(isConnected)
+                    GlobalUtility.initSnackBar(this@BaseActivity,networkConnected)
                 }catch (exception: Exception){
                     Lg.d(TAG, "getNetworkStateReceiver : "+exception.toString())
                 }
@@ -191,24 +191,6 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
         })
     }
 
-    open abstract fun isNetworkConnected(isConnected: Boolean)
 
-    protected fun showInternetSnackbar(internetConnected: Boolean, txtNoInternet: TextView) {
-        if (internetConnected) {
-
-            txtNoInternet.setText(getString(R.string.back_online))
-            val color = arrayOf<ColorDrawable>(ColorDrawable(resources.getColor(R.color.red_ff090b)),
-                ColorDrawable(resources.getColor(R.color.green_00de4a)))
-            val trans = TransitionDrawable(color)
-            txtNoInternet.background = (trans)
-            trans.startTransition(500)
-            val handler = Handler()
-            handler.postDelayed({ txtNoInternet.gone() }, 1300)
-        } else {
-            txtNoInternet.text = getString(R.string.no_internet_connection)
-            txtNoInternet.setBackgroundResource(R.color.red_ff090b)
-            txtNoInternet.visible()
-        }
-    }
 
 }

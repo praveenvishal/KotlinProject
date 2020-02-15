@@ -53,6 +53,7 @@ class ImagePickerDialog : BaseDialog() {
             MediaPickerType.SCAN_DL-> {
                 mBinding.linearPhoto.gone()
             }
+
         }
     }
 

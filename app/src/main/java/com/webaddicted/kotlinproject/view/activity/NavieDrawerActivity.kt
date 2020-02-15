@@ -35,10 +35,6 @@ class NavieDrawerActivity : BaseActivity() {
         return R.layout.activity_nav_drawer
     }
 
-    override fun isNetworkConnected(isInternetConnected: Boolean) {
-        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
-    }
-
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityNavDrawerBinding
         init()

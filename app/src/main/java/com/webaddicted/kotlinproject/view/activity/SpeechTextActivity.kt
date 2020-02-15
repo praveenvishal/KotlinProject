@@ -34,10 +34,6 @@ class SpeechTextActivity : BaseActivity() {
         return R.layout.activity_spech_text
     }
 
-    override fun isNetworkConnected(isInternetConnected: Boolean) {
-        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
-    }
-
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivitySpechTextBinding
         init()

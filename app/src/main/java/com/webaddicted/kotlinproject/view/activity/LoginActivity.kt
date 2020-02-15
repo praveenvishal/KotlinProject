@@ -31,9 +31,7 @@ class LoginActivity : BaseActivity() {
         mBinding = binding as ActivityCommonBinding
         navigateScreen(LoginFrm.TAG)
     }
-    override fun isNetworkConnected(isInternetConnected: Boolean) {
-        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
-    }
+
     /**
      * navigate on fragment
      * @param tag represent navigation activity

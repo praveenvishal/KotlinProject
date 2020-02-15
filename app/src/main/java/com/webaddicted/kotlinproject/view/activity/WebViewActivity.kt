@@ -40,10 +40,6 @@ class WebViewActivity : BaseActivity() {
         return R.layout.activity_webview
     }
 
-    override fun isNetworkConnected(isInternetConnected: Boolean) {
-        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
-    }
-
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityWebviewBinding
         init()

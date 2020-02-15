@@ -30,10 +30,6 @@ class HomeActivity : BaseActivity() {
         return R.layout.activity_common
     }
 
-    override fun isNetworkConnected(isInternetConnected: Boolean) {
-        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
-    }
-
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityCommonBinding
         Lg.d(TAG, "ok token - "+FirebaseInstanceId.getInstance().getToken())

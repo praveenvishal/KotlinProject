@@ -29,10 +29,6 @@ class EcommHomeActivity : BaseActivity() {
         return R.layout.activity_ecom_home
     }
 
-    override fun isNetworkConnected(isInternetConnected: Boolean) {
-        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
-    }
-
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityEcomHomeBinding
         navigateScreen(EcommHomeFrm.TAG)

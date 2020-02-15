@@ -36,9 +36,7 @@ class LanguageActivity : BaseActivity() {
     override fun getLayout(): Int {
         return R.layout.activity_language
     }
-    override fun isNetworkConnected(isInternetConnected: Boolean) {
-        showInternetSnackbar(isInternetConnected, mBinding.txtNoInternet)
-    }
+
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityLanguageBinding
         init()

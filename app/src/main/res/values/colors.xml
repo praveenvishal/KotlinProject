@@ -48,4 +48,10 @@
     <color name="cyan_500">#64418b</color>
     <color name="light_blue_500">#3e2483</color>
     <color name="divider">#d9d9d9</color>
+    <color name="ram_free_memory">#f8bbd0</color>
+    <color name="ram_used_memory">#e91e63</color>
+    <color name="int_free_memory">#b3e5fc</color>
+    <color name="int_used_memory">#0277bd</color>
+    <color name="ext_free_memory">#ffecb3</color>
+    <color name="ext_used_memory">#ffb300</color>
 </resources>

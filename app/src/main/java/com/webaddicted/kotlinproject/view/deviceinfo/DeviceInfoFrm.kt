@@ -77,9 +77,9 @@ class DeviceInfoFrm : BaseFragment() {
         adapter.addFragment(DeviceNetworkFrm(), "Network")
         adapter.addFragment(DisplayFrm(), "Display")
         adapter.addFragment(OSFrm(), "OS")
-        adapter.addFragment(ProcessorFrm(), "Processor")
         adapter.addFragment(SimFrm(), "SIM")
         adapter.addFragment(StorageFrm(), "Storage")
+        adapter.addFragment(ProcessorFrm(), "Processor")
         adapter.addFragment(SystemAppFrm(), "System App")
         adapter.addFragment(UserAppFrm(), "User App")
         viewPager.adapter = adapter

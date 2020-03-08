@@ -1,14 +1,17 @@
 package com.webaddicted.kotlinproject.view.deviceinfo
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
+import android.text.Html
+import android.util.DisplayMetrics
 import android.view.View
+import android.view.WindowManager
 import androidx.databinding.ViewDataBinding
-import androidx.viewpager.widget.ViewPager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDevBasicBinding
-import com.webaddicted.kotlinproject.databinding.FrmDeviceInfoBinding
-import com.webaddicted.kotlinproject.global.common.visible
-import com.webaddicted.kotlinproject.global.misc.ViewPagerAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class DeviceDetailsFrm : BaseFragment() {
@@ -17,8 +20,7 @@ class DeviceDetailsFrm : BaseFragment() {
     companion object {
         val TAG = DeviceDetailsFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): DeviceDetailsFrm {
-            val fragment =
-                DeviceDetailsFrm()
+            val fragment = DeviceDetailsFrm()
             fragment.arguments = bundle
             return DeviceDetailsFrm()
         }
@@ -30,24 +32,34 @@ class DeviceDetailsFrm : BaseFragment() {
 
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevBasicBinding
-        init()
-        clickListener();
+        getDeviceInfo()
     }
 
-    private fun init() {
-//        mBinding.toolbar.imgBack.visible()
-//        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.dialog_title)
 
-    }
-
-    private fun clickListener() {
-//        mBinding.toolbar.imgBack.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View) {
-        super.onClick(v)
-        when (v.id) {
-            R.id.img_back -> activity?.onBackPressed()
-        }
+    private fun getDeviceInfo() {
+        mBinding.txtDeviceName.text = Build.BRAND
+        mBinding.txtDeviceId.text = Build.MODEL
+        @SuppressLint("HardwareIds") val androidID =
+            Settings.Secure.getString(
+                context!!.contentResolver,
+                Settings.Secure.ANDROID_ID
+            )
+        val wm =
+            activity?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        val display = wm.defaultDisplay
+        val metrics = DisplayMetrics()
+        display.getMetrics(metrics)
+        val width = metrics.widthPixels
+        val height = metrics.heightPixels
+        val deviceInfo = "<font color=\"#000000\">Manufacturer : </font>${Build.MANUFACTURER}<br>" +
+                "<font color=\"#000000\">Hardware : </font>${Build.HARDWARE}<br>" +
+                "<font color=\"#000000\">Board : </font>${Build.BOARD}<br>" +
+                "<font color=\"#000000\">Serial : </font>${Build.SERIAL}<br>" +
+                "<font color=\"#000000\">Android Id : </font>${androidID}<br>" +
+                "<font color=\"#000000\">ScreenResolution : </font>$width * $height Pixels<br>" +
+                "<font color=\"#000000\">BootLoader : </font>${Build.BOOTLOADER}<br>" +
+                "<font color=\"#000000\">Host : </font>${Build.HOST}<br>" +
+                "<font color=\"#000000\">User : </font>${Build.USER}<br>"
+        mBinding.txtDeviceInfo.text = Html.fromHtml(deviceInfo)
     }
 }

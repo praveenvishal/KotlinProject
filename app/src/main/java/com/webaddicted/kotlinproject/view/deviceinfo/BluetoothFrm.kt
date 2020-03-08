@@ -24,11 +24,11 @@ class BluetoothFrm : BaseFragment() {
     private lateinit var mBluetoothAdapter: BluetoothAdapter
     private lateinit var mBinding: FrmDevBluetoothBinding
     private val REQUEST_ENABLE_BT = 1
+
     companion object {
         val TAG = BluetoothFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): BluetoothFrm {
-            val fragment =
-                BluetoothFrm()
+            val fragment = BluetoothFrm()
             fragment.arguments = bundle
             return BluetoothFrm()
         }
@@ -41,19 +41,15 @@ class BluetoothFrm : BaseFragment() {
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevBluetoothBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {
         val filter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
         activity?.registerReceiver(mbluetoothStateReceiver, filter)
-
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-
+        mBinding.btAnimView.visible()
         getLocalBluetoothName()
-//        mBinding.toolbar.imgBack.visible()
-//        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.dev_bt_title)
-
     }
 
     private fun clickListener() {
@@ -63,37 +59,49 @@ class BluetoothFrm : BaseFragment() {
     override fun onClick(v: View) {
         super.onClick(v)
         when (v.id) {
-            R.id.img_back -> activity?.onBackPressed()
-            R.id.btn_bt_on_off -> startActivityForResult(Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), REQUEST_ENABLE_BT)
+            R.id.btn_bt_on_off -> startActivityForResult(
+                Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE),
+                REQUEST_ENABLE_BT
+            )
         }
     }
+
     @TargetApi(Build.VERSION_CODES.O)
     @SuppressLint("HardwareIds", "WrongConstant")
     private fun getLocalBluetoothName() {
-        if (mBluetoothAdapter == null) {
-            mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-            mBinding.btnBtOnOff.isEnabled = false
-        }
 
-        mBinding.txtBtName.text = getString(R.string.name)+"                                :     "+mBluetoothAdapter?.name
-        mBinding.txtBtAddress.text =  getString(R.string.address)+"                             :     "+mBluetoothAdapter?.address
-        mBinding.txtBtScanMode.text =  getString(R.string.scan_mode)+"                        :     "+mBluetoothAdapter?.scanMode.toString()
+        mBinding.txtBtName.text =
+            getString(R.string.name) + "                                :     " + mBluetoothAdapter?.name
+        mBinding.txtBtAddress.text =
+            getString(R.string.address) + "                             :     " + mBluetoothAdapter?.address
+        mBinding.txtBtScanMode.text =
+            getString(R.string.scan_mode) + "                        :     " + mBluetoothAdapter?.scanMode.toString()
 
-        if (mBluetoothAdapter?.isEnabled!!) {
-            mBinding.txtBtState.text = getString(R.string.bt_state)+"              :     "+resources.getString(R.string.switch_on)
-            mBinding.btAnimView.visible()
+        if (mBluetoothAdapter.isEnabled) {
+            mBinding.txtBtState.text =
+                getString(R.string.bt_state) + "              :     " + resources.getString(R.string.switch_on)
             mBinding.btnBtOnOff.isEnabled = false
-            mBinding.btnBtOnOff.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.divider))
+            mBinding.btnBtOnOff.setBackgroundColor(
+                ContextCompat.getColor(
+                    activity!!,
+                    R.color.divider
+                )
+            )
         } else {
-            mBinding.btAnimView.gone()
-            mBinding.txtBtState.text = getString(R.string.bt_state)+"              :     "+resources.getString(R.string.switch_off)
+            mBinding.txtBtState.text =
+                getString(R.string.bt_state) + "              :     " + resources.getString(R.string.switch_off)
             mBinding.btnBtOnOff.text = resources.getString(R.string.turn_on_bluetooth)
-            mBinding.btnBtOnOff.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.app_color))
+            mBinding.btnBtOnOff.setBackgroundColor(
+                ContextCompat.getColor(
+                    activity!!,
+                    R.color.app_color
+                )
+            )
         }
 
-        if (mBluetoothAdapter!!.isDiscovering) {
-        } else {
-            mBinding.txtBtDiscover.text = getString(R.string.bt_discover)+"          :     "+resources.getString(R.string.switch_off)
+        if (!mBluetoothAdapter.isDiscovering) {
+            mBinding.txtBtDiscover.text =
+                getString(R.string.bt_discover) + "          :     " + resources.getString(R.string.switch_off)
         }
     }
 
@@ -104,15 +112,27 @@ class BluetoothFrm : BaseFragment() {
                 val state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR)
                 when (state) {
                     BluetoothAdapter.STATE_OFF -> {
-                        mBinding.txtBtState.text = getString(R.string.bt_state)+"              :     "+resources.getString(R.string.switch_off)
-                        mBinding.btAnimView.gone()
+                        mBinding.txtBtState.text =
+                            getString(R.string.bt_state) + "              :     " + resources.getString(
+                                R.string.switch_off
+                            )
                         mBinding.btnBtOnOff.isEnabled = true
-                        mBinding.btnBtOnOff.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.colorPrimary))
+                        mBinding.btnBtOnOff.setBackgroundColor(
+                            ContextCompat.getColor(
+                                activity!!,
+                                R.color.colorPrimary
+                            )
+                        )
                     }
                     BluetoothAdapter.STATE_ON -> {
-                        mBinding.btAnimView.visible()
+
                         mBinding.btnBtOnOff.isEnabled = false
-                        mBinding.btnBtOnOff.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.divider))
+                        mBinding.btnBtOnOff.setBackgroundColor(
+                            ContextCompat.getColor(
+                                activity!!,
+                                R.color.divider
+                            )
+                        )
                     }
                 }
             }
@@ -125,19 +145,30 @@ class BluetoothFrm : BaseFragment() {
         super.onDestroy()
         activity?.unregisterReceiver(mbluetoothStateReceiver)
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_ENABLE_BT) {
-            if (resultCode == Activity.RESULT_OK) mBinding.btAnimView.visible()
-             else mBinding.btAnimView.gone()
-        }
+//        if (requestCode == REQUEST_ENABLE_BT) {
+//            if (resultCode == Activity.RESULT_OK) mBinding.btAnimView.visible()
+//            else mBinding.btAnimView.gone()
+//        }
 
-        if (mBluetoothAdapter?.isEnabled!!) {
+        if (mBluetoothAdapter.isEnabled) {
             mBinding.btnBtOnOff.isEnabled = false
-            mBinding.btnBtOnOff.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.divider))
+            mBinding.btnBtOnOff.setBackgroundColor(
+                ContextCompat.getColor(
+                    activity!!,
+                    R.color.divider
+                )
+            )
         } else {
             mBinding.btnBtOnOff.isEnabled = true
-            mBinding.btnBtOnOff.setBackgroundColor(ContextCompat.getColor(activity!!, R.color.app_color))
+            mBinding.btnBtOnOff.setBackgroundColor(
+                ContextCompat.getColor(
+                    activity!!,
+                    R.color.app_color
+                )
+            )
         }
 
     }

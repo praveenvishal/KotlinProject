@@ -1,5 +1,6 @@
 package com.webaddicted.kotlinproject.global.common
 
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
 import android.content.Intent
@@ -10,13 +11,13 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.TransitionDrawable
 import android.media.RingtoneManager
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.format.DateFormat
 import android.text.style.ForegroundColorSpan
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,26 +25,26 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
 import com.webaddicted.kotlinproject.global.constant.AppConstant.Companion.NOTIFICATION_CHANNEL_ID
-import com.webaddicted.kotlinproject.view.activity.HomeActivity
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.webaddicted.kotlinproject.model.bean.common.NotificationData
+import com.webaddicted.kotlinproject.view.activity.HomeActivity
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.lang.reflect.Modifier
+import java.net.InetAddress
+import java.net.NetworkInterface
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -489,6 +490,91 @@ class GlobalUtility {
                 e.printStackTrace()
             } catch (e: IOException) {
                 e.printStackTrace()
+            }
+        }
+        fun isWifiConnected(activity: Activity): String? {
+            val cm =
+                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val activeNetwork = cm.activeNetworkInfo
+            if (activeNetwork != null) { // connected to the internet
+                if (activeNetwork.type == ConnectivityManager.TYPE_WIFI) { // connected to wifi
+                    return activity.getResources()
+                        .getString(R.string.wifi)
+                } else if (activeNetwork.type == ConnectivityManager.TYPE_MOBILE) { // connected to the mobile provider's data plan
+                    return activity.resources.getString(R.string.network)
+                }
+            } else return activity.resources.getString(R.string.unavailable)
+            return ""
+        }
+        /**
+         * Get IP address from first non-localhost interface
+         *
+         * @param useIPv4 true=return ipv4, false=return ipv6
+         * @return address or empty string
+         */
+        fun getIPAddress(useIPv4: Boolean): String? {
+            try {
+                val interfaces: List<NetworkInterface> =
+                    Collections.list(NetworkInterface.getNetworkInterfaces())
+                for (intf in interfaces) {
+                    val addrs: List<InetAddress> =
+                        Collections.list(intf.inetAddresses)
+                    for (addr in addrs) {
+                        if (!addr.isLoopbackAddress) {
+                            val sAddr = addr.hostAddress
+                            //boolean isIPv4 = InetAddressUtils.isIPv4Address(sAddr);
+                            val isIPv4 = sAddr.indexOf(':') < 0
+                            if (useIPv4) {
+                                if (isIPv4) return sAddr
+                            } else {
+                                if (!isIPv4) {
+                                    val delim = sAddr.indexOf('%') // drop ip6 zone suffix
+                                    return if (delim < 0) sAddr.toUpperCase() else sAddr.substring(
+                                        0,
+                                        delim
+                                    ).toUpperCase()
+                                }
+                            }
+                        }
+                    }
+                }
+            } catch (ex: java.lang.Exception) {
+                ex.printStackTrace()
+            }
+            return ""
+        }
+        fun getMACAddress(interfaceName: String?): String? {
+            try {
+                val interfaces: List<NetworkInterface> =
+                    Collections.list(NetworkInterface.getNetworkInterfaces())
+                for (intf in interfaces) {
+                    if (interfaceName != null) {
+                        if (!intf.name.equals(interfaceName, ignoreCase = true)) continue
+                    }
+                    val mac = intf.hardwareAddress ?: return ""
+                    val buf = java.lang.StringBuilder()
+                    for (aMac in mac) buf.append(String.format("%02X:", aMac))
+                    if (buf.length > 0) buf.deleteCharAt(buf.length - 1)
+                    return buf.toString()
+                }
+            } catch (ex: java.lang.Exception) {
+                ex.printStackTrace()
+            }
+            return ""
+        }
+        fun pxToDp(mainActivity: Activity, px: Int): Int {
+            val displayMetrics: DisplayMetrics =
+                mainActivity.getResources().getDisplayMetrics()
+            return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+        }
+        fun getDate(timeStamp: Long): String? {
+            return try {
+                @SuppressLint("SimpleDateFormat") val sdf: java.text.DateFormat =
+                    SimpleDateFormat("dd MMM yyyy HH:mm:ss z")
+                val netDate = Date(timeStamp)
+                sdf.format(netDate)
+            } catch (ex: java.lang.Exception) {
+                "xx"
             }
         }
 

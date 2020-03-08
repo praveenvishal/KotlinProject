@@ -1,12 +1,13 @@
 package com.webaddicted.kotlinproject.view.deviceinfo
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDevOsBinding
-import com.webaddicted.kotlinproject.databinding.FrmDeviceInfoBinding
-import com.webaddicted.kotlinproject.global.common.visible
+import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class OSFrm : BaseFragment() {
@@ -28,24 +29,110 @@ class OSFrm : BaseFragment() {
 
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevOsBinding
-        init()
-        clickListener();
+        getOSInfo()
     }
 
-    private fun init() {
-//        mBinding.toolbar.imgBack.visible()
-//        mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.dialog_title)
-
-    }
-
-    private fun clickListener() {
-//        mBinding.toolbar.imgBack.setOnClickListener(this)
-    }
-
-    override fun onClick(v: View) {
-        super.onClick(v)
-        when (v.id) {
-            R.id.img_back -> activity?.onBackPressed()
+    fun getOSInfo() {
+        val CVersion = Build.VERSION.SDK_INT
+        var osInfo = ""
+        osInfo =   "<font color=\"#000000\">Version : </font>${Build.VERSION.RELEASE}<br>" +
+                "<font color=\"#000000\">Version Name : </font>${Build.VERSION_CODES::class.java.fields[Build.VERSION.SDK_INT].name}<br>" +
+                "<font color=\"#000000\">Api Level : </font>${Build.VERSION.SDK_INT.toString()}<br>" +
+                "<font color=\"#000000\">BuildId : </font>${Build.ID}<br>" +
+                "<font color=\"#000000\">Build Time : </font>${GlobalUtility.getDate(Build.TIME)}<br>" +
+                "<font color=\"#000000\">Fingerprint : </font>${Build.FINGERPRINT}<br>" +
+                "<font color=\"#000000\">Hardware : </font>${Build.HARDWARE}<br>"
+        mBinding.txtOsInfo.setText(Html.fromHtml(osInfo))
+        when (CVersion) {
+            11 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.honeycomb) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("February 22, 2011")
+            }
+            12 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.honeycomb) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("May 10, 2011")
+            }
+            13 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.honeycomb) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("July 15, 2011")
+            }
+            14 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.ics) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("October 18, 2011")
+            }
+            15 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.ics) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("November 28, 2011")
+            }
+            16 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.jellybean) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("July 9, 2012")
+            }
+            17 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.jellybean) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("November 13, 2012")
+            }
+            18 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.jellybean) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("July 24, 2013")
+            }
+            19 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.kitkat) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("October 31, 2013")
+            }
+            21 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.lollipop) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("November 12, 2014")
+            }
+            22 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.lollipop) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("March 9, 2015")
+            }
+            23 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.marshmallow) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("October 5, 2015")
+            }
+            24 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.nougat) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("August 22, 2016")
+            }
+            25 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.nougat) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("October 4, 2016")
+            }
+            26 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.oreo) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("August 21, 2017")
+            }
+            else -> {
+                mBinding.txtVersion.text = resources.getString(R.string.unknown_version)
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("-")
+            }
         }
+
+        //        deviceInfoList.get(0).setBuildRelease(Build.VERSION.RELEASE);
+//        deviceInfoList.get(0).setDisplay(Build.DISPLAY);
+//        deviceInfoList.get(0).setFingerprint(Build.FINGERPRINT);
+//        deviceInfoList.get(0).setBuildId(Build.ID);
+//        deviceInfoList.get(0).setTime(String.valueOf(Build.TIME));
+//        deviceInfoList.get(0).setType(Build.TYPE);
+//        deviceInfoList.get(0).setUser(Build.USER);
+//        deviceInfoList.get(0).setVersion(String.valueOf(Build.VERSION.SDK_INT));
     }
+
 }

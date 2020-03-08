@@ -17,8 +17,7 @@ class ProcessorFrm : BaseFragment() {
     companion object {
         val TAG = ProcessorFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): ProcessorFrm {
-            val fragment =
-                ProcessorFrm()
+            val fragment = ProcessorFrm()
             fragment.arguments = bundle
             return ProcessorFrm()
         }

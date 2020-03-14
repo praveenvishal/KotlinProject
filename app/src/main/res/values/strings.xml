@@ -325,4 +325,9 @@
     <string name="q">Q</string>
     <string name="r">R</string>
     <string name="battery_low">Battery Low</string>
+    <string name="barcode">Barcode</string>
+    <string name="scan_barcode">"Scan Barcode "</string>
+    <string name="bottom_navigation">Bottom Navigation</string>
+    <string name="bottom_sheet">Bottom Sheet</string>
+    <string name="collapse">Collapse</string>
 </resources>

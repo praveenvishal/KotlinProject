@@ -28,7 +28,7 @@ class DeviceNetworkFrm : BaseFragment() {
         return R.layout.frm_dev_network
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevNetworkBinding
         getNetworkInfo()
     }

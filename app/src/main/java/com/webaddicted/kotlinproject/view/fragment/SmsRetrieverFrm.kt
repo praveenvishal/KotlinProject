@@ -33,10 +33,10 @@ class SmsRetrieverFrm : BaseFragment() {
         return R.layout.frm_sms_retriever
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmSmsRetrieverBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

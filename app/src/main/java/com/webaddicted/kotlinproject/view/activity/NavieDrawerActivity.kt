@@ -40,7 +40,7 @@ class NavieDrawerActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityNavDrawerBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

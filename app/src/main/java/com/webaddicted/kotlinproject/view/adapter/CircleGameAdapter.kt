@@ -16,10 +16,10 @@ import com.webaddicted.kotlinproject.view.base.BaseAdapter
 /**
  * Today's Top game list & animation handle in same adapter
  */
-class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : BaseAdapter() {
+class CircleGameAdapter(private var mFilterBean: ArrayList<CircleGameBean>?) : BaseAdapter() {
 
     private val slideAnmimations: Animation
-    internal var slideAnmimation: Animation
+    private var slideAnmimation: Animation
 
     init {
         slideAnmimation = AnimationUtils.loadAnimation(mContext, R.anim.game_bounce)
@@ -39,9 +39,8 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
         return R.layout.row_circle
     }
 
-    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
-        if (rowBinding is RowCircleBinding) {
-            val mBinding = rowBinding as RowCircleBinding
+    override fun onBindTo(mBinding: ViewDataBinding, position: Int) {
+        if (mBinding is RowCircleBinding) {
             mBinding.imgFirst.animation = slideAnmimation
             //            mBinding.imgSecond.startAnimation(slideAnmimation);
             mBinding.imgThird.animation = slideAnmimation
@@ -59,7 +58,7 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
     /**
      * manage circle image view as per position
      */
-    fun checkView(mBinding: RowCircleBinding, position: Int) {
+    private fun checkView(mBinding: RowCircleBinding, position: Int) {
         when (getCurrentReminder(position)) {
             0 -> {
                 mBinding.imgFirst.visible()
@@ -132,7 +131,7 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
     override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
         super.getClickEvent(mRowBinding,view, position)
         val currentPosi = position + 1
-        var categoriesBean: CircleGameBean
+        val categoriesBean: CircleGameBean
             when (view?.id) {
                 R.id.img_first -> categoriesBean = getGameInfo(currentPosi, 0)
                 R.id.img_second -> categoriesBean = getGameInfo(currentPosi, 1)
@@ -148,7 +147,7 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
      * @param remPos     is circle image of one row  image
      * @return current position game bean
      */
-    fun getGameInfo(currentPos: Int, remPos: Int): CircleGameBean {
+    private fun getGameInfo(currentPos: Int, remPos: Int): CircleGameBean {
         val staggeredModel = CircleGameBean()
         staggeredModel.gameName = (mFilterBean!![currentPos * 4 - 4 + remPos].gameName)
         staggeredModel.gameImg = (mFilterBean!![currentPos * 4 - 4 + remPos].gameImg)
@@ -160,7 +159,7 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
     /**
      * set image & text parameter on current position view
      */
-    fun setImage(mBinding: RowCircleBinding, position: Int) {
+    private fun setImage(mBinding: RowCircleBinding, position: Int) {
         val currentPos = position + 1
         when (getCurrentReminder(position)) {
             0 -> {
@@ -171,26 +170,26 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
                     mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
                     getPlaceHolder(0)
-                );
+                )
                     mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
                     getPlaceHolder(0)
-                );
+                )
                     mBinding.imgThird.showImage(
                     getGameInfo(currentPos, 2).gameImg,
                     getPlaceHolder(0)
-                );
+                )
                     mBinding.imgFourth.showImage(
                     getGameInfo(currentPos, 3).gameImg,
                     getPlaceHolder(0)
-                );
+                )
             }
             1 -> {
 //                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
                 mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
                     getPlaceHolder(0)
-                );
+                )
             }
             2 -> {
 //                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
@@ -198,11 +197,11 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
                 mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
                     getPlaceHolder(0)
-                );
+                )
                     mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
                     getPlaceHolder(0)
-                );
+                )
             }
             3 -> {
 //                mBinding.txtFirst.setText(getGameInfo(currentPos, 0).gameName)
@@ -211,15 +210,15 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
                     mBinding.imgFirst.showImage(
                     getGameInfo(currentPos, 0).gameImg,
                     getPlaceHolder(0)
-                );
+                )
                     mBinding.imgSecond.showImage(
                     getGameInfo(currentPos, 1).gameImg,
                     getPlaceHolder(0)
-                );
+                )
                     mBinding.imgThird.showImage(
                     getGameInfo(currentPos, 2).gameImg,
                     getPlaceHolder(0)
-                );
+                )
             }
         }
     }
@@ -235,7 +234,7 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
         return position * 4 + adapterPosition
     }
 
-    val reminder: Int
+    private val reminder: Int
         get() = mFilterBean!!.size % 4
 
     /**
@@ -244,7 +243,7 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
      * @param position one row position
      * @return current position of game list
      */
-    fun getCurrentReminder(position: Int): Int {
+    private fun getCurrentReminder(position: Int): Int {
         val row = mFilterBean!!.size / 4
         return if (position == row || row == 0) {
             reminder

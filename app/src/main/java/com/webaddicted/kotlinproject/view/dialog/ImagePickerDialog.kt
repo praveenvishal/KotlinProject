@@ -35,7 +35,7 @@ class ImagePickerDialog : BaseDialog() {
         return R.layout.dialog_image_picker
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as DialogImagePickerBinding
         init()
         clickListener()

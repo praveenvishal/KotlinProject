@@ -5,20 +5,11 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.FrmEcomLoginBinding
 import com.webaddicted.kotlinproject.databinding.FrmEcomProductCatTabBinding
-import com.webaddicted.kotlinproject.global.common.ValidationHelper
 import com.webaddicted.kotlinproject.view.adapter.EcomProductCatAdapter
-import com.webaddicted.kotlinproject.view.adapter.RecycleAdapteProductGrid
-import com.webaddicted.kotlinproject.view.adapter.RecyclerListAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import com.webaddicted.kotlinproject.view.base.ScrollListener
-import com.webaddicted.kotlinproject.view.fragment.SignupFrm
-import java.util.ArrayList
 
 class EcommProductCatTabFrm : BaseFragment() {
     private lateinit var mListAdapter: EcomProductCatAdapter
@@ -37,7 +28,7 @@ class EcommProductCatTabFrm : BaseFragment() {
         return R.layout.frm_ecom_product_cat_tab
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmEcomProductCatTabBinding
         init()
     }

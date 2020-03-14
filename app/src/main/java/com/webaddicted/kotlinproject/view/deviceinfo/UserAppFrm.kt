@@ -1,16 +1,17 @@
 package com.webaddicted.kotlinproject.view.deviceinfo
 
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDevUserAppBinding
+import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.model.bean.deviceinfo.DeviceInfo
+import com.webaddicted.kotlinproject.view.activity.DeviceInfoActivity
 import com.webaddicted.kotlinproject.view.adapter.AppsAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
+import kotlinx.coroutines.*
 
 class UserAppFrm : BaseFragment() {
     private val appList: ArrayList<DeviceInfo>? = null
@@ -20,7 +21,7 @@ class UserAppFrm : BaseFragment() {
 
     companion object {
         val TAG = UserAppFrm::class.java.simpleName
-        val APPS_TYPE = "AppInfo"
+        const val APPS_TYPE = "AppInfo"
         fun getInstance(appsType: Int): UserAppFrm {
             val fragment = UserAppFrm()
             val bundle = Bundle()
@@ -34,19 +35,24 @@ class UserAppFrm : BaseFragment() {
         return R.layout.frm_dev_user_app
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevUserAppBinding
         init()
-        setAdapter()
-//        showApiLoader()
-        val lists = ArrayList<DeviceInfo>()
-        getAppsList()?.filterTo(lists) { it.flags == appType }
-        mAdapter.notifyAdapter(lists)
-//        hideApiLoader()
     }
 
     private fun init() {
         appType = arguments?.getInt(APPS_TYPE)
+        setAdapter()
+//        showApiLoader()
+        val lists = ArrayList<DeviceInfo>()
+        GlobalScope.launch(Dispatchers.Main + Job()) {
+            val appList = withContext(Dispatchers.Default) {
+                (activity as DeviceInfoActivity).getAppsList()
+                    .filterTo(lists) { it.flags == appType }
+            }
+            mBinding.imgNoDataFound.gone()
+            mAdapter.notifyAdapter(appList)
+        }
     }
 
     private fun setAdapter() {
@@ -60,37 +66,5 @@ class UserAppFrm : BaseFragment() {
 
     }
 
-    fun getAppsList(): List<DeviceInfo>? {
-        val deviceInfos: MutableList<DeviceInfo> =
-            java.util.ArrayList()
-        val flags =
-            PackageManager.GET_META_DATA or PackageManager.GET_SHARED_LIBRARY_FILES
-        val pm: PackageManager = activity?.packageManager!!
-        val applications =
-            pm.getInstalledApplications(flags)
-        for (appInfo in applications) {
-            if (appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 1) { // System application
-                val icon = pm.getApplicationIcon(appInfo)
-                deviceInfos.add(
-                    DeviceInfo(
-                        1,
-                        icon,
-                        pm.getApplicationLabel(appInfo).toString(),
-                        appInfo.packageName
-                    )
-                )
-            } else { // Installed by User
-                val icon = pm.getApplicationIcon(appInfo)
-                deviceInfos.add(
-                    DeviceInfo(
-                        2,
-                        icon,
-                        pm.getApplicationLabel(appInfo).toString(),
-                        appInfo.packageName
-                    )
-                )
-            }
-        }
-        return deviceInfos
-    }
+
 }

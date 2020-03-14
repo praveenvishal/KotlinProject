@@ -42,7 +42,7 @@ class LanguageActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityLanguageBinding
         init()
-        clickListener();
+        clickListener()
         languageObserver(0)
         setAdapter();
 

@@ -11,7 +11,8 @@ class OnBordingViewPagerAdapter(activity: Activity, private val layouts: IntArra
     private val layoutInflater: LayoutInflater
 
     override fun getCount(): Int {
-        return layouts?.size ?: 0;
+        if (layouts == null) return 0
+        return layouts.size
     }
 
     init {

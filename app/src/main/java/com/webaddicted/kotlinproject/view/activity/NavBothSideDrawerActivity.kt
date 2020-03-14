@@ -37,7 +37,7 @@ class NavBothSideDrawerActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityNavBothDrawerBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

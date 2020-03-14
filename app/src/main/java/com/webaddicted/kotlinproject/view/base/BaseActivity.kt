@@ -3,30 +3,19 @@ package com.webaddicted.kotlinproject.view.base
 import android.Manifest
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.TransitionDrawable
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.view.WindowManager
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.room.Room
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.common.*
-import com.webaddicted.kotlinproject.global.constant.DbConstant
-import com.webaddicted.kotlinproject.global.db.database.AppDatabase
-import com.webaddicted.kotlinproject.model.bean.eventBus.EventBusListener
 import com.webaddicted.kotlinproject.view.activity.SplashActivity
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
 import java.io.File
-
 
 
 /**
@@ -34,22 +23,23 @@ import java.io.File
  */
 abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, PermissionHelper.Companion.PermissionListener,
     MediaPickerUtils.ImagePickerListener {
-    protected val mediaPicker: MediaPickerUtils by inject()
+    private val mediaPicker: MediaPickerUtils by inject()
     companion object{
         val TAG = BaseActivity::class.java.simpleName
     }
-    open abstract fun getLayout(): Int
+    abstract fun getLayout(): Int
 
-    open abstract fun initUI(binding: ViewDataBinding)
+    abstract fun initUI(binding: ViewDataBinding)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out)
         supportActionBar?.hide()
 //        setNavigationColor(resources.getColor(R.color.app_color))
-       fullScreen();
+       fullScreen()
         GlobalUtility.hideKeyboard(this)
-        var layoutResId = getLayout()
-        var binding: ViewDataBinding? = null
+        val layoutResId = getLayout()
+        val binding: ViewDataBinding?
         if (layoutResId != 0) {
             try {
                 binding = DataBindingUtil.setContentView(this, layoutResId)
@@ -59,6 +49,8 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             }
         }
         getNetworkStateReceiver()
+        if(!isNetworkAvailable())
+            GlobalUtility.initSnackBar(this@BaseActivity,false)
     }
 
     protected fun fullScreen() {
@@ -75,7 +67,7 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
 
     protected fun setNavigationColor(color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-           window?.setNavigationBarColor(color);
+            window?.navigationBarColor = color
         }
     }
 
@@ -106,10 +98,10 @@ abstract class BaseActivity : AppCompatActivity(), View.OnClickListener, Permiss
             NetworkChangeReceiver.ConnectivityReceiverListener {
             override fun onNetworkConnectionChanged(networkConnected: Boolean) {
                 try {
-                    if(!(this@BaseActivity is SplashActivity))
+                    if(this@BaseActivity !is SplashActivity)
                         GlobalUtility.initSnackBar(this@BaseActivity,networkConnected)
                 }catch (exception: Exception){
-                    Lg.d(TAG, "getNetworkStateReceiver : "+exception.toString())
+                    Lg.d(TAG, "getNetworkStateReceiver : $exception")
                 }
             }
         })

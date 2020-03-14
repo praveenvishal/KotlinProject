@@ -32,7 +32,7 @@ class CoroutineFrm : BaseFragment() {
         return R.layout.frm_coroutine
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmCoroutineBinding
         init()
         clickListener()
@@ -70,69 +70,69 @@ class CoroutineFrm : BaseFragment() {
             R.id.btn_cancel -> {
                 job.cancel()
                 activity?.showToast(getString(R.string.job_cancel))
-                mBinding.txtCancel.setText(getString(R.string.job_cancel))
+                mBinding.txtCancel.text = getString(R.string.job_cancel)
             }
         }
     }
 
     private fun launchCoroutine(textView: TextView) {
-        textView.setText("Step 1 ")
+        textView.text = "Step 1 "
         GlobalScope.launch(Dispatchers.Main + job) {
-            textView.setText(textView.text.toString() + "\nStep 2")
-            var result = loadData(mBinding.txtLaunch)
+            textView.text = textView.text.toString() + "\nStep 2"
+            val result = loadData(mBinding.txtLaunch)
             Log.d(TAG, "Step 5 :- result - $result")
-            textView.setText(textView.text.toString() + "\nStep 5 :- result - $result")
+            textView.text = textView.text.toString() + "\nStep 5 :- result - $result"
         }
-        textView.setText(textView.text.toString() + "\nOut of launch ")
+        textView.text = textView.text.toString() + "\nOut of launch "
     }
 
     private fun launchSequentially(textView: TextView) {
-        textView.setText("Step 1 ")
+        textView.text = "Step 1 "
         GlobalScope.launch(Dispatchers.Main + job) {
-            textView.setText(textView.text.toString() + "\nStep 2")
+            textView.text = textView.text.toString() + "\nStep 2"
             var result1 = loadData(mBinding.txtSequentially)
             var result2 = loadData(mBinding.txtSequentially)
-            textView.setText(textView.text.toString() + "\nStep 5 :- result1 - $result1 \n result2 - $result2")
+            textView.text = textView.text.toString() + "\nStep 5 :- result1 - $result1 \n result2 - $result2"
         }
-        textView.setText(textView.text.toString() + "\nOut of launch ")
+        textView.text = textView.text.toString() + "\nOut of launch "
     }
 
     private fun launchParallel(textView: TextView) {
-        textView.setText("Step 1 ")
+        textView.text = "Step 1 "
         GlobalScope.launch(Dispatchers.Main + job) {
-            textView.setText(textView.text.toString() + "\nStep 2")
-            var result1 = async { loadData(mBinding.txtParallel) }.await()
-            var result2 = async { loadData(mBinding.txtParallel) }.await()
-            textView.setText(textView.text.toString() + "\nStep 5 :- result1 - $result1 \n result2 - $result2")
+            textView.text = textView.text.toString() + "\nStep 2"
+            val result1 = async { loadData(mBinding.txtParallel) }.await()
+            val result2 = async { loadData(mBinding.txtParallel) }.await()
+            textView.text = textView.text.toString() + "\nStep 5 :- result1 - $result1 \n result2 - $result2"
         }
-        textView.setText(textView.text.toString() + "\nOut of launch ")
+        textView.text = textView.text.toString() + "\nOut of launch "
     }
 
     private fun launchLaunchTimeout(textView: TextView) {
-        textView.setText("Step 1 ")
+        textView.text = "Step 1 "
         GlobalScope.launch(Dispatchers.Main + job) {
-            textView.setText(mBinding.txtLaunchTimeout.text.toString() + "\nStep 2")
-            var result =
+            textView.text = mBinding.txtLaunchTimeout.text.toString() + "\nStep 2"
+            val result =
                 withTimeoutOrNull(TimeUnit.SECONDS.toMillis(1)) { loadData(mBinding.txtLaunchTimeout) }
-            textView.setText(mBinding.txtLaunchTimeout.text.toString() + "\nStep 5 :- time out :- $result")
+            textView.text = mBinding.txtLaunchTimeout.text.toString() + "\nStep 5 :- time out :- $result"
         }
-        textView.setText(textView.text.toString() + "\nOut of launch ")
+        textView.text = textView.text.toString() + "\nOut of launch "
     }
 
     private fun launchExceptionHandler(textView: TextView) {
-        textView.setText("Step 1 ")
+        textView.text = "Step 1 "
         GlobalScope.launch(Dispatchers.Main + job) {
-            textView.setText(mBinding.txtExceptionHandler.text.toString() + "\nStep 2")
+            textView.text = mBinding.txtExceptionHandler.text.toString() + "\nStep 2"
             try {
                 val result = loadData(mBinding.txtLaunch)
-                textView.setText(mBinding.txtExceptionHandler.text.toString() + "\nStep 5 :- try :- $result")
+                textView.text = mBinding.txtExceptionHandler.text.toString() + "\nStep 5 :- try :- $result"
 
             } catch (e: IllegalArgumentException) {
-                textView.setText(mBinding.txtExceptionHandler.text.toString() + "\nStep 5 :- catch :- ${e.message}")
+                textView.text = mBinding.txtExceptionHandler.text.toString() + "\nStep 5 :- catch :- ${e.message}"
             }
-            textView.setText(mBinding.txtExceptionHandler.text.toString() + "\nStep 6 :- out function")
+            textView.text = mBinding.txtExceptionHandler.text.toString() + "\nStep 6 :- out function"
         }
-        textView.setText(textView.text.toString() + "\nOut of launch ")
+        textView.text = "${textView.text.toString()} \nOut of launch "
     }
 
     private fun launchLifecycleAware() {

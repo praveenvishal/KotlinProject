@@ -20,12 +20,11 @@ class CameraAdapter( private var list: java.util.ArrayList<CameraBean>?) : BaseA
         return R.layout.row_camera_item
     }
 
-    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
-        if (rowBinding is RowCameraItemBinding) {
-            val mRowBinding = rowBinding as RowCameraItemBinding
-            var source = list?.get(position)
-            mRowBinding.txtCameraFeatureValue.setText(source?.featureValue)
-            mRowBinding.txtCameraFeatureName.setText(source?.featureLable)
+    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
+        if (mRowBinding is RowCameraItemBinding) {
+            val source = list?.get(position)
+            mRowBinding.txtCameraFeatureValue.text = source?.featureValue
+            mRowBinding.txtCameraFeatureName.text = source?.featureLable
         }
     }
 

@@ -26,10 +26,10 @@ class EcommLoginFrm : BaseFragment() {
         return R.layout.frm_ecom_login
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmEcomLoginBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

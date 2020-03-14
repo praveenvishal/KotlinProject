@@ -21,7 +21,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.koin.android.ext.android.inject
 import java.io.File
 
-
 /**
  * Created by Deepak Sharma on 15/1/19.
  */
@@ -32,7 +31,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     protected val mediaPicker: MediaPickerUtils by inject()
     protected val preferenceMgr: PreferenceMgr  by inject()
     abstract fun getLayout(): Int
-    protected abstract fun onViewsInitialized(binding: ViewDataBinding?, view: View)
+    protected abstract fun initUI(binding: ViewDataBinding?, view: View)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 //        return super.onCreateView(inflater, container, savedInstanceState)
@@ -44,7 +43,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        onViewsInitialized(mBinding, view)
+        initUI(mBinding, view)
         super.onViewCreated(view, savedInstanceState)
         if (loaderDialog == null) {
             loaderDialog = LoaderDialog.dialog()
@@ -66,7 +65,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     }
 
     protected fun <T> apiResponseHandler(view: View, response: ApiResponse<T>) {
-        when (response?.status) {
+        when (response.status) {
             ApiResponse.Status.LOADING -> {
                 showApiLoader()
             }
@@ -89,18 +88,18 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     }
 
     @Subscribe
-    fun EventBusListener(eventBusListener: EventBusListener) {
+    fun eventBusListener(eventBusListener: EventBusListener) {
     }
 
     protected fun navigateFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
-        if (getActivity() != null) {
-            (getActivity() as BaseActivity).navigateFragment(layoutContainer, fragment, isEnableBackStack)
+        if (activity != null) {
+            (activity as BaseActivity).navigateFragment(layoutContainer, fragment, isEnableBackStack)
         }
     }
 
     protected fun navigateAddFragment(layoutContainer: Int, fragment: Fragment, isEnableBackStack: Boolean) {
-        if (getActivity() != null) {
-            (getActivity() as BaseActivity).navigateAddFragment(layoutContainer, fragment, isEnableBackStack)
+        if (activity != null) {
+            (activity as BaseActivity).navigateAddFragment(layoutContainer, fragment, isEnableBackStack)
         }
     }
 
@@ -170,7 +169,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
     }
 
     fun checkLocationPermission() {
-        (getActivity() as BaseActivity).checkLocationPermission()
+        (activity as BaseActivity).checkLocationPermission()
     }
 
 

@@ -41,10 +41,10 @@ class AnimationFrm : BaseFragment() {
         return R.layout.frm_animation
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmAnimationBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

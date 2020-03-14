@@ -24,12 +24,11 @@ class EcomHomeDecoAdapter(private var frm: EcommHomeFrm, private var list: java.
         return R.layout.row_ecom_cate
     }
 
-    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
-        if (rowBinding is RowEcomCateBinding) {
-            val mRowBinding = rowBinding as RowEcomCateBinding
-            var source = list?.get(position)
-            mRowBinding.imgProduct.showImage(source?.catImg, getPlaceHolder(0));
-            mRowBinding.txtProduct.setText(source?.catName)
+    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
+        if (mRowBinding is RowEcomCateBinding) {
+            val source = list?.get(position)
+            mRowBinding.imgProduct.showImage(source?.catImg, getPlaceHolder(0))
+            mRowBinding.txtProduct.text = source?.catName
             onClickListener(mRowBinding,mRowBinding.imgProduct, position)
         }
     }

@@ -51,7 +51,7 @@ class ExpendableListAdapter(private var context: Context?) : BaseExpandableListA
         groupPosition: Int, isExpanded: Boolean,
         convertView: View?, parent: ViewGroup?
     ): View {
-        var mBinding: RowTextListBinding? = null
+        val mBinding: RowTextListBinding?
         //        if (convertView == null) {
         mBinding = GlobalUtility.getLayoutBinding(context, R.layout.row_text_list) as RowTextListBinding
 //            LayoutInflater.from(parent.context),
@@ -61,7 +61,7 @@ class ExpendableListAdapter(private var context: Context?) : BaseExpandableListA
         //            convertView.setTag(mBinding);
         //        } else
         //            mBinding = (RowTextListBinding) convertView.getTag();
-        mBinding.txtName.setText(parentArray[groupPosition])
+        mBinding.txtName.text = parentArray[groupPosition]
         mBinding.txtName.setPadding(2, 5, 5, 5)
         mBinding.card.setPadding(0, 2, 3, 5)
         return mBinding.root
@@ -71,13 +71,13 @@ class ExpendableListAdapter(private var context: Context?) : BaseExpandableListA
         groupPosition: Int, childPosition: Int,
         isLastChild: Boolean, convertView: View?, parent: ViewGroup?
     ): View {
-        var mBinding: RowTextListBinding? = null
+        val mBinding: RowTextListBinding?
         //        if (convertView == null) {
         mBinding = GlobalUtility.getLayoutBinding(context, R.layout.row_text_list) as RowTextListBinding
         //            convertView.setTag(mBinding);
         //        } else
         //            mBinding = (RowTextListBinding) convertView.getTag();
-        mBinding.txtName.setText(childArray[groupPosition][childPosition])
+        mBinding.txtName.text = childArray[groupPosition][childPosition]
         mBinding.txtName.setPadding(60, 5, 5, 5)
         mBinding.card.setPadding(60, 5, 2, 5)
 //        mBinding!!.card.setCardElevation(0)

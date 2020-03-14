@@ -21,7 +21,7 @@ import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.view.activity.*
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import com.webaddicted.kotlinproject.view.deviceinfo.DeviceInfoFrm
+import com.webaddicted.kotlinproject.view.activity.DeviceInfoActivity
 import com.webaddicted.kotlinproject.view.ecommerce.EcommLoginFrm
 import java.util.*
 import kotlin.collections.ArrayList
@@ -85,7 +85,7 @@ class TaskFrm : BaseFragment() {
         return R.layout.frm_task_list
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmTaskListBinding
         init()
     }
@@ -190,7 +190,7 @@ class TaskFrm : BaseFragment() {
             "Coroutines" -> navigateScreen(CoroutineFrm.TAG)
             "ScreenShot" -> checkStoragePermission()
             "Splash" -> navigateScreen(SplashActivity.TAG)
-            "Device Info" -> navigateScreen(DeviceInfoFrm.TAG)
+            "Device Info" -> navigateScreen(DeviceInfoActivity.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -228,7 +228,7 @@ class TaskFrm : BaseFragment() {
             NavieDrawerActivity.TAG -> activity?.let { NavieDrawerActivity.newIntent(it) }
             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
             SplashActivity.TAG -> activity?.let { SplashActivity.newIntent(it) }
-            DeviceInfoFrm.TAG -> frm = DeviceInfoFrm.getInstance(Bundle())
+            DeviceInfoActivity.TAG ->  activity?.let { DeviceInfoActivity.newIntent(it) }
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }

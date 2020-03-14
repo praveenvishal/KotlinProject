@@ -32,10 +32,10 @@ class ExpendableFrm : BaseFragment() {
         return R.layout.frm_expend_view
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmExpendViewBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

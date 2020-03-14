@@ -37,7 +37,7 @@ class SpeechTextActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivitySpechTextBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

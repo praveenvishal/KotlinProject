@@ -46,7 +46,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
         return R.layout.frm_google_map
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmGoogleMapBinding
         init()
         clickListener()

@@ -8,7 +8,7 @@ import com.webaddicted.kotlinproject.view.ecommerce.EcommProductCatTabFrm
 /**
  * Created by Deepak Sharma(webaddicted) on 19-11-2019.
  */
-class CategoryPagerAdapterProductGrid(fm: FragmentManager, private var NumberOfTabs: Int) :
+class CategoryPagerAdapterProductGrid( fm: FragmentManager, private var NumberOfTabs: Int) :
     FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return NumberOfTabs

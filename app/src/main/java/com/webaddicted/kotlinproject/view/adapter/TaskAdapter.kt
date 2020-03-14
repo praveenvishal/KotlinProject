@@ -29,9 +29,8 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
         return R.layout.row_text_list
     }
 
-    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
-        if (rowBinding is RowTextListBinding) {
-            val mRowBinding = rowBinding as RowTextListBinding
+    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
+        if (mRowBinding is RowTextListBinding) {
 //            if (searchText != null && searchText?.length!! > 1) {
 //                val completeText = mTaskList?.get(position)
 //                val spannableString = SpannableString(mTaskList?.get(position))
@@ -82,7 +81,7 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
             mTaskList?.addAll(searchArray)
         } else {
             for (wp in searchArray) {
-                if (wp != null && wp!!.toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (wp.toLowerCase(Locale.getDefault()).contains(charText)) {
                     mTaskList?.add(wp)
                 }
                 //                else if (wp.toLowerCase(Locale.getDefault()).contains(charText)) {

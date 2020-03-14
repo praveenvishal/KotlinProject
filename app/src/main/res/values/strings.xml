@@ -317,4 +317,12 @@
     <string name="total">Total:</string>
     <string name="ram_m">RAM</string>
     <string name="used">Used</string>
+    <string name="cpu_t">CPU</string>
+    <string name="system_and_apps">System and Apps</string>
+    <string name="available_ram">Available RAM</string>
+    <string name="total_ram_space">Total RAM Space</string>
+    <string name="pie">pie</string>
+    <string name="q">Q</string>
+    <string name="r">R</string>
+    <string name="battery_low">Battery Low</string>
 </resources>

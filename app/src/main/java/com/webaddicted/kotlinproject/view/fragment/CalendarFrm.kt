@@ -26,10 +26,10 @@ class CalendarFrm : BaseFragment() {
     override fun getLayout(): Int {
         return R.layout.frm_calendar
     }
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmCalendarBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

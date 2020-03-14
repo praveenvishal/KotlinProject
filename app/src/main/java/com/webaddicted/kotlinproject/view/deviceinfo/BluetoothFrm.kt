@@ -2,7 +2,6 @@ package com.webaddicted.kotlinproject.view.deviceinfo
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
-import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -15,8 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDevBluetoothBinding
-import com.webaddicted.kotlinproject.databinding.FrmDeviceInfoBinding
-import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
@@ -38,7 +35,7 @@ class BluetoothFrm : BaseFragment() {
         return R.layout.frm_dev_bluetooth
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevBluetoothBinding
         init()
         clickListener()
@@ -125,7 +122,6 @@ class BluetoothFrm : BaseFragment() {
                         )
                     }
                     BluetoothAdapter.STATE_ON -> {
-
                         mBinding.btnBtOnOff.isEnabled = false
                         mBinding.btnBtOnOff.setBackgroundColor(
                             ContextCompat.getColor(
@@ -136,9 +132,7 @@ class BluetoothFrm : BaseFragment() {
                     }
                 }
             }
-
         }
-
     }
 
     override fun onDestroy() {
@@ -152,7 +146,6 @@ class BluetoothFrm : BaseFragment() {
 //            if (resultCode == Activity.RESULT_OK) mBinding.btAnimView.visible()
 //            else mBinding.btAnimView.gone()
 //        }
-
         if (mBluetoothAdapter.isEnabled) {
             mBinding.btnBtOnOff.isEnabled = false
             mBinding.btnBtOnOff.setBackgroundColor(
@@ -170,6 +163,5 @@ class BluetoothFrm : BaseFragment() {
                 )
             )
         }
-
     }
 }

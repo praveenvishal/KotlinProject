@@ -26,10 +26,10 @@ class DynamicLayoutFrm : BaseFragment() {
         return R.layout.frm_dynamic_layout
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDynamicLayoutBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

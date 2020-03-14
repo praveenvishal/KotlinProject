@@ -29,7 +29,7 @@ class LoginFrm : BaseFragment() {
         return R.layout.frm_login
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmLoginBinding
         init()
         clickListener()

@@ -13,6 +13,8 @@ import com.webaddicted.kotlinproject.global.common.AppApplication
 abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     protected val mContext = AppApplication.context
     protected abstract fun getListSize(): Int?
+    protected abstract fun getLayoutId(viewType: Int): Int
+    protected abstract fun onBindTo(rowBinding: ViewDataBinding, position: Int)
 
     companion object {
         private val TAG = BaseAdapter::class.java.simpleName
@@ -22,12 +24,11 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return getListSize()!!
     }
 
-    protected abstract fun getLayoutId(viewType: Int): Int
-
-    protected abstract fun onBindTo(rowBinding: ViewDataBinding, position: Int)
-
     @NonNull
-    override fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(
+        @NonNull parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
         val rowBindingUtil: ViewDataBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
             getLayoutId(viewType),
@@ -39,7 +40,7 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(@NonNull holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder)
-            (holder as ViewHolder).binding(position)
+            holder.binding(position)
     }
 
     /**
@@ -49,7 +50,7 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      * @return
      */
     protected open fun getPlaceHolder(placeholderType: Int): String {
-        val placeholderArray = mContext.getResources().getStringArray(R.array.image_loader)
+        val placeholderArray = mContext.resources.getStringArray(R.array.image_loader)
         return placeholderArray[placeholderType]
     }
 
@@ -57,22 +58,22 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      * view holder
      */
     inner class ViewHolder(private val mRowBinding: ViewDataBinding) :
-        RecyclerView.ViewHolder(mRowBinding.getRoot()) {
+        RecyclerView.ViewHolder(mRowBinding.root) {
         /**
          * @param position current item position
          */
         fun binding(position: Int) {
             //            sometime adapter position  is -1 that case handle by position
-            if (getAdapterPosition() >= 0) onBindTo(mRowBinding, getAdapterPosition())
+            if (adapterPosition >= 0) onBindTo(mRowBinding, adapterPosition)
             else onBindTo(mRowBinding, position)
         }
     }
 
-    protected open fun onClickListener(mRowBinding: ViewDataBinding,view: View?, position: Int){
-        view?.setOnClickListener({ getClickEvent(mRowBinding,view, position)})
+    protected open fun onClickListener(mRowBinding: ViewDataBinding, view: View?, position: Int) {
+        view?.setOnClickListener { getClickEvent(mRowBinding, view, position) }
     }
 
-    protected open fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
+    protected open fun getClickEvent(mRowBinding: ViewDataBinding, view: View?, position: Int) {
 
     }
 

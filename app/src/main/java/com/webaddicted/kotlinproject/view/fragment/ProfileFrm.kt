@@ -30,10 +30,10 @@ class ProfileFrm : BaseFragment() {
         return R.layout.frm_profile
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmProfileBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

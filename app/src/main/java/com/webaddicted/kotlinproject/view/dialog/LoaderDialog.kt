@@ -22,7 +22,7 @@ class LoaderDialog : BaseDialog() {
         return R.layout.dialog_loader
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as DialogLoaderBinding
     }
 

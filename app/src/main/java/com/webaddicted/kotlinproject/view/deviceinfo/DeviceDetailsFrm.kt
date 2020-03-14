@@ -30,7 +30,7 @@ class DeviceDetailsFrm : BaseFragment() {
         return R.layout.frm_dev_basic
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevBasicBinding
         getDeviceInfo()
     }

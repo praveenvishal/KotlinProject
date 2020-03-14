@@ -64,7 +64,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
         return R.layout.frm_widget
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmWidgetBinding
         init()
         clickListener()

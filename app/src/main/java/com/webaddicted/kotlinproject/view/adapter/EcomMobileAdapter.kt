@@ -13,33 +13,35 @@ import com.webaddicted.kotlinproject.view.ecommerce.EcommProductListFrm
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class EcomMobileAdapter(private var frm: EcommHomeFrm, private var list: java.util.ArrayList<EcommCateBean>?) : BaseAdapter() {
+class EcomMobileAdapter(
+    private var frm: EcommHomeFrm,
+    private var list: java.util.ArrayList<EcommCateBean>?
+) : BaseAdapter() {
     override fun getListSize(): Int {
         if (list == null) return 0
         return list?.size!!
-
     }
 
     override fun getLayoutId(viewType: Int): Int {
         return R.layout.row_ecom_cate
     }
 
-    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
-        if (rowBinding is RowEcomCateBinding) {
-            val mRowBinding = rowBinding as RowEcomCateBinding
-            var source = list?.get(position)
-            mRowBinding.imgProduct.showImage(source?.catImg, getPlaceHolder(0));
-            mRowBinding.txtProduct.setText(source?.catName)
-            onClickListener(mRowBinding,mRowBinding.imgProduct, position)
+    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
+        if (mRowBinding is RowEcomCateBinding) {
+            val source = list?.get(position)
+            mRowBinding.imgProduct.showImage(source?.catImg, getPlaceHolder(0))
+            mRowBinding.txtProduct.text = source?.catName
+            onClickListener(mRowBinding, mRowBinding.imgProduct, position)
         }
     }
 
-    override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
-        super.getClickEvent(mRowBinding,view, position)
-        when(view?.id){
-            R.id.img_product-> frm.navigateScreen(EcommProductListFrm.TAG)
+    override fun getClickEvent(mRowBinding: ViewDataBinding, view: View?, position: Int) {
+        super.getClickEvent(mRowBinding, view, position)
+        when (view?.id) {
+            R.id.img_product -> frm.navigateScreen(EcommProductListFrm.TAG)
         }
     }
+
     fun notifyAdapter(prodList: ArrayList<EcommCateBean>) {
         list = prodList
         notifyDataSetChanged()

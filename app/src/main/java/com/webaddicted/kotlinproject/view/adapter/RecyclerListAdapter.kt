@@ -20,13 +20,13 @@ class RecyclerListAdapter(
 ) : BaseAdapter() {
 
     override fun getListSize(): Int? {
-//        var size =  (languageList == null || languageList.size == 0) ? 0 languageList.size;
+        if (dataList == null) return 0
         return dataList?.size
     }
 
     override fun getLayoutId(viewType: Int): Int {
-        return if (viewType == itemCount - 1) return layoutId
-        else return R.layout.row_text_list
+        return if (viewType == itemCount - 1) layoutId
+        else R.layout.row_text_list
     }
 
     private object VIEW_TYPES {
@@ -39,25 +39,27 @@ class RecyclerListAdapter(
         else VIEW_TYPES.NORMAL
     }
 
-    override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
-        if (rowBinding is RowRecyclerListBinding) {
-            val mRowBinding = rowBinding as RowRecyclerListBinding
-            var source = dataList?.get(position)
-            mRowBinding.imgInitial.showImage(
-                source,
-                getPlaceHolder(0)
-            );
-            onClickListener(mRowBinding,mRowBinding.imgInitial, position)
-        } else if (rowBinding is RowGridBinding) {
-            val mRowBinding = rowBinding as RowGridBinding
-            var source = dataList?.get(position)
-            mRowBinding.img.showImage(
-                source,
-                getPlaceHolder(0)
-            );
-            onClickListener(mRowBinding,mRowBinding.img, position)
-        } else if (rowBinding is RowTextListBinding) {
-            val mRowBinding = rowBinding as RowTextListBinding
+    override fun onBindTo(mRowBinding: ViewDataBinding, position: Int) {
+        when (mRowBinding) {
+            is RowRecyclerListBinding -> {
+                val source = dataList?.get(position)
+                mRowBinding.imgInitial.showImage(
+                    source,
+                    getPlaceHolder(0)
+                )
+                onClickListener(mRowBinding,mRowBinding.imgInitial, position)
+            }
+            is RowGridBinding -> {
+                val source = dataList?.get(position)
+                mRowBinding.img.showImage(
+                    source,
+                    getPlaceHolder(0)
+                )
+                onClickListener(mRowBinding,mRowBinding.img, position)
+            }
+            is RowTextListBinding -> {
+                val mRowBinding = mRowBinding as RowTextListBinding
+            }
         }
     }
 

@@ -7,8 +7,8 @@ import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowLanguageBinding
 import com.webaddicted.kotlinproject.global.common.showImage
 import com.webaddicted.kotlinproject.model.bean.language.LanguageBean
-import com.webaddicted.kotlinproject.view.base.BaseAdapter
 import com.webaddicted.kotlinproject.view.activity.LanguageActivity
+import com.webaddicted.kotlinproject.view.base.BaseAdapter
 
 /**
  * Created by Deepak Sharma on 01/07/19.
@@ -19,8 +19,8 @@ class LanguageAdapter(
 ) : BaseAdapter() {
     var selectedPos = -1
     override fun getListSize(): Int {
-//        var size =  (languageList == null || languageList.size == 0) ? 0 languageList.size;
-        return languageList?.size
+        if (languageList == null) return 0
+        return languageList.size
     }
 
     override fun getLayoutId(viewType: Int): Int {
@@ -29,21 +29,19 @@ class LanguageAdapter(
 
     override fun onBindTo(rowBinding: ViewDataBinding, position: Int) {
         if (rowBinding is RowLanguageBinding) {
-            val mRowBinding = rowBinding as RowLanguageBinding
-            var source = languageList.get(position)
-            mRowBinding.txtLanguageName.text = source.languageName
-            mRowBinding.imgCountryFlag.showImage(
+            val source = languageList[position]
+            rowBinding.txtLanguageName.text = source.languageName
+            rowBinding.imgCountryFlag.showImage(
                 source.languageFlag,
                 getPlaceHolder(1)
-            );
-            if (selectedPos == position) mRowBinding.rbLanguage.isChecked = true
-            else mRowBinding.rbLanguage.isChecked = false
-            onClickListener(mRowBinding,mRowBinding.rbLanguage, position)
+            )
+            rowBinding.rbLanguage.isChecked = selectedPos == position
+            onClickListener(rowBinding, rowBinding.rbLanguage, position)
         }
     }
 
-    override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
-        super.getClickEvent(mRowBinding,view, position)
+    override fun getClickEvent(mRowBinding: ViewDataBinding, view: View?, position: Int) {
+        super.getClickEvent(mRowBinding, view, position)
         when (view?.id) {
             R.id.rb_language -> {
                 selectedPos = position

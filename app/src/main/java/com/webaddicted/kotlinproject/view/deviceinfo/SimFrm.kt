@@ -19,16 +19,14 @@ import com.webaddicted.kotlinproject.global.common.PermissionHelper
 import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.model.bean.deviceinfo.SimInfo
-import com.webaddicted.kotlinproject.view.adapter.AppsAdapter
 import com.webaddicted.kotlinproject.view.adapter.SimAdapter
-import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class SimFrm : BaseFragment() {
     private lateinit var mAdapter: SimAdapter
     private lateinit var mBinding: FrmDevSimBinding
     private var telephonyManager: TelephonyManager? = null
-    private var simInfoDataList: ArrayList<SimInfo>? = ArrayList<SimInfo>()
+    private var simInfoDataList: ArrayList<SimInfo>? = ArrayList()
 
     companion object {
         val TAG = SimFrm::class.java.simpleName
@@ -43,7 +41,7 @@ class SimFrm : BaseFragment() {
         return R.layout.frm_dev_sim
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevSimBinding
         init()
     }

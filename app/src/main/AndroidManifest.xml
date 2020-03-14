@@ -103,6 +103,8 @@
 
         <activity android:name=".view.activity.WebViewActivity"></activity>
         <activity android:name=".view.ecommerce.EcommHomeActivity"></activity>
+        <activity android:name=".view.activity.DeviceInfoActivity"></activity>
+
         <activity
                 android:name=".global.blink.CameraActivity"
                 android:configChanges="orientation"

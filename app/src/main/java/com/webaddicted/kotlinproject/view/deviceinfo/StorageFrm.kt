@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDevStorageBinding
+import com.webaddicted.kotlinproject.global.common.FileUtils.Companion.calculatePercentage
+import com.webaddicted.kotlinproject.global.common.FileUtils.Companion.formatSize
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import java.io.File
 import java.text.DecimalFormat
@@ -33,7 +35,7 @@ class StorageFrm : BaseFragment() {
         return R.layout.frm_dev_storage
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevStorageBinding
         val handler = Handler()
         val runnable = object : Runnable {
@@ -68,7 +70,7 @@ class StorageFrm : BaseFragment() {
                     "<font color=\"#000000\">${resources.getString(R.string.total)} : </font>${formatSize(
                         totalInternalValue
                     )}<br>"
-        mBinding.tvUsedIntmemory.setText(Html.fromHtml(ramUsedInt))
+        mBinding.tvUsedIntmemory.text = Html.fromHtml(ramUsedInt)
         mBinding.donutInternalStorage.progress = calculatePercentage(
             usedInternalValue.toDouble(),
             totalInternalValue.toDouble()
@@ -76,7 +78,7 @@ class StorageFrm : BaseFragment() {
 
         if (getExternalMounts()?.size!! > 0) {
             val dirs: Array<File> = ContextCompat.getExternalFilesDirs(activity!!, null)
-            mBinding.llExtMemory?.visibility = View.VISIBLE
+            mBinding.llExtMemory.visibility = View.VISIBLE
             /** External Memory usage */
             val totalExternalValue = getTotalExternalMemorySize(dirs)
             val freeExternalValue = getAvailableExternalMemorySize(dirs)
@@ -91,7 +93,7 @@ class StorageFrm : BaseFragment() {
                         "<font color=\"#000000\">${resources.getString(R.string.total)} : </font>${formatSize(
                             totalInternalValue
                         )}<br>"
-            mBinding.tvUsedExtmemory.setText(Html.fromHtml(ramUsedExt))
+            mBinding.tvUsedExtmemory.text = Html.fromHtml(ramUsedExt)
             mBinding.donutExternalStorage.progress = df.format(
                 calculatePercentage(
                     usedExternalValue.toDouble(),
@@ -121,7 +123,7 @@ class StorageFrm : BaseFragment() {
                     "<font color=\"#000000\">${resources.getString(R.string.total)} : </font>${formatSize(
                         totalRamValue
                     )}<br>"
-        mBinding.tvUsedMemory.setText(Html.fromHtml(ramUsed))
+        mBinding.tvUsedMemory.text = Html.fromHtml(ramUsed)
         mBinding.donutRamUsage.progress =
             calculatePercentage(usedRamValue.toDouble(), totalRamValue.toDouble()).toFloat()
     }
@@ -185,29 +187,7 @@ class StorageFrm : BaseFragment() {
         }
     }
 
-    private fun formatSize(size: Long): String {
-        if (size <= 0)
-            return "0"
-        val units = arrayOf("B", "KB", "MB", "GB", "TB")
-        val digitGroups = (Math.log10(size.toDouble()) / Math.log10(1024.0)).toInt()
-        return DecimalFormat("#,##0.#").format(
-            size / Math.pow(
-                1024.0,
-                digitGroups.toDouble()
-            )
-        ) + " " + units[digitGroups]
-    }
-
-    /* Checks if external storage is available for read and write */
-    fun isExternalStorageWritable(): Boolean {
-        val state = Environment.getExternalStorageState()
-        return Environment.MEDIA_MOUNTED == state
-    }
-    fun calculatePercentage(value: Double, total: Double): Int {
-        val usage: Double = (value * 100.0f / total)
-        return usage.toInt()
-    }
-    fun getExternalMounts(): HashSet<String>? {
+    private fun getExternalMounts(): HashSet<String>? {
         val out = HashSet<String>()
         val reg = "(?i).*vold.*(vfat|ntfs|exfat|fat32|ext3|ext4).*rw.*"
         var s = ""
@@ -218,7 +198,7 @@ class StorageFrm : BaseFragment() {
             val `is` = process.inputStream
             val buffer = ByteArray(1024)
             while (`is`.read(buffer) != -1) {
-                s = s + String(buffer)
+                s += String(buffer)
             }
             `is`.close()
         } catch (e: Exception) {

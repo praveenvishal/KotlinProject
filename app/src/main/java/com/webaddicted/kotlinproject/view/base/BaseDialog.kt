@@ -17,7 +17,7 @@ import com.webaddicted.kotlinproject.R
 abstract class BaseDialog : DialogFragment(), View.OnClickListener {
     private lateinit var mBinding: ViewDataBinding
     abstract fun getLayout(): Int
-    protected abstract fun onViewsInitialized(binding: ViewDataBinding?, view: View)
+    protected abstract fun initUI(binding: ViewDataBinding?, view: View)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,7 +28,7 @@ abstract class BaseDialog : DialogFragment(), View.OnClickListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        onViewsInitialized(mBinding, view)
+        initUI(mBinding, view)
         super.onViewCreated(view, savedInstanceState)
     }
 

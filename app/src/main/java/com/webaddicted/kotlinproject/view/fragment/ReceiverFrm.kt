@@ -39,10 +39,10 @@ class ReceiverFrm : BaseFragment() {
         return R.layout.frm_receiver
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmReceiverBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

@@ -36,10 +36,10 @@ class BlinkScanFrm : BaseFragment() {
         return R.layout.frm_blink_scan
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmBlinkScanBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

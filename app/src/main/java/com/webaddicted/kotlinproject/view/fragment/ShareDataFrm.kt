@@ -34,7 +34,7 @@ class ShareDataFrm : BaseFragment() {
         return R.layout.frm_share
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmShareBinding
         init()
         clickListener()

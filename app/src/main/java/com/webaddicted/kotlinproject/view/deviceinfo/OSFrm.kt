@@ -27,12 +27,12 @@ class OSFrm : BaseFragment() {
         return R.layout.frm_dev_os
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevOsBinding
         getOSInfo()
     }
 
-    fun getOSInfo() {
+    private fun getOSInfo() {
         val CVersion = Build.VERSION.SDK_INT
         var osInfo = ""
         osInfo =   "<font color=\"#000000\">Version : </font>${Build.VERSION.RELEASE}<br>" +
@@ -117,6 +117,26 @@ class OSFrm : BaseFragment() {
             26 -> {
                 mBinding.txtVersion.text =
                     resources.getString(R.string.oreo) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("August 21, 2017")
+            }
+            27 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.oreo) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("December 15, 2017")
+            }
+            28 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.pie) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("August 6, 2018")
+            }
+            29 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.q) + (" " + Build.VERSION.RELEASE.toString())
+                mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("September 3, 2019")
+            }
+            30 -> {
+                mBinding.txtVersion.text =
+                    resources.getString(R.string.r) + (" " + Build.VERSION.RELEASE.toString())
                 mBinding.txtReleaseDate.text = resources.getString(R.string.release_date) + ("August 21, 2017")
             }
             else -> {

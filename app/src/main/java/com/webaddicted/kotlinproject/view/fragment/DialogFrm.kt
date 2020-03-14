@@ -35,10 +35,10 @@ class DialogFrm : BaseFragment() {
         return R.layout.frm_dialog
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDialogBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {

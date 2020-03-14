@@ -37,7 +37,7 @@ class DisplayFrm : BaseFragment() {
         return R.layout.frm_dev_display
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDevDisplayBinding
         getDisplayInfo()
     }
@@ -106,7 +106,7 @@ class DisplayFrm : BaseFragment() {
         )}<br>"
         /*** Display name */
         screenInfo += "<font color=\"#000000\">Screen Name : </font>${display.name}<br>"
-        mBinding.txtScreenInfo.setText(Html.fromHtml(screenInfo))
+        mBinding.txtScreenInfo.text = Html.fromHtml(screenInfo)
 
         /*** Max GPU Texture size */
 
@@ -163,7 +163,7 @@ class DisplayFrm : BaseFragment() {
             .plus(resources.getString(R.string.dp))}<br>"
         resoluationInfo += "<font color=\"#000000\">Display Independent Height : </font>${GlobalUtility.pxToDp(activity!!, dm.heightPixels).toString()
             .plus(resources.getString(R.string.dp))}<br>"
-        mBinding.txtResolInfo.setText(Html.fromHtml(resoluationInfo))
+        mBinding.txtResolInfo.text = Html.fromHtml(resoluationInfo)
     }
 
     private fun returnToDecimalPlaces(values: Double): String {

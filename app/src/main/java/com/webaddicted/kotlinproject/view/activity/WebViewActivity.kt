@@ -43,7 +43,7 @@ class WebViewActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivityWebviewBinding
         init()
-        clickListener();
+        clickListener()
         checkStoragePermission()
         normalWebView(mBinding.webview)
     }

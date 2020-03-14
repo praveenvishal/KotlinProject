@@ -24,7 +24,7 @@ class LoginDialog : BaseDialog() {
         return R.layout.dialog_custom
     }
 
-    override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
+    override fun initUI(binding: ViewDataBinding?, view: View) {
         mBinding = binding as DialogCustomBinding
         init()
         clickListener()

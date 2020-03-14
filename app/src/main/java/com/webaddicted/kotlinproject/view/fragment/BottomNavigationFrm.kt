@@ -131,7 +131,7 @@ class BottomNavigationFrm : BaseFragment() {
         }
     fun openFragment(fragment: Fragment) {
         val transaction: FragmentTransaction? = activity?.supportFragmentManager?.beginTransaction()
-        transaction?.replace(R.id.container, fragment)
+        transaction?.replace(R.id.nav_container, fragment)
         transaction?.addToBackStack(null)
         transaction?.commit()
     }

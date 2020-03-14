@@ -89,6 +89,10 @@
                         app:itemTextColor="@color/white"
                         app:menu="@menu/bottom_nav_menu"
                         />
+                <FrameLayout
+                        android:id="@+id/nav_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

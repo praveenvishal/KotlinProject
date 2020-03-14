@@ -49,7 +49,7 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
             mRowBinding.txtName.text = mTaskList?.get(position)
             val test = mTaskList?.get(position)
             val initial = test?.get(0)
-            mRowBinding.txtInitial.setText(initial.toString())
+            mRowBinding.txtInitial.text = initial.toString()
 
 //            } else {
 //                mRowBinding.txtName.setText(mTaskList?.get(position))

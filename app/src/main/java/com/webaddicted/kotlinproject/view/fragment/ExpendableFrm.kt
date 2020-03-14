@@ -24,7 +24,7 @@ class ExpendableFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): ExpendableFrm {
             val fragment = ExpendableFrm()
             fragment.arguments = bundle
-            return ExpendableFrm()
+            return fragment
         }
     }
 

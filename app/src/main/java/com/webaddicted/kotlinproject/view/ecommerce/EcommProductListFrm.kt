@@ -18,7 +18,7 @@ class EcommProductListFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): EcommProductListFrm {
             val fragment = EcommProductListFrm()
             fragment.arguments = bundle
-            return EcommProductListFrm()
+            return fragment
         }
     }
 

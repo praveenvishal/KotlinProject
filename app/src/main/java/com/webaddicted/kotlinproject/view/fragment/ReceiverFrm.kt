@@ -31,7 +31,7 @@ class ReceiverFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): ReceiverFrm {
             val fragment = ReceiverFrm()
             fragment.arguments = bundle
-            return ReceiverFrm()
+            return fragment
         }
     }
 

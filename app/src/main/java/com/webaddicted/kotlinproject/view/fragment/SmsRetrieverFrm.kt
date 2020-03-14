@@ -25,7 +25,7 @@ class SmsRetrieverFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): SmsRetrieverFrm {
             val fragment = SmsRetrieverFrm()
             fragment.arguments = bundle
-            return SmsRetrieverFrm()
+            return fragment
         }
     }
 

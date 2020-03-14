@@ -24,7 +24,7 @@ class SharedPrefFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): SharedPrefFrm {
             val fragment = SharedPrefFrm()
             fragment.arguments = bundle
-            return SharedPrefFrm()
+            return fragment
         }
     }
 

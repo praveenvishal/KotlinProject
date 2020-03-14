@@ -20,7 +20,7 @@ class EcommProductCatTabFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): EcommProductCatTabFrm {
             val fragment = EcommProductCatTabFrm()
             fragment.arguments = bundle
-            return EcommProductCatTabFrm()
+            return fragment
         }
     }
 

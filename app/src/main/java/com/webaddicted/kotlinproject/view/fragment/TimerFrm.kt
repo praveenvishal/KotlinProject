@@ -24,7 +24,7 @@ class TimerFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): TimerFrm {
             val fragment = TimerFrm()
             fragment.arguments = bundle
-            return TimerFrm()
+            return fragment
         }
     }
 

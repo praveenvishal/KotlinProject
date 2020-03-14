@@ -18,7 +18,7 @@ class EcommLoginFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): EcommLoginFrm {
             val fragment = EcommLoginFrm()
             fragment.arguments = bundle
-            return EcommLoginFrm()
+            return fragment
         }
     }
 

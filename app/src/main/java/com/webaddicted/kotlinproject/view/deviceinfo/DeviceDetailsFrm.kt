@@ -22,7 +22,7 @@ class DeviceDetailsFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): DeviceDetailsFrm {
             val fragment = DeviceDetailsFrm()
             fragment.arguments = bundle
-            return DeviceDetailsFrm()
+            return fragment
         }
     }
 

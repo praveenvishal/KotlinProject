@@ -27,7 +27,7 @@ class BluetoothFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): BluetoothFrm {
             val fragment = BluetoothFrm()
             fragment.arguments = bundle
-            return BluetoothFrm()
+            return fragment
         }
     }
 

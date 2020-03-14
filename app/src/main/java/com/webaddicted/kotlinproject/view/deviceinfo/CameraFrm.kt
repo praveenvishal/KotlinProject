@@ -28,6 +28,7 @@ import com.webaddicted.kotlinproject.model.camera.CameraBean
 import com.webaddicted.kotlinproject.view.adapter.CameraAdapter
 import com.webaddicted.kotlinproject.view.adapter.SimAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
+import kotlinx.coroutines.*
 
 class CameraFrm : BaseFragment() {
     private lateinit var cameraList: ArrayList<CameraBean>
@@ -41,7 +42,7 @@ class CameraFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): CameraFrm {
             val fragment = CameraFrm()
             fragment.arguments = bundle
-            return CameraFrm()
+            return fragment
         }
     }
 
@@ -107,7 +108,12 @@ class CameraFrm : BaseFragment() {
             multiplePermission,
             object : PermissionHelper.Companion.PermissionListener {
                 override fun onPermissionGranted(mCustomPermission: List<String>) {
-                    fetchCameraCharacteristics(cameraManager, id)
+                    GlobalScope.launch(Dispatchers.Main + Job()) {
+                        val appList = withContext(Dispatchers.Default) {
+                            fetchCameraCharacteristics(cameraManager, id)
+                        }
+                        mAdapter.notifyAdapter(appList)
+                    }
                 }
 
                 override fun onPermissionDenied(mCustomPermission: List<String>) {

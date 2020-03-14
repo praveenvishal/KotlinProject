@@ -38,7 +38,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
         fun getInstance(bundle: Bundle): GoogleMapFrm {
             val fragment = GoogleMapFrm()
             fragment.arguments = bundle
-            return GoogleMapFrm()
+            return fragment
         }
     }
 

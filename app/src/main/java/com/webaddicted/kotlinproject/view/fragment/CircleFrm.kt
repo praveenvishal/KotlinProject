@@ -22,7 +22,7 @@ class CircleFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): CircleFrm {
             val fragment = CircleFrm()
             fragment.arguments = bundle
-            return CircleFrm()
+            return fragment
         }
     }
 

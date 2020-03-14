@@ -20,7 +20,7 @@ class EcommOtpFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): EcommOtpFrm {
             val fragment = EcommOtpFrm()
             fragment.arguments = bundle
-            return EcommOtpFrm()
+            return fragment
         }
     }
 

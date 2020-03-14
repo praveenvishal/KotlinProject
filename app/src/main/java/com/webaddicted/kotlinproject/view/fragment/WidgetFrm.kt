@@ -56,7 +56,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
         fun getInstance(bundle: Bundle): WidgetFrm {
             val fragment = WidgetFrm()
             fragment.arguments = bundle
-            return WidgetFrm()
+            return fragment
         }
     }
 

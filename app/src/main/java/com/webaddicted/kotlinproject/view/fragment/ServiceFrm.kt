@@ -28,7 +28,7 @@ class ServiceFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): ServiceFrm {
             val fragment = ServiceFrm()
             fragment.arguments = bundle
-            return ServiceFrm()
+            return fragment
         }
     }
 

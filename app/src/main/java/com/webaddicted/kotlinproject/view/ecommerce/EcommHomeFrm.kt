@@ -34,7 +34,7 @@ class EcommHomeFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): EcommHomeFrm {
             val fragment = EcommHomeFrm()
             fragment.arguments = bundle
-            return EcommHomeFrm()
+            return fragment
         }
     }
 

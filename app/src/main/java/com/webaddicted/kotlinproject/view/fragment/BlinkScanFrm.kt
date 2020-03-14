@@ -28,7 +28,7 @@ class BlinkScanFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): BlinkScanFrm {
             val fragment = BlinkScanFrm()
             fragment.arguments = bundle
-            return BlinkScanFrm()
+            return fragment
         }
     }
 

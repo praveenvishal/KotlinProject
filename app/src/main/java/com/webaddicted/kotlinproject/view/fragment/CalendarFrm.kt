@@ -20,7 +20,7 @@ class CalendarFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): CalendarFrm {
             val fragment = CalendarFrm()
             fragment.arguments = bundle
-            return CalendarFrm()
+            return fragment
         }
     }
     override fun getLayout(): Int {

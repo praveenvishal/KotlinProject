@@ -16,10 +16,9 @@ class OSFrm : BaseFragment() {
     companion object {
         val TAG = OSFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): OSFrm {
-            val fragment =
-                OSFrm()
+            val fragment = OSFrm()
             fragment.arguments = bundle
-            return OSFrm()
+            return fragment
         }
     }
 

@@ -33,7 +33,7 @@ class AnimationFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): AnimationFrm {
             val fragment = AnimationFrm()
             fragment.arguments = bundle
-            return AnimationFrm()
+            return fragment
         }
     }
 
@@ -145,8 +145,8 @@ class AnimationFrm : BaseFragment() {
             R.id.btn_right_to_left -> leftRigtAnimation()
             R.id.btn_left_to_right -> leftRigtAnimation()
             R.id.btn_expend -> {
-                if (mBinding.expandableLayout.isExpanded()) mBinding.expandableLayout.collapse();
-                else mBinding.expandableLayout.expand();
+                if (mBinding.expandableLayout.isExpanded) mBinding.expandableLayout.collapse()
+                else mBinding.expandableLayout.expand()
             }
         }
     }

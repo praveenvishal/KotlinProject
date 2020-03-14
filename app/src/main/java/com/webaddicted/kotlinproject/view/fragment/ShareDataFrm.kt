@@ -26,7 +26,7 @@ class ShareDataFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): ShareDataFrm {
             val fragment = ShareDataFrm()
             fragment.arguments = bundle
-            return ShareDataFrm()
+            return fragment
         }
     }
 

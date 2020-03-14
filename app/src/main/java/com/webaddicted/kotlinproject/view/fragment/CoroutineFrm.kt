@@ -24,7 +24,7 @@ class CoroutineFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): CoroutineFrm {
             val fragment = CoroutineFrm()
             fragment.arguments = bundle
-            return CoroutineFrm()
+            return fragment
         }
     }
 

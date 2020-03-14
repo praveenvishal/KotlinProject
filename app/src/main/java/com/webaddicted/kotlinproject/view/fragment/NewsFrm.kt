@@ -34,7 +34,7 @@ class NewsFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): NewsFrm {
             val fragment = NewsFrm()
             fragment.arguments = bundle
-            return NewsFrm()
+            return fragment
         }
     }
 

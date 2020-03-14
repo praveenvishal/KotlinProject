@@ -22,7 +22,7 @@ class ProfileFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): ProfileFrm {
             val fragment = ProfileFrm()
             fragment.arguments = bundle
-            return ProfileFrm()
+            return fragment
         }
     }
 

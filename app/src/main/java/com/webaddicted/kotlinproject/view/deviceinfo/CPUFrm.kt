@@ -11,10 +11,10 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.FrmDevProcessorBinding
+import com.webaddicted.kotlinproject.databinding.ActivityCpuBinding
 import com.webaddicted.kotlinproject.global.common.FileUtils.Companion.calculatePercentage
 import com.webaddicted.kotlinproject.global.common.FileUtils.Companion.formatSize
-import com.webaddicted.kotlinproject.model.bean.deviceinfo.FeaturesHW
+import com.webaddicted.kotlinproject.model.bean.deviceinfo.CPUBean
 import com.webaddicted.kotlinproject.view.adapter.CPUAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 import kotlinx.coroutines.*
@@ -23,24 +23,24 @@ import java.util.*
 
 class CPUFrm : BaseFragment() {
     private lateinit var mAdapter: CPUAdapter
-    private lateinit var mBinding: FrmDevProcessorBinding
-    private var cpuList: ArrayList<FeaturesHW>? = ArrayList<FeaturesHW>()
+    private lateinit var mBinding: ActivityCpuBinding
+    private var cpuList: ArrayList<CPUBean>? = ArrayList<CPUBean>()
 
     companion object {
         val TAG = CPUFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): CPUFrm {
             val fragment = CPUFrm()
             fragment.arguments = bundle
-            return CPUFrm()
+            return fragment
         }
     }
 
     override fun getLayout(): Int {
-        return R.layout.frm_dev_processor
+        return R.layout.activity_cpu
     }
 
     override fun initUI(binding: ViewDataBinding?, view: View) {
-        mBinding = binding as FrmDevProcessorBinding
+        mBinding = binding as ActivityCpuBinding
         init()
     }
 
@@ -75,14 +75,14 @@ class CPUFrm : BaseFragment() {
         mBinding.rvCpuFeature.adapter = mAdapter
     }
 
-    private fun getCpuInfoMap(): ArrayList<FeaturesHW> {
-        val lists = ArrayList<FeaturesHW>()
+    private fun getCpuInfoMap(): ArrayList<CPUBean> {
+        val lists = ArrayList<CPUBean>()
         try {
             val s = Scanner(File("/proc/cpuinfo"))
             while (s.hasNextLine()) {
                 val vals = s.nextLine().split(": ")
                 if (vals.size > 1) {
-                    lists.add(FeaturesHW(vals[0].trim { it <= ' ' }, vals[1].trim { it <= ' ' }))
+                    lists.add(CPUBean(vals[0].trim { it <= ' ' }, vals[1].trim { it <= ' ' }))
                 }
             }
         } catch (e: Exception) {

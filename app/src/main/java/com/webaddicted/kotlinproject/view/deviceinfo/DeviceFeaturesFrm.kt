@@ -19,7 +19,7 @@ class DeviceFeaturesFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): DeviceFeaturesFrm {
             val fragment = DeviceFeaturesFrm()
             fragment.arguments = bundle
-            return DeviceFeaturesFrm()
+            return fragment
         }
     }
 

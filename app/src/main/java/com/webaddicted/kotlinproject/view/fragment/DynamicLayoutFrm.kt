@@ -18,7 +18,7 @@ class DynamicLayoutFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): DynamicLayoutFrm {
             val fragment = DynamicLayoutFrm()
             fragment.arguments = bundle
-            return DynamicLayoutFrm()
+            return fragment
         }
     }
 

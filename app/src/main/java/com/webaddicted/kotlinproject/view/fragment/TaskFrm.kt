@@ -21,7 +21,6 @@ import com.webaddicted.kotlinproject.global.common.*
 import com.webaddicted.kotlinproject.view.activity.*
 import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
-import com.webaddicted.kotlinproject.view.activity.DeviceInfoActivity
 import com.webaddicted.kotlinproject.view.ecommerce.EcommLoginFrm
 import java.util.*
 import kotlin.collections.ArrayList
@@ -67,17 +66,18 @@ class TaskFrm : BaseFragment() {
         "Bottom Navigation",
         "Bottom Sheet",
         "Coroutines",
-        "Splash"
+        "Splash",
+        "Rate App"
 
     )
-    lateinit var showSearchView: ShowSearchView
+    private lateinit var showSearchView: ShowSearchView
 
     companion object {
         val TAG = TaskFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): TaskFrm {
             val fragment = TaskFrm()
             fragment.arguments = bundle
-            return TaskFrm()
+            return fragment
         }
     }
 
@@ -191,6 +191,11 @@ class TaskFrm : BaseFragment() {
             "ScreenShot" -> checkStoragePermission()
             "Splash" -> navigateScreen(SplashActivity.TAG)
             "Device Info" -> navigateScreen(DeviceInfoActivity.TAG)
+            "Rate App" -> activity?.let { GlobalUtility.rateUsApp(it) }
+            "Barcode"->navigateScreen(BarcodeFrm.TAG)
+            "Bottom Navigation"->navigateScreen(BottomNavigationFrm.TAG)
+            "Bottom Sheet"->navigateScreen(BottomSheetFrm.TAG)
+            "Collapse"->navigateScreen(CollapseExpendFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -228,7 +233,12 @@ class TaskFrm : BaseFragment() {
             NavieDrawerActivity.TAG -> activity?.let { NavieDrawerActivity.newIntent(it) }
             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
             SplashActivity.TAG -> activity?.let { SplashActivity.newIntent(it) }
-            DeviceInfoActivity.TAG ->  activity?.let { DeviceInfoActivity.newIntent(it) }
+            DeviceInfoActivity.TAG -> activity?.let { DeviceInfoActivity.newIntent(it) }
+            BarcodeFrm.TAG -> frm = BarcodeFrm.getInstance(Bundle())
+            BottomNavigationFrm.TAG -> frm = BottomNavigationFrm.getInstance(Bundle())
+            BottomSheetFrm.TAG -> frm = BottomSheetFrm.getInstance(Bundle())
+            CollapseExpendFrm.TAG -> frm = CollapseExpendFrm.getInstance(Bundle())
+
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }
@@ -248,7 +258,7 @@ class TaskFrm : BaseFragment() {
             SortListType.ASCENDING -> mTaskList?.sort()
             SortListType.DESCENDING -> Collections.sort(mTaskList, Collections.reverseOrder())
         }
-        if (mHomeAdapter != null) mTaskList?.let { mHomeAdapter.notifyAdapter(it) }
+        mTaskList?.let { mHomeAdapter.notifyAdapter(it) }
     }
 
     private fun showPopupMenu(view: View) { // inflate menu
@@ -259,7 +269,8 @@ class TaskFrm : BaseFragment() {
         popup.show()
     }
 
-    internal class MyMenuItemClickListen(var taskFrm: TaskFrm) : PopupMenu.OnMenuItemClickListener {
+    private class MyMenuItemClickListen(private var taskFrm: TaskFrm) :
+        PopupMenu.OnMenuItemClickListener {
         override fun onMenuItemClick(menuItem: MenuItem): Boolean {
             when (menuItem.itemId) {
                 R.id.menu_default -> taskFrm.sortList(SortListType.DEFAULT)

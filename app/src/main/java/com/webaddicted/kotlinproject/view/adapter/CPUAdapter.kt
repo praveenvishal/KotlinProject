@@ -3,13 +3,13 @@ package com.webaddicted.kotlinproject.view.adapter
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowSimItemBinding
-import com.webaddicted.kotlinproject.model.bean.deviceinfo.FeaturesHW
+import com.webaddicted.kotlinproject.model.bean.deviceinfo.CPUBean
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
-class CPUAdapter(private var list: java.util.ArrayList<FeaturesHW>?) : BaseAdapter() {
+class CPUAdapter(private var list: java.util.ArrayList<CPUBean>?) : BaseAdapter() {
     override fun getListSize(): Int {
         if (list == null) return 0
         return list?.size!!
@@ -27,7 +27,7 @@ class CPUAdapter(private var list: java.util.ArrayList<FeaturesHW>?) : BaseAdapt
         }
     }
 
-    fun notifyAdapter(prodList: ArrayList<FeaturesHW>) {
+    fun notifyAdapter(prodList: ArrayList<CPUBean>) {
         list = prodList
         notifyDataSetChanged()
     }

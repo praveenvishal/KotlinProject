@@ -29,7 +29,7 @@ class DisplayFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): DisplayFrm {
             val fragment = DisplayFrm()
             fragment.arguments = bundle
-            return DisplayFrm()
+            return fragment
         }
     }
 

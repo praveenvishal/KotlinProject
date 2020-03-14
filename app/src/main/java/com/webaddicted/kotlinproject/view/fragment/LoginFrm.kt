@@ -21,7 +21,7 @@ class LoginFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): LoginFrm {
             val fragment = LoginFrm()
             fragment.arguments = bundle
-            return LoginFrm()
+            return fragment
         }
     }
 

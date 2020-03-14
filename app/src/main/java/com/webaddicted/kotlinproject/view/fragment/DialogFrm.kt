@@ -27,7 +27,7 @@ class DialogFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): DialogFrm {
             val fragment = DialogFrm()
             fragment.arguments = bundle
-            return DialogFrm()
+            return fragment
         }
     }
 

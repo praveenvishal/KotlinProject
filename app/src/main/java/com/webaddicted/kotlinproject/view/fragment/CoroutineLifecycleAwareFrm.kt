@@ -44,7 +44,7 @@ class CoroutineLifecycleAwareFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): CoroutineLifecycleAwareFrm {
             val fragment = CoroutineLifecycleAwareFrm()
             fragment.arguments = bundle
-            return CoroutineLifecycleAwareFrm()
+            return fragment
         }
     }
 

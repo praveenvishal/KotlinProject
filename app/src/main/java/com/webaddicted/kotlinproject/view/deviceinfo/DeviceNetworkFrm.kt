@@ -20,7 +20,7 @@ class DeviceNetworkFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): DeviceNetworkFrm {
             val fragment = DeviceNetworkFrm()
             fragment.arguments = bundle
-            return DeviceNetworkFrm()
+            return fragment
         }
     }
 

@@ -2,6 +2,7 @@ package com.webaddicted.kotlinproject.global.common
 
 import android.annotation.SuppressLint
 import android.app.*
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -11,6 +12,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.TransitionDrawable
 import android.media.RingtoneManager
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.text.Spannable
@@ -91,7 +93,7 @@ class GlobalUtility {
             }
         }
 
-        private fun updateSnackbar(view: Snackbar){
+        private fun updateSnackbar(view: Snackbar) {
             if (view != null) {
                 val color = arrayOf(
                     ColorDrawable(Color.RED),
@@ -107,39 +109,58 @@ class GlobalUtility {
         }
 
         fun getDate(context: Context, mDobEtm: TextView) {
-            val datePickerDialog = DatePickerDialog(context, R.style.TimePicker, { view, year, month, dayOfMonth ->
-                var monthValue = month + 1
-                var day:String = ""
-                var dayMonth:String = ""
-                if (dayOfMonth<=9) day= "0"+dayOfMonth
-                else day = dayOfMonth.toString()
-                if (monthValue<=9) dayMonth= "0"+monthValue
-                else dayMonth = monthValue.toString()
-                mDobEtm.text =
-                    "$day/$dayMonth/$year"
-            }, Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.MONTH),Calendar.getInstance().get(Calendar.DATE))
-            datePickerDialog.show()
-        }
-        fun getDOBDate(context: Context, mDobEtm: TextView) {
-            val datePickerDialog =
-                DatePickerDialog(context, R.style.TimePicker, { view, year, month, dayOfMonth ->
+            val datePickerDialog = DatePickerDialog(
+                context,
+                R.style.TimePicker,
+                { view, year, month, dayOfMonth ->
                     var monthValue = month + 1
-                    var day:String = ""
-                    var dayMonth:String = ""
-
-                    if (dayOfMonth<=9) day= "0"+dayOfMonth
+                    var day: String = ""
+                    var dayMonth: String = ""
+                    if (dayOfMonth <= 9) day = "0" + dayOfMonth
                     else day = dayOfMonth.toString()
-                    if (monthValue<=9) dayMonth= "0"+monthValue
+                    if (monthValue <= 9) dayMonth = "0" + monthValue
                     else dayMonth = monthValue.toString()
                     mDobEtm.text =
-                        "$dayMonth/$day/$year"
-                }, Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.MONTH),Calendar.getInstance().get(Calendar.DATE))
+                        "$day/$dayMonth/$year"
+                },
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DATE)
+            )
+            datePickerDialog.show()
+        }
+
+        fun getDOBDate(context: Context, mDobEtm: TextView) {
+            val datePickerDialog =
+                DatePickerDialog(
+                    context,
+                    R.style.TimePicker,
+                    { view, year, month, dayOfMonth ->
+                        var monthValue = month + 1
+                        var day: String = ""
+                        var dayMonth: String = ""
+
+                        if (dayOfMonth <= 9) day = "0" + dayOfMonth
+                        else day = dayOfMonth.toString()
+                        if (monthValue <= 9) dayMonth = "0" + monthValue
+                        else dayMonth = monthValue.toString()
+                        mDobEtm.text =
+                            "$dayMonth/$day/$year"
+                    },
+                    Calendar.getInstance().get(Calendar.YEAR),
+                    Calendar.getInstance().get(Calendar.MONTH),
+                    Calendar.getInstance().get(Calendar.DATE)
+                )
             var calendar = Calendar.getInstance();
             calendar.add(Calendar.YEAR, -16);
             datePickerDialog.getDatePicker().setMaxDate(calendar.getTimeInMillis());
             datePickerDialog.show()
         }
-        fun timePicker(activity: Activity,timeListener: TimePickerDialog.OnTimeSetListener): TimePickerDialog {
+
+        fun timePicker(
+            activity: Activity,
+            timeListener: TimePickerDialog.OnTimeSetListener
+        ): TimePickerDialog {
             val calendar = Calendar.getInstance()
             return TimePickerDialog(
                 activity,
@@ -216,7 +237,8 @@ class GlobalUtility {
          */
         fun hideKeyboard(activity: Activity) {
             try {
-                val inputManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                val inputManager =
+                    activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputManager.hideSoftInputFromWindow(activity.currentFocus?.windowToken, 0)
             } catch (ignored: Exception) {
                 Log.d("TAG", "hideKeyboard: " + ignored.message)
@@ -230,8 +252,12 @@ class GlobalUtility {
          */
         fun showKeyboard(activity: Activity?) {
             if (activity != null) {
-                val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+                val imm =
+                    activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm?.toggleSoftInput(
+                    InputMethodManager.SHOW_FORCED,
+                    InputMethodManager.HIDE_IMPLICIT_ONLY
+                )
             }
         }
 
@@ -300,20 +326,6 @@ class GlobalUtility {
         }
 
         /**
-         * @param sizeOfRandomString length of random string
-         * @return generate a random string
-         */
-        fun getRandomString(sizeOfRandomString: Int): String {
-            val ALLOWED_CHARACTERS = "0123456789qwertyuiopasdfghjklzxcvbnm"
-            val random = Random()
-            val sb = StringBuilder(sizeOfRandomString)
-            for (i in 0 until sizeOfRandomString)
-                sb.append(ALLOWED_CHARACTERS[random.nextInt(ALLOWED_CHARACTERS.length)])
-            return sb.toString()
-        }
-
-
-        /**
          * two digit random number
          *
          * @return random number
@@ -335,7 +347,12 @@ class GlobalUtility {
             val spannableString = SpannableString(txtSpannable)
             val foregroundSpan = ForegroundColorSpan(Color.GREEN)
             //            BackgroundColorSpan backgroundSpan = new BackgroundColorSpan(Color.GRAY);
-            spannableString.setSpan(foregroundSpan, starText, endText, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableString.setSpan(
+                foregroundSpan,
+                starText,
+                endText,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
             //            spannableString.setSpan(backgroundSpan, starText, endText, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             textView.text = spannableString
         }
@@ -403,7 +420,7 @@ class GlobalUtility {
             return bmp
         }
 
-        fun showOfflineNotification(context: Context, title:String, description: String) {
+        fun showOfflineNotification(context: Context, title: String, description: String) {
             val intent = Intent(context, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             if (intent != null) {
@@ -411,7 +428,8 @@ class GlobalUtility {
                     context, getTwoDigitRandomNo(), intent,
                     PendingIntent.FLAG_ONE_SHOT
                 )
-                val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                val defaultSoundUri =
+                    RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
                 val notificationBuilder = NotificationCompat.Builder(context)
                 notificationBuilder.setSmallIcon(R.mipmap.ic_launcher_round)
                 notificationBuilder.setLargeIcon(
@@ -455,6 +473,7 @@ class GlobalUtility {
                 )
             }
         }
+
         fun getIntentForPush(
             ctx: Context,
             mNotificationData: NotificationData?
@@ -473,15 +492,18 @@ class GlobalUtility {
             }
             return mIntent
         }
-          fun captureScreen(activity: Activity) {
+
+        fun captureScreen(activity: Activity) {
             val v: View = activity.getWindow().getDecorView().getRootView()
             v.isDrawingCacheEnabled = true
             val bmp: Bitmap = Bitmap.createBitmap(v.drawingCache)
             v.isDrawingCacheEnabled = false
             try {
                 val sd = FileUtils.appFolder()
-                val dest = File(sd, "SCREEN"
-                        + System.currentTimeMillis() + ".png")
+                val dest = File(
+                    sd, "SCREEN"
+                            + System.currentTimeMillis() + ".png"
+                )
                 val fos = FileOutputStream(dest)
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, fos)
                 fos.flush()
@@ -492,6 +514,7 @@ class GlobalUtility {
                 e.printStackTrace()
             }
         }
+
         fun isWifiConnected(activity: Activity): String? {
             val cm =
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -506,6 +529,7 @@ class GlobalUtility {
             } else return activity.resources.getString(R.string.unavailable)
             return ""
         }
+
         /**
          * Get IP address from first non-localhost interface
          *
@@ -543,6 +567,7 @@ class GlobalUtility {
             }
             return ""
         }
+
         fun getMACAddress(interfaceName: String?): String? {
             try {
                 val interfaces: List<NetworkInterface> =
@@ -562,11 +587,13 @@ class GlobalUtility {
             }
             return ""
         }
+
         fun pxToDp(mainActivity: Activity, px: Int): Int {
             val displayMetrics: DisplayMetrics =
                 mainActivity.getResources().getDisplayMetrics()
             return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
         }
+
         fun getDate(timeStamp: Long): String? {
             return try {
                 @SuppressLint("SimpleDateFormat") val sdf: java.text.DateFormat =
@@ -577,6 +604,7 @@ class GlobalUtility {
                 "xx"
             }
         }
+
         /***
          * To prevent from double clicking the row item and so prevents overlapping fragment.
          */
@@ -589,6 +617,27 @@ class GlobalUtility {
             view.postDelayed({ view.isClickable = true }, DELAY_IN_MS)
         }
 
+        fun rateUsApp(mActivity: Activity) {
+//            var packageName= "com.quixom.deviceinfo"
+            var packageName= mActivity.packageName
+            val uri = Uri.parse("market://details?id=$packageName")
+            val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+            goToMarket.addFlags(
+                Intent.FLAG_ACTIVITY_NO_HISTORY or
+                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+            )
+            try {
+                mActivity.startActivity(goToMarket)
+            } catch (e: ActivityNotFoundException) {
+                mActivity.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
+                    )
+                )
+            }
+        }
     }
 
 

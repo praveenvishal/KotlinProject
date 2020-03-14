@@ -33,10 +33,9 @@ class BatteryFrm : BaseFragment() {
     companion object {
         val TAG = BatteryFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): BatteryFrm {
-            val fragment =
-                BatteryFrm()
+            val fragment = BatteryFrm()
             fragment.arguments = bundle
-            return BatteryFrm()
+            return fragment
         }
     }
 

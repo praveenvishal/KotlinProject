@@ -35,7 +35,7 @@ class RecyclerViewFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): RecyclerViewFrm {
             val fragment = RecyclerViewFrm()
             fragment.arguments = bundle
-            return RecyclerViewFrm()
+            return fragment
         }
     }
 

@@ -33,7 +33,7 @@ class SimFrm : BaseFragment() {
         fun getInstance(bundle: Bundle): SimFrm {
             val fragment = SimFrm()
             fragment.arguments = bundle
-            return SimFrm()
+            return fragment
         }
     }
 

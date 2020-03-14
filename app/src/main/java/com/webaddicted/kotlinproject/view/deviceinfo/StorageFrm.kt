@@ -24,10 +24,9 @@ class StorageFrm : BaseFragment() {
     companion object {
         val TAG = StorageFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): StorageFrm {
-            val fragment =
-                StorageFrm()
+            val fragment = StorageFrm()
             fragment.arguments = bundle
-            return StorageFrm()
+            return fragment
         }
     }
 

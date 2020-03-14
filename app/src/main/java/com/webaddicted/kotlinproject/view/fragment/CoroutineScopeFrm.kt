@@ -45,7 +45,7 @@ class CoroutineScopeFrm : ScopedFragment() {
         fun getInstance(bundle: Bundle): CoroutineScopeFrm {
             val fragment = CoroutineScopeFrm()
             fragment.arguments = bundle
-            return CoroutineScopeFrm()
+            return fragment
         }
     }
     override fun getLayout(): Int {

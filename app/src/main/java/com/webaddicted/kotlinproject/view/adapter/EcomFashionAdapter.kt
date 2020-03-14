@@ -30,12 +30,12 @@ class EcomFashionAdapter(private var frm: EcommHomeFrm, private var list: java.u
             var source = list?.get(position)
             mRowBinding.imgProduct.showImage(source?.catImg, getPlaceHolder(0));
             mRowBinding.txtProduct.setText(source?.catName)
-            onClickListener(mRowBinding.imgProduct, position)
+            onClickListener(mRowBinding,mRowBinding.imgProduct, position)
         }
     }
 
-    override fun getClickEvent(view: View?, position: Int) {
-        super.getClickEvent(view, position)
+    override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
+        super.getClickEvent(mRowBinding,view, position)
         when(view?.id){
             R.id.img_product-> frm.navigateScreen(EcommProductListFrm.TAG)
         }

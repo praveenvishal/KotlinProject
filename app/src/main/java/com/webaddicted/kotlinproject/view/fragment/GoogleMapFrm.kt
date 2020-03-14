@@ -4,20 +4,21 @@ import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.FrmGoogleMapBinding
-import com.webaddicted.kotlinproject.global.common.GlobalUtility
-import com.webaddicted.kotlinproject.global.constant.AppConstant
-import com.webaddicted.kotlinproject.view.base.BaseFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.webaddicted.kotlinproject.R
+import com.webaddicted.kotlinproject.databinding.FrmGoogleMapBinding
+import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.global.common.visible
+import com.webaddicted.kotlinproject.global.constant.AppConstant
 import com.webaddicted.kotlinproject.view.activity.MapActivity
+import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickListener {
     private var fancyMarker: Marker? = null
@@ -48,7 +49,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmGoogleMapBinding
         init()
-        clickListener();
+        clickListener()
 
     }
 
@@ -59,11 +60,9 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
         initailizeMap()
         (activity as MapActivity).mapViewModel.locationUpdated.observe(
             this,
-            object : Observer<Location> {
-                override fun onChanged(location: Location?) {
-                    fencyLocation = location
-                    drawMarker(location!!)
-                }
+            Observer { location ->
+                fencyLocation = location
+                drawMarker(location!!)
             })
 
     }
@@ -83,7 +82,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
         super.onClick(v)
         when (v.id) {
             R.id.btn_google_map -> {
-                (activity as MapActivity).getLocation(2, 3, 0);
+                (activity as MapActivity).getLocation(2, 3, 0)
             }
             R.id.btn_create_polyline -> {
             }
@@ -96,7 +95,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
 
     private fun stopGeoFancy() {
         GlobalUtility.showOfflineNotification(activity!!, "stop geo fency", "test work flow")
-        (activity as MapActivity).stopGeoFencing(fancyMarker, geoFenceCircle);
+        (activity as MapActivity).stopGeoFencing(fancyMarker, geoFenceCircle)
     }
 
     private fun startGeoFancy() {
@@ -110,7 +109,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
                 )
             )
             googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-            (activity as MapActivity).startGeoFencing(fencyLocation!!, fancyMarker);
+            (activity as MapActivity).startGeoFencing(fencyLocation!!, fancyMarker)
             drawGeofence(fancyMarker)
         }
     }
@@ -122,15 +121,15 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
         if (geoFenceCircle != null)
             geoFenceCircle!!.remove()
         val circleOptions = CircleOptions()
-            .center(fancyMarker?.getPosition())
+            .center(fancyMarker?.position)
             .radius(AppConstant.GEOFENCE_RADIUS.toDouble())
-            .fillColor(resources.getColor(R.color.geo_fency_color))
-            .strokeColor(resources.getColor(R.color.geo_fency_color))
+            .fillColor(ContextCompat.getColor(context!!,R.color.geo_fency_color))
+            .strokeColor(ContextCompat.getColor(context!!,R.color.geo_fency_color))
             .strokeWidth(1f)
         geoFenceCircle = googleMap?.addCircle(circleOptions)
     }
 
-    fun initailizeMap() {
+    private fun initailizeMap() {
         if (googleMap == null) {
             val mapFragment =
                 childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -140,7 +139,7 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
 
     override fun onMapClick(latLng: LatLng?) {
         if (latLng != null) {
-            val marker = googleMap?.addMarker(
+             googleMap?.addMarker(
                 MarkerOptions().position(latLng).title("This is Me").icon(
                     BitmapDescriptorFactory.defaultMarker(
                         BitmapDescriptorFactory.HUE_YELLOW
@@ -149,9 +148,9 @@ class GoogleMapFrm : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMapClickLis
             )
             googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
 
-            mLatLongList?.add(latLng)
+            mLatLongList.add(latLng)
 //            if (mLatLongList?.size == 2) drawPolyLine()
-            if (mLatLongList?.size == 3) mLatLongList.clear()
+            if (mLatLongList.size == 3) mLatLongList.clear()
         }
     }
 

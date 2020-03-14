@@ -1,8 +1,11 @@
 package com.webaddicted.kotlinproject.view.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.view.View
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmSharedPrefBinding
@@ -75,24 +78,25 @@ class SharedPrefFrm : BaseFragment() {
     private fun getValuePref() {
         var userInfo = preferenceMgr.getUserInfo()
         var userInfoString = "<br><font color='#000000'>Name : </font>" + userInfo.name+"<br>" +
-                "<font color='"+resources.getColor(R.color.black)+"'>Gender : </font>" + userInfo.gender + "<br>" +
-                "<font color='"+resources.getColor(R.color.black)+"'>Age : </font>" + userInfo.age + "<br>" +
-                "<font color='"+resources.getColor(R.color.black)+"'>Weight : </font>" + userInfo.weight + "<br>" +
-                "<font color='"+resources.getColor(R.color.black)+"'>Married : </font>" + userInfo.isMarried + "<br>"
-        mBinding.txtGetPreference.setText(Html.fromHtml(userInfoString))
+                "<font color='"+ ContextCompat.getColor(context!!,R.color.black)+"'>Gender : </font>" + userInfo.gender + "<br>" +
+                "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Age : </font>" + userInfo.age + "<br>" +
+                "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Weight : </font>" + userInfo.weight + "<br>" +
+                "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Married : </font>" + userInfo.isMarried + "<br>"
+        mBinding.txtGetPreference.text = Html.fromHtml(userInfoString)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun removeKeyPref() {
         preferenceMgr.removeKey(PREF_USER_NAME)
         preferenceMgr.removeKey(PREF_USER_AGE)
         preferenceMgr.removeKey(PREF_USER_IS_MARRIED)
         var userInfo = preferenceMgr.getUserInfo()
         var userInfoString = "<br><font color='#000000'>Name : </font>" + userInfo.name + "<br>" +
-                "<font color='"+resources.getColor(R.color.black)+"'>Gender : </font>" + userInfo.gender + "<br>" +
-                "<font color='"+resources.getColor(R.color.black)+"'>Age : </font>" + userInfo.age + "<br>" +
-                "<font color='"+resources.getColor(R.color.black)+"'>Weight : </font>" + userInfo.weight + "<br>" +
-                "<font color='"+resources.getColor(R.color.black)+"'>Married : </font>" + userInfo.isMarried + "<br>"
-        mBinding.txtRemoveKey.setText(Html.fromHtml(userInfoString))
+                "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Gender : </font>" + userInfo.gender + "<br>" +
+                "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Age : </font>" + userInfo.age + "<br>" +
+                "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Weight : </font>" + userInfo.weight + "<br>" +
+                "<font color='"+ContextCompat.getColor(context!!,R.color.black)+"'>Married : </font>" + userInfo.isMarried + "<br>"
+        mBinding.txtRemoveKey.text = Html.fromHtml(userInfoString, Html.FROM_HTML_MODE_LEGACY)
     }
 
     private fun clearPref() {

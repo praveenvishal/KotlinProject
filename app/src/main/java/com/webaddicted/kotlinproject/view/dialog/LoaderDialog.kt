@@ -28,7 +28,7 @@ class LoaderDialog : BaseDialog() {
 
     override fun onResume() {
         super.onResume()
-        DialogUtil.modifyDialogBounds(activity, dialog)
+        dialog?.let { DialogUtil.modifyDialogBounds(activity, it) }
     }
 
 }

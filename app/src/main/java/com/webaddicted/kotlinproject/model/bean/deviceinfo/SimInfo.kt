@@ -1,4 +1,4 @@
-package com.webaddicted.kotlinproject.model.bean
+package com.webaddicted.kotlinproject.model.bean.deviceinfo
 
 /**
  * Created by deepak sharma on 1/2/20.

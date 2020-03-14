@@ -7,6 +7,8 @@ import androidx.viewpager.widget.ViewPager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDeviceInfoBinding
 import com.webaddicted.kotlinproject.global.common.visible
+import com.webaddicted.kotlinproject.global.constant.AppConstant.Companion.IS_USER_COME_FROM_SYSTEM_APPS
+import com.webaddicted.kotlinproject.global.constant.AppConstant.Companion.IS_USER_COME_FROM_USER_APPS
 import com.webaddicted.kotlinproject.global.misc.ViewPagerAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
@@ -30,7 +32,7 @@ class DeviceInfoFrm : BaseFragment() {
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmDeviceInfoBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {
@@ -68,7 +70,7 @@ class DeviceInfoFrm : BaseFragment() {
         }
     }
     private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = ViewPagerAdapter(activity?.supportFragmentManager)
+        val adapter = ViewPagerAdapter(activity?.supportFragmentManager!!)
         adapter.addFragment(BatteryFrm(), "Battery")
         adapter.addFragment(BluetoothFrm(), "Bluetooth")
         adapter.addFragment(CameraFrm(), "Camera")
@@ -79,9 +81,9 @@ class DeviceInfoFrm : BaseFragment() {
         adapter.addFragment(OSFrm(), "OS")
         adapter.addFragment(SimFrm(), "SIM")
         adapter.addFragment(StorageFrm(), "Storage")
+        adapter.addFragment(UserAppFrm.getInstance(IS_USER_COME_FROM_SYSTEM_APPS), "System App")
+        adapter.addFragment(UserAppFrm.getInstance(IS_USER_COME_FROM_USER_APPS), "User App")
         adapter.addFragment(ProcessorFrm(), "Processor")
-        adapter.addFragment(SystemAppFrm(), "System App")
-        adapter.addFragment(UserAppFrm(), "User App")
         viewPager.adapter = adapter
     }
 }

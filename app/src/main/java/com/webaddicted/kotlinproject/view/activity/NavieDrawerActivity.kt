@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityNavDrawerBinding
+import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
 import com.webaddicted.kotlinproject.global.common.visible
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 import com.webaddicted.kotlinproject.view.fragment.NewsFrm
@@ -42,7 +44,7 @@ class NavieDrawerActivity : BaseActivity() {
     }
 
     private fun init() {
-        setNavigationColor(resources.getColor(R.color.app_color))
+        setNavigationColor(ContextCompat.getColor(context!!,R.color.app_color))
         mBinding.toolbar.imgBack?.visible()
         mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.navigation_drawer)
         mBinding.toolbar.imgBack?.setImageResource(R.drawable.nevigaiton)

@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Intent
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityLanguageBinding
+import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 import com.webaddicted.kotlinproject.model.bean.language.LanguageBean
 import com.webaddicted.kotlinproject.view.adapter.LanguageAdapter
@@ -47,7 +49,7 @@ class LanguageActivity : BaseActivity() {
     }
 
     private fun init() {
-        setNavigationColor(resources.getColor(R.color.app_color))
+        setNavigationColor(ContextCompat.getColor(context!!,R.color.app_color))
         mBinding.toolbar.imgProfile?.visibility = View.GONE
         mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.select_language)
         mLanguageList = setLanguageBean();

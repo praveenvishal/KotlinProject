@@ -16,7 +16,7 @@ import java.io.File
 @SuppressLint("ValidFragment")
 class ImagePickerDialog : BaseDialog() {
     private lateinit var mBinding: DialogImagePickerBinding
-    protected val mediaPicker: MediaPickerUtils by inject()
+    private val mediaPicker: MediaPickerUtils by inject()
     companion object {
         private var fileType: Int = MediaPickerType.CAPTURE_IMAGE
         val TAG = ImagePickerDialog::class.java.simpleName
@@ -25,10 +25,9 @@ class ImagePickerDialog : BaseDialog() {
             @MediaPickerType.MediaType fileType: Int,
             onActionListner: OnImageActionListener
         ): ImagePickerDialog {
-            this.fileType = fileType;
-            onActionListener = onActionListner;
-            val customDialog = ImagePickerDialog()
-            return customDialog
+            this.fileType = fileType
+            onActionListener = onActionListner
+            return ImagePickerDialog()
         }
     }
 
@@ -69,7 +68,7 @@ class ImagePickerDialog : BaseDialog() {
 
     override fun onResume() {
         super.onResume()
-        DialogUtil.fullScreenDialogBound(getDialog())
+        dialog?.let { DialogUtil.fullScreenDialogBound(it) }
     }
 
     override fun onClick(v: View) {

@@ -47,7 +47,7 @@ class RecyclerListAdapter(
                 source,
                 getPlaceHolder(0)
             );
-            onClickListener(mRowBinding.imgInitial, position)
+            onClickListener(mRowBinding,mRowBinding.imgInitial, position)
         } else if (rowBinding is RowGridBinding) {
             val mRowBinding = rowBinding as RowGridBinding
             var source = dataList?.get(position)
@@ -55,14 +55,14 @@ class RecyclerListAdapter(
                 source,
                 getPlaceHolder(0)
             );
-            onClickListener(mRowBinding.img, position)
+            onClickListener(mRowBinding,mRowBinding.img, position)
         } else if (rowBinding is RowTextListBinding) {
             val mRowBinding = rowBinding as RowTextListBinding
         }
     }
 
-    override fun getClickEvent(view: View?, position: Int) {
-        super.getClickEvent(view, position)
+    override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
+        super.getClickEvent(mRowBinding,view, position)
         when (view?.id) {
             R.id.img_initial -> {
             }

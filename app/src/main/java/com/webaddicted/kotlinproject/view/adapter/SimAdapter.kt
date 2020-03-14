@@ -2,10 +2,8 @@ package com.webaddicted.kotlinproject.view.adapter
 
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
-import com.webaddicted.kotlinproject.databinding.RowCameraItemBinding
 import com.webaddicted.kotlinproject.databinding.RowSimItemBinding
-import com.webaddicted.kotlinproject.model.bean.SimInfo
-import com.webaddicted.kotlinproject.model.camera.CameraBean
+import com.webaddicted.kotlinproject.model.bean.deviceinfo.SimInfo
 import com.webaddicted.kotlinproject.view.base.BaseAdapter
 
 /**

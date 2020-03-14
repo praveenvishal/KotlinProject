@@ -56,7 +56,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener , PermissionHelpe
         if (loaderDialog != null) {
             val fragment = fragmentManager?.findFragmentByTag(LoaderDialog.TAG)
             if (fragment != null) fragmentManager?.beginTransaction()?.remove(fragment)?.commit()
-            loaderDialog?.show(fragmentManager, LoaderDialog.TAG)
+            loaderDialog?.show(fragmentManager!!, LoaderDialog.TAG)
         }
     }
 

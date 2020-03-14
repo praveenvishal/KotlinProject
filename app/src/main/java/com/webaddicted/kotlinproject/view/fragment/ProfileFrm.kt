@@ -57,6 +57,7 @@ class ProfileFrm : BaseFragment() {
             R.id.img_back -> activity?.onBackPressed()
         }
     }
+
     private fun requestCamera(@MediaPickerType.MediaType captureImage: Int) {
         imgPickerDialog = ImagePickerDialog.dialog(captureImage,
             object : OnImageActionListener {
@@ -64,7 +65,7 @@ class ProfileFrm : BaseFragment() {
                     mBinding.imgProfile.showImage(file.get(0), getPlaceHolder(0))
                 }
             })
-        imgPickerDialog.show(fragmentManager, ImagePickerDialog.TAG)
+        fragmentManager?.let { imgPickerDialog.show(it, ImagePickerDialog.TAG) }
     }
 
 }

@@ -38,12 +38,12 @@ class LanguageAdapter(
             );
             if (selectedPos == position) mRowBinding.rbLanguage.isChecked = true
             else mRowBinding.rbLanguage.isChecked = false
-            onClickListener(mRowBinding.rbLanguage, position)
+            onClickListener(mRowBinding,mRowBinding.rbLanguage, position)
         }
     }
 
-    override fun getClickEvent(view: View?, position: Int) {
-        super.getClickEvent(view, position)
+    override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
+        super.getClickEvent(mRowBinding,view, position)
         when (view?.id) {
             R.id.rb_language -> {
                 selectedPos = position

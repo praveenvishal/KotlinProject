@@ -48,7 +48,7 @@ class LoginDialog : BaseDialog() {
 
     override fun onResume() {
         super.onResume()
-        DialogUtil.fullScreenDialogBound(getDialog())
+        dialog?.let { DialogUtil.fullScreenDialogBound(it) }
     }
 
    override fun onClick(v: View) {

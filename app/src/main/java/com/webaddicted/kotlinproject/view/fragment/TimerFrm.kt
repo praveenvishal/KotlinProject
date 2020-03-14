@@ -75,14 +75,12 @@ class TimerFrm : BaseFragment() {
     private fun updateUi() {
         val minutes = countDownTimerMilisec / 1000 / 60
         val seconds = countDownTimerMilisec / 1000 % 60
-        if (mBinding?.txtHandlerTimer != null)
-            mBinding.txtHandlerTimer.setText(
-                String.format(
-                    "%02d",
-                    minutes
-                ) + ":" + String.format("%02d", seconds)
-            )
-        countDownTimerMilisec = countDownTimerMilisec - 1000
+        if (mBinding.txtHandlerTimer != null)
+            mBinding.txtHandlerTimer.text = String.format(
+                "%02d",
+                minutes
+            ) + ":" + String.format("%02d", seconds)
+        countDownTimerMilisec -= 1000
         if (!isStopHandler) countDownTimerHandler.postDelayed(updateTimerThread, 1000)
     }
 

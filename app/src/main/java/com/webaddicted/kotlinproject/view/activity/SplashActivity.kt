@@ -4,9 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Handler
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivitySplashBinding
+import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
 import com.webaddicted.kotlinproject.global.common.Lg
 import com.webaddicted.kotlinproject.global.constant.AppConstant
 import com.webaddicted.kotlinproject.view.base.BaseActivity
@@ -33,12 +35,8 @@ class SplashActivity : BaseActivity() {
     override fun initUI(binding: ViewDataBinding) {
         mBinding = binding as ActivitySplashBinding
         init()
-        setNavigationColor(resources.getColor(R.color.app_color))
-        mBinding.imgLogo.setOnClickListener(object :View.OnClickListener{
-            override fun onClick(p0: View?) {
-                init()
-            }
-        })
+        setNavigationColor(ContextCompat.getColor(context!!,R.color.app_color))
+        mBinding.imgLogo.setOnClickListener { init() }
     }
 
     var isInternetConnectedtest = true

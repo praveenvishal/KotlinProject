@@ -58,8 +58,6 @@ class Preview extends ViewGroup {
     // ------------------------------------------------------------------------
     // LAYOUT METHODS
     // ------------------------------------------------------------------------
-
-    // TODO - document
     // Need a better explanation of why onMeasure is needed and how width/height are determined.
     // Must the camera be set first via setCamera? What if mSupportedPreviewSizes == null?
     // Why do we startPreview within this method if the surface is valid?
@@ -74,7 +72,6 @@ class Preview extends ViewGroup {
         setMeasuredDimension(width, height);
     }
 
-    // TODO - document
     // What is the child surface? The camera preview image?
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {

@@ -92,7 +92,7 @@ class DialogFrm : BaseFragment() {
             R.id.btn_custom_dialog -> customDialog()
             R.id.btn_dialog_fragment -> {
                 val loginDialog = LoginDialog()
-                loginDialog.show(fragmentManager, LoginDialog.TAG)
+                fragmentManager?.let { loginDialog.show(it, LoginDialog.TAG) }
             }
             R.id.btn_selection_list -> DialogUtil.getSingleChoiceDialog(activity!!,
                 resources.getString(R.string.select_country),

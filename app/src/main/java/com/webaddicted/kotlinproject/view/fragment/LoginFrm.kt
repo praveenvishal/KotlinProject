@@ -63,10 +63,11 @@ class LoginFrm : BaseFragment() {
         if (ValidationHelper.validateEmail(mBinding.edtEmail, mBinding.wrapperEmail) &&
             ValidationHelper.validatePwd(mBinding.edtPassword, mBinding.wrapperPassword)) {
             var userInfo = commonViewModel.getCouponsBySize(mBinding.edtEmail.text.toString())
-            if (userInfo==null)GlobalUtility.showToast(resources.getString(R.string.create_an_account))
-            else if (userInfo.password.equals(mBinding.edtPassword.text.toString()))
-                activity?.let { HomeActivity.newIntent(it) }
-            else GlobalUtility.showToast(resources.getString(R.string.please_enter_correct_password))
+            when {
+                userInfo==null -> GlobalUtility.showToast(resources.getString(R.string.create_an_account))
+                userInfo.password.equals(mBinding.edtPassword.text.toString()) -> activity?.let { HomeActivity.newIntent(it) }
+                else -> GlobalUtility.showToast(resources.getString(R.string.please_enter_correct_password))
+            }
         }
     }
 

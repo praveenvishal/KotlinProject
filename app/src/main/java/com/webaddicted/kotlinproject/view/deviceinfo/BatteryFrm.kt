@@ -57,7 +57,6 @@ class BatteryFrm : BaseFragment() {
         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED)
         intentFilter.addAction(Intent.ACTION_BATTERY_LOW)
         activity?.registerReceiver(mBatInfoReceiver, intentFilter)
-
     }
 
     private fun clickListener() {

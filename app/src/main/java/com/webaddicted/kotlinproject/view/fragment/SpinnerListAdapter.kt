@@ -1,18 +1,15 @@
 package com.webaddicted.kotlinproject.view.fragment
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowTextListBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
 
 class SpinnerListAdapter(private val mListBean: List<String>?) : BaseAdapter() {
     override fun getCount(): Int {
-        return if (mListBean == null || mListBean.size == 0) 0 else mListBean.size
+        return if (mListBean == null || mListBean.isEmpty()) 0 else mListBean.size
     }
 
     override fun getItem(position: Int): Any {
@@ -24,7 +21,7 @@ class SpinnerListAdapter(private val mListBean: List<String>?) : BaseAdapter() {
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        var mBinding: RowTextListBinding? = null
+        val mBinding: RowTextListBinding?
         //        if (convertView == null) {
         mBinding = GlobalUtility.getLayoutBinding(
             parent?.context,
@@ -33,7 +30,7 @@ class SpinnerListAdapter(private val mListBean: List<String>?) : BaseAdapter() {
         //            convertView.setTag(mBinding);
         //        } else
         //            mBinding = (RowTextListBinding) convertView.getTag();
-        mBinding.txtName.setText(mListBean!![position])
+        mBinding.txtName.text = mListBean!![position]
         return mBinding.root
     }
 }

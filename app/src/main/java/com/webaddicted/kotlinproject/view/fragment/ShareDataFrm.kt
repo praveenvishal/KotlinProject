@@ -37,7 +37,7 @@ class ShareDataFrm : BaseFragment() {
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmShareBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {
@@ -104,7 +104,7 @@ class ShareDataFrm : BaseFragment() {
         val bytes = ByteArrayOutputStream()
         b.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = MediaStore.Images.Media.insertImage(
-            activity?.getContentResolver(),
+            activity?.contentResolver,
             b, "Title", null
         )
         val imageUri = Uri.parse(path)
@@ -124,7 +124,7 @@ class ShareDataFrm : BaseFragment() {
         val bytes = ByteArrayOutputStream()
         b.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = MediaStore.Images.Media.insertImage(
-            activity?.getContentResolver(),
+            activity?.contentResolver,
             b, "Title", null
         )
         val imageUri = Uri.parse(path)

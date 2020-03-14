@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import androidx.core.content.ContextCompat
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.RowTextListBinding
 import com.webaddicted.kotlinproject.global.common.GlobalUtility
@@ -85,8 +86,8 @@ class ExpendableListAdapter(private var context: Context?) : BaseExpandableListA
 //                R.color.transprant
 //            )
 //        )
-        mBinding.getRoot()
-            .setBackgroundColor(mBinding.txtName.getContext().resources.getColor(R.color.green))
+        mBinding.root
+            .setBackgroundColor(ContextCompat.getColor(context!!,R.color.green))
         return mBinding.root
     }
 

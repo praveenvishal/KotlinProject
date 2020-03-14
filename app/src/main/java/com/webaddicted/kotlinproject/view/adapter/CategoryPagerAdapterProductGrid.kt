@@ -14,13 +14,13 @@ class CategoryPagerAdapterProductGrid(fm: FragmentManager, private var NumberOfT
         return NumberOfTabs
     }
 
-    override fun getItem(position: Int): Fragment? {
-        when (position) {
+    override fun getItem(position: Int): Fragment {
+        return when (position) {
             0 -> return EcommProductCatTabFrm()
             1 -> return EcommProductCatTabFrm()
             2 -> return EcommProductCatTabFrm()
             3 -> return EcommProductCatTabFrm()
-            else -> return null
+            else -> EcommProductCatTabFrm()
         }
     }
 }

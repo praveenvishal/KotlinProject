@@ -118,19 +118,19 @@ class CircleGameAdapter(internal var mFilterBean: ArrayList<CircleGameBean>?) : 
      * circle image row item click
      */
     private fun clickEvent(mBinding: RowCircleBinding, position: Int) {
-        onClickListener(mBinding.imgFirst, position)
-        onClickListener(mBinding.txtFirst, position)
-        onClickListener(mBinding.imgSecond, position)
-        onClickListener(mBinding.txtSecond, position)
-        onClickListener(mBinding.imgThird, position)
-        onClickListener(mBinding.txtThird, position)
-        onClickListener(mBinding.imgFourth, position)
-        onClickListener(mBinding.txtFourth, position)
+        onClickListener(mBinding,mBinding.imgFirst, position)
+        onClickListener(mBinding,mBinding.txtFirst, position)
+        onClickListener(mBinding,mBinding.imgSecond, position)
+        onClickListener(mBinding,mBinding.txtSecond, position)
+        onClickListener(mBinding,mBinding.imgThird, position)
+        onClickListener(mBinding,mBinding.txtThird, position)
+        onClickListener(mBinding,mBinding.imgFourth, position)
+        onClickListener(mBinding,mBinding.txtFourth, position)
     }
 
 
-    override fun getClickEvent(view: View?, position: Int) {
-        super.getClickEvent(view, position)
+    override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
+        super.getClickEvent(mRowBinding,view, position)
         val currentPosi = position + 1
         var categoriesBean: CircleGameBean
             when (view?.id) {

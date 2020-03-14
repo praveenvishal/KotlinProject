@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,7 +30,7 @@ class TaskFrm : BaseFragment() {
     private lateinit var mBinding: FrmTaskListBinding
     private lateinit var mHomeAdapter: TaskAdapter
     private var mTaskList: ArrayList<String>? = ArrayList()
-    internal var worktask = arrayOf(
+    private var worktask = arrayOf(
         "Widgets",
         "News Api",
         "Google Map / Location",
@@ -93,14 +94,20 @@ class TaskFrm : BaseFragment() {
         mBinding.toolbar.imgBack.gone()
         mBinding.toolbar.imgProfile.visible()
         mBinding.toolbar.imgSort.visible()
-        mBinding.toolbar.imgProfile.setImageDrawable(resources.getDrawable(R.drawable.ic_search))
+        mBinding.toolbar.imgProfile.setImageDrawable(
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.ic_search,
+                null
+            )
+        )
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.task_title)
-        mTaskList = ArrayList(Arrays.asList(*worktask))
+        mTaskList = ArrayList(listOf(*worktask))
         showSearchView = ShowSearchView()
         setAdapter()
         clickListener()
         sortList(SortListType.ASCENDING)
-        var currentMode = AppCompatDelegate.getDefaultNightMode()
+        val currentMode = AppCompatDelegate.getDefaultNightMode()
         if (currentMode == AppCompatDelegate.MODE_NIGHT_YES)
             activity?.showToast("Night Mode")
         else if (currentMode == AppCompatDelegate.MODE_NIGHT_NO)
@@ -117,7 +124,7 @@ class TaskFrm : BaseFragment() {
             }
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                val text = mBinding.toolbar.editTextSearch.getText().toString()
+                val text = mBinding.toolbar.editTextSearch.text.toString()
                     .toLowerCase(Locale.getDefault())
                 mHomeAdapter.filter(text)
             }
@@ -147,14 +154,12 @@ class TaskFrm : BaseFragment() {
 
     private fun setAdapter() {
         mHomeAdapter = TaskAdapter(this@TaskFrm, mTaskList)
-        mBinding.recyclerView.setLayoutManager(
-            LinearLayoutManager(
-                activity,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
+        mBinding.recyclerView.layoutManager = LinearLayoutManager(
+            activity,
+            LinearLayoutManager.VERTICAL,
+            false
         )
-        mBinding.recyclerView.setAdapter(mHomeAdapter)
+        mBinding.recyclerView.adapter = mHomeAdapter
     }
 
     fun onClicks(click: String) {
@@ -185,7 +190,7 @@ class TaskFrm : BaseFragment() {
             "Coroutines" -> navigateScreen(CoroutineFrm.TAG)
             "ScreenShot" -> checkStoragePermission()
             "Splash" -> navigateScreen(SplashActivity.TAG)
-            "Device Info"->navigateScreen(DeviceInfoFrm.TAG)
+            "Device Info" -> navigateScreen(DeviceInfoFrm.TAG)
             else -> navigateScreen(WidgetFrm.TAG)
         }
     }
@@ -223,7 +228,7 @@ class TaskFrm : BaseFragment() {
             NavieDrawerActivity.TAG -> activity?.let { NavieDrawerActivity.newIntent(it) }
             CoroutineFrm.TAG -> frm = CoroutineFrm.getInstance(Bundle())
             SplashActivity.TAG -> activity?.let { SplashActivity.newIntent(it) }
-            DeviceInfoFrm.TAG ->frm = DeviceInfoFrm.getInstance(Bundle())
+            DeviceInfoFrm.TAG -> frm = DeviceInfoFrm.getInstance(Bundle())
             else -> frm = WidgetFrm.getInstance(Bundle())
         }
         frm?.let { navigateAddFragment(R.id.container, it, true) }
@@ -238,18 +243,18 @@ class TaskFrm : BaseFragment() {
     }
 
     private fun sortList(@SortListType.SortType sortType: Int) {
-        when(sortType){
-            SortListType.DEFAULT-> mTaskList = ArrayList(Arrays.asList(*worktask))
-            SortListType.ASCENDING ->Collections.sort(mTaskList)
-            SortListType.DESCENDING->Collections.sort(mTaskList, Collections.reverseOrder())
+        when (sortType) {
+            SortListType.DEFAULT -> mTaskList = ArrayList(listOf(*worktask))
+            SortListType.ASCENDING -> mTaskList?.sort()
+            SortListType.DESCENDING -> Collections.sort(mTaskList, Collections.reverseOrder())
         }
         if (mHomeAdapter != null) mTaskList?.let { mHomeAdapter.notifyAdapter(it) }
     }
 
     private fun showPopupMenu(view: View) { // inflate menu
         val popup = PopupMenu(activity!!, view)
-        val inflater: MenuInflater = popup.getMenuInflater()
-        inflater.inflate(R.menu.menu_sort, popup.getMenu())
+        val inflater: MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.menu_sort, popup.menu)
         popup.setOnMenuItemClickListener(MyMenuItemClickListen(this))
         popup.show()
     }
@@ -264,6 +269,7 @@ class TaskFrm : BaseFragment() {
             return false
         }
     }
+
     override fun onResume() {
         super.onResume()
         addBlankSpace(mBinding.bottomSpace)

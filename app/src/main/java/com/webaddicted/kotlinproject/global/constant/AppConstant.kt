@@ -22,6 +22,8 @@ class AppConstant {
         const val GEOFENCE_REQ_ID = "My Geofence"
         const val GEOFENCE_REQ_CODE = 0
         val NOTIFICATION_CHANNEL_ID = "com.example"
+        const val IS_USER_COME_FROM_SYSTEM_APPS = 1
+        const val IS_USER_COME_FROM_USER_APPS = 2
     }
 
 }

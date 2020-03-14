@@ -68,11 +68,11 @@ abstract class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    protected open fun onClickListener(view: View?, position: Int){
-        view?.setOnClickListener({ getClickEvent(view, position)})
+    protected open fun onClickListener(mRowBinding: ViewDataBinding,view: View?, position: Int){
+        view?.setOnClickListener({ getClickEvent(mRowBinding,view, position)})
     }
 
-    protected open fun getClickEvent(view: View?, position: Int) {
+    protected open fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
 
     }
 

@@ -56,13 +56,13 @@ class TaskAdapter(private var taskFrm: TaskFrm, var mTaskList: ArrayList<String>
 //                mRowBinding.txtName.setText(mTaskList?.get(position))
 //            }
 //            mRowBinding.card.setOnClickListener {
-            onClickListener(mRowBinding.card, position)
+            onClickListener(mRowBinding,mRowBinding.card, position)
 //        }
         }
     }
 
-    override fun getClickEvent(view: View?, position: Int) {
-        super.getClickEvent(view, position)
+    override fun getClickEvent(mRowBinding: ViewDataBinding,view: View?, position: Int) {
+        super.getClickEvent(mRowBinding,view, position)
         when (view?.id) {
             R.id.card -> mTaskList?.get(position)?.let { taskFrm.onClicks(it) }
         }

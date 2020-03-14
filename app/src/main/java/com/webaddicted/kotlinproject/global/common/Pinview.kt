@@ -533,7 +533,7 @@ class Pinview @JvmOverloads constructor(
                 get() = source.length
 
             override fun get(index: Int): Char {
-                return  BULLET //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                return  BULLET
             }
 
             override fun subSequence(startIndex: Int, endIndex: Int): CharSequence {

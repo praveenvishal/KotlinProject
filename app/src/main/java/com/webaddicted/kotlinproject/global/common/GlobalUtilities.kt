@@ -577,6 +577,17 @@ class GlobalUtility {
                 "xx"
             }
         }
+        /***
+         * To prevent from double clicking the row item and so prevents overlapping fragment.
+         */
+        fun avoidDoubleClicks(view: View) {
+            val DELAY_IN_MS: Long = 500
+            if (!view.isClickable) {
+                return
+            }
+            view.isClickable = false
+            view.postDelayed({ view.isClickable = true }, DELAY_IN_MS)
+        }
 
     }
 

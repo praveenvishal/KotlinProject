@@ -8,7 +8,7 @@ import java.util.*
 /**
  * Created by Deepak Sharma(webaddicted) on 11-01-2020.
  */
-class ViewPagerAdapter(manager: FragmentManager?) : FragmentPagerAdapter(manager) {
+class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
     private val mFragmentList: MutableList<Fragment> =
         ArrayList<Fragment>()
     private val mFragmentTitleList: MutableList<String> =

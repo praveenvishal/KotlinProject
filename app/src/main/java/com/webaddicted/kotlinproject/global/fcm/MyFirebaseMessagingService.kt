@@ -23,14 +23,14 @@ import com.webaddicted.kotlinproject.model.bean.common.NotificationData
  */
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private var mNotificationData: NotificationData? = null
-    private var mAlert: String? = null
-    private var mSound: String? = null
+//    private var mAlert: String? = null
+//    private var mSound: String? = null
 
     companion object {
         private val TAG = MyFirebaseMessagingService::class.java.simpleName
     }
 
-    override fun onNewToken(p0: String?) {
+    override fun onNewToken(p0: String) {
         super.onNewToken(p0)
     }
 
@@ -38,7 +38,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * This method is invoked whenever the device receives the push notification
      * @param remoteMessage
      */
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Lg.d(TAG, "messagess")
 //        if (remoteMessage != null && remoteMessage!!.getData() != null) {
 //            val payload = remoteMessage!!.getData().get("payload")
@@ -61,7 +61,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      * @param context
      * @param mNotificationData
      */
-    fun showNotification(context: Context, mNotificationData: NotificationData?) {
+    private fun showNotification(context: Context, mNotificationData: NotificationData?) {
         val intent = GlobalUtility.getIntentForPush(context, mNotificationData)
         if (intent != null) {
             val pendingIntent = PendingIntent.getActivity(
@@ -73,7 +73,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationBuilder.setSmallIcon(R.mipmap.ic_launcher_round)
             notificationBuilder.setLargeIcon(
                 BitmapFactory.decodeResource(
-                    context.getResources(),
+                    context.resources,
                     R.mipmap.ic_launcher
                 )
             )
@@ -97,14 +97,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                     importance
                 )
                 notificationChannel.enableLights(true)
-                notificationChannel.setLightColor(Color.RED)
+                notificationChannel.lightColor = Color.RED
                 notificationChannel.enableVibration(true)
-                notificationChannel.setVibrationPattern(longArrayOf(1000, 1000))
-                assert(notificationManager != null)
+                notificationChannel.vibrationPattern = longArrayOf(1000, 1000)
                 notificationBuilder.setChannelId(NOTIFICATION_CHANNEL_ID)
-                notificationManager!!.createNotificationChannel(notificationChannel)
+                notificationManager.createNotificationChannel(notificationChannel)
             }
-            notificationManager!!.notify(
+            notificationManager.notify(
                 getTwoDigitRandomNo()/*Id of Notification*/,
                 notificationBuilder.build()
             )

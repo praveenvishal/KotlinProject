@@ -24,13 +24,13 @@ internal class ScrollingToolbarBehavior(context: Context, attrs: AttributeSet) :
     ): Boolean {
         if (dependency is AppBarLayout) {
 
-            val distanceToScroll = child.getHeight()
+            val distanceToScroll = child.height
 
             val bottomToolbarHeight =
-                child.getHeight()//TODO replace this with bottom toolbar height.
+                child.height//TODO replace this with bottom toolbar height.
 
             val ratio = dependency.y / bottomToolbarHeight.toFloat()
-            child.setTranslationY(-distanceToScroll * ratio)
+            child.translationY = -distanceToScroll * ratio
         }
         return true
     }

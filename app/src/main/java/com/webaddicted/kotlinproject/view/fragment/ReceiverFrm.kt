@@ -84,7 +84,7 @@ class ReceiverFrm : BaseFragment() {
     private fun customReceiver() {
         //step1
         var mFilter = IntentFilter()
-        mFilter?.addAction(ACTION_STARTED)
+        mFilter.addAction(ACTION_STARTED)
         activity?.registerReceiver(CustomReceiver(), mFilter)
         // step 2
         val intent = Intent(ACTION_STARTED)
@@ -96,10 +96,10 @@ class ReceiverFrm : BaseFragment() {
         var ACTION_UPDATE = "com.example.android.supportv4.UPDATE"
         var mFilter = IntentFilter()
         mFilter.priority = 1
-        mFilter?.addAction(ACTION_UPDATE)
+        mFilter.addAction(ACTION_UPDATE)
         var mFilter2 = IntentFilter()
         mFilter2.priority = 2
-        mFilter2?.addAction(ACTION_UPDATE)
+        mFilter2.addAction(ACTION_UPDATE)
         activity?.registerReceiver(OrderedReceiver1(), mFilter)
         activity?.registerReceiver(OrderedReceiver2(), mFilter2)
         // STEP 2

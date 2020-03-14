@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import com.facebook.stetho.Stetho
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.global.koin.*
 import com.webaddicted.kotlinproject.global.sharedpref.PreferenceUtils
@@ -12,7 +13,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
-import com.facebook.stetho.Stetho;
+
 /**
  * Created by Deepak Sharma on 01/07/19.
  */
@@ -20,7 +21,6 @@ class AppApplication : Application() {
     private val mNetworkReceiver = NetworkChangeReceiver()
     companion object {
         lateinit var context: Context
-
     }
 
     override fun onCreate() {
@@ -41,7 +41,7 @@ class AppApplication : Application() {
     /**
      * set default font for app
      */
-    fun setupDefaultFont() {
+    private fun setupDefaultFont() {
         CalligraphyConfig.initDefault(
             CalligraphyConfig.Builder()
                 .setDefaultFontPath("font/opensans_regular.ttf")
@@ -50,7 +50,7 @@ class AppApplication : Application() {
         )
     }
 
-    private fun getModule(): Iterable<Module> {
+    private fun getModule(): List<Module> {
         return listOf(
             appModule,
             viewModelModule,

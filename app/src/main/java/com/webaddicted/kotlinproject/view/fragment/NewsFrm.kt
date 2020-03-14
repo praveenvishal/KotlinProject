@@ -2,6 +2,7 @@ package com.webaddicted.kotlinproject.view.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -53,7 +54,7 @@ class NewsFrm : BaseFragment() {
         mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.news_channel)
         mLanguageCode = preferenceMgr.getLanguageInfo().languageCode
-        mBinding.parent.setBackgroundColor(resources.getColor(R.color.grey_light))
+        mBinding.parent.setBackgroundColor(ContextCompat.getColor(context!!,R.color.grey_light))
         callApi()
     }
 
@@ -84,7 +85,7 @@ class NewsFrm : BaseFragment() {
     }
 
     private fun callApi() {
-        mViewModel.getNewsChannelLiveData()?.observe(this, channelObserver)
+        mViewModel.getNewsChannelLiveData().observe(this, channelObserver)
         mViewModel.newsChannelApi(
             "https://newsapi.org/v2/sources?language=" + mLanguageCode + "&page=" + mPageCount + "&pageSize=" + AppConstant.PAGINATION_SIZE + "&apiKey=" + getString(
                 R.string.news_api_key

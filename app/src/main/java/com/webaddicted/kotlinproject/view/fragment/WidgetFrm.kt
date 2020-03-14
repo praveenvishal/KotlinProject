@@ -22,7 +22,7 @@ import com.webaddicted.kotlinproject.view.base.BaseFragment
 class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
     private lateinit var mBinding: FrmWidgetBinding
-    var autoArray = arrayOf(
+    private var autoArray = arrayOf(
         "America",
         "Belgium",
         "Canada",
@@ -36,7 +36,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
         "Italy",
         "Spain"
     )
-    var multiArray = arrayOf(
+    private var multiArray = arrayOf(
         "America",
         "Belgium",
         "Canada",
@@ -67,13 +67,13 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     override fun onViewsInitialized(binding: ViewDataBinding?, view: View) {
         mBinding = binding as FrmWidgetBinding
         init()
-        clickListener();
+        clickListener()
     }
 
     private fun init() {
         mBinding.toolbar.imgBack.visible()
         mBinding.toolbar.txtToolbarTitle.text = resources.getString(R.string.widget_title)
-        mBinding.txtMarquee.setSelected(true)
+        mBinding.txtMarquee.isSelected = true
         setAutoCompleteAdapter()
         startAnimation(1)
     }
@@ -99,22 +99,22 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        mBinding.txtDateValue.text = dayOfMonth.toString() + "/" + month + "/" + year
+        mBinding.txtDateValue.text = "$dayOfMonth/$month/$year"
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        mBinding.txtTimeValue.text = hourOfDay.toString() + ":" + minute
+        mBinding.txtTimeValue.text = "$hourOfDay:$minute"
     }
 
     private fun showPopupMenu(view: View) { // inflate menu
         val popup = PopupMenu(activity!!, view)
-        val inflater: MenuInflater = popup.getMenuInflater()
-        inflater.inflate(R.menu.menu_gridview, popup.getMenu())
+        val inflater: MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.menu_gridview, popup.menu)
         popup.setOnMenuItemClickListener(MyMenuItemClickListen())
         popup.show()
     }
 
-    internal class MyMenuItemClickListen() :
+    internal class MyMenuItemClickListen:
         PopupMenu.OnMenuItemClickListener {
         override fun onMenuItemClick(menuItem: MenuItem): Boolean {
             when (menuItem.itemId) {
@@ -136,11 +136,11 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
             )
 
         mBinding.autoCompleteTextVie.setAdapter(adapter)
-        mBinding.autoCompleteTextVie.setThreshold(1)
-        mBinding.autoCompleteTextVie.setOnItemClickListener({ adapterView, view, position, l ->
+        mBinding.autoCompleteTextVie.threshold = 1
+        mBinding.autoCompleteTextVie.setOnItemClickListener { adapterView, view, position, l ->
             val selection = adapterView.getItemAtPosition(position) as String
             GlobalUtility.showToast(selection)
-        })
+        }
 //        val seledd: String = mBinding.autoCompleteTextVie.getText().toString()
 //        GlobalUtility.showToast(seledd)
         mBinding.multiAutoCompleteTextView.setTokenizer(MultiAutoCompleteTextView.CommaTokenizer())
@@ -152,7 +152,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
                 multiArray
             )
         mBinding.multiAutoCompleteTextView.setAdapter(adapt)
-        mBinding.multiAutoCompleteTextView.setThreshold(1)
+        mBinding.multiAutoCompleteTextView.threshold = 1
     }
 
     private fun startAnimation(animatorType: Int) {
@@ -170,7 +170,7 @@ class WidgetFrm : BaseFragment(), DatePickerDialog.OnDateSetListener,
                 drawable =
                     AnimatedVectorDrawableCompat.create(activity!!, R.drawable.animate_wave_5)
         }
-        mBinding.waveForm.setBackground(drawable)
+        mBinding.waveForm.background = drawable
         assert(drawable != null)
         drawable?.start()
     }

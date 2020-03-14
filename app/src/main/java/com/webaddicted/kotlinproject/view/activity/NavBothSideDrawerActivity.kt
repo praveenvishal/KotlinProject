@@ -5,10 +5,12 @@ import android.content.Intent
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.ViewDataBinding
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.ActivityNavBothDrawerBinding
+import com.webaddicted.kotlinproject.global.common.AppApplication.Companion.context
 import com.webaddicted.kotlinproject.view.base.BaseActivity
 
 
@@ -39,7 +41,7 @@ class NavBothSideDrawerActivity : BaseActivity() {
     }
 
     private fun init() {
-        setNavigationColor(resources.getColor(R.color.app_color))
+        setNavigationColor(ContextCompat.getColor(context!!,R.color.app_color))
         mBinding.toolbar.imgProfile?.visibility = View.VISIBLE
         mBinding.toolbar.imgBack?.visibility = View.VISIBLE
         mBinding.toolbar.txtToolbarTitle?.text = resources.getString(R.string.navigation_drawer)

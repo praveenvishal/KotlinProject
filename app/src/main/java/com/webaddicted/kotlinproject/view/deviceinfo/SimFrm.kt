@@ -15,22 +15,25 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.webaddicted.kotlinproject.R
 import com.webaddicted.kotlinproject.databinding.FrmDevSimBinding
-import com.webaddicted.kotlinproject.databinding.FrmDeviceInfoBinding
-import com.webaddicted.kotlinproject.global.common.FileUtils
 import com.webaddicted.kotlinproject.global.common.PermissionHelper
+import com.webaddicted.kotlinproject.global.common.gone
 import com.webaddicted.kotlinproject.global.common.visible
-import com.webaddicted.kotlinproject.model.bean.SimInfo
+import com.webaddicted.kotlinproject.model.bean.deviceinfo.SimInfo
+import com.webaddicted.kotlinproject.view.adapter.AppsAdapter
 import com.webaddicted.kotlinproject.view.adapter.SimAdapter
+import com.webaddicted.kotlinproject.view.adapter.TaskAdapter
 import com.webaddicted.kotlinproject.view.base.BaseFragment
 
 class SimFrm : BaseFragment() {
+    private lateinit var mAdapter: SimAdapter
     private lateinit var mBinding: FrmDevSimBinding
     private var telephonyManager: TelephonyManager? = null
     private var simInfoDataList: ArrayList<SimInfo>? = ArrayList<SimInfo>()
+
     companion object {
         val TAG = SimFrm::class.java.simpleName
         fun getInstance(bundle: Bundle): SimFrm {
-            val fragment =SimFrm()
+            val fragment = SimFrm()
             fragment.arguments = bundle
             return SimFrm()
         }
@@ -46,11 +49,20 @@ class SimFrm : BaseFragment() {
     }
 
     private fun init() {
-        telephonyManager = activity?.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
-        mBinding.rvSimData.layoutManager = LinearLayoutManager(activity)
-        mBinding.rvSimData.hasFixedSize()
+        telephonyManager =
+            activity?.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
+        setAdapter()
         checkPermission()
+    }
 
+    private fun setAdapter() {
+        mAdapter = SimAdapter(simInfoDataList)
+        mBinding.rvSimData.layoutManager = LinearLayoutManager(
+            activity,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+        mBinding.rvSimData.adapter = mAdapter
     }
 
     private fun checkPermission() {
@@ -69,27 +81,79 @@ class SimFrm : BaseFragment() {
                 }
             })
     }
+
     @TargetApi(Build.VERSION_CODES.O)
     @SuppressLint("MissingPermission", "HardwareIds")
     private fun retrieveSimInformation(telephonyManager: TelephonyManager) {
-        if (telephonyManager != null && isSimAvailable(activity!!, 0) && telephonyManager.simState == TelephonyManager.SIM_STATE_READY) {
+        if (isSimAvailable(
+                activity!!,
+                0
+            ) && telephonyManager.simState == TelephonyManager.SIM_STATE_READY
+        ) {
+            mBinding.cvSimDataParent.visible()
+            if (mBinding.llEmptyState.isShown)
+                mBinding.llEmptyState.visible()
 
-            mBinding.cvSimDataParent.visibility = View.VISIBLE
-            if (mBinding.llEmptyState.isShown) {
-                mBinding.llEmptyState.visibility = View.GONE
-            }
+            simInfoDataList?.add(
+                SimInfo("SIM 1 state",
+                    simState(telephonyManager.simState)
+                )
+            )
+            simInfoDataList?.add(
+                SimInfo(
+                    "Integrated circuit card identifier (ICCID)",
+                    telephonyManager.simSerialNumber!!
+                )
+            )
+            simInfoDataList?.add(
+                SimInfo(
+                    "Unique device ID (IMEI or MEID/ESN for CDMA)",
+                    telephonyManager.getImei(0)
+                )
+            )
+            simInfoDataList?.add(
+                SimInfo(
+                    "International mobile subscriber identity (IMSI)",
+                    telephonyManager.subscriberId
+                )
+            )
+            simInfoDataList?.add(
+                SimInfo(
+                    "Service provider name (SPN)",
+                    telephonyManager.simOperatorName
+                )
+            )
+            simInfoDataList?.add(
+                SimInfo(
+                    "Mobile country code (MCC)",
+                    telephonyManager.networkCountryIso
+                )
+            )
+            simInfoDataList?.add(
+                SimInfo(
+                    "Mobile operator name",
+                    telephonyManager.networkOperatorName
+                )
+            )
+            simInfoDataList?.add(
+                SimInfo(
+                    "Network type",
+                    networkType(telephonyManager.networkType)
+                )
+            )
 
-            simInfoDataList?.add(SimInfo("SIM 1 state", simState(telephonyManager.simState)))
-            simInfoDataList?.add(SimInfo("Integrated circuit card identifier (ICCID)", telephonyManager.simSerialNumber!!))
-            simInfoDataList?.add(SimInfo("Unique device ID (IMEI or MEID/ESN for CDMA)", telephonyManager.getImei(0)))
-            simInfoDataList?.add(SimInfo("International mobile subscriber identity (IMSI)", telephonyManager.subscriberId))
-            simInfoDataList?.add(SimInfo("Service provider name (SPN)", telephonyManager.simOperatorName))
-            simInfoDataList?.add(SimInfo("Mobile country code (MCC)", telephonyManager.networkCountryIso))
-            simInfoDataList?.add(SimInfo("Mobile operator name", telephonyManager.networkOperatorName))
-            simInfoDataList?.add(SimInfo("Network type", networkType(telephonyManager.networkType)))
-
-            simInfoDataList?.add(SimInfo("Mobile country code + mobile network code (MCC+MNC)", telephonyManager.simOperator))
-            simInfoDataList?.add(SimInfo("Mobile station international subscriber directory number (MSISDN)", telephonyManager.line1Number))
+            simInfoDataList?.add(
+                SimInfo(
+                    "Mobile country code + mobile network code (MCC+MNC)",
+                    telephonyManager.simOperator
+                )
+            )
+            simInfoDataList?.add(
+                SimInfo(
+                    "Mobile station international subscriber directory number (MSISDN)",
+                    telephonyManager.line1Number
+                )
+            )
 
             /*  if (isSimAvailable(mActivity, 1)) {
                     simInfoDataList?.add(SimInfo("", ""))
@@ -104,13 +168,10 @@ class SimFrm : BaseFragment() {
                         simInfoDataList?.add(SimInfo("Mobile country code + mobile network code (MCC+MNC)", ""+getDeviceIdBySlot(mActivity, "getSimOperator", 1)))
                         simInfoDataList?.add(SimInfo("Mobile station international subscriber directory number (MSISDN)", ""+getDeviceIdBySlot(mActivity, "getLine1Number", 1)))
                 }*/
-
-            //creating our adapter
-            val adapter = simInfoDataList?.let { SimAdapter(it) }
-            mBinding.rvSimData?.adapter = adapter
+            mAdapter.notifyAdapter(simInfoDataList!!)
         } else {
-            mBinding.cvSimDataParent.visibility = View.GONE
-            mBinding.llEmptyState.visibility = View.VISIBLE
+            mBinding.cvSimDataParent.gone()
+            mBinding.llEmptyState.visible()
         }
     }
 
@@ -125,7 +186,7 @@ class SimFrm : BaseFragment() {
             6 -> "NOT_READY"
             7 -> "PERM_DISABLED"
             8 -> "CARD_IO_ERROR"
-            else -> "??? " + simState
+            else -> "??? $simState"
         }
     }
 
@@ -152,23 +213,19 @@ class SimFrm : BaseFragment() {
         }
     }
 
-    private class DIMethodNotFoundException(info: String) : Exception(info) {
-        companion object {
-            private val serialVersionUID = -996812356902545308L
-        }
-    }
-
     @SuppressLint("MissingPermission", "HardwareIds")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP_MR1)
     private fun isSimAvailable(context: Activity, slotId: Int): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            val sManager = context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
+            val sManager =
+                context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
             val infoSim = sManager.getActiveSubscriptionInfoForSimSlotIndex(slotId)
             if (infoSim != null) {
                 return true
             }
         } else {
-            val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            val telephonyManager =
+                context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             if (telephonyManager.simSerialNumber != null) {
                 return true
             }

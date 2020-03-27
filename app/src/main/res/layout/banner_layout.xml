@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_banner_image">
+
+        <ImageView
+                android:scaleType="centerCrop"
+                android:id="@+id/imageViewBanner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ImageView>
+
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/margin_20"
+                app:dotsColor="@color/grey_light"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="16dp"
+                app:dotsSpacing="4dp"
+                app:progressMode="true"
+                app:selectedDotColor="@color/white" />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tool="http://schemas.android.com/tools">
+
+    <LinearLayout
+            android:layout_marginTop="@dimen/margin_24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margin_15"
+            android:paddingLeft="@dimen/margin_15"
+            android:paddingTop="@dimen/margin_15"
+            android:paddingEnd="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
+            android:paddingBottom="@dimen/margin_15">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/textViewOffer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/text_size_17"
+                    android:textStyle="bold"
+                    tool:text="2 For 1" />
+
+            <Button
+                    android:id="@+id/textViewRedeem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:text="@string/redeem" />
+
+        </RelativeLayout>
+
+        <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/margin_10"
+                android:maxLines="2"
+                android:textAlignment="textStart"
+                tool:text="@tools:sample/lorem/random" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20">
+
+            <TextView
+                    android:id="@+id/textViewEstimatedSaving"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/text_size_14"
+                    android:text="@string/estimatedSavins" />
+
+            <TextView
+                    android:id="@+id/textViewExpiry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:text="@string/redeem" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical">
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.SplashActivity">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_gravity="center"
+    >
+
+        <ImageView android:layout_width="45dp"
+                   android:layout_height="45dp"
+                   android:src="@drawable/ic_lunchbox"
+                   android:layout_gravity="center_horizontal"
+        />
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="LunchBox"
+                  android:textSize="25dp"
+                  android:textColor="@color/black_effective"
+                  android:fontFamily="@font/futur"
+                  android:layout_marginTop="6dp"
+                  android:layout_gravity="center_horizontal"
+        />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Eat Sleep Repeat"
+                  android:layout_marginTop="20dp"
+                  android:layout_gravity="center_horizontal"
+                  android:textColor="@color/green1"
+                  android:fontFamily="@font/futura_medium_bt"
+        />
+
+    </LinearLayout>
 
 
-        <ImageView
-                android:id="@+id/img_logo"
-                android:layout_width="@dimen/dp120"
-                android:layout_height="@dimen/dp120"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_phone" />
 
 
-    </RelativeLayout>
-</layout>
+
+</LinearLayout>

@@ -7,8 +7,10 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
+
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.webaddicted.kotlinproject"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -45,6 +47,16 @@ android {
     dataBinding {
         enabled = true
     }
+    buildTypes.each {
+        it.buildConfigField("String", "ZOMATO_API_KEY", "7f27385f932eb2189e7e1e6e54446331")
+        it.buildConfigField("String", "ZOMATO_BASE_URL", "https://developers.zomato.com")
+        it.buildConfigField("String", "DEFAULT_LOGITUDE", "-115.170792")
+        it.buildConfigField("String", "DEFAULT_LATITUDE", "36.116441")
+    }
+
+
+
+
     android {
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
@@ -88,14 +100,28 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$GLIDE_VERSION"
     kapt "com.github.bumptech.glide:compiler:$GLIDE_VERSION"
     implementation 'com.tuyenmonkey:mkloader:1.4.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 
     //    view pager dot indicator
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:2.1.2'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
+
 
 //    END sms retriever
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.material:material:1.2.0-alpha05'
+    implementation 'org.parceler:parceler-api:1.1.9'
+    annotationProcessor 'org.parceler:parceler:1.1.9'
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.5'
+
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+
+
 }
 kapt {
     generateStubs = true
